@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SarkariSearch — Government Jobs Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1B2A;--navy-mid:#16283C;--saffron:#FF6B00;--saffron-light:#FF8C33;--white:#FFFFFF;--offwhite:#F7F9FC;--slate:#8899AA;--text:#1A2B3C;--text-light:#4A5C6E;--border:#DDE4ED;--radius:6px}
+body{font-family:'Inter',sans-serif;background:var(--offwhite);color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+/* TOPBAR */
+.topbar{background:var(--navy);color:var(--white);padding:8px 20px;font-size:12px}
+.topbar-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.topbar-date{color:var(--slate);font-weight:500;white-space:nowrap}
+.topbar-links{display:flex;gap:16px}
+.topbar-links a{color:var(--slate);font-weight:500;letter-spacing:.03em;text-transform:uppercase;font-size:11px;transition:color .2s}
+.topbar-links a:hover{color:var(--saffron)}
+.live-chip{display:inline-flex;align-items:center;gap:5px;background:var(--saffron);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.05em}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block}
+
+/* MASTHEAD */
+.masthead{background:var(--white);border-bottom:3px solid var(--saffron);box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.masthead-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;height:62px}
+.logo-block{flex-shrink:0}
+.logo-name{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#000;letter-spacing:-.5px;line-height:1}
+.logo-name span{color:var(--saffron)}
+.logo-tag{font-size:9px;color:var(--slate);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nav-links a{padding:7px 12px;font-size:12.5px;font-weight:600;color:var(--text);border-radius:4px;transition:background .15s,color .15s;white-space:nowrap}
+.nav-links a:hover{background:var(--offwhite);color:var(--saffron)}
+.nav-links a.active{color:var(--saffron)}
+@media(max-width:640px){.nav-links{display:none}.topbar-links{display:none}}
+
+/* HERO */
+.hero-band{background:var(--navy);padding:28px 20px 24px;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--saffron);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:12px}
+.hero-band h1{color:#fff;font-family:Georgia,serif;font-size:1.65rem;font-weight:700;line-height:1.25;margin-bottom:6px}
+.hero-band h1 em{color:var(--saffron);font-style:normal}
+.hero-band p{color:var(--slate);font-size:.83rem;margin-bottom:18px}
+
+/* SEARCH */
+.search-card{background:var(--white);border-radius:var(--radius);padding:12px;max-width:780px;margin:0 auto;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.search-row{display:flex;gap:8px;flex-wrap:wrap}
+.s-wrap{flex:2;min-width:160px;position:relative}
+.s-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--slate);width:15px;height:15px}
+.s-wrap input{width:100%;padding:9px 10px 9px 33px;border:1px solid var(--border);border-radius:var(--radius);font-size:.83rem;outline:none;font-family:inherit;color:var(--text);background:var(--offwhite)}
+.s-wrap input:focus{border-color:var(--saffron);background:#fff}
+.s-wrap input::placeholder{color:var(--slate)}
+select.sf{padding:9px 10px;border:1px solid var(--border);border-radius:var(--radius);font-size:.8rem;color:var(--text);background:var(--offwhite);outline:none;cursor:pointer;flex:1;min-width:130px;font-family:inherit}
+select.sf:focus{border-color:var(--saffron)}
+.btn-go{background:var(--saffron);color:#fff;border:none;border-radius:var(--radius);padding:9px 18px;font-size:.83rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:inherit}
+.btn-go:hover{background:var(--saffron-light)}
+
+/* STATS */
+.stats-bar{background:var(--navy-mid);padding:7px 20px}
+.stats-inner{max-width:1100px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;align-items:center;font-size:.75rem;color:var(--slate)}
+.stats-inner strong{color:var(--saffron);font-family:monospace;font-size:.8rem}
+.src-pill{display:inline-flex;align-items:center;background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.3);color:var(--saffron-light);font-size:.67rem;font-weight:600;padding:2px 8px;border-radius:3px;margin:2px}
+
+/* LAYOUT */
+.main{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:16px 20px;max-width:1100px;margin:0 auto}
+@media(max-width:640px){.main{grid-template-columns:1fr}}
+
+/* SIDEBAR */
+.sb-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:13px;margin-bottom:10px}
+.sb-title{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--saffron);margin-bottom:9px;padding-bottom:6px;border-bottom:2px solid var(--saffron)}
+.cb-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;font-size:.8rem;color:var(--text);cursor:pointer}
+.cb-row input{accent-color:var(--saffron);width:13px;height:13px;cursor:pointer;flex-shrink:0}
+.cnt{margin-left:auto;font-size:.67rem;background:var(--offwhite);border:1px solid var(--border);border-radius:3px;padding:1px 6px;color:var(--slate);font-family:monospace}
+.src-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.25);color:var(--saffron);font-size:.68rem;font-weight:600;padding:3px 8px;border-radius:3px;margin:2px;text-decoration:none}
+.src-tag:hover{background:rgba(255,107,0,.15)}
+.clear-btn{background:none;border:1px solid var(--border);border-radius:var(--radius);padding:4px 10px;font-size:.71rem;cursor:pointer;color:var(--slate);font-family:inherit;margin-top:6px;width:100%}
+.clear-btn:hover{border-color:var(--saffron);color:var(--saffron)}
+
+/* RESULTS */
+.results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.res-count{font-size:.78rem;color:var(--text-light)}
+.res-count strong{color:var(--text)}
+.sort-sel{padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius);font-size:.78rem;color:var(--text);background:var(--white);outline:none;cursor:pointer;font-family:inherit}
+.btn-ref{background:var(--offwhite);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:6px 12px;font-size:.76rem;font-weight:500;cursor:pointer;font-family:inherit}
+.btn-ref:hover{border-color:var(--saffron);color:var(--saffron)}
+
+/* JOB CARD */
+.job-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:9px;position:relative;transition:box-shadow .15s,border-color .15s;cursor:pointer}
+.job-card:hover{box-shadow:0 3px 14px rgba(13,27,42,.1);border-color:var(--saffron)}
+.src-ribbon{position:absolute;top:0;right:0;background:var(--offwhite);font-size:.6rem;font-weight:600;color:var(--slate);padding:2px 8px;border-radius:0 6px 0 5px;font-family:monospace;border-left:1px solid var(--border);border-bottom:1px solid var(--border)}
+.j-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.j-org{font-size:.68rem;font-weight:700;color:var(--saffron);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.j-title{font-size:.93rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:5px}
+.j-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:7px}
+.j-chip{font-size:.73rem;color:var(--text-light);display:flex;align-items:center;gap:4px}
+.j-tags{display:flex;flex-wrap:wrap;gap:4px}
+.j-tag{font-size:.65rem;font-weight:600;padding:2px 8px;border-radius:3px;background:rgba(255,107,0,.09);color:var(--saffron);border:1px solid rgba(255,107,0,.2)}
+.j-right{text-align:right;flex-shrink:0}
+.dl-urgent{display:inline-flex;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:3px;margin-bottom:5px;background:#FEF0EE;color:#C0392B;border:1px solid #F5C6BE}
+.dl-soon{display:inline-flex;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:3px;margin-bottom:5px;background:#FFF3E0;color:#8B4E00;border:1px solid #FFD299}
+.dl-open{display:inline-flex;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:3px;margin-bottom:5px;background:#EDF9F0;color:#1B5E20;border:1px solid #A8D8B0}
+.j-sal{font-size:.72rem;color:#1B5E20;font-weight:600;font-family:monospace;white-space:nowrap}
+.btn-apply{display:inline-block;margin-top:7px;background:var(--navy);color:#fff;border:none;padding:6px 14px;border-radius:var(--radius);font-size:.73rem;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-apply:hover{background:var(--saffron)}
+
+/* EMPTY */
+.empty{text-align:center;padding:3rem 1rem}
+.empty-icon{font-size:2.5rem;margin-bottom:10px}
+.empty h3{font-size:1rem;font-weight:600;margin-bottom:5px}
+.empty p{color:var(--slate);font-size:.82rem}
+
+/* PAGINATION */
+.pgn{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin-top:14px}
+.pg-btn{padding:5px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--white);color:var(--text);font-size:.78rem;cursor:pointer;font-family:inherit;font-weight:500}
+.pg-btn:hover,.pg-btn.active{background:var(--saffron);color:#fff;border-color:var(--saffron)}
+
+/* FOOTER */
+footer{background:var(--navy);color:var(--slate);font-size:.78rem;text-align:center;padding:1.25rem;margin-top:2rem}
+footer a{color:var(--saffron)}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+function daysFromNow(n){const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
+function daysAgo(n){const d=new Date();d.setDate(d.getDate()-n);return d.toISOString().slice(0,10);}
+
+const JOBS=[
+  {id:1, org:"Staff Selection Commission",          dept:"SSC",      title:"Combined Graduate Level (CGL) 2026",            state:"Central",  vac:17727,qual:"Graduate",         sal:"₹25,500–₹81,100/mo", cat:"Group B",      posted:daysAgo(7), dl:daysFromNow(44),url:"https://ssc.nic.in",            src:"ssc.nic.in",     tags:["Group B","Graduate","All India"]},
+  {id:2, org:"Union Public Service Commission",     dept:"UPSC",     title:"Civil Services Exam (IAS/IPS) 2026",            state:"Central",  vac:1056, qual:"Graduate",         sal:"₹56,100–₹2,50,000/mo",cat:"Group A",      posted:daysAgo(16),dl:daysFromNow(38),url:"https://upsc.gov.in",           src:"upsc.gov.in",    tags:["Group A","IAS/IPS","Graduate"]},
+  {id:3, org:"Railway Recruitment Board",           dept:"Railways", title:"RRB NTPC Graduate Level 2026",                  state:"Central",  vac:11558,qual:"Graduate",         sal:"₹19,900–₹35,400/mo", cat:"Non-Technical",posted:daysAgo(12),dl:daysFromNow(33),url:"https://rrbcdg.gov.in",         src:"rrbcdg.gov.in",  tags:["Non-Technical","Graduate","Railways"]},
+  {id:4, org:"IBPS",                               dept:"Banking",  title:"IBPS PO Recruitment 2026 (CRP PO/MT XV)",       state:"Central",  vac:4455, qual:"Graduate",         sal:"₹36,000–₹63,840/mo", cat:"Group B",      posted:daysAgo(9), dl:daysFromNow(18),url:"https://ibps.in",               src:"ibps.in",        tags:["Banking","PO","Graduate"]},
+  {id:5, org:"National Health Mission UP",          dept:"State PSC",title:"Community Health Officer (CHO) 2026",           state:"UP",       vac:3360, qual:"B.Sc Nursing/BAMS",sal:"₹25,000–₹35,000/mo", cat:"Technical",    posted:daysAgo(5), dl:daysFromNow(54),url:"https://nhm.gov.in",            src:"nhm.gov.in",     tags:["Health","Technical","Nursing"]},
+  {id:6, org:"Delhi DSSSB",                        dept:"State PSC",title:"DSSSB Junior Secretariat Assistant 2026",       state:"Delhi",    vac:1355, qual:"12th Pass",        sal:"₹19,900–₹63,200/mo", cat:"Group C",      posted:daysAgo(14),dl:daysFromNow(16),url:"https://dsssb.delhi.gov.in",    src:"dsssb.gov.in",   tags:["Group C","12th Pass","Delhi"]},
+  {id:7, org:"SSC — Multi Tasking Staff",           dept:"SSC",      title:"SSC MTS & Havaldar 2026",                       state:"Central",  vac:9583, qual:"10th Pass",        sal:"₹18,000–₹22,000/mo", cat:"Group C",      posted:daysAgo(2), dl:daysFromNow(44),url:"https://ssc.nic.in",            src:"ssc.nic.in",     tags:["Group C","10th Pass","MTS"]},
+  {id:8, org:"UPSC Engineering Services",           dept:"UPSC",     title:"Engineering Services Examination 2026",         state:"Central",  vac:167,  qual:"B.Tech / BE",      sal:"₹56,100–₹1,77,500/mo",cat:"Group A",      posted:daysAgo(20),dl:daysFromNow(41),url:"https://upsc.gov.in",           src:"upsc.gov.in",    tags:["Engineering","Group A","Technical"]},
+  {id:9, org:"Rajasthan Public Service Commission", dept:"State PSC",title:"RPSC RAS/RTS Combined Competitive 2026",        state:"Rajasthan",vac:733,  qual:"Graduate",         sal:"₹15,600–₹67,000/mo", cat:"Group A",      posted:daysAgo(7), dl:daysFromNow(49),url:"https://rpsc.rajasthan.gov.in", src:"rpsc.gov.in",    tags:["State PCS","RAS","Rajasthan"]},
+  {id:10,org:"CRPF — Ministry of Home Affairs",     dept:"Defence",  title:"CRPF Head Constable GD & Ministerial 2026",     state:"Central",  vac:9212, qual:"12th Pass",        sal:"₹25,500–₹81,100/mo", cat:"Group C",      posted:daysAgo(10),dl:daysFromNow(28),url:"https://crpf.gov.in",           src:"crpf.gov.in",    tags:["Defence","Constable","12th Pass"]},
+  {id:11,org:"IBPS Clerk",                          dept:"Banking",  title:"IBPS Clerk Recruitment 2026 (CRP Clerks XV)",   state:"Central",  vac:6128, qual:"Graduate",         sal:"₹11,765–₹31,540/mo", cat:"Non-Technical",posted:daysAgo(5), dl:daysFromNow(25),url:"https://ibps.in",               src:"ibps.in",        tags:["Banking","Clerk","Graduate"]},
+  {id:12,org:"Bihar Public Service Commission",     dept:"State PSC",title:"BPSC 71st Combined (PT) Exam 2026",             state:"Bihar",    vac:1929, qual:"Graduate",         sal:"₹9,300–₹34,800/mo",  cat:"Group B",      posted:daysAgo(16),dl:daysFromNow(64),url:"https://bpsc.bih.nic.in",       src:"bpsc.gov.in",    tags:["State PCS","Bihar","Graduate"]},
+  {id:13,org:"Power Grid Corporation of India",     dept:"PSU",      title:"PGCIL Diploma Trainee 2026",                    state:"Central",  vac:800,  qual:"B.Tech / Diploma", sal:"₹20,600–₹46,500/mo", cat:"Technical",    posted:daysAgo(11),dl:daysFromNow(21),url:"https://powergridindia.com",    src:"powergrid.com",  tags:["PSU","Diploma","Technical"]},
+  {id:14,org:"Karnataka PSC",                       dept:"State PSC",title:"KPSC Group B & C Recruitment 2026",             state:"Karnataka",vac:1450, qual:"Graduate",         sal:"₹17,650–₹33,220/mo", cat:"Group B",      posted:daysAgo(8), dl:daysFromNow(59),url:"https://kpsc.kar.nic.in",       src:"kpsc.gov.in",    tags:["Karnataka","Group B","State Govt"]},
+  {id:15,org:"National Career Service Centre",      dept:"PSU",      title:"Various Vacancies — Employment Exchange",       state:"Central",  vac:520,  qual:"10th Pass / ITI",  sal:"₹18,000–₹29,200/mo", cat:"Group C",      posted:daysAgo(3), dl:daysFromNow(41),url:"https://ncs.gov.in",            src:"ncs.gov.in",     tags:["NCS","ITI","Group C"]},
+];
+
+const TOTAL_VAC=JOBS.reduce((s,j)=>s+j.vac,0).toLocaleString('en-IN');
+const PER=8;
+const S={q:'',dept:'',loc:'',cats:new Set(),quals:new Set(),dls:new Set(),sort:'newest',page:1,filtered:[...JOBS]};
+
+function dlLabel(str){
+  const d=new Date(str),now=new Date(),diff=Math.ceil((d-now)/86400000);
+  if(diff<=0)  return{cls:'dl-urgent',txt:'Closed'};
+  if(diff<=3)  return{cls:'dl-urgent',txt:diff+'d left ⚠'};
+  if(diff<=10) return{cls:'dl-soon',  txt:diff+'d left'};
+  return{cls:'dl-open',txt:d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})};
+}
+
+const QUAL={
+  '10th':j=>/10th/i.test(j.qual),
+  '12th':j=>/12th/i.test(j.qual),
+  'grad':j=>/graduate|b\.sc|bsc/i.test(j.qual),
+  'eng': j=>/b\.tech|diploma|b\.e\b/i.test(j.qual),
+  'med': j=>/nursing|bams|mbbs|bds/i.test(j.qual),
+};
+
+function run(){
+  const q=S.q.toLowerCase().trim(),now=new Date();
+  S.filtered=JOBS.filter(j=>{
+    if(q){const h=(j.title+' '+j.org+' '+j.dept+' '+j.tags.join(' ')).toLowerCase();if(!h.includes(q))return false;}
+    if(S.dept&&j.dept!==S.dept)return false;
+    if(S.loc&&j.state!==S.loc)return false;
+    if(S.cats.size>0&&!S.cats.has(j.cat))return false;
+    if(S.quals.size>0&&![...S.quals].some(v=>QUAL[v]&&QUAL[v](j)))return false;
+    if(S.dls.size>0){
+      const dp=(now-new Date(j.posted))/86400000,dd=(new Date(j.dl)-now)/86400000;
+      if(![...S.dls].some(v=>(v==='p7'&&dp<=7)||(v==='p30'&&dp<=30)||(v==='c7'&&dd>=0&&dd<=7)))return false;
+    }
+    return true;
+  });
+  S.filtered.sort((a,b)=>
+    S.sort==='newest'   ? new Date(b.posted)-new Date(a.posted) :
+    S.sort==='deadline' ? new Date(a.dl)-new Date(b.dl) :
+    S.sort==='vac'      ? b.vac-a.vac :
+    a.org.localeCompare(b.org)
+  );
+  S.page=1; draw();
+}
+
+function tog(set,v){set.has(v)?set.delete(v):set.add(v);}
+
+function nowStr(){
+  return new Date().toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+}
+
+function draw(){
+  const start=(S.page-1)*PER, slice=S.filtered.slice(start,start+PER), total=Math.ceil(S.filtered.length/PER);
+
+  document.getElementById('root').innerHTML=`
+  
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div class="logo-block">
+        <div class="logo-name">Daily<span> Spark</span></div>
+        <div class="logo-tag">Where Knowledge Sparks Success</div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="hero-band">
+    <div class="hero-eyebrow"><span class="live-dot"></span> Live Updates &nbsp;·&nbsp; All India Govt Jobs</div>
+    <h1>Find Your <em>Sarkari Naukri</em> Before Deadline</h1>
+    <p>SSC · UPSC · Railways · Banking · PSU · State PSC — all in one place</p>
+    <div class="search-card">
+      <div class="search-row">
+        <div class="s-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="qi" placeholder="Job title, department, exam…" value="${S.q.replace(/"/g,'&quot;')}"/>
+        </div>
+        <select class="sf" id="di">
+          <option value="">All Departments</option>
+          ${['SSC','UPSC','Railways','Banking','Defence','State PSC','PSU'].map(d=>`<option value="${d}"${S.dept===d?' selected':''}>${d}</option>`).join('')}
+        </select>
+        <select class="sf" id="li">
+          <option value="">All States</option>
+          ${[['Central','Central Govt'],['Delhi','Delhi'],['UP','Uttar Pradesh'],['Rajasthan','Rajasthan'],['Bihar','Bihar'],['Karnataka','Karnataka']].map(([v,l])=>`<option value="${v}"${S.loc===v?' selected':''}>${l}</option>`).join('')}
+        </select>
+        <button class="btn-go" id="sb">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          Search Jobs
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <span><strong>${TOTAL_VAC}</strong> Total Vacancies</span>
+      <span><strong>${JOBS.length}</strong> Active Listings</span>
+      <span><strong>12</strong> Sources</span>
+      <span style="margin-left:auto">
+        <span class="src-pill">SSC</span>
+        <span class="src-pill">UPSC</span>
+        <span class="src-pill">RRB</span>
+        <span class="src-pill">IBPS</span>
+        <span class="src-pill">NCS</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="main">
+    <aside>
+      <div class="sb-section">
+        <div class="sb-title">Category</div>
+        ${[['','All Jobs',JOBS.length],['Technical','Technical',2],['Non-Technical','Non-Technical',2],['Group A','Group A',3],['Group B','Group B',4],['Group C','Group C & D',4]].map(([v,l,n])=>`
+        <label class="cb-row">
+          <input type="checkbox" data-type="cat" data-val="${v}"${v===''?(S.cats.size===0?' checked':''):(S.cats.has(v)?' checked':'')}>
+          ${l} <span class="cnt">${n}</span>
+        </label>`).join('')}
+        <button class="clear-btn" id="cCat">Clear</button>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-title">Qualification</div>
+        ${[['10th','10th Pass'],['12th','12th Pass'],['grad','Graduate'],['eng','Engineering (B.Tech)'],['med','Medical / Nursing']].map(([v,l])=>`
+        <label class="cb-row">
+          <input type="checkbox" data-type="qual" data-val="${v}"${S.quals.has(v)?' checked':''}> ${l}
+        </label>`).join('')}
+        <button class="clear-btn" id="cQual">Clear</button>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-title">Posted / Deadline</div>
+        ${[['p7','Posted last 7 days'],['p30','Posted last 30 days'],['c7','Closing soon (≤7 days)']].map(([v,l])=>`
+        <label class="cb-row">
+          <input type="checkbox" data-type="dl" data-val="${v}"${S.dls.has(v)?' checked':''}> ${l}
+        </label>`).join('')}
+        <button class="clear-btn" id="cDl">Clear</button>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-title">Official Sources</div>
+        <a class="src-tag" href="https://ssc.nic.in" target="_blank" rel="noopener">ssc.nic.in</a>
+        <a class="src-tag" href="https://upsc.gov.in" target="_blank" rel="noopener">upsc.gov.in</a>
+        <a class="src-tag" href="https://ibps.in" target="_blank" rel="noopener">ibps.in</a>
+        <a class="src-tag" href="https://ncs.gov.in" target="_blank" rel="noopener">ncs.gov.in</a>
+        <a class="src-tag" href="https://rrbcdg.gov.in" target="_blank" rel="noopener">rrbcdg.gov.in</a>
+        <a class="src-tag" href="https://nhm.gov.in" target="_blank" rel="noopener">nhm.gov.in</a>
+      </div>
+    </aside>
+
+    <main>
+      <div class="results-hdr">
+        <div class="res-count">
+          ${S.filtered.length===0
+            ? 'No results found'
+            : `Showing <strong>${start+1}–${Math.min(start+PER,S.filtered.length)}</strong> of <strong>${S.filtered.length}</strong> vacancies`}
+        </div>
+        <div style="display:flex;gap:7px;align-items:center">
+          <select class="sort-sel" id="ss">
+            ${[['newest','Newest First'],['deadline','Closing Soon'],['vac','Most Vacancies'],['org','Organisation A–Z']].map(([v,l])=>`<option value="${v}"${S.sort===v?' selected':''}>${l}</option>`).join('')}
+          </select>
+          <button class="btn-ref" id="rb">↻ Refresh</button>
+        </div>
+      </div>
+
+      ${S.filtered.length===0
+        ? `<div class="empty"><div class="empty-icon">🔍</div><h3>No jobs found</h3><p>Try different keywords or clear your filters.</p></div>`
+        : slice.map(j=>{
+            const dl=dlLabel(j.dl);
+            return `
+            <div class="job-card" onclick="window.open('${j.url}','_blank','noopener')">
+              <div class="src-ribbon">${j.src}</div>
+              <div class="j-top">
+                <div style="flex:1;min-width:0">
+                  <div class="j-org">${j.org}</div>
+                  <div class="j-title">${j.title}</div>
+                  <div class="j-meta">
+                    <span class="j-chip">👥 ${j.vac.toLocaleString('en-IN')} posts</span>
+                    <span class="j-chip">📍 ${j.state==='Central'?'All India':j.state}</span>
+                    <span class="j-chip">🎓 ${j.qual}</span>
+                  </div>
+                  <div class="j-tags">${j.tags.map(t=>`<span class="j-tag">${t}</span>`).join('')}</div>
+                </div>
+                <div class="j-right">
+                  <div class="${dl.cls}">${dl.txt}</div><br/>
+                  <div class="j-sal">${j.sal}</div>
+                  <button class="btn-apply" onclick="event.stopPropagation();window.open('${j.url}','_blank','noopener')">Apply Now →</button>
+                </div>
+              </div>
+            </div>`;
+          }).join('')}
+
+      ${total>1?`<div class="pgn">
+        ${S.page>1?`<button class="pg-btn" onclick="goPage(${S.page-1})">← Prev</button>`:''}
+        ${Array.from({length:total},(_,i)=>i+1).filter(i=>i===1||i===total||Math.abs(i-S.page)<=1).map(i=>`<button class="pg-btn${i===S.page?' active':''}" onclick="goPage(${i})">${i}</button>`).join('')}
+        ${S.page<total?`<button class="pg-btn" onclick="goPage(${S.page+1})">Next →</button>`:''}
+      </div>`:''}
+    </main>
+  </div>
+
+  <footer>
+    <p>SarkariSearch aggregates publicly available government job notifications. Always verify on official websites. &nbsp;|&nbsp; <a href="#">Privacy</a> · <a href="#">Disclaimer</a></p>
+  </footer>`;
+
+  // Wire events
+  document.getElementById('sb').onclick=()=>{
+    S.q=document.getElementById('qi').value;
+    S.dept=document.getElementById('di').value;
+    S.loc=document.getElementById('li').value;
+    run();
+  };
+  document.getElementById('qi').onkeydown=e=>{
+    if(e.key==='Enter'){S.q=e.target.value;S.dept=document.getElementById('di').value;S.loc=document.getElementById('li').value;run();}
+  };
+  document.getElementById('di').onchange=e=>{S.dept=e.target.value;run();};
+  document.getElementById('li').onchange=e=>{S.loc=e.target.value;run();};
+  document.getElementById('ss').onchange=e=>{S.sort=e.target.value;run();};
+  document.getElementById('rb').onclick=()=>{S.filtered=[...JOBS];draw();};
+  document.getElementById('cCat').onclick=()=>{S.cats.clear();run();};
+  document.getElementById('cQual').onclick=()=>{S.quals.clear();run();};
+  document.getElementById('cDl').onclick=()=>{S.dls.clear();run();};
+
+  document.querySelectorAll('[data-type]').forEach(cb=>{
+    cb.onchange=()=>{
+      const t=cb.dataset.type,v=cb.dataset.val;
+      if(t==='cat'){if(v==='')S.cats.clear();else tog(S.cats,v);}
+      else if(t==='qual')tog(S.quals,v);
+      else if(t==='dl')tog(S.dls,v);
+      run();
+    };
+  });
+}
+
+function goPage(n){S.page=n;draw();window.scrollTo({top:0,behavior:'smooth'});}
+
+draw();
+</script>
+</body>
+</html>

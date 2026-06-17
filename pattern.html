@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔢 Maths Pattern Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0D0D2B;
+  --card:#16163A;
+  --card2:#1E1E4A;
+  --border:#2E2E6A;
+  --text:#F0EEFF;
+  --muted:#9090C0;
+  --accent:#7C5CFC;
+  --accent2:#FC5C9C;
+  --accent3:#5CF4FC;
+  --yellow:#FFD93D;
+  --green:#6BCB77;
+  --orange:#FF9F43;
+  --red:#FF6B6B;
+  --r:18px;
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Starfield bg */
+#stars-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+#sparkle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;pointer-events:none;}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.page.hidden{display:none;}
+
+/* ── Age Select Screen ── */
+.age-screen{text-align:center;max-width:700px;width:100%;}
+.logo{font-family:'Fredoka One',sans-serif;font-size:48px;color:var(--text);margin-bottom:6px;letter-spacing:1px;}
+.logo span{color:var(--accent);}
+.tagline{font-size:16px;color:var(--muted);margin-bottom:40px;}
+
+.age-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+@media(max-width:560px){.age-cards{grid-template-columns:1fr;}}
+
+.age-card{
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:var(--r);
+  padding:28px 16px;
+  cursor:pointer;
+  transition:all 0.22s;
+  position:relative;
+  overflow:hidden;
+}
+.age-card::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.22s;
+  border-radius:var(--r);
+}
+.age-card.c1::before{background:radial-gradient(circle at 50% 0%,rgba(124,92,252,0.18),transparent 70%);}
+.age-card.c2::before{background:radial-gradient(circle at 50% 0%,rgba(107,203,119,0.18),transparent 70%);}
+.age-card.c3::before{background:radial-gradient(circle at 50% 0%,rgba(252,92,156,0.18),transparent 70%);}
+.age-card:hover{transform:translateY(-6px);border-color:var(--accent);}
+.age-card:hover::before{opacity:1;}
+.age-card.c1:hover{border-color:#7C5CFC;}
+.age-card.c2:hover{border-color:#6BCB77;}
+.age-card.c3:hover{border-color:#FC5C9C;}
+
+.age-emoji{font-size:44px;display:block;margin-bottom:10px;}
+.age-label{font-family:'Fredoka One',sans-serif;font-size:22px;color:var(--text);margin-bottom:4px;}
+.age-range{font-size:13px;color:var(--muted);font-weight:600;}
+.age-desc{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;}
+.age-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:800;margin-top:10px;letter-spacing:0.5px;}
+.b-easy{background:#7C5CFC22;color:#B09CFF;border:1px solid #7C5CFC55;}
+.b-med{background:#6BCB7722;color:#8FE09A;border:1px solid #6BCB7755;}
+.b-hard{background:#FC5C9C22;color:#FFA0C4;border:1px solid #FC5C9C55;}
+
+/* ── Game Screen ── */
+.game-wrap{max-width:660px;width:100%;}
+
+.top-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.back-btn{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:10px;padding:8px 14px;color:var(--muted);
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all 0.18s;flex-shrink:0;
+}
+.back-btn:hover{color:var(--text);border-color:var(--accent);}
+
+.stats-bar{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.stat-pill{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:8px 6px;text-align:center;
+}
+.stat-pill .sv{font-size:18px;font-weight:800;color:var(--text);line-height:1;}
+.stat-pill .sl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:0.5px;margin-top:2px;}
+
+/* Game card */
+.game-card{
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:var(--r);
+  padding:28px;
+  margin-bottom:16px;
+  transition:border-color 0.3s;
+}
+.game-card.flash-correct{border-color:var(--green);box-shadow:0 0 30px rgba(107,203,119,0.25);}
+.game-card.flash-wrong{border-color:var(--red);box-shadow:0 0 30px rgba(255,107,107,0.2);}
+
+.level-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.level-chip{
+  font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:0.5px;
+}
+.progress-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;transition:width 0.5s ease;}
+.q-label{font-size:12px;color:var(--muted);font-weight:700;}
+
+.pattern-title{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:18px;letter-spacing:0.5px;text-transform:uppercase;}
+
+/* Pattern row */
+.pattern-row{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:10px;margin-bottom:24px;min-height:80px;
+}
+.pat-cell{
+  min-width:56px;min-height:56px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fredoka One',sans-serif;
+  font-size:22px;
+  font-weight:400;
+  transition:transform 0.2s;
+  position:relative;
+}
+.pat-cell.num{
+  background:var(--card2);border:2px solid var(--border);color:var(--text);
+}
+.pat-cell.blank{
+  background:transparent;border:2.5px dashed var(--accent);color:var(--accent);
+  cursor:default;animation:pulse-border 1.5s infinite;
+  font-size:28px;
+}
+@keyframes pulse-border{
+  0%,100%{border-color:var(--accent);box-shadow:none;}
+  50%{border-color:#B09CFF;box-shadow:0 0 14px rgba(124,92,252,0.4);}
+}
+.pat-cell.shape-cell{
+  background:var(--card2);border:2px solid var(--border);
+  font-size:30px;
+}
+.pat-cell.color-cell{
+  border:3px solid transparent;font-size:28px;
+}
+.pat-cell.op-cell{
+  background:transparent;border:none;color:var(--muted);font-size:20px;min-width:32px;min-height:32px;
+}
+
+/* Answer options */
+.options-grid{display:grid;gap:10px;}
+.options-grid.cols2{grid-template-columns:1fr 1fr;}
+.options-grid.cols4{grid-template-columns:repeat(4,1fr);}
+
+.opt{
+  background:var(--card2);
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:16px 8px;
+  font-family:'Fredoka One',sans-serif;
+  font-size:20px;
+  color:var(--text);
+  cursor:pointer;
+  transition:all 0.18s;
+  text-align:center;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.opt:hover:not(:disabled){
+  border-color:var(--accent);
+  background:#2A2A5A;
+  transform:translateY(-3px);
+  box-shadow:0 6px 20px rgba(124,92,252,0.2);
+}
+.opt:disabled{cursor:default;}
+.opt.correct{background:#6BCB7722;border-color:var(--green);color:#8FE09A;}
+.opt.wrong{background:#FF6B6B22;border-color:var(--red);color:#FF9999;}
+.opt.reveal{background:#7C5CFC22;border-color:var(--accent);color:#B09CFF;}
+
+/* Feedback */
+.feedback-row{display:flex;align-items:center;justify-content:center;gap:8px;min-height:36px;margin-top:16px;}
+.fb-msg{font-size:15px;font-weight:800;padding:8px 18px;border-radius:10px;}
+.fb-msg.correct{background:#6BCB7722;color:#8FE09A;}
+.fb-msg.wrong{background:#FF6B6B22;color:#FF9999;}
+.fb-msg.hint{color:var(--muted);font-size:13px;font-weight:600;}
+
+/* Hint / explain */
+.pattern-explain{
+  font-size:13px;color:var(--muted);font-weight:600;
+  text-align:center;margin-top:10px;min-height:20px;
+  transition:opacity 0.3s;
+}
+
+/* Timer bar */
+.timer-wrap{height:5px;background:var(--border);border-radius:3px;margin-bottom:16px;overflow:hidden;}
+.timer-fill{height:100%;border-radius:3px;transition:width 0.1s linear;}
+
+/* End screen */
+.end-wrap{text-align:center;max-width:520px;width:100%;}
+.end-trophy{font-size:72px;margin-bottom:12px;display:block;}
+.end-title{font-family:'Fredoka One',sans-serif;font-size:32px;color:var(--text);margin-bottom:8px;}
+.end-score{font-family:'Fredoka One',sans-serif;font-size:56px;color:var(--accent);line-height:1;}
+.end-sub{font-size:15px;color:var(--muted);margin:8px 0 24px;}
+.stars-row{font-size:36px;letter-spacing:6px;margin-bottom:24px;}
+.end-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
+.end-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+.end-stat .ev{font-size:22px;font-weight:800;color:var(--text);}
+.end-stat .el{font-size:11px;color:var(--muted);font-weight:700;margin-top:3px;text-transform:uppercase;}
+.end-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.end-btn{
+  padding:13px 28px;border-radius:12px;font-family:'Nunito',sans-serif;
+  font-size:15px;font-weight:800;cursor:pointer;border:none;transition:all 0.18s;
+}
+.end-btn.primary{background:var(--accent);color:#fff;}
+.end-btn.primary:hover{background:#6A4AE8;transform:translateY(-2px);}
+.end-btn.secondary{background:var(--card);border:2px solid var(--border);color:var(--text);}
+.end-btn.secondary:hover{border-color:var(--accent);transform:translateY(-2px);}
+
+/* Streak popup */
+.streak-popup{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
+  background:var(--card);border:2px solid var(--yellow);border-radius:20px;
+  padding:20px 36px;text-align:center;z-index:200;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events:none;
+}
+.streak-popup.show{transform:translate(-50%,-50%) scale(1);}
+.streak-popup .se{font-size:36px;}
+.streak-popup .st{font-family:'Fredoka One',sans-serif;font-size:22px;color:var(--yellow);}
+
+/* Animations */
+@keyframes bounceIn{
+  0%{transform:scale(0.5);opacity:0}
+  70%{transform:scale(1.15)}
+  100%{transform:scale(1);opacity:1}
+}
+.bounce{animation:bounceIn 0.35s ease both;}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}
+}
+.shake{animation:shake 0.4s ease;}
+@keyframes float{
+  0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}
+}
+.float-anim{animation:float 3s ease-in-out infinite;}
+
+/* Number input for fill-blank */
+.num-input-wrap{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.num-input{
+  width:80px;height:60px;text-align:center;
+  background:var(--card2);border:2.5px solid var(--border);
+  border-radius:12px;color:var(--text);
+  font-family:'Fredoka One',sans-serif;font-size:26px;
+  outline:none;transition:border-color 0.18s;
+  -moz-appearance:textfield;
+}
+.num-input::-webkit-outer-spin-button,.num-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+.num-input:focus{border-color:var(--accent);}
+.submit-btn{
+  padding:14px 28px;background:var(--accent);color:#fff;
+  border:none;border-radius:12px;font-family:'Nunito',sans-serif;
+  font-size:15px;font-weight:800;cursor:pointer;transition:all 0.18s;
+}
+.submit-btn:hover{background:#6A4AE8;transform:translateY(-2px);}
+.submit-btn:disabled{background:var(--border);cursor:default;transform:none;}
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<canvas id="sparkle-canvas"></canvas>
+
+<div class="streak-popup" id="streak-popup">
+  <div class="se" id="streak-emoji">🔥</div>
+  <div class="st" id="streak-text">3x Streak!</div>
+</div>
+
+<!-- Age Select Screen -->
+<div class="page" id="age-screen">
+  <div class="age-screen">
+    <div class="logo float-anim">🔢 <span>Pattern</span> Quest</div>
+    <p class="tagline">Maths patterns seekho — apni age chunko aur adventure shuru karo!</p>
+    <div class="age-cards">
+      <div class="age-card c1" onclick="startGame(1)">
+        <span class="age-emoji">🐣</span>
+        <div class="age-label">Explorer</div>
+        <div class="age-range">Age 5 – 7</div>
+        <div class="age-desc">Simple counting patterns, shapes, add/subtract sequences</div>
+        <span class="age-badge b-easy">BEGINNER</span>
+      </div>
+      <div class="age-card c2" onclick="startGame(2)">
+        <span class="age-emoji">🚀</span>
+        <div class="age-label">Adventurer</div>
+        <div class="age-range">Age 8 – 10</div>
+        <div class="age-desc">Skip counting, multiply patterns, rule finding, mixed ops</div>
+        <span class="age-badge b-med">INTERMEDIATE</span>
+      </div>
+      <div class="age-card c3" onclick="startGame(3)">
+        <span class="age-emoji">🧠</span>
+        <div class="age-label">Champion</div>
+        <div class="age-range">Age 11 – 14</div>
+        <div class="age-desc">Fibonacci, square/cube, algebraic, geometric progressions</div>
+        <span class="age-badge b-hard">ADVANCED</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Game Screen -->
+<div class="page hidden" id="game-screen">
+  <div class="game-wrap">
+    <div class="top-bar">
+      <button class="back-btn" onclick="goHome()">← Home</button>
+      <div class="stats-bar">
+        <div class="stat-pill"><div class="sv" id="st-score">0</div><div class="sl">Score</div></div>
+        <div class="stat-pill"><div class="sv" id="st-streak">0🔥</div><div class="sl">Streak</div></div>
+        <div class="stat-pill"><div class="sv" id="st-level">1</div><div class="sl">Level</div></div>
+        <div class="stat-pill"><div class="sv" id="st-qnum">1/50</div><div class="sl">Q</div></div>
+      </div>
+    </div>
+    <div class="timer-wrap"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+    <div class="game-card" id="game-card">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- End Screen -->
+<div class="page hidden" id="end-screen">
+  <div class="end-wrap">
+    <span class="end-trophy" id="end-trophy">🏆</span>
+    <div class="end-title" id="end-title">Pattern Master!</div>
+    <div class="end-score" id="end-score">0</div>
+    <div class="end-sub" id="end-sub">Points earned</div>
+    <div class="stars-row" id="end-stars">⭐⭐⭐</div>
+    <div class="end-grid">
+      <div class="end-stat"><div class="ev" id="es-correct">0</div><div class="el">Correct</div></div>
+      <div class="end-stat"><div class="ev" id="es-accuracy">0%</div><div class="el">Accuracy</div></div>
+      <div class="end-stat"><div class="ev" id="es-streak">0</div><div class="el">Best Streak</div></div>
+      <div class="end-stat"><div class="ev" id="es-time">0s</div><div class="el">Avg Time</div></div>
+    </div>
+    <div class="end-btns">
+      <button class="end-btn primary" onclick="restartGame()">🔄 Play Again</button>
+      <button class="end-btn secondary" onclick="goHome()">🏠 Age Select</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Starfield ──────────────────────────────────────
+const sc=document.getElementById('stars-canvas'),sctx=sc.getContext('2d');
+let stars=[];
+function resizeSC(){sc.width=innerWidth;sc.height=innerHeight;}
+resizeSC();addEventListener('resize',resizeSC);
+for(let i=0;i<160;i++)stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5+0.3,t:Math.random()*Math.PI*2,sp:Math.random()*0.02+0.005});
+function animStars(){sctx.clearRect(0,0,sc.width,sc.height);stars.forEach(s=>{s.t+=s.sp;const a=0.4+0.6*Math.abs(Math.sin(s.t));sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,Math.PI*2);sctx.fillStyle=`rgba(180,170,255,${a})`;sctx.fill();});requestAnimationFrame(animStars);}
+animStars();
+
+// ── Sparkles ──────────────────────────────────────
+const pc=document.getElementById('sparkle-canvas'),pctx=pc.getContext('2d');
+let sparks=[],bgSparks=[];
+function resizePC(){pc.width=innerWidth;pc.height=innerHeight;}
+resizePC();addEventListener('resize',resizePC);
+let bgT=0;
+function spawnBg(){bgSparks.push({x:Math.random()*pc.width,y:-10,size:Math.random()*2.5+0.8,speed:Math.random()*0.9+0.3,maxOp:Math.random()*0.4+0.15,drift:(Math.random()-0.5)*0.4,tw:Math.random()*Math.PI*2,col:['#FFD93D','#FC5C9C','#7C5CFC','#5CF4FC','#fff'][Math.floor(Math.random()*5)]});}
+function burst(count,cx,cy){const cols=['#FFD93D','#FC5C9C','#7C5CFC','#5CF4FC','#6BCB77','#FF9F43','#fff'];for(let i=0;i<count;i++){const a=(Math.PI*2*i/count)+Math.random()*0.5,sp=Math.random()*9+3;sparks.push({x:cx+(Math.random()-0.5)*50,y:cy+(Math.random()-0.5)*30,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-Math.random()*3,size:Math.random()*5+2,col:cols[Math.floor(Math.random()*cols.length)],op:1,decay:Math.random()*0.022+0.012,grav:0.15,rot:Math.random()*Math.PI*2,rsp:(Math.random()-0.5)*0.25,sh:['star','circle','rect','diamond'][Math.floor(Math.random()*4)]});}}
+function dShape(s,c){c.save();c.globalAlpha=Math.max(0,s.op);c.fillStyle=s.col;c.translate(s.x,s.y);if(s.rot!==undefined)c.rotate(s.rot);if(s.sh==='star'){c.beginPath();for(let i=0;i<5;i++){const a=i*4*Math.PI/5-Math.PI/2,ia=i*4*Math.PI/5+2*Math.PI/5-Math.PI/2;i===0?c.moveTo(s.size*Math.cos(a),s.size*Math.sin(a)):c.lineTo(s.size*Math.cos(a),s.size*Math.sin(a));c.lineTo(s.size*0.4*Math.cos(ia),s.size*0.4*Math.sin(ia));}c.closePath();c.fill();}else if(s.sh==='diamond'){c.beginPath();c.moveTo(0,-s.size);c.lineTo(s.size*0.6,0);c.lineTo(0,s.size);c.lineTo(-s.size*0.6,0);c.closePath();c.fill();}else if(s.sh==='rect'){c.fillRect(-s.size*0.4,-s.size*0.9,s.size*0.8,s.size*1.8);}else{c.beginPath();c.arc(0,0,s.size,0,Math.PI*2);c.fill();}c.restore();}
+function animSparks(){pctx.clearRect(0,0,pc.width,pc.height);bgT++;if(bgT%10===0)spawnBg();bgSparks=bgSparks.filter(s=>{s.y+=s.speed;s.x+=s.drift;s.tw+=0.06;s.op=s.maxOp*(0.6+0.4*Math.abs(Math.sin(s.tw)));dShape(s,pctx);return s.y<pc.height+20;});sparks=sparks.filter(s=>{s.x+=s.vx;s.y+=s.vy;s.vy+=s.grav;s.vx*=0.98;s.op-=s.decay;if(s.rot!==undefined)s.rot+=s.rsp;dShape(s,pctx);return s.op>0;});requestAnimationFrame(animSparks);}
+animSparks();
+
+// ── Game State ────────────────────────────────────
+const TOTAL_Q=50;
+let ageLevel=1,score=0,streak=0,bestStreak=0,qnum=0,correctCount=0;
+let answered=false,currentQ=null,timerInterval=null,timeLeft=0,timesArr=[];
+
+// ── Shape pattern helper ──────────────────────────
+// Returns a question object where display[] has emojis + null at blankPos
+function makeShapeQ(patternArr, explain) {
+  // patternArr: the FULL repeating sequence e.g. ['🔴','🔵','🔴','🔵','🔴','🔵','🔴','🔵']
+  // We show all but last, last is the blank
+  const showCount = patternArr.length - 1;
+  const answer = patternArr[patternArr.length - 1];
+  const display = patternArr.slice(0, showCount);   // shown items only
+  const blankPos = showCount;                        // blank is at index showCount
+
+  // Build 3 wrong options from other emojis not in pattern
+  const used = [...new Set(patternArr)];
+  const pool = ['🔷','🔸','🌟','💎','🟤','🍀','🎵','🌈','🦋','🐢','🌺','🎃',
+                '🚂','🎸','🍕','🌍','🔔','🎯','🧩','🦄']
+                .filter(e => !used.includes(e));
+  // also add the other shape in pattern if it's not the answer
+  const otherShapes = used.filter(e => e !== answer);
+  const wrongPool = [...otherShapes, ...pool];
+  const wrongs = [...new Set(wrongPool)].slice(0, 3);
+  const opts = shuffle([answer, ...wrongs]);
+
+  return { isShape: true, display, blankPos, answer, opts, explain };
+}
+
+// Build a repeating pattern sequence
+function buildRepeat(shapes, reps) {
+  const arr = [];
+  for (let i = 0; i < reps; i++) {
+    shapes.forEach(s => arr.push(s));
+  }
+  return arr;
+}
+
+// ── Number pattern helper ──────────────────────────
+function makeNumQ(arr, showLen, explain) {
+  const sl = Math.min(showLen, arr.length - 1);
+  const display = arr.slice(0, sl);
+  const blankPos = sl;
+  const answer = arr[sl];
+  const wrongs = genWrongs(answer, 3);
+  const opts = shuffle([answer, ...wrongs]);
+  return { isShape: false, display, blankPos, answer, opts, explain };
+}
+
+function genWrongs(ans, n) {
+  const ws = new Set();
+  const candidates = [ans+1,ans-1,ans+2,ans-2,ans+3,ans-3,ans+5,ans-5,ans+10,ans-10,ans*2,Math.max(0,Math.floor(ans/2)),ans+4,ans-4];
+  for (const c of candidates) { if (c !== ans && c >= 0) ws.add(c); if (ws.size >= n) break; }
+  while (ws.size < n) { const w = ans + Math.floor(Math.random()*20) - 10; if (w !== ans && w >= 0) ws.add(w); }
+  return [...ws].slice(0, n);
+}
+function shuffle(a) { return [...a].sort(() => Math.random() - 0.5); }
+
+// ── Level 1 generators (Age 5-7) ──────────────────
+const SHAPE_SETS_L1 = [
+  ['🔴','🔵'],['🟡','🟢'],['⭐','🌙'],['🎈','❤️'],['🍎','🍊'],
+  ['🐱','🐶'],['🌸','🌼'],['🔺','🔻'],['🟣','🟤'],['🚗','✈️']
+];
+function genL1() {
+  const types = ['count_up','count_down','add2','add5','even','odd','shape_ab','shape_abb','shape_abc'];
+  const t = types[Math.floor(Math.random() * types.length)];
+  if (t === 'count_up') {
+    const s = Math.floor(Math.random()*8)+1;
+    const arr=[]; for(let i=0;i<7;i++) arr.push(s+i);
+    return makeNumQ(arr, 6, '+1 counting pattern');
+  }
+  if (t === 'count_down') {
+    const s = Math.floor(Math.random()*5)+8;
+    const arr=[]; for(let i=0;i<7;i++) arr.push(s-i);
+    return makeNumQ(arr, 6, '-1 counting pattern');
+  }
+  if (t === 'add2') {
+    const s = Math.floor(Math.random()*3)*2;
+    const arr=[]; for(let i=0;i<7;i++) arr.push(s+i*2);
+    return makeNumQ(arr, 6, 'Har bar +2 add karo');
+  }
+  if (t === 'add5') {
+    const s = Math.floor(Math.random()*3)*5;
+    const arr=[]; for(let i=0;i<7;i++) arr.push(s+i*5);
+    return makeNumQ(arr, 6, 'Har bar +5 add karo');
+  }
+  if (t === 'even') {
+    const arr=[]; for(let i=1;i<=7;i++) arr.push(i*2);
+    return makeNumQ(arr, 6, 'Even numbers: 2,4,6,8...');
+  }
+  if (t === 'odd') {
+    const arr=[]; for(let i=0;i<7;i++) arr.push(i*2+1);
+    return makeNumQ(arr, 6, 'Odd numbers: 1,3,5,7...');
+  }
+  // Shape patterns
+  const pair = SHAPE_SETS_L1[Math.floor(Math.random() * SHAPE_SETS_L1.length)];
+  const [A, B] = pair;
+  if (t === 'shape_ab') {
+    // ABABAB? — show 6, blank is 7th
+    const seq = buildRepeat([A,B], 4); // 8 items, show 6, blank=7th index 6
+    seq.length = 7;
+    return makeShapeQ(seq, `AB pattern: ${A}${B}${A}${B}...`);
+  }
+  if (t === 'shape_abb') {
+    // ABBABB? — show 6, blank=7th
+    const seq = buildRepeat([A,B,B], 3); // 9 items
+    seq.length = 7;
+    return makeShapeQ(seq, `ABB pattern: ${A}${B}${B}${A}${B}${B}...`);
+  }
+  // shape_abc: pick 3 shapes
+  const extras = SHAPE_SETS_L1.filter(s => s !== pair);
+  const C = extras[Math.floor(Math.random()*extras.length)][0];
+  const seq = buildRepeat([A,B,C], 3); // 9 items
+  seq.length = 7;
+  return makeShapeQ(seq, `ABC pattern: ${A}${B}${C}${A}${B}${C}...`);
+}
+
+// ── Level 2 generators (Age 8-10) ──────────────────
+const SHAPE_SETS_L2 = [
+  ['🔶','🔷','🔸'],['🌕','🌙','⭐'],['🍎','🍊','🍋'],
+  ['🔴','🟡','🔵'],['🐸','🐰','🦊']
+];
+function genL2() {
+  const types = ['skip3','skip4','skip10','double','halve','rule6','rule7','rule8','sub3','sub4','shape_aabb','shape_abab','shape_abbc'];
+  const t = types[Math.floor(Math.random() * types.length)];
+  if (t === 'skip3')  { const s=Math.floor(Math.random()*4)*3; const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*3); return makeNumQ(arr,7,'+3 skip counting'); }
+  if (t === 'skip4')  { const s=Math.floor(Math.random()*4)*4; const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*4); return makeNumQ(arr,7,'+4 skip counting'); }
+  if (t === 'skip10') { const s=Math.floor(Math.random()*5)*10; const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*10); return makeNumQ(arr,7,'+10 pattern'); }
+  if (t === 'double') { const arr=[1]; for(let i=0;i<7;i++) arr.push(arr[arr.length-1]*2); return makeNumQ(arr,7,'Har number ×2 hota hai'); }
+  if (t === 'halve')  { const starts=[512,256,128]; const s=starts[Math.floor(Math.random()*starts.length)]; const arr=[s]; for(let i=0;i<6;i++) arr.push(arr[arr.length-1]/2); return makeNumQ(arr,6,'Har number ÷2 hota hai'); }
+  if (t === 'rule6')  { const s=Math.floor(Math.random()*5); const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*6); return makeNumQ(arr,7,'+6 rule'); }
+  if (t === 'rule7')  { const s=Math.floor(Math.random()*5); const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*7); return makeNumQ(arr,7,'+7 rule'); }
+  if (t === 'rule8')  { const s=Math.floor(Math.random()*5); const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*8); return makeNumQ(arr,7,'+8 rule'); }
+  if (t === 'sub3')   { const s=30+Math.floor(Math.random()*10); const arr=[]; for(let i=0;i<8;i++) arr.push(s-i*3); return makeNumQ(arr,7,'-3 pattern'); }
+  if (t === 'sub4')   { const s=40+Math.floor(Math.random()*10); const arr=[]; for(let i=0;i<8;i++) arr.push(s-i*4); return makeNumQ(arr,7,'-4 pattern'); }
+  // Shape patterns
+  const set = SHAPE_SETS_L2[Math.floor(Math.random()*SHAPE_SETS_L2.length)];
+  const [A,B,C] = set;
+  if (t === 'shape_aabb') {
+    const seq = buildRepeat([A,A,B,B], 2); // 8 items, show 7, blank=8th
+    seq.length = 8;
+    return makeShapeQ(seq, `AABB pattern: ${A}${A}${B}${B}...`);
+  }
+  if (t === 'shape_abab') {
+    const seq = buildRepeat([A,B,A,B], 2);
+    seq.length = 8;
+    return makeShapeQ(seq, `ABAB pattern: ${A}${B}${A}${B}...`);
+  }
+  // shape_abbc
+  const seq = buildRepeat([A,B,B,C], 2);
+  seq.length = 8;
+  return makeShapeQ(seq, `ABBC pattern: ${A}${B}${B}${C}...`);
+}
+
+// ── Level 3 generators (Age 11-14) ────────────────
+const SHAPE_SETS_L3 = [
+  ['🌑','🌒','🌓','🌔'],['🔴','🟠','🟡','🟢'],
+  ['⬛','⬜','🟦','🟥'],['🍁','🌿','🌸','❄️']
+];
+function genL3() {
+  const types = ['fibonacci','square','cube','triangular','prime','geo2','geo3','arith_diff','shape_abcd','shape_aabc'];
+  const t = types[Math.floor(Math.random()*types.length)];
+  if (t==='fibonacci') { const f=[1,1,2,3,5,8,13,21,34,55,89]; return makeNumQ(f,8,'Fibonacci: do numbers ka sum'); }
+  if (t==='square')    { const a=[]; for(let i=1;i<=10;i++) a.push(i*i); return makeNumQ(a,8,'Square numbers: n²'); }
+  if (t==='cube')      { const a=[]; for(let i=1;i<=7;i++) a.push(i*i*i); return makeNumQ(a,7,'Cube numbers: n³'); }
+  if (t==='triangular'){ const a=[]; for(let i=1;i<=10;i++) a.push(i*(i+1)/2); return makeNumQ(a,8,'Triangular numbers'); }
+  if (t==='prime')     { const p=[2,3,5,7,11,13,17,19,23,29,31]; return makeNumQ(p,8,'Prime numbers'); }
+  if (t==='geo2')      { const s=[1,2,3][Math.floor(Math.random()*3)]; const a=[s]; for(let i=0;i<7;i++) a.push(a[a.length-1]*2); return makeNumQ(a,7,'Geometric: ×2'); }
+  if (t==='geo3')      { const a=[1]; for(let i=0;i<6;i++) a.push(a[a.length-1]*3); return makeNumQ(a,6,'Geometric: ×3'); }
+  if (t==='arith_diff'){ const a=[]; for(let i=1;i<=9;i++) a.push(i*i+i); return makeNumQ(a,8,'n²+n pattern'); }
+  // Shape patterns (4-symbol cycle)
+  const set = SHAPE_SETS_L3[Math.floor(Math.random()*SHAPE_SETS_L3.length)];
+  const [A,B,C,D] = set;
+  if (t==='shape_abcd') {
+    const seq = buildRepeat([A,B,C,D], 3); // 12 items
+    seq.length = 9;
+    return makeShapeQ(seq, `ABCD cycle: ${A}${B}${C}${D}...`);
+  }
+  // shape_aabc
+  const seq = buildRepeat([A,A,B,C], 2);
+  seq.length = 8;
+  return makeShapeQ(seq, `AABC pattern: ${A}${A}${B}${C}...`);
+}
+
+// ── Render ────────────────────────────────────────
+const LEVEL_COLORS={1:'#7C5CFC',2:'#6BCB77',3:'#FC5C9C'};
+const LEVEL_NAMES={1:'Explorer 🐣',2:'Adventurer 🚀',3:'Champion 🧠'};
+const TIMER_COLORS={1:'#7C5CFC',2:'#FFD93D',3:'#FC5C9C'};
+const TIMERS={1:20,2:18,3:15};
+
+function renderQ() {
+  const q = currentQ;
+  const card = document.getElementById('game-card');
+  card.className = 'game-card';
+  const lc = LEVEL_COLORS[ageLevel];
+  const progress = (qnum / TOTAL_Q) * 100;
+
+  let html = `<div class="level-row">
+    <span class="level-chip" style="background:${lc}22;color:${lc};border:1px solid ${lc}55">${LEVEL_NAMES[ageLevel]}</span>
+    <div class="progress-bar"><div class="progress-fill" style="width:${progress}%;background:${lc}"></div></div>
+    <span class="q-label">${qnum+1}/${TOTAL_Q}</span>
+  </div>`;
+
+  html += `<div class="pattern-title">🔍 Agla ${q.isShape ? 'Shape' : 'Number'} Kya Hoga?</div>`;
+
+  // Pattern display row
+  html += `<div class="pattern-row" id="pat-row">`;
+  // Show all displayed items
+  for (let i = 0; i < q.display.length; i++) {
+    const v = q.display[i];
+    html += `<div class="pat-cell ${q.isShape ? 'shape-cell' : 'num'}">${v}</div>`;
+  }
+  // The blank cell always at the end
+  html += `<div class="pat-cell blank">?</div>`;
+  html += `</div>`;
+
+  // Options - store answer on dataset to avoid HTML-attribute quoting issues
+  html += `<div class="options-grid cols4" id="opts">`;
+  q.opts.forEach((o, idx) => {
+    html += `<button class="opt" data-idx="${idx}" onclick="checkAns(this)">${o}</button>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="feedback-row"><span class="fb-msg hint" id="fb">Sahi jawab chunkar pattern complete karo! 🎯</span></div>`;
+  html += `<div class="pattern-explain" id="pe"></div>`;
+
+  card.innerHTML = html;
+
+  setTimeout(() => {
+    document.querySelectorAll('.pat-cell').forEach((c, i) => {
+      c.style.animationDelay = i * 0.05 + 's';
+      c.classList.add('bounce');
+    });
+  }, 10);
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  const total = TIMERS[ageLevel];
+  timeLeft = total;
+  const fill = document.getElementById('timer-fill');
+  fill.style.transition = 'none';
+  fill.style.width = '100%';
+  fill.style.background = TIMER_COLORS[ageLevel];
+  setTimeout(() => {
+    fill.style.transition = `width ${total}s linear`;
+    fill.style.width = '0%';
+  }, 30);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) { clearInterval(timerInterval); if (!answered) timeUp(); }
+  }, 1000);
+}
+
+function timeUp() {
+  answered = true;
+  streak = 0;
+  score = Math.max(0, score - 5);
+  document.querySelectorAll('.opt').forEach(b => {
+    b.disabled = true;
+    if (String(currentQ.opts[parseInt(b.dataset.idx)]) === String(currentQ.answer)) b.classList.add('reveal');
+  });
+  setFb('⏰ Time up! -5 points. Sahi tha: ' + currentQ.answer, 'wrong');
+  document.getElementById('pe').textContent = '💡 ' + currentQ.explain;
+  updateStats();
+  qnum++;
+  setTimeout(nextQ, 2200);
+}
+
+function checkAns(btn) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+  timesArr.push(TIMERS[ageLevel] - timeLeft);
+  // Get chosen value via index stored in data-idx
+  const idx = parseInt(btn.dataset.idx);
+  const chosen = currentQ.opts[idx];
+  // Compare as strings — works for both numbers and emojis
+  const correct = String(chosen) === String(currentQ.answer);
+  document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+
+  if (correct) {
+    btn.classList.add('correct');
+    score += 10;
+    streak++;
+    if (streak > bestStreak) bestStreak = streak;
+    correctCount++;
+    const sm = streak >= 3 ? ' 🔥 ' + streak + ' streak!' : '';
+    setFb('✅ Sahi! +10 points' + sm, 'correct');
+    document.getElementById('pe').textContent = '💡 ' + currentQ.explain;
+    document.getElementById('game-card').classList.add('flash-correct');
+    burst(streak >= 3 ? 75 : 45, pc.width / 2, pc.height * 0.4);
+    if (streak === 3 || streak === 5 || streak === 7) showStreakPopup(streak);
+  } else {
+    btn.classList.add('wrong');
+    // Highlight correct answer
+    document.querySelectorAll('.opt').forEach((b, i) => {
+      if (String(currentQ.opts[parseInt(b.dataset.idx)]) === String(currentQ.answer)) b.classList.add('reveal');
+    });
+    score = Math.max(0, score - 5);
+    streak = 0;
+    setFb('❌ Galat! -5 points. Sahi tha: ' + currentQ.answer, 'wrong');
+    document.getElementById('pe').textContent = '💡 ' + currentQ.explain;
+    document.getElementById('game-card').classList.add('flash-wrong');
+    document.getElementById('game-card').classList.add('shake');
+  }
+  updateStats();
+  qnum++;
+  setTimeout(nextQ, 2000);
+}
+
+function setFb(msg, cls) {
+  const el = document.getElementById('fb');
+  if (el) { el.textContent = msg; el.className = 'fb-msg ' + cls; }
+}
+
+function updateStats() {
+  document.getElementById('st-score').textContent = score;
+  document.getElementById('st-streak').textContent = streak > 0 ? streak + '🔥' : streak;
+  document.getElementById('st-level').textContent = ageLevel;
+  document.getElementById('st-qnum').textContent = Math.min(qnum + 1, TOTAL_Q) + '/' + TOTAL_Q;
+}
+
+function showStreakPopup(n) {
+  const msgs = {3:['🔥','3x Streak! Zabardast!'],5:['⚡','5x Streak! Wow!'],7:['🌟','7x Streak! Legend!']};
+  const [em, tx] = msgs[n] || ['🔥', n + 'x Streak!'];
+  document.getElementById('streak-emoji').textContent = em;
+  document.getElementById('streak-text').textContent = tx;
+  const p = document.getElementById('streak-popup');
+  p.classList.add('show');
+  setTimeout(() => p.classList.remove('show'), 1800);
+}
+
+function nextQ() {
+  answered = false;
+  if (qnum >= TOTAL_Q) { showEnd(); return; }
+  const gen = [null, genL1, genL2, genL3][ageLevel];
+  currentQ = gen();
+  renderQ();
+  startTimer();
+}
+
+function startGame(level) {
+  ageLevel = level; score = 0; streak = 0; bestStreak = 0; qnum = 0; correctCount = 0; timesArr = []; answered = false;
+  document.getElementById('age-screen').classList.add('hidden');
+  document.getElementById('end-screen').classList.add('hidden');
+  document.getElementById('game-screen').classList.remove('hidden');
+  updateStats();
+  nextQ();
+}
+
+function goHome() {
+  clearInterval(timerInterval);
+  document.getElementById('game-screen').classList.add('hidden');
+  document.getElementById('end-screen').classList.add('hidden');
+  document.getElementById('age-screen').classList.remove('hidden');
+}
+
+function restartGame() {
+  document.getElementById('end-screen').classList.add('hidden');
+  startGame(ageLevel);
+}
+
+function showEnd() {
+  clearInterval(timerInterval);
+  document.getElementById('game-screen').classList.add('hidden');
+  document.getElementById('end-screen').classList.remove('hidden');
+  const pct = Math.round(correctCount / TOTAL_Q * 100);
+  const avgTime = timesArr.length ? Math.round(timesArr.reduce((a,b)=>a+b,0)/timesArr.length) : 0;
+  let trophy, title, stars;
+  if (pct>=90){trophy='🏆';title='Pattern Master!';stars='⭐⭐⭐⭐⭐';}
+  else if(pct>=75){trophy='🥇';title='Bahut Accha!';stars='⭐⭐⭐⭐';}
+  else if(pct>=55){trophy='🥈';title='Theek Hai!';stars='⭐⭐⭐';}
+  else if(pct>=35){trophy='🥉';title='Koshish Achi!';stars='⭐⭐';}
+  else{trophy='🍕';title='Practice Karo!';stars='⭐';}
+  document.getElementById('end-trophy').textContent = trophy;
+  document.getElementById('end-title').textContent = title;
+  document.getElementById('end-score').textContent = score;
+  document.getElementById('end-sub').textContent = 'Points — ' + LEVEL_NAMES[ageLevel];
+  document.getElementById('end-stars').textContent = stars;
+  document.getElementById('es-correct').textContent = correctCount + '/' + TOTAL_Q;
+  document.getElementById('es-accuracy').textContent = pct + '%';
+  document.getElementById('es-streak').textContent = bestStreak + '🔥';
+  document.getElementById('es-time').textContent = avgTime + 's';
+  burst(130, pc.width/2, pc.height*0.3);
+  setTimeout(()=>burst(100, pc.width/3, pc.height*0.4), 500);
+  setTimeout(()=>burst(100, pc.width*2/3, pc.height*0.4), 900);
+}
+</script>
+</body>
+</html>

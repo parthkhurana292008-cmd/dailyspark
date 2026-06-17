@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बच्चों का कोना - पैरेंटिंग, शिक्षा और स्वास्थ्य की संपूर्ण गाइड</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+   
+
+    <style>
+        :root {
+            --primary: #e05c2a;
+            --primary-light: #ff8552;
+            --primary-bg: #fff5f0;
+            --secondary: #10ac84;
+            --accent: #2563eb;
+            --warning: #f59e0b;
+            --dark: #1a1a2e;
+            --text: #2d3748;
+            --muted: #718096;
+            --bg: #f7f8fc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --card-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            --card-shadow-hover: 0 8px 30px rgba(0,0,0,0.13);
+            --radius: 14px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* ── HERO ── */
+        .hero1 {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+            padding: 70px 24px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero1::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.12;
+        }
+
+        .hero1-inner {
+            position: relative;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero1-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero1 h1 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: clamp(26px, 4vw, 42px);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .hero1 p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.72);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── LAYOUT ── */
+        .main-layout {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 32px;
+            padding: 36px 24px;
+        }
+
+        /* ── SECTION HEADER ── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        .section-header-line {
+            flex: 1;
+            height: 1.5px;
+            background: linear-gradient(to right, var(--border), transparent);
+        }
+
+        .section-header-tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 3px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        /* ── ARTICLE GRID ── */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        /* Featured (first card) */
+        .articles-grid .card-link:first-child {
+            grid-column: 1 / -1;
+        }
+
+        .articles-grid .card-link:first-child .card {
+            flex-direction: row;
+            min-height: 220px;
+        }
+
+        .articles-grid .card-link:first-child .card-img {
+            width: 42%;
+            height: auto;
+            min-height: 220px;
+            flex-shrink: 0;
+        }
+
+        .articles-grid .card-link:first-child .card-img img,
+        .articles-grid .card-link:first-child .card-img .card-img-bg {
+            border-radius: 0;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .articles-grid .card-link:first-child .card-body {
+            padding: 28px 24px;
+        }
+
+        .articles-grid .card-link:first-child h3 {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        /* ── CARD ── */
+        .card-link { text-decoration: none; color: inherit; display: block; }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: transparent;
+        }
+
+        .card-img {
+            height: 210px;
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-img img { transform: scale(1.04); }
+
+        .card-img-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-img-bg { transform: scale(1.04); }
+
+        .card-body {
+            padding: 18px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* ── BADGES ── */
+        .badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .badge.parenting { background: linear-gradient(135deg, #e05c2a, #f59e0b); }
+        .badge.edu       { background: linear-gradient(135deg, #10ac84, #059669); }
+        .badge.health    { background: linear-gradient(135deg, #2563eb, #7c3aed); }
+        .badge.lifestyle { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+        .card-body h3 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.45;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .read-btn {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0.3px;
+        }
+
+        /* ── SIDEBAR ── */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .widget {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .widget-head {
+            background: var(--dark);
+            color: white;
+            padding: 14px 20px;
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 15px;
+            font-weight: 700;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .widget-body { padding: 18px 20px; }
+
+        /* Sections inside sidebar */
+        .sidebar-section {
+            margin-bottom: 18px;
+        }
+
+        .sidebar-section:last-child { margin-bottom: 0; }
+
+        .sidebar-section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .quick-links {
+            list-style: none;
+            margin-bottom: 0;
+        }
+
+        .quick-links li {
+            padding: 7px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 13px;
+            color: var(--text);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .quick-links li:last-child { border-bottom: none; }
+
+        .quick-links li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── WISDOM CARD ── */
+        .wisdom-card {
+            background: linear-gradient(135deg, var(--primary-bg), #fff8f0);
+            border-radius: var(--radius);
+            border-left: 5px solid var(--primary);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            animation: glowBlink 2.5s ease-in-out infinite;
+        }
+
+        @keyframes glowBlink {
+            0%, 100% { box-shadow: 0 0 0 rgba(224, 92, 42, 0.2); }
+            50%       { box-shadow: 0 0 20px rgba(224, 92, 42, 0.35); }
+        }
+
+        .wisdom-card h4 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .wisdom-card p {
+            font-size: 14.5px;
+            line-height: 1.75;
+            color: #4a3728;
+            font-style: italic;
+        }
+
+        /* ── BOTTOM TIPS ROW ── */
+        .tips-section {
+            max-width: 1300px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
+        .tip-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 26px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--primary);
+        }
+
+        .tip-card h4 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .tip-card p {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        .tip-card p strong {
+            background: #fff3cd;
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: var(--dark);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .articles-grid { grid-template-columns: 1fr; }
+            .articles-grid .card-link:first-child { grid-column: auto; }
+            .articles-grid .card-link:first-child .card { flex-direction: column; min-height: auto; }
+            .articles-grid .card-link:first-child .card-img { width: 100%; height: 200px; min-height: 200px; }
+            .articles-grid .card-link:first-child .card-img img,
+            .articles-grid .card-link:first-child .card-img .card-img-bg { min-height: 200px; }
+            .hero1 h1 { font-size: 26px; }
+            .hero1 p  { font-size: 14px; }
+            .main-layout { padding: 20px 16px; }
+            .tips-section { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="navbar"></div>
+    <script src="./navbar.js"></script>
+    <!-- HERO -->
+    <section class="hero1">
+        <div class="hero1-inner">
+            <span class="hero1-badge">🇮🇳 भारत का #1 Parenting Platform</span>
+            <h1>अपने बच्चे की पूरी क्षमता को उड़ान दें 🚀</h1>
+            <p>भारत का आधुनिक Parenting, Learning &amp; Child Wellness Platform</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-layout">
+        <main>
+            <div class="section-header">
+                <h2>📰 ताज़े लेख</h2>
+                <div class="section-header-line"></div>
+                <span class="section-header-tag">LATEST</span>
+            </div>
+
+            <div class="articles-grid">
+
+                <!-- Card 1 - Featured -->
+                <a href="c1.html" class="card-link">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="c1.png" alt="बच्चों का स्क्रीन टाइम">
+                        </div>
+                        <div class="card-body">
+                            <span class="badge lifestyle">डिजिटल लाइफ</span>
+                            <h3>📱 बच्चों के लिए सुरक्षित स्क्रीन टाइम</h3>
+                            <p>जानिए अलग-अलग उम्र के बच्चों के लिए सही गाइड — कितना समय, किस डिवाइस पर, और कौन से कंटेंट से दूरी रखें।</p>
+                            <span class="read-btn">पूरा लेख पढ़ें →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="c2.html" class="card-link">
+                    <div class="card">
+                        <div class="card-img">
+                            <div class="card-img-bg" style="background-image:url('c2.png');"></div>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge parenting">पैरेंटिंग</span>
+                            <h3>❤️ बच्चों का व्यवहार सुधारने के तरीके</h3>
+                            <p>बिना डांट के बच्चों का व्यवहार सुधारने के प्रभावी तरीके।</p>
+                            <span class="read-btn">पूरा लेख पढ़ें →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="c3.html" class="card-link">
+                    <div class="card">
+                        <div class="card-img">
+                            <div class="card-img-bg" style="background-image:url('c3.png');"></div>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge lifestyle">घर और परिवेश</span>
+                            <h3>🏡 बच्चों की पढ़ाई और रचनात्मकता बढ़ाएं</h3>
+                            <p>पढ़ाई में एकाग्रता और बेहतर मानसिक विकास के लिए कमरे का सही माहौल कैसे बनाएं।</p>
+                            <span class="read-btn">पूरा लेख पढ़ें →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a href="health.html" class="card-link">
+                    <div class="card">
+                        <div class="card-img">
+                            <div class="card-img-bg" style="background-image:url('health.png');"></div>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge edu">स्वास्थ्य</span>
+                            <h3>🩺 हेल्थ &amp; वैलनेस</h3>
+                            <p>आवाज में बदलाव को न करें नजरअंदाज — बच्चों की सेहत से जुड़ी जरूरी जानकारी।</p>
+                            <span class="read-btn">पूरा लेख पढ़ें →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5 -->
+                <a href="c5.html" class="card-link">
+                    <div class="card">
+                        <div class="card-img">
+                            <div class="card-img-bg" style="background-image:url('c5.png');"></div>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge parenting">आदतें</span>
+                            <h3>👶 अंगूठा चूसने की आदत छुड़ाने के उपाय</h3>
+                            <p>बढ़ती उम्र में बच्चों का अंगूठा चूसना दांतों के लिए नुकसानदेह हो सकता है। सुरक्षित और असरदार घरेलू उपाय जानें।</p>
+                            <span class="read-btn">पूरा लेख पढ़ें →</span>
+                        </div>
+                    </div>
+                </a>
+
+                
+            </div>
+        </main>
+
+        <!-- SIDEBAR -->
+        <aside>
+
+            <!-- Wisdom Quote -->
+            <div class="wisdom-card">
+                <h4>🌟 इस सप्ताह की Parenting Wisdom</h4>
+                <p>"बच्चों को सफल बनाने से पहले उन्हें आत्मविश्वासी बनाइए।"</p>
+            </div>
+
+            <!-- Main Sidebar Widget -->
+            <div class="widget">
+                <div class="widget-head">🎯 दिमागी और रचनात्मक कोना</div>
+                <div class="widget-body">
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">🚀 बेहतर परवरिश का असली मतलब</div>
+                        <ul class="quick-links">
+                            <li>प्यार और सम्मान के साथ बातचीत</li>
+                            <li>गलतियों को सीखने का मौका बनाना</li>
+                            <li>आत्मनिर्भर बनाना, लेकिन सपोर्ट के साथ</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">🎨 क्रिएटीविटी — भीड़ से अलग</div>
+                        <ul class="quick-links">
+                            <li>ड्राइंग और पेंटिंग 🎨</li>
+                            <li>कहानी बनाना 📖</li>
+                            <li>DIY क्राफ्ट 🧸</li>
+                            <li>संगीत और डांस 🎵</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">🧠 दिमागी विकास (Mental Growth)</div>
+                        <ul class="quick-links">
+                            <li>पहेलियाँ और brain games</li>
+                            <li>सवाल पूछने की आदत</li>
+                            <li>पढ़ाई को समझकर सीखना</li>
+                            <li>नई चीजें explore करना</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">📱 डिजिटल दुनिया का सही उपयोग</div>
+                        <ul class="quick-links">
+                            <li>Educational videos चुनें</li>
+                            <li>Screen time limit रखें</li>
+                            <li>Learning apps का उपयोग करें</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">💬 संवाद है सबसे जरूरी</div>
+                        <ul class="quick-links">
+                            <li>खुले सवाल पूछें: "आज स्कूल में सबसे मज़ेदार बात क्या हुई?"</li>
+                            <li>गलती पर शांत रहकर सही-गलत का अंतर समझाएं</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- BOTTOM TIPS -->
+    <section class="tips-section">
+        <div class="section-header">
+            <h2>💡 माता-पिता के लिए खास</h2>
+            <div class="section-header-line"></div>
+        </div>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>💬 Emotional Intelligence</h4>
+                <p>एक मजबूत बच्चा वही है जो अपनी feelings समझता है, दूसरों को <strong>respect</strong> देता है और हार से डरता नहीं।</p>
+            </div>
+            <div class="tip-card">
+                <h4>🏁 याद रखें</h4>
+                <p>कोई भी माता-पिता <strong>"परफेक्ट"</strong> नहीं होता। पैरेंटिंग कोई रेस नहीं है — घर का माहौल प्यार, सुरक्षा और भरोसे से भरा हो, बस यही काफी है।</p>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+</html>

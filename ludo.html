@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ludo Legends — Math Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Baloo+2:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#080514;color:#fff;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);animation:drift 20s ease-in-out infinite;opacity:.55}
+.orb1{width:600px;height:600px;top:-150px;left:-150px;background:radial-gradient(#220a6e,transparent)}
+.orb2{width:500px;height:500px;bottom:-80px;right:-80px;background:radial-gradient(#0a1e6e,transparent);animation-delay:-10s}
+.orb3{width:350px;height:350px;top:40%;left:30%;background:radial-gradient(#3a0a3a,transparent);animation-delay:-5s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-18px)}}
+
+/* ── ALL SCREENS ── */
+.screen{position:relative;z-index:1;display:none;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh;padding:20px}
+.screen.active{display:flex}
+
+/* ── SCREEN 1: RULES ── */
+#rulesScreen{justify-content:flex-start;padding:24px 16px}
+.rules-header{text-align:center;margin-bottom:24px;width:100%}
+.game-logo{font-family:'Orbitron',sans-serif;font-size:clamp(28px,5vw,56px);font-weight:900;background:linear-gradient(135deg,#FFD700,#FF6B35,#FF4B4B,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.game-tagline{font-size:12px;letter-spacing:.3em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:4px}
+.lang-toggle{display:flex;gap:8px;justify-content:center;margin:16px 0}
+.ltab{padding:7px 20px;border-radius:16px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.ltab.active{background:rgba(255,215,0,.15);border-color:#FFD700;color:#FFD700}
+.rules-body{width:100%;max-width:780px;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.rules-col{display:flex;flex-direction:column;gap:10px}
+.rules-title{font-family:'Baloo 2',sans-serif;font-size:clamp(15px,2.5vw,18px);font-weight:800;color:#FFD700;text-align:center;margin-bottom:4px;padding-bottom:8px;border-bottom:1px solid rgba(255,215,0,.2)}
+.rule-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:12px 14px}
+.rule-card h4{font-size:12px;font-weight:700;color:#FFD700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.rule-card p,.rule-card li{font-size:12px;color:rgba(255,255,255,.72);line-height:1.65}
+.rule-card ul{padding-left:14px}
+.rule-card li{margin-bottom:3px}
+.math-preview{background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(59,130,246,.15));border:1px solid rgba(168,85,247,.3);border-radius:12px;padding:14px;text-align:center}
+.math-preview .eq{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:700;color:#A855F7;margin:6px 0}
+.math-preview .eq span{color:#FFD700}
+.proceed-btn{padding:14px 44px;border-radius:28px;background:linear-gradient(135deg,#FFD700,#FF8C00);border:none;color:#080514;font-size:16px;font-weight:900;font-family:'Orbitron',sans-serif;cursor:pointer;box-shadow:0 8px 28px rgba(255,215,0,.4);transition:all .2s;letter-spacing:.05em;margin-top:4px}
+.proceed-btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,215,0,.55)}
+
+/* ── SCREEN 2: SETUP ── */
+#setupScreen{justify-content:center;text-align:center;padding:32px 20px}
+.setup-logo{font-family:'Orbitron',sans-serif;font-size:clamp(28px,5vw,52px);font-weight:900;background:linear-gradient(135deg,#FFD700,#FF6B35,#FF4B4B,#A855F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
+.setup-sub{font-size:12px;letter-spacing:.25em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:32px}
+.setup-sec{margin-bottom:22px}
+.setup-lbl{font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px;font-weight:600}
+.opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.opt{padding:9px 20px;border-radius:18px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:rgba(255,255,255,.65);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.opt:hover{background:rgba(255,215,0,.1);border-color:rgba(255,215,0,.5);color:#FFD700}
+.opt.active{background:rgba(255,215,0,.15);border-color:#FFD700;color:#FFD700;box-shadow:0 0 10px rgba(255,215,0,.2)}
+.start-btn{padding:14px 50px;border-radius:28px;background:linear-gradient(135deg,#FFD700,#FF8C00);border:none;color:#080514;font-size:17px;font-weight:900;font-family:'Orbitron',sans-serif;cursor:pointer;box-shadow:0 8px 28px rgba(255,215,0,.4);transition:all .2s;letter-spacing:.05em;margin-top:8px}
+.start-btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,215,0,.55)}
+.rules-link{margin-top:14px;font-size:12px;color:rgba(255,255,255,.35);cursor:pointer;text-decoration:underline}
+.rules-link:hover{color:#FFD700}
+
+/* ── SCREEN 3: GAME ── */
+#gameScreen{padding:10px;gap:10px;justify-content:flex-start}
+.game-top{display:flex;gap:8px;width:100%;max-width:920px;justify-content:center;flex-wrap:wrap}
+.game-mid{display:flex;gap:12px;align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%;max-width:920px}
+
+/* PLAYER CARDS */
+.pcard{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.1);border-radius:12px;padding:9px 12px;flex:1;min-width:140px;max-width:210px;transition:all .3s}
+.pcard.RED{border-color:#E53935}.pcard.RED.active{box-shadow:0 0 18px rgba(229,57,53,.5);animation:glow 1.4s ease-in-out infinite}
+.pcard.BLUE{border-color:#1565C0}.pcard.BLUE.active{box-shadow:0 0 18px rgba(21,101,192,.5);animation:glow 1.4s ease-in-out infinite}
+.pcard.GREEN{border-color:#2E7D32}.pcard.GREEN.active{box-shadow:0 0 18px rgba(46,125,50,.5);animation:glow 1.4s ease-in-out infinite}
+.pcard.YELLOW{border-color:#F9A825}.pcard.YELLOW.active{box-shadow:0 0 18px rgba(249,168,37,.5);animation:glow 1.4s ease-in-out infinite}
+@keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.15)}}
+.pc-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.pc-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.pc-name{font-size:12px;font-weight:700}.pc-type{font-size:9px;color:rgba(255,255,255,.4)}
+.pc-tokens{display:flex;gap:3px;margin-bottom:3px}
+.pct{width:12px;height:12px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2)}
+.pct.inbase{opacity:.22}.pct.done{border-color:#FFD700!important;box-shadow:0 0 4px #FFD700}
+.pc-stats{font-size:9px;color:rgba(255,255,255,.32)}
+.pc-turn{font-size:9px;font-weight:700;color:#FFD700;margin-top:2px}
+.pc-powers{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px}
+.pwr-pill{font-size:10px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.2);border-radius:8px;padding:1px 6px;cursor:pointer;color:#FFD700;transition:all .15s}
+.pwr-pill:hover{background:rgba(255,215,0,.22);transform:scale(1.05)}
+
+/* BOARD */
+.board-outer{position:relative}
+#boardCanvas{border-radius:12px;box-shadow:0 0 50px rgba(255,215,0,.1),0 16px 50px rgba(0,0,0,.6);display:block;cursor:pointer;max-width:100%}
+
+/* CTRL PANEL */
+.ctrl-panel{display:flex;flex-direction:column;gap:10px;min-width:190px;max-width:220px}
+.panel-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:12px}
+.panel-title{font-size:9px;letter-spacing:.13em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:8px;font-weight:700}
+
+/* MATH QUESTION */
+.math-card{background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(59,130,246,.1));border:1.5px solid rgba(168,85,247,.3);border-radius:13px;padding:14px;text-align:center}
+.math-title{font-size:9px;letter-spacing:.13em;color:#A855F7;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.math-question{font-family:'Baloo 2',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;min-height:32px}
+.math-question .op{color:#A855F7}
+.math-question .eq{color:rgba(255,255,255,.5)}
+.answer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.ans-btn{padding:10px 4px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Baloo 2',sans-serif}
+.ans-btn:hover:not(:disabled){background:rgba(168,85,247,.25);border-color:#A855F7;color:#A855F7;transform:scale(1.06)}
+.ans-btn.correct{background:rgba(46,125,50,.4)!important;border-color:#66BB6A!important;color:#66BB6A!important;animation:pop .3s ease}
+.ans-btn.wrong{background:rgba(183,28,28,.4)!important;border-color:#EF5350!important;color:#EF5350!important;animation:shake .3s ease}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.math-hint{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px}
+.math-result{font-size:13px;font-weight:700;min-height:18px;margin-top:4px}
+.math-result.ok{color:#66BB6A}
+.math-result.err{color:#EF5350}
+.ai-thinking{font-size:12px;color:#A855F7;text-align:center;padding:12px 0;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* STATUS */
+.status-txt{font-size:12px;font-weight:600;color:#FFD700;text-align:center;line-height:1.5}
+.hint-txt{font-size:10px;color:rgba(255,255,255,.38);text-align:center;margin-top:3px}
+
+/* LOG */
+.log-list{max-height:90px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+.log-list::-webkit-scrollbar{width:2px}
+.log-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+.log-item{font-size:10px;padding:2px 6px;border-radius:3px;border-left:2px solid rgba(255,255,255,.08);color:rgba(255,255,255,.55)}
+.log-item.RED{border-color:#E53935;color:#FF8A80}.log-item.BLUE{border-color:#1565C0;color:#82B1FF}
+.log-item.GREEN{border-color:#2E7D32;color:#B9F6CA}.log-item.YELLOW{border-color:#F9A825;color:#FFD740}
+.log-item.SYS{border-color:#A855F7;color:#CE93D8}
+
+/* POWERS */
+.powers-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px}
+.use-pwr{padding:6px 4px;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);font-size:10px;font-weight:600;cursor:pointer;text-align:center;transition:all .18s;font-family:'Inter',sans-serif}
+.use-pwr:hover:not(:disabled){background:rgba(255,215,0,.12);border-color:#FFD700;color:#FFD700}
+.use-pwr:disabled{opacity:.3;cursor:not-allowed}
+
+/* TOASTS */
+#toastBox{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:5px;pointer-events:none;align-items:center}
+.toast{padding:9px 20px;border-radius:18px;font-size:12px;font-weight:700;text-align:center;animation:tin .25s ease,tout .3s 2.2s ease forwards;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+@keyframes tin{from{opacity:0;transform:translateY(-14px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes tout{to{opacity:0;transform:translateY(-8px) scale(.95)}}
+.toast.info{background:rgba(28,18,56,.95);border:1px solid rgba(255,255,255,.12);color:#fff}
+.toast.good{background:linear-gradient(135deg,#1b5e20,#43a047);color:#fff}
+.toast.bad{background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff}
+.toast.power{background:linear-gradient(135deg,#4a0e8f,#9c27b0);color:#fff}
+.toast.win{background:linear-gradient(135deg,#e65100,#FFD700);color:#080514;font-family:'Orbitron',sans-serif;font-size:15px;padding:12px 28px}
+
+/* WIN MODAL */
+#winModal{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(12px)}
+#winModal.show{display:flex}
+.win-box{background:linear-gradient(135deg,#0d0820,#1a0a2e);border:2px solid #FFD700;border-radius:22px;padding:38px 32px;text-align:center;max-width:360px;width:90%;box-shadow:0 0 70px rgba(255,215,0,.22)}
+.win-emoji{font-size:64px;animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.win-title{font-family:'Orbitron',sans-serif;font-size:26px;font-weight:900;background:linear-gradient(135deg,#FFD700,#FF8C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:12px 0 5px}
+.win-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:8px}
+.win-stats{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:22px;line-height:1.7}
+.win-btns{display:flex;gap:9px;justify-content:center}
+.wb{padding:10px 24px;border-radius:18px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s}
+.wb.primary{background:linear-gradient(135deg,#FFD700,#FF8C00);color:#080514}
+.wb.secondary{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.wb:hover{transform:translateY(-2px)}
+
+@media(max-width:780px){
+  .rules-body{grid-template-columns:1fr}
+  .game-mid{flex-direction:column;align-items:center}
+  .ctrl-panel{flex-direction:row;flex-wrap:wrap;min-width:unset;width:100%;max-width:500px;max-height:none}
+  .ctrl-panel>.panel-card,.ctrl-panel>.math-card{flex:1;min-width:140px}
+}
+@media(max-width:480px){
+  #boardCanvas{width:95vw!important;height:95vw!important}
+}
+</style>
+</head>
+<body>
+<div class="bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div id="toastBox"></div>
+
+<!-- ══════════════════════════════════
+     SCREEN 1 — RULES
+══════════════════════════════════ -->
+<div class="screen active" id="rulesScreen">
+  <div class="rules-header">
+    <div class="game-logo">LUDO LEGENDS</div>
+    <div class="game-tagline">🧮 Math Edition — Where Maths Wins!</div>
+    <div class="lang-toggle">
+      <div class="ltab active" onclick="showLang('en',this)">🇬🇧 English</div>
+      <div class="ltab" onclick="showLang('hi',this)">🇮🇳 हिंदी</div>
+    </div>
+  </div>
+
+  <!-- ENGLISH RULES -->
+  <div class="rules-body" id="rulesEn">
+    <div class="rules-col">
+      <div class="rules-title">📖 How to Play — Ludo Legends</div>
+
+      <div class="rule-card">
+        <h4>🎯 Objective</h4>
+        <p>Be the first player to move all 4 of your tokens from the base to the home (centre ★). Solve maths questions instead of rolling a dice — your answer moves you!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>🧮 Maths Instead of Dice</h4>
+        <ul>
+          <li>Each turn shows you an <strong>addition or subtraction</strong> question.</li>
+          <li>The answer will always be between <strong>1 and 6</strong>.</li>
+          <li>Choose the correct answer from 6 options.</li>
+          <li>Your token moves by the number = the correct answer!</li>
+          <li>Wrong answer? You lose your turn.</li>
+        </ul>
+      </div>
+
+      <div class="rule-card">
+        <h4>🚀 Entering the Board</h4>
+        <p>Your tokens start in the coloured base. To enter the main path, you must answer a question whose answer is <strong>exactly 6</strong>. Only a "6" unlocks your token!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>⭐ Safe Cells</h4>
+        <p>Cells marked with ⭐ are <strong>safe zones</strong>. No token can be captured on a safe cell. Use them wisely to protect your tokens!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>💥 Capturing</h4>
+        <p>If you land on a cell where an opponent's token is standing (not a safe cell), their token is sent back to base! You also get a <strong>bonus turn</strong> for capturing.</p>
+      </div>
+    </div>
+
+    <div class="rules-col">
+      <div class="rules-title">⚡ Special Rules</div>
+
+      <div class="rule-card">
+        <h4>🎉 Answer = 6 Bonus</h4>
+        <p>If your answer is <strong>6</strong>, you get an extra turn to answer another question! This is the same as rolling a 6 in classic Ludo.</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>🏠 Home Stretch</h4>
+        <p>When a token enters the coloured home column (the path leading to centre), it cannot be captured. Answer questions to advance it to the ★ centre. You must reach it <strong>exactly</strong> — no overshooting!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>🤖 Computer (AI) Player</h4>
+        <p>The computer player automatically answers questions correctly! In Power Mode the AI may use special powers. You can choose 1–3 human players and the rest will be AI.</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>⚡ Power Mode Powers</h4>
+        <ul>
+          <li>🛡 <strong>Shield</strong> — token immune for 2 turns</li>
+          <li>❄ <strong>Freeze</strong> — freeze enemy token 2 turns</li>
+          <li>💣 <strong>Bomb</strong> — send enemy to base</li>
+          <li>🚀 <strong>Speed</strong> — +3 bonus steps</li>
+          <li>🌀 <strong>Teleport</strong> — jump to safe cell</li>
+          <li>🔄 <strong>Swap</strong> — swap with leading enemy</li>
+        </ul>
+      </div>
+
+      <div class="math-preview">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px">Example Question:</div>
+        <div class="eq">3 + <span>?</span> = 7</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4)">Options: 1  2  3  4  5  6</div>
+        <div style="font-size:11px;color:#66BB6A;margin-top:4px">✅ Answer: 4 → Move 4 steps!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HINDI RULES -->
+  <div class="rules-body" id="rulesHi" style="display:none">
+    <div class="rules-col">
+      <div class="rules-title">📖 कैसे खेलें — Ludo Legends</div>
+
+      <div class="rule-card">
+        <h4>🎯 उद्देश्य (Objective)</h4>
+        <p>सबसे पहले अपने सभी 4 tokens को base से home (बीच का ★) तक पहुँचाओ। Dice की जगह Maths के सवाल हल करो — सही जवाब से आगे बढ़ो!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>🧮 Dice की जगह Maths</h4>
+        <ul>
+          <li>हर बारी में एक <strong>जोड़ या घटाव</strong> का सवाल आएगा।</li>
+          <li>जवाब हमेशा <strong>1 से 6</strong> के बीच होगा।</li>
+          <li>6 options में से सही जवाब चुनो।</li>
+          <li>Token उतने steps आगे बढ़ेगा जितना जवाब है!</li>
+          <li>गलत जवाब? बारी खो जाएगी।</li>
+        </ul>
+      </div>
+
+      <div class="rule-card">
+        <h4>🚀 Board में Entry</h4>
+        <p>सभी tokens पहले रंगीन base में होते हैं। Main path पर आने के लिए ऐसे सवाल का जवाब देना होगा जिसका उत्तर <strong>6 हो</strong>। सिर्फ "6" से token निकलता है!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>⭐ Safe Cells</h4>
+        <p>⭐ से चिह्नित cells <strong>सुरक्षित</strong> हैं। Safe cell पर कोई token नहीं मारा जा सकता। अपने tokens को बचाने के लिए इनका उपयोग करो!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>💥 Token काटना (Capture)</h4>
+        <p>अगर तुम किसी दुश्मन के token वाली cell पर पहुँचो (safe cell नहीं), तो उसका token वापस base जाएगा! Capture करने पर एक <strong>bonus turn</strong> मिलता है।</p>
+      </div>
+    </div>
+
+    <div class="rules-col">
+      <div class="rules-title">⚡ विशेष नियम (Special Rules)</div>
+
+      <div class="rule-card">
+        <h4>🎉 जवाब 6 हो तो Extra Turn</h4>
+        <p>अगर सवाल का सही जवाब <strong>6</strong> है, तो तुम्हें एक extra turn मिलेगी! Classic Ludo में 6 आने जैसा है।</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>🏠 Home Stretch</h4>
+        <p>जब token रंगीन home column में आ जाए, वहाँ उसे कोई नहीं काट सकता। ★ तक पहुँचने के लिए <strong>बिल्कुल सही</strong> steps चाहिए — ज़्यादा नहीं!</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>🤖 Computer (AI) Player</h4>
+        <p>Computer player सवालों का जवाब खुद देता है! Power Mode में AI special powers भी use कर सकता है। 1–3 human players चुन सकते हो, बाकी AI होंगे।</p>
+      </div>
+
+      <div class="rule-card">
+        <h4>⚡ Power Mode की Powers</h4>
+        <ul>
+          <li>🛡 <strong>Shield</strong> — 2 बारी के लिए token सुरक्षित</li>
+          <li>❄ <strong>Freeze</strong> — दुश्मन का token 2 बारी के लिए रोको</li>
+          <li>💣 <strong>Bomb</strong> — दुश्मन को base भेजो</li>
+          <li>🚀 <strong>Speed</strong> — +3 extra steps लो</li>
+          <li>🌀 <strong>Teleport</strong> — Safe cell पर jump करो</li>
+          <li>🔄 <strong>Swap</strong> — आगे वाले दुश्मन से जगह बदलो</li>
+        </ul>
+      </div>
+
+      <div class="math-preview">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px">उदाहरण (Example):</div>
+        <div class="eq">3 + <span>?</span> = 7</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4)">Options: 1  2  3  4  5  6</div>
+        <div style="font-size:11px;color:#66BB6A;margin-top:4px">✅ जवाब: 4 → 4 steps आगे!</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="proceed-btn" onclick="showScreen('setupScreen')">🎮 Let's Play! →</button>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 2 — SETUP
+══════════════════════════════════ -->
+<div class="screen" id="setupScreen">
+  <div class="setup-logo">LUDO LEGENDS</div>
+  <div class="setup-sub">🧮 Math Edition</div>
+
+  <div class="setup-sec">
+    <div class="setup-lbl">Number of Players</div>
+    <div class="opts" id="numOpts">
+      <div class="opt active" data-v="2" onclick="pick('num',this)">2 Players</div>
+      <div class="opt" data-v="3" onclick="pick('num',this)">3 Players</div>
+      <div class="opt" data-v="4" onclick="pick('num',this)">4 Players</div>
+    </div>
+  </div>
+
+  <div class="setup-sec">
+    <div class="setup-lbl">Human Players</div>
+    <div class="opts" id="humanOpts">
+      <div class="opt active" data-v="1" onclick="pick('human',this)">1 Human</div>
+      <div class="opt" data-v="2" onclick="pick('human',this)">2 Humans</div>
+      <div class="opt" data-v="3" onclick="pick('human',this)">3 Humans</div>
+    </div>
+  </div>
+
+  <div class="setup-sec">
+    <div class="setup-lbl">Game Mode</div>
+    <div class="opts" id="modeOpts">
+      <div class="opt active" data-v="classic" onclick="pick('mode',this)">♟ Classic</div>
+      <div class="opt" data-v="powers" onclick="pick('mode',this)">⚡ Powers</div>
+    </div>
+  </div>
+
+  <button class="start-btn" onclick="startGame()">🎲 START GAME</button>
+  <div class="rules-link" onclick="showScreen('rulesScreen')">📖 View Rules Again</div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 3 — GAME
+══════════════════════════════════ -->
+<div class="screen" id="gameScreen">
+  <div class="game-top" id="playerCards"></div>
+  <div class="game-mid">
+    <div class="board-outer">
+      <canvas id="boardCanvas"></canvas>
+    </div>
+    <div class="ctrl-panel">
+      <!-- MATH QUESTION CARD -->
+      <div class="math-card" id="mathCard">
+        <div class="math-title">🧮 Solve to Move!</div>
+        <div class="math-question" id="mathQ">—</div>
+        <div class="answer-grid" id="answerGrid"></div>
+        <div class="math-result" id="mathResult"></div>
+        <div class="math-hint" id="mathHint">Correct answer = steps to move</div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">📊 Status</div>
+        <div class="status-txt" id="statusTxt">Welcome!</div>
+        <div class="hint-txt" id="hintTxt"></div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-title">📋 Game Log</div>
+        <div class="log-list" id="logList"></div>
+      </div>
+
+      <div class="panel-card" id="powersPanel" style="display:none">
+        <div class="panel-title">⚡ Powers</div>
+        <div class="powers-grid" id="powersGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WIN MODAL -->
+<div id="winModal">
+  <div class="win-box">
+    <div class="win-emoji">🏆</div>
+    <div class="win-title" id="winTitle">VICTORY!</div>
+    <div class="win-sub" id="winSub"></div>
+    <div class="win-stats" id="winStats"></div>
+    <div class="win-btns">
+      <button class="wb primary" onclick="restartGame()">🎮 Play Again</button>
+      <button class="wb secondary" onclick="goHome()">🏠 Menu</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════
+//  LUDO LEGENDS — MATH EDITION  Full Engine
+// ════════════════════════════════════════════════════
+
+// ── COLORS ──
+const COLORS = {
+  RED:    {main:'#E53935',light:'#FF8A80',dark:'#B71C1C',home:'#1a0404'},
+  BLUE:   {main:'#1565C0',light:'#82B1FF',dark:'#0D47A1',home:'#04041a'},
+  GREEN:  {main:'#2E7D32',light:'#B9F6CA',dark:'#1B5E20',home:'#041a04'},
+  YELLOW: {main:'#F9A825',light:'#FFD740',dark:'#E65100',home:'#1a1404'},
+};
+const ALL_P = ['RED','BLUE','GREEN','YELLOW'];
+
+// ── BOARD GEOMETRY ──
+// Standard 15×15 Ludo. 52 cells main path.
+const MAIN_PATH = [
+  [6,13],[6,12],[6,11],[6,10],[6,9],
+  [5,8],[4,8],[3,8],[2,8],[1,8],[0,8],
+  [0,7],[0,6],
+  [1,6],[2,6],[3,6],[4,6],[5,6],
+  [6,5],[6,4],[6,3],[6,2],[6,1],[6,0],
+  [7,0],[8,0],
+  [8,1],[8,2],[8,3],[8,4],[8,5],
+  [9,6],[10,6],[11,6],[12,6],[13,6],[14,6],
+  [14,7],[14,8],
+  [13,8],[12,8],[11,8],[10,8],[9,8],
+  [8,9],[8,10],[8,11],[8,12],[8,13],[8,14],
+  [7,14],[6,14],
+]; // 52 entries
+
+const HOME_COL = {
+  RED:    [[7,13],[7,12],[7,11],[7,10],[7,9]],
+  BLUE:   [[1,7],[2,7],[3,7],[4,7],[5,7]],
+  GREEN:  [[7,1],[7,2],[7,3],[7,4],[7,5]],
+  YELLOW: [[13,7],[12,7],[11,7],[10,7],[9,7]],
+};
+
+const START_IDX = {RED:0,BLUE:13,GREEN:26,YELLOW:39};
+const SAFE_IDX  = [0,8,13,21,26,34,39,47];
+
+const BASE_POS = {
+  RED:    [[1,12],[2,12],[1,13],[2,13]],
+  BLUE:   [[12,1],[13,1],[12,2],[13,2]],
+  GREEN:  [[12,12],[13,12],[12,13],[13,13]],
+  YELLOW: [[1,1],[2,1],[1,2],[2,2]],
+};
+
+const POWER_DEF = {
+  shield:  {e:'🛡',n:'Shield',  d:'Immune 2 turns'},
+  freeze:  {e:'❄',n:'Freeze',  d:'Freeze enemy 2T'},
+  bomb:    {e:'💣',n:'Bomb',    d:'Send enemy home'},
+  speed:   {e:'🚀',n:'Speed',  d:'+3 bonus steps'},
+  teleport:{e:'🌀',n:'Teleport',d:'Jump safe cell'},
+  swap:    {e:'🔄',n:'Swap',   d:'Swap w/ enemy'},
+};
+
+// ── CONFIG & STATE ──
+let CFG = {numPlayers:2,numHumans:1,mode:'classic'};
+let S = {};
+let canvas, ctx;
+const CS = 40; // cell size px
+const BP = 15 * CS; // board px = 600
+
+// ── SCREEN MANAGER ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showLang(lang, el) {
+  document.querySelectorAll('.ltab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('rulesEn').style.display = lang === 'en' ? 'grid' : 'none';
+  document.getElementById('rulesHi').style.display = lang === 'hi' ? 'grid' : 'none';
+}
+
+// ── SETUP ──
+function pick(group, el) {
+  el.parentElement.querySelectorAll('.opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  const v = el.dataset.v;
+  if (group === 'num') {
+    CFG.numPlayers = +v;
+    document.getElementById('humanOpts').querySelectorAll('.opt').forEach(o => {
+      const hv = +o.dataset.v;
+      o.style.opacity = hv > CFG.numPlayers ? '.3' : '1';
+      o.style.pointerEvents = hv > CFG.numPlayers ? 'none' : 'auto';
+      if (hv > CFG.numPlayers && o.classList.contains('active')) {
+        o.classList.remove('active');
+        document.getElementById('humanOpts').querySelector('.opt').classList.add('active');
+        CFG.numHumans = 1;
+      }
+    });
+  } else if (group === 'human') {
+    CFG.numHumans = +v;
+  } else if (group === 'mode') {
+    CFG.mode = v;
+  }
+}
+
+// ── INIT GAME ──
+function initGame() {
+  const pids = ALL_P.slice(0, CFG.numPlayers);
+  const players = {};
+  pids.forEach((pid, i) => {
+    players[pid] = {
+      id: pid,
+      name: pid[0] + pid.slice(1).toLowerCase(),
+      isHuman: i < Math.min(CFG.numHumans, CFG.numPlayers),
+      tokens: [0,1,2,3].map(t => ({
+        id: pid+'_'+t, pid,
+        step: -1, shielded:0, frozen:0,
+      })),
+      score: 0, kills: 0, correct: 0, wrong: 0,
+      powers: CFG.mode !== 'classic' ? {shield:1} : {},
+    };
+  });
+  S = {
+    players, order: pids,
+    ci: 0, current: pids[0],
+    phase: 'question', // question | pick | ai
+    mathVal: 0,
+    bonusTurn: false,
+    pendingMoves: [],
+    log: [], turn: 0,
+    over: false, winner: null,
+    mode: CFG.mode,
+    pendingPower: null,
+  };
+}
+
+// ── PATH HELPERS ──
+function gStep(pid, rel) { return (START_IDX[pid] + rel) % 52; }
+
+function getXY(token) {
+  const pid = token.pid;
+  if (token.step === -1) {
+    const i = +token.id.split('_')[1];
+    const b = BASE_POS[pid][i];
+    return [b[0]+.5, b[1]+.5];
+  }
+  if (token.step === 57) return [7.5, 7.5];
+  if (token.step >= 52) {
+    const hc = HOME_COL[pid][token.step - 52];
+    return [hc[0]+.5, hc[1]+.5];
+  }
+  const cell = MAIN_PATH[gStep(pid, token.step)];
+  return [cell[0]+.5, cell[1]+.5];
+}
+
+function isSafe(token) {
+  if (token.step < 0 || token.step >= 52) return true;
+  return SAFE_IDX.includes(gStep(token.pid, token.step));
+}
+
+function canMove(token, val) {
+  if (token.step === 57) return false;
+  if (token.frozen > 0) return false;
+  if (token.step === -1) return val === 6;
+  return token.step + val <= 57;
+}
+
+function movable(pid, val) {
+  return S.players[pid].tokens.filter(t => canMove(t, val));
+}
+
+// ── MOVE ──
+function doMove(token, val) {
+  const pid = token.pid;
+  const player = S.players[pid];
+  if (token.step === -1 && val === 6) {
+    token.step = 0;
+    addLog(pid, `${player.name} enters the board!`);
+    checkCaptures(token);
+    return;
+  }
+  const ns = token.step + val;
+  if (ns === 57) {
+    token.step = 57;
+    player.score += 50;
+    addLog(pid, `🏆 ${player.name} token home!`);
+    toast(`🏆 ${player.name}'s token reaches home!`, 'good');
+    checkWin();
+    return;
+  }
+  if (ns > 57) return;
+  token.step = ns;
+  if (token.shielded > 0) token.shielded--;
+  checkCaptures(token);
+}
+
+function checkCaptures(mover) {
+  const pid = mover.pid;
+  if (mover.step < 0 || mover.step >= 52 || isSafe(mover)) return;
+  const [mx,my] = getXY(mover);
+  let killed = false;
+  S.order.forEach(opid => {
+    if (opid === pid) return;
+    S.players[opid].tokens.forEach(ot => {
+      if (ot.step < 0 || ot.step >= 52 || isSafe(ot)) return;
+      if (ot.shielded > 0) { ot.shielded--; addLog('SYS','🛡 Shield blocked!'); return; }
+      const [ox,oy] = getXY(ot);
+      if (Math.abs(mx-ox)<.05 && Math.abs(my-oy)<.05) {
+        sendBase(ot, S.players[opid]);
+        S.players[pid].kills++;
+        S.players[pid].score += 20;
+        addLog(pid, `💥 ${S.players[pid].name} captured ${S.players[opid].name}!`);
+        toast(`💥 Captured ${S.players[opid].name}'s token! Bonus turn!`, 'bad');
+        killed = true;
+      }
+    });
+  });
+  if (killed) S.bonusTurn = true;
+}
+
+function sendBase(token, player) {
+  token.step = -1; token.shielded = 0; token.frozen = 0;
+  player.score = Math.max(0, player.score - 5);
+}
+
+function checkWin() {
+  S.order.forEach(pid => {
+    if (S.players[pid].tokens.every(t => t.step === 57)) {
+      S.over = true; S.winner = pid;
+      setTimeout(() => showWinScreen(pid), 600);
+    }
+  });
+}
+
+// ── MATH QUESTIONS ──
+// Generate a question with answer = target (1-6)
+function makeQuestion(target) {
+  const type = Math.random() < 0.5 ? 'add' : 'sub';
+  let a, b, question;
+  if (type === 'add') {
+    // a + b = target, where a >= 1, b >= 1
+    b = Math.floor(Math.random() * (target - 1)) + 1; // 1 to target-1
+    a = target - b;
+    if (a < 1) { a = 1; b = target - 1; }
+    question = `${a} + ${b} = ?`;
+  } else {
+    // a - b = target, a = target + b
+    b = Math.floor(Math.random() * 5) + 1; // 1 to 5
+    a = target + b;
+    question = `${a} − ${b} = ?`;
+  }
+  return { question, answer: target };
+}
+
+// Generate wrong options (distinct, 1-6, not = answer)
+function makeOptions(answer) {
+  const opts = [answer];
+  const pool = [1,2,3,4,5,6].filter(n => n !== answer);
+  // shuffle pool
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  opts.push(...pool.slice(0, 5)); // total 6 options
+  // shuffle final
+  for (let i = opts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [opts[i], opts[j]] = [opts[j], opts[i]];
+  }
+  return opts;
+}
+
+// Show question for human player
+let currentQ = null;
+function showQuestion(pid) {
+  const player = S.players[pid];
+  // Pick a target value
+  // Check if any token needs 6 to enter (prefer 6 if all in base)
+  const allInBase = player.tokens.every(t => t.step === -1);
+  let target;
+  if (allInBase) {
+    target = 6; // must roll 6
+  } else {
+    target = Math.floor(Math.random() * 6) + 1;
+  }
+
+  currentQ = makeQuestion(target);
+  const options = makeOptions(target);
+
+  const qEl = document.getElementById('mathQ');
+  qEl.innerHTML = currentQ.question.replace('?','<span style="color:#A855F7">?</span>');
+
+  const grid = document.getElementById('answerGrid');
+  grid.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'ans-btn';
+    btn.textContent = opt;
+    btn.onclick = () => answerQuestion(opt, btn, options);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById('mathResult').textContent = '';
+  document.getElementById('mathHint').textContent = `Answer correctly to move ${target} steps`;
+
+  S.mathVal = target;
+  S.phase = 'question';
+  setStatus(`${player.name}'s turn — Solve the question!`, '');
+}
+
+let answerLocked = false;
+function answerQuestion(chosen, btnEl, allOptions) {
+  if (answerLocked || S.phase !== 'question') return;
+  answerLocked = true;
+
+  const player = S.players[S.current];
+  const correct = currentQ.answer;
+  const allBtns = document.querySelectorAll('.ans-btn');
+  allBtns.forEach(b => b.disabled = true);
+
+  if (chosen === correct) {
+    btnEl.classList.add('correct');
+    document.getElementById('mathResult').textContent = `✅ Correct! Move ${correct} steps`;
+    document.getElementById('mathResult').className = 'math-result ok';
+    player.correct++;
+    player.score += 5;
+    addLog(S.current, `${player.name} answered correctly! (${currentQ.question.replace('?', correct)})`);
+    toast(`✅ Correct! Moving ${correct} steps!`, 'good');
+
+    setTimeout(() => {
+      answerLocked = false;
+      handleAnswered(correct);
+    }, 700);
+  } else {
+    btnEl.classList.add('wrong');
+    // Show correct
+    allBtns.forEach(b => { if (+b.textContent === correct) b.classList.add('correct'); });
+    document.getElementById('mathResult').textContent = `❌ Wrong! Answer was ${correct}. Turn lost.`;
+    document.getElementById('mathResult').className = 'math-result err';
+    player.wrong++;
+    addLog(S.current, `${player.name} got wrong answer! (${currentQ.question.replace('?', correct)})`);
+    toast(`❌ Wrong answer! Turn lost.`, 'bad');
+
+    setTimeout(() => {
+      answerLocked = false;
+      nextTurn();
+    }, 1200);
+  }
+}
+
+function handleAnswered(val) {
+  S.mathVal = val;
+  const mv = movable(S.current, val);
+
+  if (mv.length === 0) {
+    addLog(S.current, `${S.players[S.current].name} — no moves for ${val}`);
+    if (val === 6) {
+      toast('Rolled 6 but no moves — answer again!', 'info');
+      showQuestion(S.current);
+    } else {
+      nextTurn();
+    }
+    return;
+  }
+
+  if (mv.length === 1) {
+    setTimeout(() => {
+      doMove(mv[0], val);
+      afterMove(val);
+      updateUI();
+    }, 200);
+    return;
+  }
+
+  // Multiple tokens can move
+  S.phase = 'pick';
+  S.pendingMoves = mv.map(t => t.id);
+  setStatus(`${S.players[S.current].name}: Tap a token to move (${val} steps)`, '');
+  drawBoard();
+  updatePlayerCards();
+}
+
+function afterMove(val) {
+  if (S.over) return;
+  if (S.mode !== 'classic' && S.turn % 5 === 4) awardPower(S.current);
+  if (val === 6 || S.bonusTurn) {
+    S.bonusTurn = false;
+    addLog(S.current, `🎉 ${S.players[S.current].name} gets bonus turn!`);
+    toast(`🎉 Bonus turn!`, 'good');
+    clearMathCard();
+    setTimeout(() => { if (!S.over) showQuestion(S.current); }, 400);
+    return;
+  }
+  nextTurn();
+}
+
+function nextTurn() {
+  S.turn++;
+  S.phase = 'question';
+  S.pendingMoves = [];
+  S.pendingPower = null;
+  clearMathCard();
+
+  let ni = (S.ci + 1) % S.order.length;
+  let tries = 0;
+  while (S.players[S.order[ni]].tokens.every(t => t.step === 57) && tries++ < 4)
+    ni = (ni + 1) % S.order.length;
+  S.ci = ni;
+  S.current = S.order[ni];
+  updateUI();
+
+  if (!S.players[S.current].isHuman && !S.over) setTimeout(aiTurn, 700);
+  else if (!S.over) setTimeout(() => showQuestion(S.current), 300);
+}
+
+function clearMathCard() {
+  document.getElementById('mathQ').textContent = '—';
+  document.getElementById('answerGrid').innerHTML = '';
+  document.getElementById('mathResult').textContent = '';
+  document.getElementById('mathHint').textContent = 'Correct answer = steps to move';
+}
+
+// ── AI ──
+function aiTurn() {
+  if (S.over || S.players[S.current]?.isHuman) return;
+  const pid = S.current;
+  const player = S.players[pid];
+  S.phase = 'ai';
+
+  setStatus(`${player.name} (AI) is thinking...`, '');
+  document.getElementById('mathQ').innerHTML = '<span style="animation:pulse 1s infinite;display:block;color:#A855F7">🤖 AI solving...</span>';
+  document.getElementById('answerGrid').innerHTML = '';
+
+  // AI picks smart target
+  const allInBase = player.tokens.every(t => t.step === -1);
+  let val = allInBase ? 6 : (Math.floor(Math.random() * 6) + 1);
+
+  // AI uses powers occasionally
+  if (S.mode !== 'classic') {
+    const pwrs = Object.keys(player.powers).filter(k => player.powers[k] > 0);
+    if (pwrs.length && Math.random() < 0.25) applyPower(pid, pwrs[0]);
+  }
+
+  player._six = val === 6 ? (player._six || 0) + 1 : 0;
+
+  setTimeout(() => {
+    addLog(pid, `${player.name} (AI) answered: ${val} steps`);
+    toast(`🤖 ${player.name} moves ${val} steps`, 'info');
+
+    // Show the AI's "question"
+    const q = makeQuestion(val);
+    document.getElementById('mathQ').innerHTML = q.question.replace('?', `<span style="color:#FFD700">${val}</span>`);
+    document.getElementById('mathResult').textContent = `🤖 AI answered: ${val}`;
+    document.getElementById('mathResult').className = 'math-result ok';
+
+    const mv = movable(pid, val);
+    if (mv.length === 0) {
+      if (val === 6) { setTimeout(aiTurn, 600); } else { nextTurn(); }
+      return;
+    }
+
+    // AI picks best token
+    let best = mv[0], bsc = -999;
+    mv.forEach(t => {
+      let sc = t.step < 0 ? 8 : t.step;
+      // Bonus for capture
+      const ns = t.step < 0 ? 0 : t.step + val;
+      if (ns < 52) {
+        const [nx,ny] = [MAIN_PATH[gStep(pid,ns)][0]+.5, MAIN_PATH[gStep(pid,ns)][1]+.5];
+        S.order.forEach(opid => {
+          if (opid === pid) return;
+          S.players[opid].tokens.forEach(ot => {
+            if (ot.step < 0 || ot.step >= 52 || isSafe(ot)) return;
+            const [ox,oy] = getXY(ot);
+            if (Math.abs(nx-ox)<.05 && Math.abs(ny-oy)<.05) sc += 60;
+          });
+        });
+      }
+      if (sc > bsc) { bsc = sc; best = t; }
+    });
+
+    setTimeout(() => {
+      doMove(best, val);
+      afterMove(val);
+      updateUI();
+    }, 400);
+  }, 800);
+}
+
+// ── POWERS ──
+function awardPower(pid) {
+  const pool = Object.keys(POWER_DEF);
+  const p = pool[Math.floor(Math.random()*pool.length)];
+  const pl = S.players[pid];
+  if (!pl.powers[p]) pl.powers[p] = 0;
+  pl.powers[p]++;
+  addLog(pid, `✨ ${pl.name} earned ${POWER_DEF[p].e} ${POWER_DEF[p].n}!`);
+  toast(`✨ ${pl.name} earned ${POWER_DEF[p].e} ${POWER_DEF[p].n}!`, 'power');
+}
+
+function usePower(pname) {
+  if (S.over) return;
+  const pl = S.players[S.current];
+  if (!pl.isHuman || !pl.powers[pname] || pl.powers[pname] < 1) return;
+  pl.powers[pname]--;
+  if (pl.powers[pname] <= 0) delete pl.powers[pname];
+  applyPower(S.current, pname);
+  updateUI();
+}
+
+function applyPower(pid, pname) {
+  const pl = S.players[pid];
+  const toks = pl.tokens.filter(t => t.step >= 0 && t.step < 57);
+  switch(pname) {
+    case 'shield':
+      if (toks.length) { toks.sort((a,b)=>b.step-a.step)[0].shielded = 2; toast('🛡 Shield active 2 turns!','power'); addLog(pid,`🛡 ${pl.name} shielded a token!`); }
+      break;
+    case 'freeze': {
+      let ft=null,bst=-1;
+      S.order.forEach(op=>{if(op===pid)return;S.players[op].tokens.forEach(t=>{if(t.step<0||t.step>=52)return;if(t.step>bst){bst=t.step;ft=t;}});});
+      if(ft){ft.frozen=2;toast(`❄ ${S.players[ft.pid].name}'s token frozen!`,'power');addLog(pid,`❄ ${pl.name} froze ${S.players[ft.pid].name}!`);}
+      break;
+    }
+    case 'bomb': {
+      let bt=null,bst2=-1;
+      S.order.forEach(op=>{if(op===pid)return;S.players[op].tokens.forEach(t=>{if(t.step<0||t.step>=52||isSafe(t))return;if(t.step>bst2){bst2=t.step;bt=t;}});});
+      if(bt){const op=S.players[bt.pid];sendBase(bt,op);toast(`💣 ${op.name}'s token sent to base!`,'bad');addLog(pid,`💣 ${pl.name} bombed ${op.name}!`);}
+      break;
+    }
+    case 'speed':
+      if(toks.length){const t=toks.sort((a,b)=>b.step-a.step)[0];t.step=Math.min(57,t.step+3);toast('🚀 Speed +3 steps!','power');addLog(pid,`🚀 ${pl.name} speed boost!`);}
+      break;
+    case 'teleport':
+      if(toks.length){const t=toks[0];const next=SAFE_IDX.find(s=>{const r=(s-START_IDX[pid]+52)%52;return r>t.step;})??SAFE_IDX[0];t.step=(next-START_IDX[pid]+52)%52;toast('🌀 Teleported to safe cell!','power');addLog(pid,`🌀 ${pl.name} teleported!`);}
+      break;
+    case 'swap': {
+      let st=null,sst=-1;
+      S.order.forEach(op=>{if(op===pid)return;S.players[op].tokens.forEach(t=>{if(t.step<0||t.step>=52)return;if(t.step>sst){sst=t.step;st=t;}});});
+      const mine=toks.sort((a,b)=>b.step-a.step)[0];
+      if(st&&mine){const tmp=mine.step;mine.step=st.step;st.step=tmp;toast(`🔄 Swapped with ${S.players[st.pid].name}!`,'power');addLog(pid,`🔄 ${pl.name} swapped!`);}
+      break;
+    }
+  }
+}
+
+// ── BOARD DRAWING ──
+function initCanvas() {
+  canvas = document.getElementById('boardCanvas');
+  canvas.width = BP; canvas.height = BP;
+  canvas.style.width = Math.min(BP, window.innerWidth - 20) + 'px';
+  canvas.style.height = Math.min(BP, window.innerWidth - 20) + 'px';
+  ctx = canvas.getContext('2d');
+  canvas.onclick = onBoardClick;
+}
+
+function drawBoard() {
+  if (!ctx) return;
+  ctx.clearRect(0,0,BP,BP);
+  // Background
+  ctx.fillStyle = '#08051e';
+  rRect(ctx,0,0,BP,BP,12); ctx.fill();
+
+  // Draw all non-home, non-center cells
+  for (let r=0;r<15;r++) for (let c=0;c<15;c++) drawCell(c,r);
+
+  // Home corner areas
+  drawHome(0,0,'RED'); drawHome(9,0,'BLUE');
+  drawHome(9,9,'GREEN'); drawHome(0,9,'YELLOW');
+
+  // Home columns
+  Object.entries(HOME_COL).forEach(([pid,cells])=>{
+    if(!S.players[pid])return;
+    ctx.fillStyle=COLORS[pid].main; ctx.globalAlpha=.3;
+    cells.forEach(([c,r])=>ctx.fillRect(c*CS+1,r*CS+1,CS-2,CS-2));
+    ctx.globalAlpha=1;
+  });
+
+  // Center star
+  ctx.fillStyle='#FFD700'; ctx.globalAlpha=.85;
+  drawStar(7.5*CS,7.5*CS,5,CS*.95,CS*.42);
+  ctx.globalAlpha=1;
+
+  // Safe cell markers
+  SAFE_IDX.forEach(gi=>{
+    const [c,r]=MAIN_PATH[gi];
+    ctx.font=`${CS*.4}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('⭐',(c+.5)*CS,(r+.5)*CS);
+  });
+
+  // Tokens
+  S.order.forEach(pid => S.players[pid].tokens.forEach((t,i) => drawToken(t,i)));
+}
+
+function drawCell(c,r) {
+  if ((c<6&&r<6)||(c>8&&r<6)||(c>8&&r>8)||(c<6&&r>8)) return; // corners
+  if (c>=6&&c<=8&&r>=6&&r<=8) return; // center
+  // Home column bg
+  let fill='#100828';
+  if(c===7&&r>=1&&r<=5) fill='#0a1a0a';
+  if(r===7&&c>=1&&c<=5) fill='#0a0a1a';
+  if(c===7&&r>=9&&r<=13) fill='#1a0a0a';
+  if(r===7&&c>=9&&c<=13) fill='#1a1a0a';
+  ctx.fillStyle=fill; ctx.strokeStyle='rgba(255,255,255,.04)'; ctx.lineWidth=.5;
+  ctx.beginPath(); ctx.rect(c*CS,r*CS,CS,CS); ctx.fill(); ctx.stroke();
+}
+
+function drawHome(sc,sr,pid) {
+  const col=COLORS[pid];
+  ctx.fillStyle=col.home; ctx.strokeStyle=col.main; ctx.lineWidth=2;
+  ctx.beginPath(); rRect(ctx,sc*CS+2,sr*CS+2,6*CS-4,6*CS-4,8); ctx.fill(); ctx.stroke();
+  const cx=(sc+3)*CS, cy=(sr+3)*CS;
+  ctx.fillStyle='rgba(0,0,0,.35)'; ctx.beginPath(); ctx.arc(cx,cy,CS*1.9,0,Math.PI*2); ctx.fill();
+  BASE_POS[pid].forEach(([bc,br])=>{
+    const bx=(bc+.5)*CS, by=(br+.5)*CS;
+    const g=ctx.createRadialGradient(bx-4,by-4,2,bx,by,CS*.38);
+    g.addColorStop(0,col.light); g.addColorStop(1,col.dark);
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(bx,by,CS*.36,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle=col.light; ctx.lineWidth=1.5; ctx.stroke();
+  });
+}
+
+function drawToken(token,idx) {
+  const pid=token.pid; const col=COLORS[pid];
+  if(token.step===57) return;
+  const [tx,ty]=getXY(token);
+  const px=tx*CS, py=ty*CS, r=CS*.3;
+  const isMovable=S.phase==='pick'&&S.pendingMoves.includes(token.id);
+
+  if(token.step===-1) ctx.globalAlpha=.55;
+  if(isMovable){ctx.shadowColor=col.light;ctx.shadowBlur=14;}
+  if(token.frozen>0){ctx.fillStyle='rgba(130,200,255,.45)';ctx.beginPath();ctx.arc(px,py,r*1.35,0,Math.PI*2);ctx.fill();}
+
+  // Shadow
+  ctx.fillStyle='rgba(0,0,0,.45)'; ctx.beginPath();
+  ctx.ellipse(px+1,py+r*.55,r*.75,r*.28,0,0,Math.PI*2); ctx.fill();
+
+  // Body gradient
+  const g=ctx.createRadialGradient(px-r*.3,py-r*.3,0,px,py,r);
+  g.addColorStop(0,col.light); g.addColorStop(.6,col.main); g.addColorStop(1,col.dark);
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(px,py,r,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle=isMovable?'#FFD700':col.light; ctx.lineWidth=isMovable?2.5:1.5; ctx.stroke();
+
+  // Shine
+  ctx.fillStyle='rgba(255,255,255,.32)'; ctx.beginPath();
+  ctx.arc(px-r*.22,py-r*.22,r*.32,0,Math.PI*2); ctx.fill();
+
+  // Number
+  ctx.fillStyle='#fff'; ctx.font=`bold ${CS*.24}px Inter`;
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(idx+1, px, py+1);
+
+  if(token.shielded>0){ctx.font=`${CS*.2}px serif`;ctx.fillText('🛡',px+r*.65,py-r*.65);}
+
+  ctx.globalAlpha=1; ctx.shadowBlur=0;
+}
+
+function drawStar(cx,cy,pts,or,ir) {
+  ctx.beginPath();
+  for(let i=0;i<pts*2;i++){
+    const r=i%2===0?or:ir, a=(i*Math.PI/pts)-Math.PI/2;
+    i===0?ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+  }
+  ctx.closePath(); ctx.fill();
+}
+
+function rRect(ctx,x,y,w,h,r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+// ── BOARD CLICK ──
+function onBoardClick(e) {
+  if (S.phase !== 'pick' || S.over) return;
+  const rect = canvas.getBoundingClientRect();
+  const sx = BP / rect.width, sy = BP / rect.height;
+  const mx = (e.clientX-rect.left)*sx, my = (e.clientY-rect.top)*sy;
+  const player = S.players[S.current];
+  if (!player.isHuman) return;
+  player.tokens.forEach((t,i) => {
+    if (!S.pendingMoves.includes(t.id)) return;
+    const [tx,ty] = getXY(t);
+    if (Math.hypot(mx-tx*CS, my-ty*CS) < CS*.45) {
+      S.phase = 'moving';
+      doMove(t, S.mathVal);
+      afterMove(S.mathVal);
+      updateUI();
+    }
+  });
+}
+
+// ── UI UPDATE ──
+function updateUI() {
+  drawBoard();
+  updatePlayerCards();
+  updateLog();
+  updatePowersPanel();
+}
+
+function updatePlayerCards() {
+  const el = document.getElementById('playerCards');
+  if (!el) return;
+  el.innerHTML = S.order.map(pid => {
+    const p = S.players[pid];
+    const isActive = pid === S.current;
+    const dots = p.tokens.map(t => {
+      const cls = t.step===57?'done':t.step===-1?'inbase':'';
+      return `<div class="pct ${cls}" style="background:${COLORS[pid].main};border-color:${COLORS[pid].light}"></div>`;
+    }).join('');
+    const pwrs = Object.entries(p.powers||{}).filter(([,v])=>v>0).map(([k,v])=>
+      `<span class="pwr-pill" onclick="usePower('${k}')" title="${POWER_DEF[k]?.d}">${POWER_DEF[k]?.e} ${v}</span>`
+    ).join('');
+    return `<div class="pcard ${pid}${isActive?' active':''}">
+      <div class="pc-row"><div class="pc-dot" style="background:${COLORS[pid].main}"></div>
+        <div><div class="pc-name" style="color:${COLORS[pid].light}">${p.name}</div>
+        <div class="pc-type">${p.isHuman?'👤 You':'🤖 AI'}</div></div></div>
+      <div class="pc-tokens">${dots}</div>
+      <div class="pc-stats">Score:${p.score} ✅${p.correct} ❌${p.wrong}</div>
+      ${isActive&&!S.over?`<div class="pc-turn">${S.phase==='pick'?'🎯 PICK TOKEN':'🧮 YOUR TURN'}</div>`:''}
+      ${pwrs?`<div class="pc-powers">${pwrs}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function updateLog() {
+  const el = document.getElementById('logList');
+  if (!el) return;
+  el.innerHTML = S.log.slice(0,14).map(e =>
+    `<div class="log-item ${e.pid==='SYS'?'SYS':e.pid}">${e.msg}</div>`
+  ).join('');
+}
+
+function updatePowersPanel() {
+  const panel = document.getElementById('powersPanel');
+  if (!panel) return;
+  if (S.mode === 'classic') { panel.style.display='none'; return; }
+  const player = S.players[S.current];
+  const pwrs = Object.entries(player.powers||{}).filter(([,v])=>v>0);
+  panel.style.display = 'block';
+  const grid = document.getElementById('powersGrid');
+  if (!grid) return;
+  if (pwrs.length === 0) {
+    grid.innerHTML = '<div style="font-size:10px;color:rgba(255,255,255,.3);grid-column:span 2;text-align:center;padding:4px">No powers yet. Earn every 5 turns!</div>';
+    return;
+  }
+  const isHuman = player.isHuman && S.phase !== 'ai';
+  grid.innerHTML = pwrs.map(([k,v])=>
+    `<button class="use-pwr" onclick="usePower('${k}')" ${isHuman?'':'disabled'}>${POWER_DEF[k].e} ${POWER_DEF[k].n} ×${v}</button>`
+  ).join('');
+}
+
+function setStatus(main,hint) {
+  const s=document.getElementById('statusTxt'), h=document.getElementById('hintTxt');
+  if(s)s.textContent=main; if(h)h.textContent=hint;
+}
+
+function addLog(pid,msg) {
+  S.log.unshift({pid,msg});
+  if(S.log.length>40) S.log.pop();
+}
+
+function toast(msg,type='info') {
+  const box=document.getElementById('toastBox');
+  const t=document.createElement('div');
+  t.className=`toast ${type}`; t.textContent=msg;
+  box.appendChild(t);
+  setTimeout(()=>t.remove(),2700);
+}
+
+// ── WIN SCREEN ──
+function showWinScreen(pid) {
+  const p = S.players[pid];
+  document.getElementById('winTitle').textContent = `${p.name.toUpperCase()} WINS!`;
+  document.getElementById('winSub').textContent = p.isHuman ? '🏆 Brilliant maths skills!' : '🤖 AI wins this round!';
+  document.getElementById('winStats').innerHTML = S.order.map(op => {
+    const pl=S.players[op];
+    return `${pl.name}: ✅${pl.correct} correct, ❌${pl.wrong} wrong, Score: ${pl.score}`;
+  }).join('<br>');
+  document.getElementById('winModal').classList.add('show');
+  toast(`🏆 ${p.name} WINS!`, 'win');
+}
+
+function restartGame() {
+  document.getElementById('winModal').classList.remove('show');
+  initGame();
+  clearMathCard();
+  updateUI();
+  addLog('SYS','🔄 New game started!');
+  setStatus(`${S.players[S.current].name}'s turn`, '');
+  if (!S.players[S.current].isHuman) setTimeout(aiTurn, 800);
+  else setTimeout(() => showQuestion(S.current), 400);
+}
+
+function goHome() {
+  document.getElementById('winModal').classList.remove('show');
+  showScreen('setupScreen');
+}
+
+// ── START GAME ──
+function startGame() {
+  CFG.numHumans = Math.min(CFG.numHumans, CFG.numPlayers);
+  showScreen('gameScreen');
+  initGame();
+  initCanvas();
+  updateUI();
+  addLog('SYS', `🎮 Game! ${CFG.numHumans} human(s) vs ${CFG.numPlayers - CFG.numHumans} AI`);
+  setStatus(`${S.players[S.current].name}'s turn — Solve the question!`, '');
+
+  if (!S.players[S.current].isHuman) setTimeout(aiTurn, 900);
+  else setTimeout(() => showQuestion(S.current), 500);
+}
+</script>
+</body>
+</html>

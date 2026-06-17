@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पासे का जादू - दो पासों का खेल</title>
+    <style>
+        :root {
+            --primary-color: #4a148c;
+            --secondary-color: #ff6f00;
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0b0ff 0%, #ffdfd3 100%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* फूलों की बारिश के लिए कैनवास */
+        #flower-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .rules {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+            background: #fff3e0;
+            padding: 15px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .scoreboard {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .player-card {
+            background: #f3e5f5;
+            padding: 20px;
+            border-radius: 15px;
+            width: 40%;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .player-card.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(74, 20, 140, 0.3);
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        .player-card h2 {
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+        }
+
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .dice-area {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .dice {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid var(--primary-color);
+            border-radius: 15px;
+            font-size: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .rolling {
+            animation: roll 0.5s infinite linear;
+        }
+
+        @keyframes roll {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .controls {
+            margin-bottom: 25px;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background: #6a1b9a;
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .calc-input-area {
+            display: none;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .calc-input-area input {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 120px;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: var(--secondary-color);
+        }
+        .submit-btn:hover {
+            background: #e65100;
+        }
+
+        .message {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            min-height: 30px;
+            color: #2e7d32;
+        }
+
+        .reset-btn {
+            background: #d32f2f;
+            margin-top: 20px;
+        }
+        .reset-btn:hover { background: #c62828; }
+    </style>
+</head>
+<body>
+
+<!-- फूलों की बारिश के लिए कैनवास एलिमेंट -->
+<canvas id="flower-canvas"></canvas>
+
+<div class="container">
+    <h1>🎲 पासे का जादू ✨</h1>
+    <div class="rules">
+        <strong>नियम:</strong> पासा फेंकें। कंप्यूटर खुद आपको <b>जोड़ (+), घटाव (-) या गुणा (×)</b> का सवाल देगा। सही जवाब देने पर फूलों की बारिश होगी! जो खिलाड़ी सबसे पहले <b>50 अंक</b> बनाएगा, वह जीतेगा!
+    </div>
+
+    <div class="scoreboard">
+        <div class="player-card active" id="p1-card">
+            <h2>खिलाड़ी 1</h2>
+            <div class="score" id="p1-score">0</div>
+        </div>
+        <div class="player-card" id="p2-card">
+            <h2>खिलाड़ी 2</h2>
+            <div class="score" id="p2-score">0</div>
+        </div>
+    </div>
+
+    <div class="dice-area">
+        <div class="dice" id="dice1">⚀</div>
+        <div class="dice" id="dice2">⚀</div>
+    </div>
+
+    <div class="controls">
+        <button id="roll-btn" onclick="rollDice()">पासा फेंकें 🎲</button>
+        
+        <div class="calc-input-area" id="calc-container">
+            <p id="calc-question" style="font-size: 1.4rem; margin: 5px 0; font-weight: bold; color: var(--primary-color);"></p>
+            <div>
+                <input type="number" id="user-answer" placeholder="उत्तर लिखें" onkeydown="if(event.key === 'Enter') verifyAndApply()">
+                <button class="submit-btn" onclick="verifyAndApply()">जवाब सबमिट करें</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="message" id="msg-box">खेल शुरू करने के लिए पासा फेंकें!</div>
+    
+    <button class="reset-btn" onclick="resetGame()">खेल दोबारा शुरू करें 🔄</button>
+</div>
+
+<script>
+    let scores = [0, 0];
+    let activePlayer = 0; 
+    let d1Value = 1;
+    let d2Value = 1;
+    let correctCalculatedAnswer = 0;
+    let currentPointsPossible = 0;
+    const targetScore = 50;
+    const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+    const operations = ['add', 'sub', 'mul'];
+
+    // फूलों की बारिश का लॉजिक (Flower Rain Engine)
+    const canvas = document.getElementById("flower-canvas");
+    const ctx = canvas.getContext("2d");
+    let flowers = [];
+    let animationId;
+    const flowerEmojis = ['🌸', '🌹', '🌻', '🌺', '🌼', '🌷'];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Flower {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * -canvas.height - 20;
+            this.emoji = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            this.size = Math.random() * 15 + 15; // 15px से 30px साइज
+            this.speedY = Math.random() * 3 + 2; // नीचे गिरने की स्पीड
+            this.speedX = Math.random() * 2 - 1; // हवा में इधर-उधर डोलना
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = Math.random() * 2 - 1;
+        }
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+            this.rotation += this.rotationSpeed;
+        }
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.font = `${this.size}px serif`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(this.emoji, 0, 0);
+            ctx.restore();
+        }
+    }
+
+    function startFlowerRain() {
+        // पुरानी एनीमेशन रोकें और नए फूल लोड करें
+        cancelAnimationFrame(animationId);
+        flowers = [];
+        for (let i = 0; i < 60; i++) {
+            flowers.push(new Flower());
+        }
+        animateFlowers();
+        
+        // 4 सेकंड बाद फूलों की बारिश धीरे-धीरे बंद हो जाएगी
+        setTimeout(() => {
+            cancelAnimationFrame(animationId);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            flowers = [];
+        }, 4000);
+    }
+
+    function animateFlowers() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        flowers.forEach(flower => {
+            flower.update();
+            flower.draw();
+            if (flower.y < canvas.height) {
+                alive = true;
+            }
+        });
+        if (alive) {
+            animationId = requestAnimationFrame(animateFlowers);
+        }
+    }
+
+    // गेम का लॉजिक
+    function rollDice() {
+        document.getElementById('roll-btn').disabled = true;
+        const d1 = document.getElementById('dice1');
+        const d2 = document.getElementById('dice2');
+        
+        d1.classList.add('rolling');
+        d2.classList.add('rolling');
+        document.getElementById('msg-box').innerText = "पासा घूम रहा है...";
+        document.getElementById('calc-container').style.display = 'none';
+        document.getElementById('user-answer').value = '';
+
+        setTimeout(() => {
+            d1Value = Math.floor(Math.random() * 6) + 1;
+            d2Value = Math.floor(Math.random() * 6) + 1;
+
+            d1.innerText = diceFaces[d1Value - 1];
+            d2.innerText = diceFaces[d2Value - 1];
+
+            d1.classList.remove('rolling');
+            d2.classList.remove('rolling');
+
+            const randomOp = operations[Math.floor(Math.random() * operations.length)];
+            generateQuestion(randomOp);
+            
+        }, 600);
+    }
+
+    function generateQuestion(op) {
+        let questionText = "";
+        
+        if (op === 'add') {
+            correctCalculatedAnswer = d1Value + d2Value;
+            currentPointsPossible = correctCalculatedAnswer;
+            questionText = `खिलाड़ी ${activePlayer + 1}, जोड़ें: ${d1Value} + ${d2Value} = ?`;
+        } else if (op === 'sub') {
+            let max = Math.max(d1Value, d2Value);
+            let min = Math.min(d1Value, d2Value);
+            correctCalculatedAnswer = max - min;
+            currentPointsPossible = correctCalculatedAnswer;
+            questionText = `खिलाड़ी ${activePlayer + 1}, घटाएं: ${max} - ${min} = ?`;
+        } else if (op === 'mul') {
+            correctCalculatedAnswer = d1Value * d2Value;
+            currentPointsPossible = correctCalculatedAnswer;
+            questionText = `खिलाड़ी ${activePlayer + 1}, गुणा करें: ${d1Value} × ${d2Value} = ?`;
+        }
+
+        document.getElementById('msg-box').innerText = "गणना करके नीचे सही उत्तर टाइप करें!";
+        document.getElementById('calc-question').innerText = questionText;
+        document.getElementById('calc-container').style.display = 'flex';
+        document.getElementById('user-answer').focus();
+    }
+
+    function verifyAndApply() {
+        const userAnswerInput = document.getElementById('user-answer').value;
+        
+        if (userAnswerInput.trim() === "") {
+            alert("कृपया पहले बॉक्स में अपना उत्तर लिखें!");
+            return;
+        }
+
+        const userAnswer = parseInt(userAnswerInput);
+        document.getElementById('calc-container').style.display = 'none';
+
+        if (userAnswer === correctCalculatedAnswer) {
+            // सही जवाब होने पर फूलों की बारिश होगी!
+            startFlowerRain();
+            updateScoreAndTurn(currentPointsPossible, `सही जवाब! आपको +${currentPointsPossible} अंक मिले। 🌸`);
+        } else {
+            updateScoreAndTurn(0, `गलत जवाब! सही उत्तर ${correctCalculatedAnswer} था। इस बार 0 अंक मिले।`);
+        }
+    }
+
+    function updateScoreAndTurn(points, resultMessage) {
+        scores[activePlayer] = Math.max(0, scores[activePlayer] + points);
+        document.getElementById(`p${activePlayer + 1}-score`).innerText = scores[activePlayer];
+
+        if (scores[activePlayer] >= targetScore) {
+            document.getElementById('msg-box').innerHTML = `🎉 बधाई हो! खिलाड़ी ${activePlayer + 1} ने ${scores[activePlayer]} अंकों के साथ खेल जीत लिया! 🏆`;
+            document.getElementById('roll-btn').disabled = true;
+            document.getElementById('calc-container').style.display = 'none';
+            // जीत की खुशी में एक बार और बड़ी बारिश
+            startFlowerRain();
+            return;
+        }
+
+        document.getElementById(`p${activePlayer + 1}-card`).classList.remove('active');
+        activePlayer = activePlayer === 0 ? 1 : 0;
+        document.getElementById(`p${activePlayer + 1}-card`).classList.add('active');
+
+        document.getElementById('roll-btn').disabled = false;
+        document.getElementById('msg-box').innerText = `${resultMessage} अब खिलाड़ी ${activePlayer + 1} की बारी है।`;
+    }
+
+    function resetGame() {
+        scores = [0, 0];
+        activePlayer = 0;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('p1-score').innerText = '0';
+        document.getElementById('p2-score').innerText = '0';
+        document.getElementById('p1-card').classList.add('active');
+        document.getElementById('p2-card').classList.remove('active');
+        document.getElementById('dice1').innerText = '⚀';
+        document.getElementById('dice2').innerText = '⚀';
+        document.getElementById('calc-container').style.display = 'none';
+        document.getElementById('user-answer').value = '';
+        document.getElementById('roll-btn').disabled = false;
+        document.getElementById('msg-box').innerText = "खेल दोबारा शुरू हो गया! खिलाड़ी 1 पासा फेंकें।";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 Money World — Learn & Earn!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --green:#1B8A4C;
+  --green2:#26C26E;
+  --green3:#D4F5E2;
+  --gold:#F5A623;
+  --gold2:#FFD166;
+  --gold3:#FFF4DC;
+  --blue:#2D6BE4;
+  --blue2:#5B93FF;
+  --blue3:#EAF0FF;
+  --red:#E53935;
+  --red2:#FF6B6B;
+  --purple:#7C3AED;
+  --purple2:#A78BFA;
+  --bg:#F0FFF6;
+  --card:#FFFFFF;
+  --text:#1A2E1A;
+  --muted:#5A7A6A;
+  --border:#C8E6D4;
+  --shadow:0 4px 24px rgba(27,138,76,0.10);
+  --r:20px;
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Animated background ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 10% 15%,rgba(38,194,110,0.12) 0%,transparent 55%),
+    radial-gradient(ellipse at 90% 80%,rgba(245,166,35,0.12) 0%,transparent 55%),
+    radial-gradient(ellipse at 50% 50%,rgba(240,255,246,1) 0%,transparent 100%);
+  pointer-events:none;
+}
+
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+#sparkle-canvas{z-index:200;}
+
+.page{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;}
+.page.hidden{display:none!important;}
+
+/* ══════════════════════════════════════
+   HOME SCREEN
+══════════════════════════════════════ */
+.home-wrap{max-width:720px;width:100%;text-align:center;}
+
+.logo-area{margin-bottom:32px;}
+.coin-spin{font-size:64px;display:inline-block;animation:coinSpin 3s ease-in-out infinite;}
+@keyframes coinSpin{0%,100%{transform:rotateY(0deg)}40%,60%{transform:rotateY(180deg)}}
+.game-title{font-family:'Baloo 2',sans-serif;font-size:44px;font-weight:900;color:var(--text);line-height:1;margin-top:8px;}
+.game-title span{color:var(--green);}
+.game-sub{font-size:15px;color:var(--muted);margin-top:6px;}
+
+.modes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px;}
+@media(max-width:500px){.modes-grid{grid-template-columns:1fr;}}
+
+.mode-card{
+  background:var(--card);border-radius:var(--r);
+  border:2.5px solid var(--border);
+  padding:22px 18px;cursor:pointer;
+  transition:all 0.22s;text-align:left;
+  position:relative;overflow:hidden;
+}
+.mode-card::after{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:100px;height:100px;border-radius:50%;opacity:0.08;
+  transition:transform 0.3s;
+}
+.mode-card:hover{transform:translateY(-5px);border-color:var(--green);}
+.mode-card:hover::after{transform:scale(2.5);}
+.mc-green::after{background:var(--green);}
+.mc-gold::after{background:var(--gold);}
+.mc-blue::after{background:var(--blue);}
+.mc-purple::after{background:var(--purple);}
+.mc-green:hover{box-shadow:0 8px 32px rgba(27,138,76,0.18);}
+.mc-gold:hover{box-shadow:0 8px 32px rgba(245,166,35,0.18);}
+.mc-blue:hover{box-shadow:0 8px 32px rgba(45,107,228,0.18);}
+.mc-purple:hover{box-shadow:0 8px 32px rgba(124,58,237,0.18);}
+
+.mode-icon{font-size:36px;display:block;margin-bottom:10px;}
+.mode-name{font-family:'Baloo 2',sans-serif;font-size:19px;font-weight:800;color:var(--text);}
+.mode-desc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5;}
+.mode-tag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:0.3px;}
+.tag-g{background:var(--green3);color:var(--green);}
+.tag-gold{background:var(--gold3);color:#8B5500;}
+.tag-b{background:var(--blue3);color:var(--blue);}
+.tag-p{background:#EDE9FE;color:var(--purple);}
+
+.piggy-strip{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:14px;padding:14px 20px;
+  display:flex;align-items:center;gap:12px;
+  font-size:14px;color:var(--muted);font-weight:600;
+}
+.piggy-strip .val{font-family:'Baloo 2',sans-serif;font-size:22px;font-weight:900;color:var(--green);margin-left:auto;}
+
+/* ══════════════════════════════════════
+   GAME SCREEN
+══════════════════════════════════════ */
+.game-wrap{max-width:660px;width:100%;}
+
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.back-btn{
+  background:var(--card);border:2px solid var(--border);border-radius:12px;
+  padding:8px 14px;color:var(--muted);font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;cursor:pointer;transition:all 0.18s;flex-shrink:0;
+}
+.back-btn:hover{color:var(--green);border-color:var(--green);}
+.stats-row{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.stat-pill{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:7px 4px;text-align:center;}
+.stat-pill .sv{font-family:'Baloo 2',sans-serif;font-size:18px;font-weight:800;color:var(--text);line-height:1;}
+.stat-pill .sl{font-size:9px;color:var(--muted);font-weight:800;letter-spacing:0.5px;text-transform:uppercase;}
+
+.timer-wrap{height:7px;background:var(--border);border-radius:4px;margin-bottom:14px;overflow:hidden;}
+.timer-fill{height:100%;border-radius:4px;background:var(--green2);transition:width 0.08s linear;}
+
+/* ── Game Card ── */
+.game-card{
+  background:var(--card);border-radius:var(--r);
+  border:2.5px solid var(--border);padding:24px;
+  box-shadow:var(--shadow);
+}
+.game-card.flash-ok{border-color:var(--green2);box-shadow:0 0 32px rgba(38,194,110,0.25);}
+.game-card.flash-no{border-color:var(--red2);box-shadow:0 0 32px rgba(229,57,53,0.15);}
+
+.mode-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.mode-badge{padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;letter-spacing:0.3px;}
+.q-prog{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.q-prog-fill{height:100%;border-radius:3px;background:var(--green2);transition:width 0.4s;}
+.q-num{font-size:12px;color:var(--muted);font-weight:800;white-space:nowrap;}
+
+.question-text{font-size:16px;font-weight:800;color:var(--text);margin-bottom:18px;line-height:1.5;text-align:center;}
+
+/* ── Coins display ── */
+.coins-area{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px;min-height:60px;}
+.coin{
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:50%;font-family:'Baloo 2',sans-serif;font-weight:900;
+  border:3px solid;cursor:default;
+  animation:coinDrop 0.3s ease both;
+  user-select:none;
+  position:relative;
+}
+.coin::after{content:'';position:absolute;top:4px;left:6px;width:30%;height:25%;background:rgba(255,255,255,0.55);border-radius:50%;transform:rotate(-30deg);}
+@keyframes coinDrop{0%{transform:translateY(-20px) scale(0.5);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
+
+.coin-1{width:48px;height:48px;font-size:13px;background:#F5C842;border-color:#C99A00;color:#7A5C00;}
+.coin-2{width:52px;height:52px;font-size:13px;background:#E8E8E8;border-color:#999;color:#444;}
+.coin-5{width:56px;height:56px;font-size:14px;background:#F5C842;border-color:#C99A00;color:#7A5C00;}
+.coin-10{width:60px;height:60px;font-size:14px;background:#C0A060;border-color:#8B6914;color:#5C3D00;}
+.note-10{width:80px;height:48px;border-radius:8px;font-size:13px;background:#C8E6C9;border-color:#43A047;color:#1B5E20;}
+.note-20{width:80px;height:48px;border-radius:8px;font-size:13px;background:#B3E5FC;border-color:#0288D1;color:#01579B;}
+.note-50{width:80px;height:48px;border-radius:8px;font-size:13px;background:#FFE0B2;border-color:#EF6C00;color:#E65100;}
+.note-100{width:88px;height:52px;border-radius:8px;font-size:14px;background:#D1C4E9;border-color:#7B1FA2;color:#4A148C;}
+.note-200{width:88px;height:52px;border-radius:8px;font-size:14px;background:#FFCDD2;border-color:#C62828;color:#B71C1C;}
+.note-500{width:96px;height:56px;border-radius:8px;font-size:15px;background:#C8E6C9;border-color:#2E7D32;color:#1B5E20;}
+
+.coin.clickable{cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;}
+.coin.clickable:hover{transform:scale(1.15) translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
+.coin.selected{transform:scale(1.12) translateY(-8px);box-shadow:0 10px 24px rgba(27,138,76,0.3);border-width:4px!important;}
+.coin.selected-green{border-color:var(--green)!important;}
+
+/* ── Answer options ── */
+.opts-grid{display:grid;gap:10px;}
+.opts-2{grid-template-columns:1fr 1fr;}
+.opts-4{grid-template-columns:repeat(4,1fr);}
+
+.opt-btn{
+  background:#F8FFF9;border:2.5px solid var(--border);border-radius:14px;
+  padding:14px 8px;font-family:'Baloo 2',sans-serif;font-size:20px;font-weight:800;
+  color:var(--text);cursor:pointer;transition:all 0.18s;text-align:center;
+}
+.opt-btn:hover:not(:disabled){background:var(--green3);border-color:var(--green2);transform:translateY(-3px);box-shadow:0 6px 18px rgba(27,138,76,0.15);}
+.opt-btn:disabled{cursor:default;}
+.opt-btn.opt-correct{background:#D4F5E2;border-color:var(--green);color:var(--green);}
+.opt-btn.opt-wrong{background:#FFE0E0;border-color:var(--red2);color:var(--red);}
+.opt-btn.opt-reveal{background:var(--gold3);border-color:var(--gold);color:#8B5500;}
+.opt-btn.opt-money{font-size:15px;padding:12px 6px;line-height:1.3;}
+
+/* ── Input mode ── */
+.amount-input-wrap{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:8px;}
+.rupee-sym{font-family:'Baloo 2',sans-serif;font-size:28px;font-weight:900;color:var(--green);}
+.amount-input{
+  width:120px;height:56px;text-align:center;
+  background:#F8FFF9;border:2.5px solid var(--border);border-radius:14px;
+  color:var(--text);font-family:'Baloo 2',sans-serif;font-size:26px;font-weight:800;
+  outline:none;transition:border-color 0.18s;
+}
+.amount-input:focus{border-color:var(--green2);}
+.amount-input::-webkit-outer-spin-button,.amount-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+.go-btn{
+  padding:14px 22px;background:var(--green);color:#fff;
+  border:none;border-radius:14px;font-family:'Baloo 2',sans-serif;
+  font-size:16px;font-weight:800;cursor:pointer;transition:all 0.18s;
+}
+.go-btn:hover{background:var(--green2);transform:translateY(-2px);}
+.go-btn:disabled{background:var(--border);cursor:default;transform:none;}
+
+/* ── Shop mode ── */
+.shop-scene{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;}
+.shop-item{
+  background:#F8FFF9;border:2.5px solid var(--border);border-radius:14px;
+  padding:14px 12px;text-align:center;min-width:90px;
+}
+.shop-item .item-icon{font-size:32px;}
+.shop-item .item-name{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px;}
+.shop-item .item-price{font-family:'Baloo 2',sans-serif;font-size:16px;font-weight:900;color:var(--green);margin-top:2px;}
+
+.wallet-display{
+  background:linear-gradient(135deg,var(--green) 0%,#1CAF5E 100%);
+  border-radius:14px;padding:14px 20px;
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.wallet-display .wlbl{font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;}
+.wallet-display .wamt{font-family:'Baloo 2',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-left:auto;}
+
+/* Drag coins area */
+.drag-bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:#F8FFF9;border:2px dashed var(--border);border-radius:14px;margin-bottom:12px;min-height:80px;}
+.drop-zone{
+  min-height:70px;border:2.5px dashed var(--green2);border-radius:14px;
+  padding:12px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;
+  background:rgba(38,194,110,0.04);color:var(--muted);font-size:13px;font-weight:700;margin-bottom:12px;
+  transition:background 0.2s;
+}
+.drop-zone.drag-over{background:rgba(38,194,110,0.12);border-color:var(--green);}
+.drop-total{font-family:'Baloo 2',sans-serif;font-size:18px;font-weight:900;text-align:center;color:var(--green);margin-bottom:12px;}
+
+/* ── Feedback ── */
+.fb-row{display:flex;justify-content:center;min-height:36px;margin-top:14px;}
+.fb-msg{padding:8px 20px;border-radius:10px;font-size:14px;font-weight:800;}
+.fb-ok{background:var(--green3);color:var(--green);}
+.fb-no{background:#FFE0E0;color:var(--red);}
+.fb-hint{color:var(--muted);font-size:13px;}
+.explain-txt{text-align:center;font-size:13px;color:var(--muted);font-weight:600;margin-top:8px;min-height:18px;}
+
+/* ══════════════════════════════════════
+   END SCREEN
+══════════════════════════════════════ */
+.end-wrap{text-align:center;max-width:500px;width:100%;}
+.end-trophy{font-size:72px;display:block;margin-bottom:12px;}
+.end-title{font-family:'Baloo 2',sans-serif;font-size:32px;font-weight:900;color:var(--text);}
+.end-score{font-family:'Baloo 2',sans-serif;font-size:58px;font-weight:900;color:var(--green);line-height:1;}
+.end-sub{font-size:14px;color:var(--muted);margin:6px 0 20px;}
+.stars-row{font-size:36px;letter-spacing:5px;margin-bottom:20px;}
+.end-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+.end-stat{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:14px;}
+.end-stat .ev{font-family:'Baloo 2',sans-serif;font-size:22px;font-weight:900;color:var(--text);}
+.end-stat .el{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;margin-top:3px;}
+.end-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.end-btn{
+  padding:13px 26px;border-radius:14px;font-family:'Baloo 2',sans-serif;
+  font-size:15px;font-weight:900;cursor:pointer;border:none;transition:all 0.18s;
+}
+.end-btn-primary{background:var(--green);color:#fff;}
+.end-btn-primary:hover{background:var(--green2);transform:translateY(-2px);}
+.end-btn-secondary{background:var(--card);border:2.5px solid var(--border);color:var(--text);}
+.end-btn-secondary:hover{border-color:var(--green);transform:translateY(-2px);}
+
+/* Piggy bank savings meter */
+.piggy-meter{
+  background:var(--card);border:2px solid var(--border);border-radius:14px;
+  padding:14px;margin-top:16px;
+}
+.pm-label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;margin-bottom:8px;}
+.pm-bar{height:14px;background:var(--border);border-radius:7px;overflow:hidden;}
+.pm-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold2));border-radius:7px;transition:width 0.8s ease;}
+.pm-val{font-family:'Baloo 2',sans-serif;font-size:13px;font-weight:900;color:var(--green);text-align:right;margin-top:4px;}
+
+/* Streak popup */
+.streak-pop{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
+  background:var(--card);border:3px solid var(--gold);border-radius:20px;
+  padding:20px 32px;text-align:center;z-index:300;pointer-events:none;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow:0 8px 32px rgba(245,166,35,0.3);
+}
+.streak-pop.show{transform:translate(-50%,-50%) scale(1);}
+.sp-emoji{font-size:36px;}
+.sp-text{font-family:'Baloo 2',sans-serif;font-size:20px;font-weight:900;color:var(--gold);}
+
+/* Animations */
+@keyframes bounceIn{0%{transform:scale(0.4);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.bounce-in{animation:bounceIn 0.32s ease both;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.shake{animation:shake 0.38s ease;}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.float{animation:floatY 2.8s ease-in-out infinite;}
+@keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.pop-in{animation:popIn 0.3s ease both;}
+
+/* Scroll */
+@media(max-width:480px){.game-title{font-size:34px;}.opts-4{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<canvas id="sparkle-canvas"></canvas>
+
+<div class="streak-pop" id="streak-pop">
+  <div class="sp-emoji" id="sp-emoji">🔥</div>
+  <div class="sp-text" id="sp-text">3x Streak!</div>
+</div>
+
+<!-- ═══════════ HOME SCREEN ═══════════ -->
+<div class="page" id="home-screen">
+  <div class="home-wrap">
+    <div class="logo-area">
+      <div class="coin-spin">💰</div>
+      <div class="game-title">Money <span>World</span></div>
+      <div class="game-sub">Learn coins, notes, shopping & saving — the fun way!</div>
+    </div>
+
+    <div class="modes-grid">
+      <div class="mode-card mc-green" onclick="startMode('coins')">
+        <span class="mode-icon">🪙</span>
+        <div class="mode-name">Coin Counter</div>
+        <div class="mode-desc">Learn the value of Indian coins. Count and identify ₹1, ₹2, ₹5, ₹10</div>
+        <span class="mode-tag tag-g">AGE 5–7</span>
+      </div>
+      <div class="mode-card mc-gold" onclick="startMode('notes')">
+        <span class="mode-icon">💵</span>
+        <div class="mode-name">Note Master</div>
+        <div class="mode-desc">Recognise ₹10 to ₹500 notes and count the total correctly</div>
+        <span class="mode-tag tag-gold">AGE 7–9</span>
+      </div>
+      <div class="mode-card mc-blue" onclick="startMode('shop')">
+        <span class="mode-icon">🛒</span>
+        <div class="mode-name">Smart Shopper</div>
+        <div class="mode-desc">Buy items, calculate change, and don't overspend your budget!</div>
+        <span class="mode-tag tag-b">AGE 8–11</span>
+      </div>
+      <div class="mode-card mc-purple" onclick="startMode('save')">
+        <span class="mode-icon">🐷</span>
+        <div class="mode-name">Piggy Saver</div>
+        <div class="mode-desc">Earn money, spend wisely, and save to buy your dream item!</div>
+        <span class="mode-tag tag-p">AGE 9–12</span>
+      </div>
+    </div>
+
+    <div class="piggy-strip">
+      <span>🐷</span>
+      <span>Total savings earned:</span>
+      <span class="val" id="total-savings">₹0</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ GAME SCREEN ═══════════ -->
+<div class="page hidden" id="game-screen">
+  <div class="game-wrap">
+    <div class="top-bar">
+      <button class="back-btn" onclick="goHome()">← Home</button>
+      <div class="stats-row">
+        <div class="stat-pill"><div class="sv" id="st-score">0</div><div class="sl">Score</div></div>
+        <div class="stat-pill"><div class="sv" id="st-streak">0🔥</div><div class="sl">Streak</div></div>
+        <div class="stat-pill"><div class="sv" id="st-q">1/50</div><div class="sl">Q</div></div>
+        <div class="stat-pill"><div class="sv" id="st-coins">₹0</div><div class="sl">Earned</div></div>
+      </div>
+    </div>
+    <div class="timer-wrap"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
+    <div class="game-card" id="game-card"></div>
+  </div>
+</div>
+
+<!-- ═══════════ END SCREEN ═══════════ -->
+<div class="page hidden" id="end-screen">
+  <div class="end-wrap">
+    <span class="end-trophy" id="end-trophy">🏆</span>
+    <div class="end-title" id="end-title">Money Master!</div>
+    <div class="end-score" id="end-score">0</div>
+    <div class="end-sub" id="end-sub">points earned</div>
+    <div class="stars-row" id="end-stars">⭐⭐⭐</div>
+    <div class="end-grid">
+      <div class="end-stat"><div class="ev" id="es-correct">0/50</div><div class="el">Correct</div></div>
+      <div class="end-stat"><div class="ev" id="es-acc">0%</div><div class="el">Accuracy</div></div>
+      <div class="end-stat"><div class="ev" id="es-streak">0🔥</div><div class="el">Best Streak</div></div>
+      <div class="end-stat"><div class="ev" id="es-saved">₹0</div><div class="el">Savings Added</div></div>
+    </div>
+    <div class="piggy-meter">
+      <div class="pm-label">🐷 Piggy Bank Progress</div>
+      <div class="pm-bar"><div class="pm-fill" id="pm-fill" style="width:0%"></div></div>
+      <div class="pm-val" id="pm-val">₹0 / ₹500</div>
+    </div>
+    <div class="end-btns" style="margin-top:16px">
+      <button class="end-btn end-btn-primary" onclick="restartMode()">🔄 Play Again</button>
+      <button class="end-btn end-btn-secondary" onclick="goHome()">🏠 Home</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════ SPARKLES ═══════
+const pc=document.getElementById('sparkle-canvas'),pctx=pc.getContext('2d');
+const bc=document.getElementById('bg-canvas'),bctx=bc.getContext('2d');
+let sparks=[],bgParts=[];
+function rsz(){pc.width=bc.width=innerWidth;pc.height=bc.height=innerHeight;}
+rsz();addEventListener('resize',rsz);
+// Floating money bg particles
+for(let i=0;i<30;i++) bgParts.push(spawnBgP());
+function spawnBgP(){return{x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:Math.random()*18+10,sp:Math.random()*0.4+0.1,dr:(Math.random()-0.5)*0.3,op:Math.random()*0.08+0.03,t:Math.random()*Math.PI*2,em:['₹','💰','🪙','💵'][Math.floor(Math.random()*4)]};}
+function burst(n,cx,cy){
+  const cols=['#F5C842','#26C26E','#2D6BE4','#FF6B6B','#A78BFA','#FFD166'];
+  for(let i=0;i<n;i++){const a=Math.PI*2*i/n+Math.random()*0.5,sp=Math.random()*10+4;sparks.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-Math.random()*3,sz:Math.random()*5+2,col:cols[Math.floor(Math.random()*cols.length)],op:1,decay:Math.random()*0.02+0.013,grav:0.18,rot:Math.random()*Math.PI*2,rs:(Math.random()-0.5)*0.22,sh:['star','circle','rect','diamond'][Math.floor(Math.random()*4)]});}
+}
+function dSh(s,c){c.save();c.globalAlpha=Math.max(0,s.op);c.fillStyle=s.col;c.translate(s.x,s.y);c.rotate(s.rot);if(s.sh==='star'){c.beginPath();for(let i=0;i<5;i++){const a=i*4*Math.PI/5-Math.PI/2,b=i*4*Math.PI/5+2*Math.PI/5-Math.PI/2;i===0?c.moveTo(s.sz*Math.cos(a),s.sz*Math.sin(a)):c.lineTo(s.sz*Math.cos(a),s.sz*Math.sin(a));c.lineTo(s.sz*0.4*Math.cos(b),s.sz*0.4*Math.sin(b));}c.closePath();c.fill();}else if(s.sh==='diamond'){c.beginPath();c.moveTo(0,-s.sz);c.lineTo(s.sz*0.6,0);c.lineTo(0,s.sz);c.lineTo(-s.sz*0.6,0);c.closePath();c.fill();}else if(s.sh==='rect'){c.fillRect(-s.sz*.4,-s.sz*.9,s.sz*.8,s.sz*1.8);}else{c.beginPath();c.arc(0,0,s.sz,0,Math.PI*2);c.fill();}c.restore();}
+let bgT=0;
+function animAll(){
+  pctx.clearRect(0,0,pc.width,pc.height);
+  bctx.clearRect(0,0,bc.width,bc.height);
+  bgT++;
+  bgParts.forEach(p=>{
+    p.y-=p.sp;p.x+=p.dr;p.t+=0.02;p.op=0.05+0.03*Math.abs(Math.sin(p.t));
+    if(p.y<-30)Object.assign(p,spawnBgP(),{y:bc.height+10});
+    bctx.save();bctx.globalAlpha=p.op;bctx.font=`${p.s}px serif`;bctx.fillText(p.em,p.x,p.y);bctx.restore();
+  });
+  sparks=sparks.filter(s=>{s.x+=s.vx;s.y+=s.vy;s.vy+=s.grav;s.vx*=0.98;s.op-=s.decay;s.rot+=s.rs;dSh(s,pctx);return s.op>0;});
+  requestAnimationFrame(animAll);
+}
+animAll();
+
+// ═══════ STATE ═══════
+let currentMode='', qnum=0, score=0, streak=0, bestStreak=0, correctCount=0;
+let answered=false, currentQ=null, timerInt=null, timeLeft=0, timesArr=[];
+let totalSavings=parseInt(localStorage.getItem('mw_savings')||'0');
+let sessionSavings=0;
+const TOTAL_Q=50;
+const TIMER={coins:20,notes:18,shop:22,save:25};
+
+function saveSavings(){localStorage.setItem('mw_savings',totalSavings);document.getElementById('total-savings').textContent='₹'+totalSavings;}
+saveSavings();
+
+// ═══════ COIN/NOTE HELPERS ═══════
+const COIN_DEFS={
+  1:{cls:'coin-1',label:'₹1'},2:{cls:'coin-2',label:'₹2'},
+  5:{cls:'coin-5',label:'₹5'},10:{cls:'coin-10',label:'₹10'}
+};
+const NOTE_DEFS={
+  10:{cls:'note-10',label:'₹10'},20:{cls:'note-20',label:'₹20'},
+  50:{cls:'note-50',label:'₹50'},100:{cls:'note-100',label:'₹100'},
+  200:{cls:'note-200',label:'₹200'},500:{cls:'note-500',label:'₹500'}
+};
+
+function coinHTML(val,delay=0,clickable=false,idx=0){
+  const d=COIN_DEFS[val]||NOTE_DEFS[val];if(!d)return'';
+  const cc=clickable?` clickable" data-val="${val}" data-idx="${idx}" onclick="toggleCoin(this)`:'';
+  return `<div class="coin ${d.cls}${cc}" style="animation-delay:${delay}s">${d.label}</div>`;
+}
+
+function shuffle(a){return [...a].sort(()=>Math.random()-0.5);}
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+// ═══════ QUESTION GENERATORS ═══════
+function genCoinsQ(){
+  // All questions require multi-step thinking — no trivial "identify this coin"
+  const types=['mix_coins','fewest_coins','change_coins','combo_target','split_equal','overpay','missing_coin','two_pockets'];
+  const t=pick(types);
+
+  if(t==='mix_coins'){
+    // Mixed coins: 3 denominations, find total
+    const picks=shuffle([[1,3],[2,3],[5,2],[10,2],[1,4],[2,2],[5,3]]).slice(0,3);
+    let total=0; const coins=[];
+    picks.forEach(([v,c])=>{total+=v*c; for(let i=0;i<c;i++) coins.push({val:v});});
+    const wrongs=[total+2,total-2,total+5,total-5].filter(v=>v>0&&v!==total);
+    const opts=shuffle([`₹${total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:'Add up all the coins. What is the total?',coins,opts,answer:`₹${total}`,explain:picks.map(([v,c])=>`${c}×₹${v}`).join(' + ')+` = ₹${total}`};
+  }
+  if(t==='fewest_coins'){
+    const target=pick([6,8,12,17,21,23,27]);
+    const wrongs=[target-1,target+1,target+2].filter(v=>v>0&&v!==target);
+    const opts=shuffle([`₹${target}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Using ₹1, ₹2, ₹5, ₹10 coins — what is the FEWEST coins needed to make ₹${target}?`,coins:[],opts:shuffle([target,wrongs[0],wrongs[1],wrongs[2]].map(v=>`${v} coins`)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,4),answer:`${target} coins`,explain:`Largest coins first: use ₹10s, ₹5s, then small ones to reach ₹${target}`};
+  }
+  if(t==='change_coins'){
+    const paid=pick([10,20,25,30]);
+    const cost=pick([3,6,7,12,13,17,18,22,23]);
+    if(cost>=paid) return genCoinsQ();
+    const change=paid-cost;
+    const wrongs=[change+1,change-1,change+2].filter(v=>v>0&&v!==change);
+    const opts=shuffle([`₹${change}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Chai costs ₹${cost}. You give a ₹${paid} coin. Change = ?`,coins:[{val:paid}],opts,answer:`₹${change}`,explain:`₹${paid} − ₹${cost} = ₹${change}`};
+  }
+  if(t==='combo_target'){
+    const target=pick([13,17,22,26,31]);
+    const scenarios=[
+      {coins:[{val:10},{val:2},{val:1}],total:13},{coins:[{val:10},{val:5},{val:2}],total:17},
+      {coins:[{val:10},{val:10},{val:2}],total:22},{coins:[{val:10},{val:10},{val:5},{val:1}],total:26},
+      {coins:[{val:10},{val:10},{val:10},{val:1}],total:31},
+    ];
+    const sc=scenarios.find(s=>s.total===target)||scenarios[0];
+    const wrongs=[sc.total+3,sc.total-3,sc.total+7].filter(v=>v>0&&v!==sc.total);
+    const opts=shuffle([`₹${sc.total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:'What is the total of these coins?',coins:sc.coins,opts,answer:`₹${sc.total}`,explain:`Count each coin carefully: total = ₹${sc.total}`};
+  }
+  if(t==='split_equal'){
+    const totalCoins=pick([10,20,30]);
+    const people=pick([2,5]);
+    const each=totalCoins/people;
+    const wrongs=[each+2,each-2,each*2].filter(v=>v>0&&v!==each);
+    const opts=shuffle([`₹${each}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`₹${totalCoins} shared equally among ${people} friends. Each gets = ?`,coins:[],opts,answer:`₹${each}`,explain:`₹${totalCoins} ÷ ${people} = ₹${each} each`};
+  }
+  if(t==='overpay'){
+    const price=pick([14,19,23,28,33]);
+    const have=pick([15,20,25,30,35].filter(v=>v>price));
+    if(!have) return genCoinsQ();
+    const change=have-price;
+    const wrongs=[change+1,change+2,change+5].filter(v=>v>0&&v!==change);
+    const opts=shuffle([`₹${change}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Bus ticket: ₹${price}. You only have a ₹${have} coin. Change back = ?`,coins:[{val:have<=10?have:10}],opts,answer:`₹${change}`,explain:`₹${have} − ₹${price} = ₹${change}`};
+  }
+  if(t==='missing_coin'){
+    const total=pick([17,21,26,28,34]);
+    const shownCoins=total-pick([1,2,5]);
+    const missing=total-shownCoins;
+    const wrongs=[missing+1,missing+2,missing-1].filter(v=>v>0&&v!==missing);
+    const opts=shuffle([`₹${missing}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Coins shown add up to ₹${shownCoins}. You need ₹${total} total. What coin is missing?`,coins:[{val:10},{val:shownCoins-10>0?shownCoins-10:1}],opts,answer:`₹${missing}`,explain:`₹${total} − ₹${shownCoins} = ₹${missing} coin missing`};
+  }
+  // two_pockets
+  const p1=pick([5,10,12,15]);
+  const p2=pick([3,6,7,8]);
+  const total=p1+p2;
+  const wrongs=[total+2,total-2,total+5].filter(v=>v>0&&v!==total);
+  const opts=shuffle([`₹${total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+  return{type:'mcq',question:`Left pocket: ₹${p1}. Right pocket: ₹${p2}. Total money = ?`,coins:[],opts,answer:`₹${total}`,explain:`₹${p1} + ₹${p2} = ₹${total}`};
+}
+
+function genNotesQ(){
+  const types=['mix_notes','change_tricky','odd_one_out','best_way_pay','multi_change','afford_check','round_off','wallet_split'];
+  const t=pick(types);
+
+  if(t==='mix_notes'){
+    const picks=shuffle([[10,2],[20,1],[50,1],[100,1],[10,3],[20,2],[50,2]]).slice(0,rnd(3,4));
+    let total=0; const coins=[];
+    picks.forEach(([v,c])=>{total+=v*c; for(let i=0;i<c;i++) coins.push({val:v,note:true});});
+    const wrongs=[total+10,total+20,total-10,total-20].filter(v=>v>0&&v!==total);
+    const opts=shuffle([`₹${total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:'Count all these notes carefully. Total = ?',coins,opts,answer:`₹${total}`,explain:picks.map(([v,c])=>`${c}×₹${v}`).join(' + ')+` = ₹${total}`};
+  }
+  if(t==='change_tricky'){
+    const price=pick([37,53,68,84,117,143,178,225,262,315]);
+    const gave=price<=100?200:price<=200?500:500;
+    const change=gave-price;
+    const wrongs=[change+5,change-5,change+13,change-13].filter(v=>v>0&&v!==change);
+    const opts=shuffle([`₹${change}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Item costs ₹${price}. You pay ₹${gave}. Change = ?`,coins:[{val:gave,note:true}],opts,answer:`₹${change}`,explain:`₹${gave} − ₹${price} = ₹${change}`};
+  }
+  if(t==='odd_one_out'){
+    const vals=[10,20,50,100,200,500];
+    const target=pick([70,120,170,220,320,150,250]);
+    const correct=vals.find(v=>target%v===0&&target/v<=5)||100;
+    const others=vals.filter(v=>v!==correct).slice(0,3);
+    const opts=shuffle([correct,...others].map(v=>`₹${v} notes`));
+    return{type:'mcq',question:`Which note can make exactly ₹${target} using only that one denomination?`,coins:[],opts,answer:`₹${correct} notes`,explain:`₹${target} ÷ ₹${correct} = ${target/correct} notes (exact)`};
+  }
+  if(t==='best_way_pay'){
+    const amount=pick([150,250,350,450,550]);
+    const ways=[[500,50],[200,100,50],[100,100,50],[200,50,100]].filter(w=>w.reduce((a,b)=>a+b,0)===amount);
+    const bestWay=ways.sort((a,b)=>a.length-b.length)[0]||[100,50];
+    const bestCount=bestWay.length;
+    const wrongs=[bestCount+1,bestCount+2,bestCount-1].filter(v=>v>0&&v!==bestCount);
+    const opts=shuffle([`${bestCount} notes`,`${wrongs[0]} notes`,`${wrongs[1]} notes`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Pay exactly ₹${amount}. Minimum notes needed = ?`,coins:[],opts,answer:`${bestCount} notes`,explain:`Use ${bestWay.map(v=>'₹'+v).join('+')} = ${bestCount} notes`};
+  }
+  if(t==='multi_change'){
+    const items=shuffle([{n:'Pen',p:12},{n:'Book',p:35},{n:'Eraser',p:8},{n:'Ruler',p:18},{n:'Pencil',p:6}]).slice(0,2);
+    const total=items.reduce((s,i)=>s+i.p,0);
+    const gave=total<=100?100:200;
+    const change=gave-total;
+    const wrongs=[change+5,change-5,change+15].filter(v=>v>0&&v!==change);
+    const opts=shuffle([`₹${change}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Buy ${items.map(i=>i.n+' ₹'+i.p).join(' + ')}. Pay ₹${gave}. Change = ?`,coins:[{val:gave,note:true}],opts,answer:`₹${change}`,explain:`Total = ₹${total}. Change = ₹${gave}−₹${total} = ₹${change}`};
+  }
+  if(t==='afford_check'){
+    const budget=pick([80,120,150,200]);
+    const items=[{n:'Sandwich',p:45},{n:'Juice',p:30},{n:'Chips',p:25},{n:'Chocolate',p:40},{n:'Ice Cream',p:55}];
+    const cart=shuffle(items).slice(0,3);
+    const total=cart.reduce((s,i)=>s+i.p,0);
+    const canAfford=total<=budget;
+    const leftover=Math.abs(budget-total);
+    const opts=canAfford?shuffle([`Yes, ₹${leftover} left`,`No, ₹${leftover} short`,`Yes, exact change`,`No, ₹${leftover+10} short`]).slice(0,4):shuffle([`No, ₹${leftover} short`,`Yes, ₹${leftover} left`,`No, ₹${leftover+10} short`,`Yes, exact`]).slice(0,4);
+    const answer=canAfford?`Yes, ₹${leftover} left`:`No, ₹${leftover} short`;
+    return{type:'mcq',question:`Budget ₹${budget}. Cart: ${cart.map(i=>i.n+' ₹'+i.p).join(', ')}. Can you afford it?`,coins:[],opts,answer,explain:`Total = ₹${total}. Budget = ₹${budget}. ${canAfford?'Afford ho jayega!':'₹'+leftover+' short hai!'}`};
+  }
+  if(t==='round_off'){
+    const price=pick([48,73,97,124,156,183]);
+    const rounded=Math.ceil(price/10)*10;
+    const wrongs=[rounded+10,rounded-10,rounded+5].filter(v=>v>0&&v!==rounded);
+    const opts=shuffle([`₹${rounded}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Item costs ₹${price}. Round to nearest ₹10 to estimate: ≈ ?`,coins:[],opts,answer:`₹${rounded}`,explain:`₹${price} rounds up to ₹${rounded} (nearest ₹10)`};
+  }
+  // wallet_split
+  const total=pick([200,300,400,500]);
+  const parts=pick([2,4,5]);
+  const each=total/parts;
+  if(!Number.isInteger(each)) return genNotesQ();
+  const wrongs=[each+10,each-10,each+25].filter(v=>v>0&&v!==each);
+  const opts=shuffle([`₹${each}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+  return{type:'mcq',question:`₹${total} split equally in ${parts} wallets. Each wallet = ?`,coins:[{val:total>=500?500:total>=200?200:100,note:true}],opts,answer:`₹${each}`,explain:`₹${total} ÷ ${parts} = ₹${each}`};
+}
+
+const SHOP_ITEMS=[
+  {name:'Pencil',icon:'✏️',price:5},{name:'Eraser',icon:'🧹',price:8},
+  {name:'Notebook',icon:'📓',price:25},{name:'Chocolate',icon:'🍫',price:15},
+  {name:'Juice',icon:'🧃',price:20},{name:'Samosa',icon:'🥟',price:10},
+  {name:'Ice Cream',icon:'🍦',price:30},{name:'Chips',icon:'🍟',price:12},
+  {name:'Ruler',icon:'📏',price:7},{name:'Pen',icon:'🖊️',price:10},
+  {name:'Biscuits',icon:'🍪',price:20},{name:'Apple',icon:'🍎',price:15},
+];
+
+function genShopQ(){
+  const types=['can_afford','total_bill','best_combo','change_shop'];
+  const t=pick(types);
+
+  if(t==='can_afford'){
+    const budget=pick([15,20,25,30,40,50]);
+    const items=shuffle(SHOP_ITEMS).slice(0,4);
+    const affordable=items.filter(i=>i.price<=budget);
+    const answer=affordable.length;
+    const wrongs=[answer+1,answer-1,answer+2].filter(v=>v>=0&&v!==answer).slice(0,3);
+    const opts=shuffle([answer,...wrongs].map(v=>`${v} item${v!==1?'s':''}`));
+    return{type:'shop_afford',question:`You have ₹${budget}. How many items below can you buy?`,budget,items,opts,answer:`${answer} item${answer!==1?'s':''}`,explain:`₹${budget} se ${answer} item afford ho sakte hain`};
+  }
+  if(t==='total_bill'){
+    const items=shuffle(SHOP_ITEMS).slice(0,rnd(2,3));
+    const total=items.reduce((s,i)=>s+i.price,0);
+    const wrongs=[total+5,total-5,total+10].filter(v=>v>0&&v!==total);
+    const opts=shuffle([`₹${total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'shop_bill',question:`You buy these items. Total bill = ?`,items,opts,answer:`₹${total}`,explain:items.map(i=>`₹${i.price}`).join(' + ')+` = ₹${total}`};
+  }
+  if(t==='best_combo'){
+    const budget=pick([20,25,30,35]);
+    const items=shuffle(SHOP_ITEMS).slice(0,5);
+    const maxSpend=Math.max(...[
+      ...items.flatMap((_,i)=>items.slice(i+1).map(j=>items[i].price+j.price))
+    ].filter(v=>v<=budget));
+    const opts=shuffle([`₹${maxSpend}`,`₹${maxSpend-5}`,`₹${maxSpend+5}`,`₹${budget+5}`].filter((v,i,a)=>a.indexOf(v)===i&&parseInt(v.slice(1))>0).slice(0,4));
+    return{type:'shop_combo',question:`Budget: ₹${budget}. Max you can spend on 2 items = ?`,budget,items,opts,answer:`₹${maxSpend}`,explain:`Best combo = ₹${maxSpend} (within ₹${budget})`};
+  }
+  // change_shop
+  const item=pick(SHOP_ITEMS);
+  const gave=item.price<=20?50:item.price<=50?100:200;
+  const change=gave-item.price;
+  const wrongs=[change+5,change-5,change+10].filter(v=>v>0&&v!==change);
+  const opts=shuffle([`₹${change}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+  return{type:'shop_change',question:`${item.icon} ${item.name} costs ₹${item.price}. You pay ₹${gave}. Change = ?`,items:[item],opts,answer:`₹${change}`,explain:`₹${gave} - ₹${item.price} = ₹${change}`};
+}
+
+function genSaveQ(){
+  const types=['weekly_plan','opportunity_cost','inflation_trick','tax_add','discount_deal','interest_simple','best_value','budget_crisis','borrow_back','invest_choice'];
+  const t=pick(types);
+
+  if(t==='weekly_plan'){
+    const goal=pick([180,240,300,360,420]);
+    const weeks=pick([4,6,8,12]);
+    const perWeek=goal/weeks;
+    if(!Number.isInteger(perWeek)) return genSaveQ();
+    const wrongs=[perWeek+5,perWeek-5,perWeek*2].filter(v=>v>0&&v!==perWeek);
+    const opts=shuffle([`₹${perWeek}/week`,`₹${wrongs[0]}/week`,`₹${wrongs[1]}/week`,`₹${wrongs[2]}/week`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`You want to save ₹${goal} in ${weeks} weeks. How much must you save each week?`,coins:[],opts,answer:`₹${perWeek}/week`,explain:`₹${goal} ÷ ${weeks} weeks = ₹${perWeek} per week`};
+  }
+  if(t==='opportunity_cost'){
+    const pocket=pick([50,80,100,120]);
+    const items=[{n:'Comic Book',p:pick([30,40,45])},{n:'Cricket Ball',p:pick([55,65,70])}];
+    items[1].p=Math.min(items[1].p,pocket);
+    const left=pocket-items[0].p;
+    const canBuyBoth=items[0].p+items[1].p<=pocket;
+    const wrongs=[left+10,left-5,items[1].p].filter(v=>v>=0&&v!==left);
+    const opts=shuffle([`₹${left}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i&&parseInt(v.slice(1))>=0).slice(0,4));
+    return{type:'mcq',question:`You have ₹${pocket}. Buy ${items[0].n} (₹${items[0].p}). Money left for savings = ?`,coins:[],opts,answer:`₹${left}`,explain:`₹${pocket} − ₹${items[0].p} = ₹${left} remaining`};
+  }
+  if(t==='inflation_trick'){
+    const oldPrice=pick([40,60,80,100,120]);
+    const rise=pick([5,10,15,20]);
+    const newPrice=oldPrice+rise;
+    const wrongs=[newPrice+5,newPrice-5,newPrice+10].filter(v=>v>0&&v!==newPrice);
+    const opts=shuffle([`₹${newPrice}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Last year juice cost ₹${oldPrice}. Price rose by ₹${rise}. New price = ?`,coins:[],opts,answer:`₹${newPrice}`,explain:`₹${oldPrice} + ₹${rise} = ₹${newPrice}. Prices go up — save more!`};
+  }
+  if(t==='tax_add'){
+    const price=pick([100,200,150,250]);
+    const taxPct=pick([5,10,18]);
+    const tax=price*taxPct/100;
+    const total=price+tax;
+    const wrongs=[total+taxPct,total-taxPct,price].filter(v=>v>0&&v!==total);
+    const opts=shuffle([`₹${total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Item price ₹${price} + ${taxPct}% GST tax. Total you pay = ?`,coins:[],opts,answer:`₹${total}`,explain:`Tax = ₹${price}×${taxPct}% = ₹${tax}. Total = ₹${price}+₹${tax} = ₹${total}`};
+  }
+  if(t==='discount_deal'){
+    const orig=pick([100,200,150,250,300]);
+    const disc=pick([10,20,25,50]);
+    const saved=orig*disc/100;
+    const final=orig-saved;
+    const wrongs=[final+disc,final-disc,orig-disc].filter(v=>v>0&&v!==final);
+    const opts=shuffle([`₹${final}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Toy costs ₹${orig}. You get ${disc}% discount. You pay = ?`,coins:[],opts,answer:`₹${final}`,explain:`${disc}% off ₹${orig} = save ₹${saved}. Pay ₹${orig}−₹${saved} = ₹${final}`};
+  }
+  if(t==='interest_simple'){
+    const principal=pick([100,200,300,500]);
+    const rate=pick([5,10]);
+    const years=pick([2,3,4]);
+    const interest=principal*rate*years/100;
+    const total=principal+interest;
+    const wrongs=[total+rate*years,total-interest/2,principal+rate].filter(v=>v>0&&v!==total);
+    const opts=shuffle([`₹${total}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Save ₹${principal} at ${rate}% per year for ${years} years. Total after interest = ?`,coins:[],opts,answer:`₹${total}`,explain:`Interest = ₹${principal}×${rate}%×${years} = ₹${interest}. Total = ₹${total}`};
+  }
+  if(t==='best_value'){
+    const a={size:pick([100,200,250]),price:0},b={size:0,price:0};
+    a.price=pick([10,15,20,25]);
+    b.size=a.size*2; b.price=Math.floor(a.price*1.6);
+    const aPerUnit=a.price/a.size, bPerUnit=b.price/b.size;
+    const better=aPerUnit<bPerUnit?`Pack A (₹${a.price} for ${a.size}g)`:`Pack B (₹${b.price} for ${b.size}g)`;
+    const opts=shuffle([`Pack A (₹${a.price} for ${a.size}g)`,`Pack B (₹${b.price} for ${b.size}g)`,`Both same value`,`Can't compare`]);
+    return{type:'mcq',question:`Pack A: ₹${a.price} for ${a.size}g. Pack B: ₹${b.price} for ${b.size}g. Better value = ?`,coins:[],opts,answer:better,explain:`A = ₹${(a.price/a.size*100).toFixed(1)}/100g. B = ₹${(b.price/b.size*100).toFixed(1)}/100g. ${better} wins!`};
+  }
+  if(t==='budget_crisis'){
+    const budget=pick([200,250,300]);
+    const fixed=pick([80,100,120]);
+    const emergency=pick([50,60,70]);
+    const left=budget-fixed-emergency;
+    const wrongs=[left+20,left-20,left+50].filter(v=>v>=0&&v!==left);
+    const opts=shuffle([`₹${left}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`Budget ₹${budget}. Fixed costs ₹${fixed}. Emergency ₹${emergency}. Left to save = ?`,coins:[],opts,answer:`₹${left}`,explain:`₹${budget}−₹${fixed}−₹${emergency} = ₹${left} for savings`};
+  }
+  if(t==='borrow_back'){
+    const gave=pick([50,100,150]);
+    const gotBack=pick([20,30,40,50].filter(v=>v<gave));
+    const stillOwed=gave-gotBack;
+    const wrongs=[stillOwed+10,stillOwed-10,gave].filter(v=>v>0&&v!==stillOwed);
+    const opts=shuffle([`₹${stillOwed}`,`₹${wrongs[0]}`,`₹${wrongs[1]}`,`₹${wrongs[2]}`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+    return{type:'mcq',question:`You lent ₹${gave} to a friend. They returned ₹${gotBack}. Still owed = ?`,coins:[],opts,answer:`₹${stillOwed}`,explain:`₹${gave}−₹${gotBack} = ₹${stillOwed} still owed`};
+  }
+  // invest_choice
+  const save=pick([500,600,700,800]);
+  const months=pick([6,8,10,12]);
+  const monthly=save/months;
+  if(!Number.isInteger(monthly)) return genSaveQ();
+  const wrongs=[monthly+10,monthly-10,monthly+25].filter(v=>v>0&&v!==monthly);
+  const opts=shuffle([`₹${monthly}/month`,`₹${wrongs[0]}/month`,`₹${wrongs[1]}/month`,`₹${wrongs[2]}/month`].filter((v,i,a)=>a.indexOf(v)===i).slice(0,4));
+  return{type:'mcq',question:`Save ₹${save} in ${months} months for a new phone. Monthly saving = ?`,coins:[],opts,answer:`₹${monthly}/month`,explain:`₹${save} ÷ ${months} = ₹${monthly} per month`};
+}
+
+// ═══════ RENDER ═══════
+const MODE_INFO={
+  coins:{name:'🪙 Coin Counter',color:'var(--green)',badge:'tag-g'},
+  notes:{name:'💵 Note Master',color:'var(--gold)',badge:'tag-gold'},
+  shop:{name:'🛒 Smart Shopper',color:'var(--blue)',badge:'tag-b'},
+  save:{name:'🐷 Piggy Saver',color:'var(--purple)',badge:'tag-p'},
+};
+
+function renderQ(){
+  const q=currentQ;
+  const card=document.getElementById('game-card');
+  card.className='game-card';
+  const mi=MODE_INFO[currentMode];
+  const prog=(qnum/TOTAL_Q)*100;
+
+  let html=`<div class="mode-header">
+    <span class="mode-badge ${mi.badge}" style="background:${mi.color}20;color:${mi.color};border:1.5px solid ${mi.color}50">${mi.name}</span>
+    <div class="q-prog"><div class="q-prog-fill" style="width:${prog}%;background:${mi.color}"></div></div>
+    <span class="q-num">${qnum+1}/${TOTAL_Q}</span>
+  </div>`;
+
+  html+=`<div class="question-text">${q.question}</div>`;
+
+  // Coins/notes visual
+  if(q.coins && q.coins.length>0){
+    html+=`<div class="coins-area">`;
+    q.coins.forEach((c,ci)=>{
+      const d=c.note?NOTE_DEFS[c.val]:COIN_DEFS[c.val];
+      if(d) html+=`<div class="coin ${d.cls} bounce-in" style="animation-delay:${ci*0.07}s">${d.label}</div>`;
+    });
+    html+=`</div>`;
+  }
+
+  // Shop items display
+  if(q.type==='shop_afford'||q.type==='shop_bill'||q.type==='shop_combo'){
+    html+=`<div class="wallet-display"><span>💼</span><span class="wlbl">${q.budget?'Your Budget':'Items to Buy'}</span><span class="wamt">${q.budget?'₹'+q.budget:''}</span></div>`;
+    html+=`<div class="shop-scene">`;
+    q.items.forEach((item,i)=>{
+      html+=`<div class="shop-item bounce-in" style="animation-delay:${i*0.08}s">
+        <div class="item-icon">${item.icon}</div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  // MCQ options
+  if(q.type==='mcq'||q.type==='shop_afford'||q.type==='shop_bill'||q.type==='shop_combo'||q.type==='shop_change'){
+    const cols=q.opts.length===2?'opts-2':'opts-4';
+    html+=`<div class="opts-grid ${cols}" id="opts-grid">`;
+    q.opts.forEach((o,i)=>{
+      html+=`<button class="opt-btn" data-idx="${i}" onclick="checkAns(this)">${o}</button>`;
+    });
+    html+=`</div>`;
+  }
+  // MCQ coin options
+  else if(q.type==='mcq_coin'){
+    html+=`<div class="opts-grid opts-4" id="opts-grid">`;
+    q.opts.forEach((v,i)=>{
+      const d=COIN_DEFS[v];
+      html+=`<button class="opt-btn opt-money" data-idx="${i}" onclick="checkAns(this)">
+        ${d?`<div class="coin ${d.cls}" style="margin:0 auto 6px;pointer-events:none">${d.label}</div>`:''}
+        <div>₹${v}</div>
+      </button>`;
+    });
+    html+=`</div>`;
+  }
+  // Input
+  else if(q.type==='input'){
+    html+=`<div class="amount-input-wrap">
+      <span class="rupee-sym">₹</span>
+      <input type="number" class="amount-input" id="amt-input" placeholder="0" min="0" max="999">
+      <button class="go-btn" id="go-btn" onclick="submitInput()">Check ✓</button>
+    </div>`;
+  }
+
+  html+=`<div class="fb-row"><span class="fb-msg fb-hint" id="fb-msg">Choose the correct answer! 💡</span></div>`;
+  html+=`<div class="explain-txt" id="explain-txt"></div>`;
+
+  card.innerHTML=html;
+
+  // Keyboard enter for input
+  if(q.type==='input'){
+    setTimeout(()=>{
+      const inp=document.getElementById('amt-input');
+      if(inp){inp.focus();inp.addEventListener('keydown',e=>{if(e.key==='Enter')submitInput();});}
+    },50);
+  }
+}
+
+function startTimer(){
+  clearInterval(timerInt);
+  const total=TIMER[currentMode];
+  timeLeft=total;
+  const fill=document.getElementById('timer-fill');
+  fill.style.transition='none';fill.style.width='100%';
+  fill.style.background=MODE_INFO[currentMode].color;
+  setTimeout(()=>{fill.style.transition=`width ${total}s linear`;fill.style.width='0%';},30);
+  timerInt=setInterval(()=>{timeLeft--;if(timeLeft<=0){clearInterval(timerInt);if(!answered)timeUp();}},1000);
+}
+
+function timeUp(){
+  answered=true;streak=0;score=Math.max(0,score-5);
+  revealCorrect();
+  setFb('⏰ Time up! -5 points. Answer: '+currentQ.answer,'no');
+  document.getElementById('explain-txt').textContent='💡 '+currentQ.explain;
+  updateStats();qnum++;setTimeout(nextQ,2400);
+}
+
+function checkAns(btn){
+  if(answered)return;
+  answered=true;clearInterval(timerInt);
+  timesArr.push(TIMER[currentMode]-timeLeft);
+  const idx=parseInt(btn.dataset.idx);
+  const chosen=currentQ.opts[idx];
+  const correct=String(chosen)===String(currentQ.answer);
+  document.querySelectorAll('#opts-grid button').forEach(b=>b.disabled=true);
+  processResult(correct,btn);
+}
+
+function submitInput(){
+  if(answered)return;
+  const inp=document.getElementById('amt-input');
+  const val=parseInt(inp.value||'0');
+  const correct=val===currentQ.answer;
+  answered=true;clearInterval(timerInt);
+  document.getElementById('go-btn').disabled=true;
+  processResult(correct,null,val);
+}
+
+function processResult(correct,btn,inputVal){
+  if(correct){
+    if(btn)btn.classList.add('opt-correct');
+    score+=10;streak++;if(streak>bestStreak)bestStreak=streak;correctCount++;
+    const sm=streak>=3?' 🔥 '+streak+' streak!':'';
+    setFb('✅ Sahi! +10 points'+sm,'ok');
+    document.getElementById('explain-txt').textContent='💡 '+currentQ.explain;
+    document.getElementById('game-card').classList.add('flash-ok');
+    burst(streak>=3?80:50,pc.width/2,pc.height*0.4);
+    if(streak===3||streak===5||streak===7||streak===10)showStreakPop(streak);
+    // Add savings
+    const earnedCoins=streak>=3?15:10;
+    sessionSavings+=earnedCoins;totalSavings+=earnedCoins;saveSavings();
+    updateStats();
+  } else {
+    if(btn)btn.classList.add('opt-wrong');
+    revealCorrect();
+    score=Math.max(0,score-5);streak=0;
+    setFb('❌ Galat! -5 points. Sahi tha: '+currentQ.answer,'no');
+    document.getElementById('explain-txt').textContent='💡 '+currentQ.explain;
+    document.getElementById('game-card').classList.add('flash-no');
+    document.getElementById('game-card').classList.add('shake');
+    updateStats();
+  }
+  qnum++;setTimeout(nextQ,2100);
+}
+
+function revealCorrect(){
+  document.querySelectorAll('#opts-grid button').forEach((b,i)=>{
+    b.disabled=true;
+    if(String(currentQ.opts[parseInt(b.dataset.idx)])===String(currentQ.answer))b.classList.add('opt-reveal');
+  });
+}
+
+function setFb(msg,cls){
+  const el=document.getElementById('fb-msg');
+  if(el){el.textContent=msg;el.className='fb-msg fb-'+cls;}
+}
+
+function updateStats(){
+  document.getElementById('st-score').textContent=score;
+  document.getElementById('st-streak').textContent=streak>0?streak+'🔥':streak;
+  document.getElementById('st-q').textContent=Math.min(qnum+1,TOTAL_Q)+'/'+TOTAL_Q;
+  document.getElementById('st-coins').textContent='₹'+sessionSavings;
+}
+
+function showStreakPop(n){
+  const data={3:['🔥','3x Streak!'],5:['⚡','5x Streak! Wow!'],7:['🌟','7x Streak! Amazing!'],10:['👑','10x Streak! LEGEND!']};
+  const [em,tx]=data[n]||['🔥',n+'x Streak!'];
+  document.getElementById('sp-emoji').textContent=em;
+  document.getElementById('sp-text').textContent=tx;
+  const p=document.getElementById('streak-pop');
+  p.classList.add('show');setTimeout(()=>p.classList.remove('show'),1900);
+}
+
+const GEN={coins:genCoinsQ,notes:genNotesQ,shop:genShopQ,save:genSaveQ};
+
+function nextQ(){
+  answered=false;
+  if(qnum>=TOTAL_Q){showEnd();return;}
+  currentQ=GEN[currentMode]();
+  renderQ();startTimer();
+}
+
+function startMode(mode){
+  currentMode=mode;score=0;streak=0;bestStreak=0;qnum=0;correctCount=0;timesArr=[];
+  sessionSavings=0;answered=false;
+  document.getElementById('home-screen').classList.add('hidden');
+  document.getElementById('end-screen').classList.add('hidden');
+  document.getElementById('game-screen').classList.remove('hidden');
+  updateStats();nextQ();
+}
+
+function goHome(){
+  clearInterval(timerInt);
+  document.getElementById('game-screen').classList.add('hidden');
+  document.getElementById('end-screen').classList.add('hidden');
+  document.getElementById('home-screen').classList.remove('hidden');
+}
+
+function restartMode(){
+  document.getElementById('end-screen').classList.add('hidden');
+  startMode(currentMode);
+}
+
+function showEnd(){
+  clearInterval(timerInt);
+  document.getElementById('game-screen').classList.add('hidden');
+  document.getElementById('end-screen').classList.remove('hidden');
+  const pct=Math.round(correctCount/TOTAL_Q*100);
+  let trophy,title,stars;
+  if(pct>=90){trophy='🏆';title='Money Master!';stars='⭐⭐⭐⭐⭐';}
+  else if(pct>=75){trophy='🥇';title='Super Saver!';stars='⭐⭐⭐⭐';}
+  else if(pct>=55){trophy='🥈';title='Good Job!';stars='⭐⭐⭐';}
+  else if(pct>=35){trophy='🥉';title='Keep Trying!';stars='⭐⭐';}
+  else{trophy='💰';title='Practice More!';stars='⭐';}
+  document.getElementById('end-trophy').textContent=trophy;
+  document.getElementById('end-title').textContent=title;
+  document.getElementById('end-score').textContent=score;
+  document.getElementById('end-sub').textContent='points — '+MODE_INFO[currentMode].name;
+  document.getElementById('end-stars').textContent=stars;
+  document.getElementById('es-correct').textContent=correctCount+'/'+TOTAL_Q;
+  document.getElementById('es-acc').textContent=pct+'%';
+  document.getElementById('es-streak').textContent=bestStreak+'🔥';
+  document.getElementById('es-saved').textContent='₹'+sessionSavings;
+  // Piggy meter
+  const piggyPct=Math.min(100,Math.round(totalSavings/500*100));
+  document.getElementById('pm-fill').style.width=piggyPct+'%';
+  document.getElementById('pm-val').textContent='₹'+totalSavings+' / ₹500';
+  burst(120,pc.width/2,pc.height*0.3);
+  setTimeout(()=>burst(90,pc.width/3,pc.height*0.4),550);
+  setTimeout(()=>burst(90,pc.width*2/3,pc.height*0.4),1000);
+}
+</script>
+</body>
+</html>

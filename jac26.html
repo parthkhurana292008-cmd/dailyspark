@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAC Delhi 2026 — Cutoff Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --text: #1a1a18;
+    --text2: #5a5a54;
+    --text3: #9a9a94;
+    --border: rgba(0,0,0,0.1);
+    --accent-dtu: #1a3fa0;
+    --accent-nsut: #9b1c1c;
+    --accent-iiit: #0f5e3a;
+    --accent-dseu: #7c2d92;
+    --accent-light-dtu: #e8edf9;
+    --accent-light-nsut: #fde8e8;
+    --accent-light-iiit: #e8f4ee;
+    --accent-light-dseu: #f5e8fb;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141412;
+      --surface: #1f1f1c;
+      --surface2: #2a2a26;
+      --text: #f0efe9;
+      --text2: #a8a89e;
+      --text3: #666660;
+      --border: rgba(255,255,255,0.1);
+      --accent-light-dtu: #1a253e;
+      --accent-light-nsut: #2e1515;
+      --accent-light-iiit: #122a1e;
+      --accent-light-dseu: #2a1535;
+    }
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: #1a3fa0; }
+  .badge-round { font-size: 11px; background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; color: var(--text2); }
+
+  .hero {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+  }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 0.75rem; }
+  .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 0.75rem; }
+  .hero p { font-size: 1rem; color: var(--text2); max-width: 520px; margin: 0 auto 2rem; line-height: 1.65; }
+  .hero-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; }
+  .hero-stat-lbl { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; }
+  .section-title span { font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 400; color: var(--text3); padding: 2px 8px; border: 1px solid var(--border); border-radius: 20px; }
+
+  .college-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tab { padding: 8px 18px; border-radius: 30px; border: 1.5px solid var(--border); font-size: 13px; font-weight: 500; cursor: pointer; background: var(--surface); color: var(--text2); transition: all 0.15s; }
+  .tab:hover { border-color: var(--text2); color: var(--text); }
+  .tab.active-dtu { background: var(--accent-light-dtu); border-color: var(--accent-dtu); color: var(--accent-dtu); }
+  .tab.active-nsut { background: var(--accent-light-nsut); border-color: var(--accent-nsut); color: var(--accent-nsut); }
+  .tab.active-iiit { background: var(--accent-light-iiit); border-color: var(--accent-iiit); color: var(--accent-iiit); }
+  .tab.active-dseu { background: var(--accent-light-dseu); border-color: var(--accent-dseu); color: var(--accent-dseu); }
+  .tab.active-all { background: var(--surface2); border-color: var(--text2); color: var(--text); }
+
+  .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: center; }
+  .filter-label { font-size: 12px; color: var(--text3); font-weight: 500; }
+  select { font-family: 'Inter', sans-serif; font-size: 13px; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+  input[type="number"] { font-family: 'Inter', sans-serif; font-size: 13px; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); width: 130px; }
+  .btn-search { padding: 8px 20px; border-radius: 8px; background: var(--text); color: var(--bg); border: none; font-size: 13px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+  .btn-search:hover { opacity: 0.85; }
+  .btn-clear { padding: 8px 16px; border-radius: 8px; background: var(--surface2); color: var(--text2); border: 1px solid var(--border); font-size: 13px; cursor: pointer; }
+
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { padding: 11px 14px; text-align: left; font-weight: 500; color: var(--text2); border-bottom: 1px solid var(--border); background: var(--surface2); white-space: nowrap; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  .rank-cell { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; }
+  .rank-low { color: #0f5e3a; }
+  .rank-mid { color: #7c5e00; }
+  .rank-high { color: #9b1c1c; }
+  .college-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+  .badge-dtu { background: var(--accent-light-dtu); color: var(--accent-dtu); }
+  .badge-nsut { background: var(--accent-light-nsut); color: var(--accent-nsut); }
+  .badge-iiit { background: var(--accent-light-iiit); color: var(--accent-iiit); }
+  .badge-dseu { background: var(--accent-light-dseu); color: var(--accent-dseu); }
+
+  .result-count { font-size: 12px; color: var(--text3); margin-bottom: 10px; }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+  .card-title { font-size: 13px; font-weight: 500; color: var(--text2); margin-bottom: 1rem; }
+
+  .rank-checker { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 2rem; box-shadow: var(--shadow); }
+  .rank-checker h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .rank-checker p { font-size: 13px; color: var(--text2); margin-bottom: 1.25rem; }
+  .checker-inputs { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+  .input-group { display: flex; flex-direction: column; gap: 5px; }
+  .input-group label { font-size: 11px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-top: 1.5rem; }
+  .result-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: var(--surface2); }
+  .result-card .college { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .result-card .branch { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .result-card .cutoff { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; }
+  .result-card.eligible { border-color: #0f5e3a; background: var(--accent-light-iiit); }
+  .result-card.near { border-color: #7c5e00; background: #faf5e0; }
+  .result-card.eligible .cutoff { color: #0f5e3a; }
+  .result-card.near .cutoff { color: #7c5e00; }
+  @media (prefers-color-scheme: dark) {
+    .result-card.near { background: #2a2500; }
+  }
+  .no-results { text-align: center; padding: 3rem; color: var(--text3); font-size: 14px; }
+
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 2rem; }
+  .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+  .summary-card .label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+  .summary-card .value { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; }
+  .summary-card .sub { font-size: 11px; color: var(--text2); margin-top: 3px; }
+
+  .chart-section { margin-bottom: 2.5rem; }
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(--text3); }
+  .pill { display: inline-block; padding: 1px 7px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+  .pill-delhi { background: #e8edf9; color: #1a3fa0; }
+  .pill-outside { background: #fde8e8; color: #9b1c1c; }
+  @media (prefers-color-scheme: dark) {
+    .pill-delhi { background: #1a253e; color: #7a9de0; }
+    .pill-outside { background: #2e1515; color: #e07a7a; }
+  }
+  .sep { width: 100%; height: 1px; background: var(--border); margin: 2rem 0; }
+  #no-checker-results { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    JAC Delhi 2026
+  </div>
+  <div class="badge-round">Round 1 · 15 June 2026</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Joint Admission Counselling</div>
+  <h1>Delhi Engineering<br>Cutoff 2026</h1>
+  <p>Explore Round 1 cutoffs across DTU, NSUT, IIITD and DSEU. Filter by rank, category, and branch to find your best options.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num" style="color:#1a3fa0">DTU</div><div class="hero-stat-lbl">18 branches</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" style="color:#9b1c1c">NSUT</div><div class="hero-stat-lbl">17 courses</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" style="color:#0f5e3a">IIITD</div><div class="hero-stat-lbl">9 programs</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" style="color:#7c2d92">DSEU</div><div class="hero-stat-lbl">15 branches</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Rank Checker -->
+  <div class="rank-checker">
+    <h3>🎯 Find My Options</h3>
+    <p>Enter your JEE Main rank and category to see which branches you're eligible for across all colleges.</p>
+    <div class="checker-inputs">
+      <div class="input-group">
+        <label>JEE Main Rank (CRL)</label>
+        <input type="number" id="myRank" placeholder="e.g. 15000" min="1" max="1500000">
+      </div>
+      <div class="input-group">
+        <label>Category</label>
+        <select id="myCat">
+          <option value="GN_Delhi">General – Delhi</option>
+          <option value="GN_Outside">General – Outside Delhi</option>
+          <option value="OBC_Delhi">OBC – Delhi</option>
+          <option value="OBC_Outside">OBC – Outside Delhi</option>
+          <option value="SC_Delhi">SC – Delhi</option>
+          <option value="SC_Outside">SC – Outside Delhi</option>
+          <option value="ST_Delhi">ST – Delhi</option>
+          <option value="EW_Delhi">EWS – Delhi</option>
+          <option value="EW_Outside">EWS – Outside Delhi</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Show options within</label>
+        <select id="myMargin">
+          <option value="0">Exact (≤ rank)</option>
+          <option value="5000" selected>+5,000 ranks</option>
+          <option value="10000">+10,000 ranks</option>
+          <option value="20000">+20,000 ranks</option>
+        </select>
+      </div>
+      <button class="btn-search" onclick="checkRank()">Check Options</button>
+    </div>
+    <div id="checker-results" style="display:none">
+      <div class="sep" style="margin:1.25rem 0"></div>
+      <div id="checker-summary" style="font-size:13px; color:var(--text2); margin-bottom:10px;"></div>
+      <div class="results-grid" id="checker-cards"></div>
+    </div>
+    <div id="no-checker-results"><div class="no-results">No matches found for your rank and category. Try a higher margin or different category.</div></div>
+  </div>
+
+  <!-- Summary Stats -->
+  <div class="section-title">Overview <span>All Colleges · Round 1</span></div>
+  <div class="summary-cards">
+    <div class="summary-card">
+      <div class="label">Lowest CSE Cutoff</div>
+      <div class="value" style="color:#1a3fa0">3,430</div>
+      <div class="sub">DTU CSE · Outside Delhi · General</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">IIITD CSE (GN Delhi)</div>
+      <div class="value" style="color:#0f5e3a">2,219</div>
+      <div class="sub">OPNO HS with bonus marks</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">NSUT CSAI (GN Delhi)</div>
+      <div class="value" style="color:#9b1c1c">4,133</div>
+      <div class="sub">Most competitive AI program</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">DSEU CS (GN Delhi)</div>
+      <div class="value" style="color:#7c2d92">63,318</div>
+      <div class="sub">Bhai Parmanand Campus</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Total Programs</div>
+      <div class="value">59+</div>
+      <div class="sub">Across all 4 institutions</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Data Updated</div>
+      <div class="value" style="font-size:1rem; padding-top:6px;">15 Jun</div>
+      <div class="sub">Round 1 official cutoffs</div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="chart-section">
+    <div class="section-title">CSE Cutoff Comparison <span>General · Delhi Region</span></div>
+    <div class="card">
+      <div id="chart-legend" style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:12px; font-size:12px; color:var(--text2);"></div>
+      <div style="position:relative; height:320px;"><canvas id="cseChart" role="img" aria-label="Bar chart comparing CSE cutoffs across DTU, NSUT, IIITD, DSEU for General Delhi category">CSE General Delhi: DTU 9170, NSUT 8540, IIITD ~2219, DSEU 63318</canvas></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">CS-family rankings — General Delhi</div>
+      <div style="position:relative; height:340px;"><canvas id="csFamilyChart" role="img" aria-label="Horizontal bar chart of CS-related branches by cutoff rank">CS family branches General Delhi cutoff comparison</canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">DTU Branch difficulty ladder — General Delhi (GN ND)</div>
+      <div style="position:relative; height:340px;"><canvas id="dtuLadderChart" role="img" aria-label="Horizontal bar chart of DTU branch cutoffs">DTU branch cutoffs General Delhi</canvas></div>
+    </div>
+  </div>
+
+  <!-- Main Data Table -->
+  <div class="section-title">Full Cutoff Data <span>All branches & categories</span></div>
+
+  <div class="filters">
+    <div class="filter-label">Filters:</div>
+    <select id="filterCollege" onchange="filterTable()">
+      <option value="">All Colleges</option>
+      <option value="DTU">DTU</option>
+      <option value="NSUT">NSUT</option>
+      <option value="IIITD">IIITD</option>
+      <option value="DSEU">DSEU</option>
+    </select>
+    <select id="filterRegion" onchange="filterTable()">
+      <option value="">Delhi + Outside</option>
+      <option value="Delhi">Delhi Region</option>
+      <option value="Outside">Outside Delhi</option>
+    </select>
+    <select id="filterCat" onchange="filterTable()">
+      <option value="">All Categories</option>
+      <option value="GN">General (GN)</option>
+      <option value="OBC">OBC</option>
+      <option value="SC">SC</option>
+      <option value="ST">ST</option>
+      <option value="EW">EWS</option>
+    </select>
+    <select id="filterBranch" onchange="filterTable()">
+      <option value="">All Branches</option>
+      <option value="CSE">CSE / CS</option>
+      <option value="IT">IT</option>
+      <option value="ECE">ECE</option>
+      <option value="EE">EE</option>
+      <option value="ME">Mechanical</option>
+      <option value="AI">AI</option>
+    </select>
+    <button class="btn-clear" onclick="clearFilters()">Clear</button>
+  </div>
+
+  <div class="result-count" id="resultCount"></div>
+  <div class="table-wrap">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th>College</th>
+          <th>Branch / Program</th>
+          <th>Region</th>
+          <th>Category</th>
+          <th>Cutoff Rank</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  Data sourced from official JAC Delhi Round 1 cutoff documents · 15 June 2026 · For reference only; verify at jacdelhi.admissions.nic.in
+</footer>
+
+<script>
+const DATA = [
+  {college:"DTU",branch:"CSE",region:"Delhi",cat:"GN",rank:9170},
+  {college:"DTU",branch:"CSE (Data Science)",region:"Delhi",cat:"GN",rank:10274},
+  {college:"DTU",branch:"IT",region:"Delhi",cat:"GN",rank:13499},
+  {college:"DTU",branch:"IT (Cyber Security)",region:"Delhi",cat:"GN",rank:17650},
+  {college:"DTU",branch:"Software Engineering",region:"Delhi",cat:"GN",rank:16857},
+  {college:"DTU",branch:"Mathematics & Computing",region:"Delhi",cat:"GN",rank:19022},
+  {college:"DTU",branch:"ECE",region:"Delhi",cat:"GN",rank:21428},
+  {college:"DTU",branch:"EE (VLSI)",region:"Delhi",cat:"GN",rank:23597},
+  {college:"DTU",branch:"Electrical Engineering",region:"Delhi",cat:"GN",rank:30596},
+  {college:"DTU",branch:"Mechanical Engineering",region:"Delhi",cat:"GN",rank:39267},
+  {college:"DTU",branch:"Mechanical & Automation",region:"Delhi",cat:"GN",rank:41102},
+  {college:"DTU",branch:"Mechanical (Automotive)",region:"Delhi",cat:"GN",rank:42305},
+  {college:"DTU",branch:"Engineering Physics",region:"Delhi",cat:"GN",rank:43665},
+  {college:"DTU",branch:"Chemical Engineering",region:"Delhi",cat:"GN",rank:46915},
+  {college:"DTU",branch:"Civil Engineering",region:"Delhi",cat:"GN",rank:53519},
+  {college:"DTU",branch:"Production & Industrial Engg",region:"Delhi",cat:"GN",rank:48274},
+  {college:"DTU",branch:"Environmental Engineering",region:"Delhi",cat:"GN",rank:55999},
+  {college:"DTU",branch:"Bio-Technology",region:"Delhi",cat:"GN",rank:56089},
+  {college:"DTU",branch:"CSE",region:"Delhi",cat:"EW",rank:24019},
+  {college:"DTU",branch:"IT",region:"Delhi",cat:"EW",rank:33309},
+  {college:"DTU",branch:"Software Engineering",region:"Delhi",cat:"EW",rank:38763},
+  {college:"DTU",branch:"ECE",region:"Delhi",cat:"EW",rank:45197},
+  {college:"DTU",branch:"CSE",region:"Delhi",cat:"OBC",rank:41031},
+  {college:"DTU",branch:"IT",region:"Delhi",cat:"OBC",rank:57324},
+  {college:"DTU",branch:"ECE",region:"Delhi",cat:"OBC",rank:94929},
+  {college:"DTU",branch:"CSE",region:"Delhi",cat:"SC",rank:100225},
+  {college:"DTU",branch:"IT",region:"Delhi",cat:"SC",rank:133457},
+  {college:"DTU",branch:"CSE",region:"Delhi",cat:"ST",rank:261198},
+  {college:"DTU",branch:"CSE",region:"Outside",cat:"GN",rank:3430},
+  {college:"DTU",branch:"CSE (Data Science)",region:"Outside",cat:"GN",rank:4383},
+  {college:"DTU",branch:"IT",region:"Outside",cat:"GN",rank:4840},
+  {college:"DTU",branch:"IT (Cyber Security)",region:"Outside",cat:"GN",rank:5624},
+  {college:"DTU",branch:"Software Engineering",region:"Outside",cat:"GN",rank:6206},
+  {college:"DTU",branch:"Mathematics & Computing",region:"Outside",cat:"GN",rank:5634},
+  {college:"DTU",branch:"ECE",region:"Outside",cat:"GN",rank:6660},
+  {college:"DTU",branch:"Electrical Engineering",region:"Outside",cat:"GN",rank:9393},
+  {college:"DTU",branch:"Mechanical Engineering",region:"Outside",cat:"GN",rank:12473},
+  {college:"DTU",branch:"CSE",region:"Outside",cat:"EW",rank:6736},
+  {college:"DTU",branch:"CSE",region:"Outside",cat:"OBC",rank:9777},
+  {college:"DTU",branch:"CSE",region:"Outside",cat:"SC",rank:35953},
+  {college:"DTU",branch:"CSE",region:"Outside",cat:"ST",rank:80073},
+  {college:"NSUT",branch:"CSE (AI)",region:"Delhi",cat:"GN",rank:4133},
+  {college:"NSUT",branch:"CSE",region:"Delhi",cat:"GN",rank:8540},
+  {college:"NSUT",branch:"CSE (Data Science)",region:"Delhi",cat:"GN",rank:9881},
+  {college:"NSUT",branch:"IT",region:"Delhi",cat:"GN",rank:13639},
+  {college:"NSUT",branch:"IT (Network Security)",region:"Delhi",cat:"GN",rank:16961},
+  {college:"NSUT",branch:"Mathematics & Computing",region:"Delhi",cat:"GN",rank:18887},
+  {college:"NSUT",branch:"ECE",region:"Delhi",cat:"GN",rank:23371},
+  {college:"NSUT",branch:"EE (VLSI)",region:"Delhi",cat:"GN",rank:24554},
+  {college:"NSUT",branch:"Electrical Engineering",region:"Delhi",cat:"GN",rank:32370},
+  {college:"NSUT",branch:"Instrumentation & Control",region:"Delhi",cat:"GN",rank:35314},
+  {college:"NSUT",branch:"Mechanical Engineering",region:"Delhi",cat:"GN",rank:44928},
+  {college:"NSUT",branch:"Bio-Technology",region:"Delhi",cat:"GN",rank:56842},
+  {college:"NSUT",branch:"CSE (Big Data Analytics)*",region:"Delhi",cat:"GN",rank:22659},
+  {college:"NSUT",branch:"CSE (IoT)*",region:"Delhi",cat:"GN",rank:27069},
+  {college:"NSUT",branch:"ECE (AI & ML)*",region:"Delhi",cat:"GN",rank:30964},
+  {college:"NSUT",branch:"ME (Electric Vehicles)**",region:"Delhi",cat:"GN",rank:50820},
+  {college:"NSUT",branch:"Civil Engineering**",region:"Delhi",cat:"GN",rank:58717},
+  {college:"NSUT",branch:"CSE (AI)",region:"Delhi",cat:"EW",rank:16334},
+  {college:"NSUT",branch:"CSE",region:"Delhi",cat:"EW",rank:26656},
+  {college:"NSUT",branch:"CSE (AI)",region:"Delhi",cat:"OBC",rank:25117},
+  {college:"NSUT",branch:"CSE",region:"Delhi",cat:"OBC",rank:42757},
+  {college:"NSUT",branch:"CSE (AI)",region:"Delhi",cat:"SC",rank:70571},
+  {college:"NSUT",branch:"CSE",region:"Delhi",cat:"SC",rank:105354},
+  {college:"NSUT",branch:"CSE (AI)",region:"Delhi",cat:"ST",rank:250860},
+  {college:"NSUT",branch:"CSE (AI)",region:"Outside",cat:"GN",rank:2943},
+  {college:"NSUT",branch:"CSE",region:"Outside",cat:"GN",rank:3438},
+  {college:"NSUT",branch:"CSE (Data Science)",region:"Outside",cat:"GN",rank:4440},
+  {college:"NSUT",branch:"IT",region:"Outside",cat:"GN",rank:5230},
+  {college:"NSUT",branch:"IT (Network Security)",region:"Outside",cat:"GN",rank:5956},
+  {college:"NSUT",branch:"Mathematics & Computing",region:"Outside",cat:"GN",rank:5715},
+  {college:"NSUT",branch:"ECE",region:"Outside",cat:"GN",rank:7226},
+  {college:"NSUT",branch:"Electrical Engineering",region:"Outside",cat:"GN",rank:9879},
+  {college:"NSUT",branch:"Mechanical Engineering",region:"Outside",cat:"GN",rank:13069},
+  {college:"NSUT",branch:"CSE (AI)",region:"Outside",cat:"EW",rank:7880},
+  {college:"NSUT",branch:"CSE",region:"Outside",cat:"EW",rank:7696},
+  {college:"NSUT",branch:"CSE (AI)",region:"Outside",cat:"OBC",rank:11307},
+  {college:"NSUT",branch:"CSE",region:"Outside",cat:"OBC",rank:11754},
+  {college:"NSUT",branch:"CSE (AI)",region:"Outside",cat:"SC",rank:47791},
+  {college:"NSUT",branch:"CSE",region:"Outside",cat:"SC",rank:53174},
+  {college:"IIITD",branch:"CSE (AM&M)",region:"Delhi",cat:"GN",rank:2219},
+  {college:"IIITD",branch:"CSE (AI)",region:"Delhi",cat:"GN",rank:1557},
+  {college:"IIITD",branch:"CSE (Biotech)",region:"Delhi",cat:"GN",rank:3463},
+  {college:"IIITD",branch:"CSE (Econ)",region:"Delhi",cat:"GN",rank:1346},
+  {college:"IIITD",branch:"CSE",region:"Delhi",cat:"GN",rank:2027},
+  {college:"IIITD",branch:"CSE (SS)",region:"Delhi",cat:"GN",rank:3174},
+  {college:"IIITD",branch:"EVE",region:"Delhi",cat:"GN",rank:3445},
+  {college:"IIITD",branch:"ECE",region:"Delhi",cat:"GN",rank:2858},
+  {college:"IIITD",branch:"CSE (AM&M)",region:"Delhi",cat:"OBC",rank:2702},
+  {college:"IIITD",branch:"CSE",region:"Delhi",cat:"OBC",rank:2348},
+  {college:"IIITD",branch:"CSE (AM&M)",region:"Outside",cat:"GN",rank:1819},
+  {college:"IIITD",branch:"CSE (AI)",region:"Outside",cat:"GN",rank:1581},
+  {college:"IIITD",branch:"CSE",region:"Outside",cat:"GN",rank:2027},
+  {college:"DSEU",branch:"CS Engg (Bhai Parmanand)",region:"Delhi",cat:"GN",rank:63318},
+  {college:"DSEU",branch:"CS Engg (Okhla)",region:"Delhi",cat:"GN",rank:69267},
+  {college:"DSEU",branch:"CS Engg (Pusa 1)",region:"Delhi",cat:"GN",rank:67063},
+  {college:"DSEU",branch:"AI (Okhla)",region:"Delhi",cat:"GN",rank:72022},
+  {college:"DSEU",branch:"AI (Ambedkar)",region:"Delhi",cat:"GN",rank:81131},
+  {college:"DSEU",branch:"Data Science (Okhla)",region:"Delhi",cat:"GN",rank:87902},
+  {college:"DSEU",branch:"Data Science (Pusa 1)",region:"Delhi",cat:"GN",rank:85853},
+  {college:"DSEU",branch:"ECE (G.B. Pant)",region:"Delhi",cat:"GN",rank:81045},
+  {college:"DSEU",branch:"ECE (Pusa 1)",region:"Delhi",cat:"GN",rank:91345},
+  {college:"DSEU",branch:"EE (G.B. Pant)",region:"Delhi",cat:"GN",rank:95538},
+  {college:"DSEU",branch:"Mechanical (Ranhola)",region:"Delhi",cat:"GN",rank:98060},
+  {college:"DSEU",branch:"Network Engg & Security",region:"Delhi",cat:"GN",rank:88324},
+  {college:"DSEU",branch:"Robotics & AI",region:"Delhi",cat:"GN",rank:80135},
+  {college:"DSEU",branch:"CS Engg (Bhai Parmanand)",region:"Outside",cat:"GN",rank:11632},
+  {college:"DSEU",branch:"CS Engg (Okhla)",region:"Outside",cat:"GN",rank:12944},
+  {college:"DSEU",branch:"AI (Okhla)",region:"Outside",cat:"GN",rank:15873},
+  {college:"DSEU",branch:"Data Science (Okhla)",region:"Outside",cat:"GN",rank:18633},
+];
+
+const catMap = {
+  "GN_Delhi":"GN", "GN_Outside":"GN",
+  "OBC_Delhi":"OBC","OBC_Outside":"OBC",
+  "SC_Delhi":"SC","SC_Outside":"SC",
+  "ST_Delhi":"ST","ST_Outside":"ST",
+  "EW_Delhi":"EW","EW_Outside":"EW"
+};
+const regionMap = {
+  "GN_Delhi":"Delhi","GN_Outside":"Outside",
+  "OBC_Delhi":"Delhi","OBC_Outside":"Outside",
+  "SC_Delhi":"Delhi","SC_Outside":"Outside",
+  "ST_Delhi":"Delhi","ST_Outside":"Outside",
+  "EW_Delhi":"Delhi","EW_Outside":"Outside"
+};
+
+function getRankClass(rank) {
+  if (rank <= 15000) return "rank-low";
+  if (rank <= 50000) return "rank-mid";
+  return "rank-high";
+}
+function getBadgeClass(college) {
+  return {DTU:"badge-dtu",NSUT:"badge-nsut",IIITD:"badge-iiit",DSEU:"badge-dseu"}[college]||"";
+}
+
+function checkRank() {
+  const rank = parseInt(document.getElementById('myRank').value);
+  const catKey = document.getElementById('myCat').value;
+  const margin = parseInt(document.getElementById('myMargin').value);
+  if (!rank || isNaN(rank)) { alert("Please enter a valid rank"); return; }
+  const cat = catMap[catKey];
+  const region = regionMap[catKey];
+  const eligible = DATA.filter(d => d.cat === cat && d.region === region && d.rank >= rank && d.rank <= rank + margin);
+  const near = DATA.filter(d => d.cat === cat && d.region === region && d.rank > rank + margin && d.rank <= rank + margin + 10000);
+  eligible.sort((a,b) => a.rank - b.rank);
+  near.sort((a,b) => a.rank - b.rank);
+  const cards = document.getElementById('checker-cards');
+  const div = document.getElementById('checker-results');
+  const noDiv = document.getElementById('no-checker-results');
+  document.getElementById('checker-summary').innerHTML = `<b>${eligible.length}</b> branches within your reach · <b>${near.length}</b> close options (within +10k ranks)`;
+  if (eligible.length === 0 && near.length === 0) {
+    div.style.display = 'none'; noDiv.style.display = 'block';
+    return;
+  }
+  div.style.display = 'block'; noDiv.style.display = 'none';
+  const all = [...eligible.map(d=>({...d,type:'eligible'})), ...near.map(d=>({...d,type:'near'}))];
+  cards.innerHTML = all.map(d => `
+    <div class="result-card ${d.type}">
+      <div class="college" style="color:${d.college==='DTU'?'#1a3fa0':d.college==='NSUT'?'#9b1c1c':d.college==='IIITD'?'#0f5e3a':'#7c2d92'}">${d.college} · ${d.region}</div>
+      <div class="branch">${d.branch}</div>
+      <div class="cutoff">${d.rank.toLocaleString()} ${d.type==='near'?'<span style="font-size:10px;font-weight:400;color:var(--text2)">close</span>':''}</div>
+    </div>
+  `).join('');
+}
+
+let filteredData = [...DATA];
+function filterTable() {
+  const college = document.getElementById('filterCollege').value;
+  const region = document.getElementById('filterRegion').value;
+  const cat = document.getElementById('filterCat').value;
+  const branch = document.getElementById('filterBranch').value;
+  filteredData = DATA.filter(d => {
+    if (college && d.college !== college) return false;
+    if (region && d.region !== region) return false;
+    if (cat && d.cat !== cat) return false;
+    if (branch) {
+      const b = d.branch.toLowerCase();
+      if (branch === 'CSE' && !b.includes('cs') && !b.includes('software') && !b.includes('math')) return false;
+      if (branch === 'IT' && !b.includes('it') && !b.includes('information')) return false;
+      if (branch === 'ECE' && !b.includes('ec') && !b.includes('electron')) return false;
+      if (branch === 'EE' && !b.includes('elect') && !b.includes('ee') && !b.includes('vlsi')) return false;
+      if (branch === 'ME' && !b.includes('mech')) return false;
+      if (branch === 'AI' && !b.includes('ai') && !b.includes('artificial') && !b.includes('robot')) return false;
+    }
+    return true;
+  });
+  renderTable();
+}
+function clearFilters() {
+  ['filterCollege','filterRegion','filterCat','filterBranch'].forEach(id => document.getElementById(id).value = '');
+  filteredData = [...DATA];
+  renderTable();
+}
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  document.getElementById('resultCount').textContent = `Showing ${filteredData.length} of ${DATA.length} entries`;
+  tbody.innerHTML = filteredData.map(d => `
+    <tr>
+      <td><span class="college-badge ${getBadgeClass(d.college)}">${d.college}</span></td>
+      <td>${d.branch}</td>
+      <td><span class="pill ${d.region==='Delhi'?'pill-delhi':'pill-outside'}">${d.region}</span></td>
+      <td>${d.cat}</td>
+      <td class="rank-cell ${getRankClass(d.rank)}">${d.rank.toLocaleString()}</td>
+      <td style="font-size:11px; color:var(--text3)">Rnd 1</td>
+    </tr>
+  `).join('');
+}
+
+renderTable();
+
+window.addEventListener('load', () => {
+  const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const textColor = isDark ? '#a8a89e' : '#5a5a54';
+  const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+
+  const cseData = {
+    labels: ['DTU Delhi', 'DTU Outside', 'NSUT Delhi', 'NSUT Outside', 'IIITD Delhi*', 'DSEU Delhi'],
+    datasets: [{
+      label: 'CSE Cutoff (General)',
+      data: [9170, 3430, 8540, 3438, 2219, 63318],
+      backgroundColor: ['#1a3fa0','#4a70d0','#9b1c1c','#cc4444','#0f5e3a','#7c2d92'],
+      borderRadius: 6,
+      borderSkipped: false
+    }]
+  };
+  const legendEl = document.getElementById('chart-legend');
+  legendEl.innerHTML = [
+    {c:'#1a3fa0',l:'DTU Delhi'},{c:'#4a70d0',l:'DTU Outside'},{c:'#9b1c1c',l:'NSUT Delhi'},
+    {c:'#cc4444',l:'NSUT Outside'},{c:'#0f5e3a',l:'IIITD (with bonus)'},{c:'#7c2d92',l:'DSEU'}
+  ].map(x=>`<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:${x.c}"></span>${x.l}</span>`).join('');
+
+  new Chart(document.getElementById('cseChart'), {
+    type: 'bar',
+    data: cseData,
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+        y: { ticks: { color: textColor, font: { size: 11 }, callback: v => v.toLocaleString() }, grid: { color: gridColor }, reverse: true }
+      }
+    }
+  });
+
+  const csFamily = {
+    labels: ['IIITD CSE-Econ','IIITD CSE-AI','IIITD CSE','NSUT CSAI','DTU CSE','NSUT CSE','NSUT CSDS','DTU CSE-DS','DTU IT','NSUT IT'],
+    datasets: [{
+      label: 'Cutoff (GN Delhi)',
+      data: [1346,1557,2027,4133,9170,8540,9881,10274,13499,13639],
+      backgroundColor: ['#0f5e3a','#0f5e3a','#0f5e3a','#9b1c1c','#1a3fa0','#9b1c1c','#9b1c1c','#1a3fa0','#1a3fa0','#9b1c1c'],
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  };
+  new Chart(document.getElementById('csFamilyChart'), {
+    type: 'bar',
+    data: csFamily,
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 10 }, callback: v => v.toLocaleString() }, grid: { color: gridColor } },
+        y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor } }
+      }
+    }
+  });
+
+  const dtuBranches = {
+    labels: ['CSE','CSE (DS)','IT','IT (Cyber)','Software Engg','Math & Computing','ECE','EE (VLSI)','Electrical','Mechanical','Chem Engg','Civil','BioTech'],
+    datasets: [{
+      label: 'DTU Cutoff (GN Delhi)',
+      data: [9170,10274,13499,17650,16857,19022,21428,23597,30596,39267,46915,53519,56089],
+      backgroundColor: '#1a3fa0',
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  };
+  new Chart(document.getElementById('dtuLadderChart'), {
+    type: 'bar',
+    data: dtuBranches,
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 10 }, callback: v => v.toLocaleString() }, grid: { color: gridColor } },
+        y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor } }
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

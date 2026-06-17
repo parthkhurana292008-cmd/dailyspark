@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathSpark — दिमागी गणित का अखाड़ा</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0F14;
+    --surface: #161923;
+    --surface2: #1E2330;
+    --border: rgba(255,255,255,0.08);
+    --accent: #F5C400;
+    --accent-dim: rgba(245,196,0,0.12);
+    --accent-glow: rgba(245,196,0,0.3);
+    --text: #F0EDE8;
+    --muted: #7E8594;
+    --green: #3CCF91;
+    --red: #F06464;
+    --blue: #6B9EFF;
+    --radius: 12px;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(13,15,20,0.9);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  nav ul a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent);
+    color: #0D0F14;
+    border: none;
+    padding: 0.55rem 1.25rem;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    overflow: hidden;
+  }
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(245,196,0,0.25);
+    padding: 0.3rem 0.9rem;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--mono);
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .hero h1 em { color: var(--accent); font-style: normal; }
+  .hero p {
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #0D0F14;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 160px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; letter-spacing: 0.04em; }
+
+  /* ── GAME SECTION ── */
+  .section { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .section-head h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .section-head p { color: var(--muted); margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6; }
+
+  /* ── GAME CARD ── */
+  .game-arena {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .game-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .mode-tabs { display: flex; gap: 0.4rem; }
+  .mode-tab {
+    padding: 0.35rem 0.9rem;
+    border-radius: 7px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.15s;
+  }
+  .mode-tab.active { background: var(--accent-dim); border-color: rgba(245,196,0,0.4); color: var(--accent); }
+  .mode-tab:hover:not(.active) { border-color: rgba(255,255,255,0.18); color: var(--text); }
+
+  .score-block { text-align: right; }
+  .score-val {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .score-lbl { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* timer bar */
+  .timer-track {
+    height: 5px;
+    background: var(--surface2);
+    border-radius: 99px;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+  }
+  .timer-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 99px;
+    transition: width 1s linear, background 0.5s;
+    width: 100%;
+  }
+  .timer-fill.warn { background: var(--red); }
+
+  /* question display */
+  .question-area { text-align: center; margin-bottom: 2rem; }
+  .question-num {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+  .question-eq {
+    font-family: var(--mono);
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .question-eq .op { color: var(--accent); margin: 0 0.2em; }
+
+  /* answer options */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .opt-btn {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 1.1rem 1rem;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .opt-btn:hover { border-color: rgba(245,196,0,0.45); transform: translateY(-2px); }
+  .opt-btn.correct { background: rgba(60,207,145,0.15); border-color: var(--green); color: var(--green); }
+  .opt-btn.wrong { background: rgba(240,100,100,0.13); border-color: var(--red); color: var(--red); }
+  .opt-btn:disabled { cursor: default; transform: none; }
+
+  .game-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+  .streak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(245,196,0,0.22);
+    padding: 0.35rem 0.8rem;
+    border-radius: 99px;
+    font-family: var(--mono);
+  }
+  .streak-fire { font-size: 1rem; }
+  .skip-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.35rem 1rem;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .skip-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+  /* result overlay */
+  .result-overlay {
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .result-overlay.show { display: block; }
+  .result-score-big {
+    font-family: var(--mono);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .result-message { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .result-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .r-stat { text-align: center; }
+  .r-stat-val { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; display: block; }
+  .r-stat-val.g { color: var(--green); }
+  .r-stat-val.r { color: var(--red); }
+  .r-stat-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ── HOW IT WORKS ── */
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .step-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+
+  /* ── DIFFICULTY ── */
+  .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .diff-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    background: var(--surface);
+  }
+  .diff-card:hover { transform: translateY(-3px); }
+  .diff-card.selected { border-color: var(--accent); background: var(--accent-dim); }
+  .diff-icon { font-size: 1.6rem; margin-bottom: 0.75rem; display: block; }
+  .diff-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .diff-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .diff-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.68rem;
+    font-family: var(--mono);
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    letter-spacing: 0.05em;
+  }
+  .badge-green { background: rgba(60,207,145,0.15); color: var(--green); border: 1px solid rgba(60,207,145,0.3); }
+  .badge-amber { background: rgba(245,196,0,0.12); color: var(--accent); border: 1px solid rgba(245,196,0,0.3); }
+  .badge-red { background: rgba(240,100,100,0.12); color: var(--red); border: 1px solid rgba(240,100,100,0.3); }
+
+  /* ── LEADERBOARD ── */
+  .leaderboard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .lb-header {
+    display: grid;
+    grid-template-columns: 48px 1fr 80px 80px;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+  }
+  .lb-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 80px 80px;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row:hover { background: var(--surface2); }
+  .lb-row.you { background: var(--accent-dim); }
+  .rank {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .rank.gold { color: #F5C400; }
+  .rank.silver { color: #B0B8C8; }
+  .rank.bronze { color: #CD7F32; }
+  .player-name { font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem; }
+  .you-tag {
+    font-size: 0.65rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid rgba(245,196,0,0.3);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-weight: 700;
+  }
+  .lb-score {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: right;
+  }
+  .lb-acc {
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap-1rem;
+  }
+  footer p { font-size: 0.82rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  /* ── FEEDBACK FLASH ── */
+  .feedback-flash {
+    position: fixed;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.6rem 1.5rem;
+    border-radius: 99px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 1rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 999;
+  }
+  .feedback-flash.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .feedback-flash.correct { border-color: rgba(60,207,145,0.4); color: var(--green); background: rgba(60,207,145,0.08); }
+  .feedback-flash.wrong { border-color: rgba(240,100,100,0.4); color: var(--red); background: rgba(240,100,100,0.08); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Math<span>Spark</span></a>
+  <ul>
+    <li><a href="#play">खेलें</a></li>
+    <li><a href="#how">यह कैसे काम करता है</a></li>
+    <li><a href="#leaderboard">लीडरबोर्ड</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('play').scrollIntoView({behavior:'smooth'})">खेल शुरू करें</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-eyebrow">दिमागी गणित का अखाड़ा</div>
+  <h1>दिमाग को ट्रेन करें,<br><em>समय को हराएं।</em></h1>
+  <p>तेज़ रफ्तार अंकगणित की चुनौतियाँ। अपनी कठिनाई चुनें, समय के खिलाफ दौड़ें, और लीडरबोर्ड पर चढ़ें। दस सवाल। हर सेकंड कीमती है।</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('play').scrollIntoView({behavior:'smooth'})">अभी खेलें — यह बिल्कुल मुफ्त है</button>
+    <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">देखें यह कैसे काम करता है</button>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item"><span class="stat-num" id="c1">0</span><div class="stat-label">आज दिए गए जवाब</div></div>
+  <div class="stat-item"><span class="stat-num" id="c2">0</span><div class="stat-label">इस हफ्ते खेले गए गेम</div></div>
+  <div class="stat-item"><span class="stat-num" id="c3">0</span><div class="stat-label">इस महीने की टॉप स्ट्रीक</div></div>
+  <div class="stat-item"><span class="stat-num" id="c4">0</span><div class="stat-label">अभी एक्टिव खिलाड़ी</div></div>
+</div>
+
+<!-- PLAY SECTION -->
+<section class="section" id="play">
+  <div class="section-head">
+    <span class="section-label">अखाड़ा</span>
+    <h2>अपनी कठिनाई स्तर चुनें और खेलें</h2>
+    <p>एक मोड चुनें, फिर 'शुरू करें' पर क्लिक करें। आपके पास हर सवाल के लिए 15 सेकंड हैं। समय खत्म होने पर जवाब गलत माना जाएगा।</p>
+  </div>
+
+  <!-- Difficulty selector -->
+  <div class="diff-grid" id="diffGrid">
+    <div class="diff-card selected" data-diff="easy" onclick="selectDiff(this)">
+      <span class="diff-badge badge-green">आसान</span>
+      <span class="diff-icon">➕</span>
+      <h3>शुरुआती (Novice)</h3>
+      <p>20 तक की संख्याओं के साथ जोड़ और घटाव। वार्म-अप के लिए एकदम सही।</p>
+    </div>
+    <div class="diff-card" data-diff="medium" onclick="selectDiff(this)">
+      <span class="diff-badge badge-amber">मध्यम</span>
+      <span class="diff-icon">✖️</span>
+      <h3>चैलेंजर (Challenger)</h3>
+      <p>12×12 तक गुणा और भाग। यह आपके पहाड़ों (tables) का टेस्ट लेगा।</p>
+    </div>
+    <div class="diff-card" data-diff="hard" onclick="selectDiff(this)">
+      <span class="diff-badge badge-red">कठिन</span>
+      <span class="diff-icon">🔢</span>
+      <h3>एक्सपर्ट (Expert)</h3>
+      <p>बड़ी संख्याओं के साथ मिश्रित संक्रियाएँ (operations)। केवल सबसे तेज़ ही टिक पाएंगे।</p>
+    </div>
+  </div>
+
+  <br>
+  <div style="text-align:center; margin-bottom: 2rem;">
+    <button class="btn-primary" id="startBtn" onclick="startGame()">खेल शुरू करें →</button>
+  </div>
+
+  <!-- Game arena -->
+  <div class="game-arena" id="gameArena" style="display:none;">
+    <div class="game-topbar">
+      <div class="mode-tabs" id="modeTabs">
+        <button class="mode-tab active" data-op="all" onclick="setOp(this)">सभी</button>
+        <button class="mode-tab" data-op="+" onclick="setOp(this)">+</button>
+        <button class="mode-tab" data-op="-" onclick="setOp(this)">−</button>
+        <button class="mode-tab" data-op="×" onclick="setOp(this)">×</button>
+        <button class="mode-tab" data-op="÷" onclick="setOp(this)">÷</button>
+      </div>
+      <div class="score-block">
+        <div class="score-val" id="liveScore">0</div>
+        <div class="score-lbl">स्कोर</div>
+      </div>
+    </div>
+
+    <div class="timer-track"><div class="timer-fill" id="timerFill"></div></div>
+
+    <!-- Active game -->
+    <div id="activeGame">
+      <div class="question-area">
+        <div class="question-num" id="qNum">सवाल 1 / 10</div>
+        <div class="question-eq" id="questionEq">12 <span class="op">+</span> 7 = ?</div>
+      </div>
+      <div class="options-grid" id="optionsGrid"></div>
+      <div class="game-footer">
+        <div class="streak-badge" id="streakBadge"><span class="streak-fire">🔥</span> <span id="streakNum">0</span> स्ट्रीक</div>
+        <button class="skip-btn" onclick="skipQuestion()">छोड़ें (Skip)</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="result-overlay" id="resultOverlay">
+      <div class="result-score-big" id="finalScore">0</div>
+      <div class="result-message" id="resultMsg">शानदार खेल!</div>
+      <div class="result-stats">
+        <div class="r-stat"><span class="r-stat-val g" id="rCorrect">0</span><div class="r-stat-lbl">सही जवाब</div></div>
+        <div class="r-stat"><span class="r-stat-val r" id="rWrong">0</span><div class="r-stat-lbl">गलत जवाब</div></div>
+        <div class="r-stat"><span class="r-stat-val" id="rTime" style="color:var(--blue)">0s</span><div class="r-stat-lbl">औसत समय</div></div>
+      </div>
+      <button class="btn-primary" onclick="restartGame()" style="margin-right:0.75rem">फिर से खेलें</button>
+      <button class="btn-ghost" onclick="closeGame()">कठिनाई स्तर बदलें</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how" style="border-top: 1px solid var(--border);">
+  <div class="section-head">
+    <span class="section-label">नियम</span>
+    <h2>यह कैसे काम करता है</h2>
+    <p>सरल नियम, असली चुनौती।</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <span class="step-num">01 — सेटअप</span>
+      <h3>अपनी कठिनाई चुनें</h3>
+      <p>शुरुआती, चैलेंजर, या एक्सपर्ट चुनें। हर स्तर संख्याओं की रेंज और ऑपरेटरों को बदल देता है।</p>
+    </div>
+    <div class="step-card">
+      <span class="step-num">02 — खेलें</span>
+      <h3>10 सवालों के जवाब दें</h3>
+      <p>हर सवाल के चार विकल्प दिखेंगे। 15 सेकंड का समय खत्म होने से पहले सही विकल्प पर टैप करें।</p>
+    </div>
+    <div class="step-card">
+      <span class="step-num">03 — स्कोर</span>
+      <h3>पॉइंट्स और स्ट्रीक</h3>
+      <p>सही जवाब पर 100 पॉइंट्स मिलते हैं। तेज़ रफ्तार के बोनस से 50 एक्स्ट्रा पॉइंट्स जुड़ते हैं। लगातार सही जवाब देकर स्ट्रीक बनाएं और स्कोर बढ़ाएं।</p>
+    </div>
+    <div class="step-card">
+      <span class="step-num">04 — रैंक</span>
+      <h3>लीडरबोर्ड पर चढ़ें</h3>
+      <p>आपका बेस्ट स्कोर सेव किया जाता है और ग्लोबल रैंकिंग दिखाई जाती है। टॉप 3 खिलाड़ियों को हर हफ्ते स्पेशल बैज मिलते हैं।</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="section" id="leaderboard" style="border-top: 1px solid var(--border);">
+  <div class="section-head">
+    <span class="section-label">टॉप खिलाड़ी</span>
+    <h2>इस हफ्ते का लीडरबोर्ड</h2>
+    <p>रैंकिंग हर सोमवार आधी रात को UTC के अनुसार रीसेट होती है।</p>
+  </div>
+  <div class="leaderboard">
+    <div class="lb-header">
+      <div>#</div><div>खिलाड़ी</div><div>स्कोर</div><div>सटीकता (Accuracy)</div>
+    </div>
+    <div class="lb-row">
+      <div class="rank gold">1</div>
+      <div class="player-name">ArithmeticAce</div>
+      <div class="lb-score">9,850</div>
+      <div class="lb-acc">98%</div>
+    </div>
+    <div class="lb-row">
+      <div class="rank silver">2</div>
+      <div class="player-name">QuickCalc99</div>
+      <div class="lb-score">9,200</div>
+      <div class="lb-acc">96%</div>
+    </div>
+    <div class="lb-row">
+      <div class="rank bronze">3</div>
+      <div class="player-name">NumberNinja</div>
+      <div class="lb-score">8,750</div>
+      <div class="lb-acc">94%</div>
+    </div>
+    <div class="lb-row">
+      <div class="rank">4</div>
+      <div class="player-name">MathWizard_X</div>
+      <div class="lb-score">8,100</div>
+      <div class="lb-acc">91%</div>
+    </div>
+    <div class="lb-row">
+      <div class="rank">5</div>
+      <div class="player-name">SpeedSolver</div>
+      <div class="lb-score">7,640</div>
+      <div class="lb-acc">89%</div>
+    </div>
+    <div class="lb-row you">
+      <div class="rank">—</div>
+      <div class="player-name">आप <span class="you-tag">YOU</span></div>
+      <div class="lb-score" id="myBestScore">—</div>
+      <div class="lb-acc" id="myAcc">—</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 MathSpark. गणित को मज़ेदार बनाने के लिए निर्मित।</p>
+  <div class="footer-links">
+    <a href="#">गोपनीयता (Privacy)</a>
+    <a href="#">शर्तें (Terms)</a>
+    <a href="#">संपर्क करें</a>
+  </div>
+</footer>
+
+<!-- FEEDBACK FLASH -->
+<div class="feedback-flash" id="flash"></div>
+
+<script>
+// ── Hero canvas digit rain ──
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let cols, drops;
+function initCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  cols = Math.floor(canvas.width / 24);
+  drops = Array.from({length: cols}, () => Math.random() * -50);
+}
+function drawRain() {
+  ctx.fillStyle = 'rgba(13,15,20,0.18)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#F5C400';
+  ctx.font = '16px Space Mono, monospace';
+  drops.forEach((y, i) => {
+    const char = String(Math.floor(Math.random() * 10));
+    ctx.fillText(char, i * 24, y * 20);
+    if (y * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i] += 0.5;
+  });
+}
+initCanvas();
+setInterval(drawRain, 60);
+window.addEventListener('resize', initCanvas);
+
+// ── Counter animation ──
+function animCount(el, target, suffix) {
+  let current = 0;
+  const step = Math.ceil(target / 60);
+  const t = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current.toLocaleString() + (suffix || '');
+    if (current >= target) clearInterval(t);
+  }, 20);
+}
+setTimeout(() => {
+  animCount(document.getElementById('c1'), 48312);
+  animCount(document.getElementById('c2'), 7241);
+  animCount(document.getElementById('c3'), 15);
+  animCount(document.getElementById('c4'), 284);
+}, 400);
+
+// ── Difficulty selection ──
+let currentDiff = 'easy';
+let currentOp = 'all';
+function selectDiff(el) {
+  document.querySelectorAll('.diff-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  currentDiff = el.dataset.diff;
+}
+function setOp(el) {
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  currentOp = el.dataset.op;
+}
+
+// ── Game state ──
+let questions = [], qIndex = 0, score = 0, correct = 0, wrong = 0;
+let streak = 0, timerInterval, timeLeft = 15, qStartTime;
+let totalTime = 0;
+
+function genQuestion() {
+  const ops = currentOp === 'all' ? ['+', '-', '×', '÷'] : [currentOp];
+  const op = ops[Math.floor(Math.random() * ops.length)];
+  let a, b, answer;
+  if (currentDiff === 'easy') {
+    a = Math.floor(Math.random() * 20) + 1;
+    b = Math.floor(Math.random() * 20) + 1;
+  } else if (currentDiff === 'medium') {
+    a = Math.floor(Math.random() * 12) + 1;
+    b = Math.floor(Math.random() * 12) + 1;
+  } else {
+    a = Math.floor(Math.random() * 50) + 10;
+    b = Math.floor(Math.random() * 30) + 5;
+  }
+  if (op === '+') answer = a + b;
+  else if (op === '-') { if (a < b) [a, b] = [b, a]; answer = a - b; }
+  else if (op === '×') answer = a * b;
+  else { answer = a; a = answer * b; }
+  const distractors = new Set([answer]);
+  while (distractors.size < 4) {
+    const d = answer + (Math.floor(Math.random() * 10) - 5);
+    if (d !== answer && d >= 0) distractors.add(d);
+  }
+  const choices = [...distractors].sort(() => Math.random() - 0.5);
+  return { a, b, op, answer, choices };
+}
+
+function startGame() {
+  questions = Array.from({length: 10}, genQuestion);
+  qIndex = 0; score = 0; correct = 0; wrong = 0; streak = 0; totalTime = 0;
+  document.getElementById('liveScore').textContent = '0';
+  document.getElementById('streakNum').textContent = '0';
+  document.getElementById('startBtn').style.display = 'none';
+  document.getElementById('diffGrid').style.display = 'none';
+  document.getElementById('gameArena').style.display = 'block';
+  document.getElementById('resultOverlay').classList.remove('show');
+  document.getElementById('activeGame').style.display = 'block';
+  loadQuestion();
+}
+
+function loadQuestion() {
+  if (qIndex >= 10) { endGame(); return; }
+  const q = questions[qIndex];
+  document.getElementById('qNum').textContent = `सवाल ${qIndex + 1} / 10`;
+  const opDisplay = q.op === '*' ? '×' : q.op;
+  document.getElementById('questionEq').innerHTML = `${q.a} <span class="op">${q.op}</span> ${q.b} = ?`;
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  q.choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = c;
+    btn.onclick = () => answer(btn, c, q.answer);
+    grid.appendChild(btn);
+  });
+  startTimer();
+  qStartTime = Date.now();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 15;
+  updateTimerBar();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerBar();
+    if (timeLeft <= 0) { clearInterval(timerInterval); autoWrong(); }
+  }, 1000);
+}
+
+// Javascript मैसेजेस का हिंदी अनुवाद यहाँ है
+function updateTimerBar() {
+  const fill = document.getElementById('timerFill');
+  fill.style.width = (timeLeft / 15 * 100) + '%';
+  fill.classList.toggle('warn', timeLeft <= 5);
+}
+
+function answer(btn, chosen, correct_ans) {
+  clearInterval(timerInterval);
+  const elapsed = (Date.now() - qStartTime) / 1000;
+  totalTime += elapsed;
+  document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+  if (chosen === correct_ans) {
+    btn.classList.add('correct');
+    streak++;
+    const speedBonus = Math.max(0, Math.round((15 - elapsed) / 15 * 50));
+    const pts = 100 + speedBonus + (streak > 2 ? 25 * Math.min(streak - 2, 3) : 0);
+    score += pts;
+    correct++;
+    showFlash(`+${pts} पॉइंट्स`, 'correct');
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.opt-btn').forEach(b => { if (parseInt(b.textContent) === correct_ans) b.classList.add('correct'); });
+    streak = 0;
+    wrong++;
+    showFlash('गलत!', 'wrong');
+  }
+  document.getElementById('liveScore').textContent = score.toLocaleString();
+  document.getElementById('streakNum').textContent = streak;
+  qIndex++;
+  setTimeout(loadQuestion, 900);
+}
+
+function autoWrong() {
+  streak = 0;
+  wrong++;
+  document.getElementById('streakNum').textContent = '0';
+  showFlash('समय समाप्त!', 'wrong');
+  qIndex++;
+  setTimeout(loadQuestion, 700);
+}
+
+function skipQuestion() {
+  clearInterval(timerInterval);
+  streak = 0;
+  wrong++;
+  document.getElementById('streakNum').textContent = '0';
+  qIndex++;
+  loadQuestion();
+}
+
+function endGame() {
+  document.getElementById('activeGame').style.display = 'none';
+  document.getElementById('resultOverlay').classList.add('show');
+  document.getElementById('finalScore').textContent = score.toLocaleString();
+  const pct = Math.round(correct / 10 * 100);
+  const msgs = ['अभ्यास करते रहें — आप जल्द ही सीख जाएंगे!', 'अच्छा प्रयास! फिर से कोशिश करें?', 'बढ़िया खेल! क्या आप इसे हरा सकते हैं?', 'शानदार स्कोर! आपका दिमाग तेज़ हो रहा है!', 'लाजवाब! आप तो छा गए! 🔥'];
+  document.getElementById('resultMsg').textContent = pct >= 90 ? msgs[4] : pct >= 70 ? msgs[3] : pct >= 50 ? msgs[2] : pct >= 30 ? msgs[1] : msgs[0];
+  document.getElementById('rCorrect').textContent = correct;
+  document.getElementById('rWrong').textContent = wrong;
+  document.getElementById('rTime').textContent = (totalTime / 10).toFixed(1) + 's';
+  document.getElementById('myBestScore').textContent = score.toLocaleString();
+  document.getElementById('myAcc').textContent = pct + '%';
+}
+
+function restartGame() {
+  document.getElementById('resultOverlay').classList.remove('show');
+  startGame();
+}
+
+function closeGame() {
+  clearInterval(timerInterval);
+  document.getElementById('gameArena').style.display = 'none';
+  document.getElementById('startBtn').style.display = 'inline-block';
+  document.getElementById('diffGrid').style.display = 'grid';
+}
+
+function showFlash(msg, type) {
+  const f = document.getElementById('flash');
+  f.textContent = msg;
+  f.className = 'feedback-flash show ' + type;
+  clearTimeout(f._t);
+  f._t = setTimeout(() => f.classList.remove('show'), 900);
+}
+</script>
+</body>
+</html>

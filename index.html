@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Daily Spark — Where Knowledge Sparks Success</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ===== TOKENS ===== */
+:root {
+  --navy:    #0D1B2A;
+  --navy-mid:#16283C;
+  --saffron: #FF6B00;
+  --saffron-light: #FF8C33;
+  --white:   #FFFFFF;
+  --offwhite:#F7F9FC;
+  --slate:   #8899AA;
+  --text:    #1A2B3C;
+  --text-light:#4A5C6E;
+  --border:  #DDE4ED;
+  --card-bg: #FFFFFF;
+  --radius:  6px;
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--offwhite);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ===== NOTIFICATION BAR ===== */
+.notif-bar {
+  background: var(--saffron);
+  color: var(--white);
+  padding: 9px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.notif-bar a { color: var(--white); }
+.notif-bar span { display: flex; align-items: center; gap: 8px; }
+.notif-close {
+  background: none; border: none; color: var(--white);
+  cursor: pointer; font-size: 18px; line-height: 1;
+  opacity: 0.8; transition: opacity 0.2s;
+  padding: 0 4px;
+}
+.notif-close:hover { opacity: 1; }
+
+/* ===== TOP BAR ===== */
+.topbar {
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 20px;
+  font-size: 12.5px;
+}
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.topbar-date {
+  color: var(--slate);
+  white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.ticker-wrap {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.06);
+  padding: 5px 0;
+  border-radius: 4px;
+  border-left: 3px solid var(--saffron);
+  position: relative;
+}
+.ticker {
+  color: #CBD6E2;
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker-scroll 28s linear infinite;
+  white-space: nowrap;
+}
+.ticker:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.topbar-links { display: flex; gap: 18px; }
+.topbar-links a {
+  color: var(--slate);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 11px;
+  transition: color 0.2s;
+}
+.topbar-links a:hover { color: var(--saffron); }
+
+/* ===== MASTHEAD / NAVBAR ===== */
+.masthead {
+  background: var(--white);
+  border-bottom: 3px solid var(--saffron);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.masthead-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.logo-block {
+  padding: 14px 0;
+  flex-shrink: 0;
+}
+.logo-name {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: black;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.logo-name span { color: var(--saffron); }
+.logo-tag {
+  font-size: 10px;
+  color: var(--slate);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.nav-links {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.nav-links a {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.nav-links a:hover { background: var(--offwhite); color: var(--saffron); }
+.nav-links a.active { color: var(--saffron); }
+.nav-search {
+  display: flex;
+  align-items: center;
+  background: var(--offwhite);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.nav-search input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  width: 140px;
+  font-family: var(--font-sans);
+}
+.nav-search input::placeholder { color: var(--slate); }
+.nav-search svg { color: var(--slate); flex-shrink: 0; }
+
+/* ===== HERO ===== */
+.hero-wrap {
+  max-width: 1280px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+}
+.hero-main-card {
+  background: var(--navy);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0D1B2A 0%, #1a3a55 50%, #0D1B2A 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 96px;
+  opacity: 0.15;
+}
+.hero-gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,27,42,0.97) 0%, rgba(13,27,42,0.5) 50%, transparent 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px 32px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--saffron);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.35;
+  margin-bottom: 14px;
+  max-width: 640px;
+}
+.hero-meta {
+  display: flex;
+  gap: 20px;
+  color: #8899AA;
+  font-size: 12.5px;
+}
+.hero-meta span { display: flex; align-items: center; gap: 5px; }
+
+/* Hero Sidebar Cards */
+.hero-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hs-card {
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  align-items: flex-start;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.hs-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.10); transform: translateY(-2px); }
+.hs-icon {
+  width: 58px; height: 58px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.hs-icon.ic1 { background: linear-gradient(135deg, #FFF3E6, #FFD9B3); }
+.hs-icon.ic2 { background: linear-gradient(135deg, #E6F0FF, #B3CFFF); }
+.hs-icon.ic3 { background: linear-gradient(135deg, #E8F5E9, #A5D6A7); }
+.hs-body { flex: 1; min-width: 0; }
+.hs-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--saffron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.hs-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hs-time {
+  font-size: 11px;
+  color: var(--slate);
+  margin-top: 5px;
+}
+
+/* ===== CATEGORY STRIP ===== */
+.cat-strip-wrap {
+  max-width: 1280px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+}
+.cat-strip-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cat-strip-head h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.cat-strip-head-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.cat-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-top: 3px solid transparent;
+}
+.cat-item:hover {
+  border-top-color: var(--saffron);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.cat-item:nth-child(1):hover { border-top-color: #4CAF50; }
+.cat-item:nth-child(2):hover { border-top-color: #FF9800; }
+.cat-item:nth-child(3):hover { border-top-color: #2196F3; }
+.cat-item:nth-child(4):hover { border-top-color: #9C27B0; }
+.cat-item:nth-child(5):hover { border-top-color: #00BCD4; }
+.cat-item:nth-child(6):hover { border-top-color: #FF5722; }
+.cat-emoji { font-size: 28px; margin-bottom: 8px; }
+.cat-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+.cat-sub {
+  font-size: 11px;
+  color: var(--slate);
+  margin-top: 3px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-wrap {
+  max-width: 1280px;
+  margin: 32px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 28px;
+}
+
+/* Section heading */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.sec-head h2 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.sec-head-accent {
+  width: 4px;
+  height: 24px;
+  background: var(--saffron);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.sec-head-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.sec-head-tag {
+  background: var(--offwhite);
+  border: 1px solid var(--border);
+  color: var(--slate);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* News Cards */
+.news-grid {
+  display: grid;
+  gap: 18px;
+}
+.news-card {
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  transition: box-shadow 0.2s;
+}
+.news-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.09); }
+
+/* Signature element: bold saffron left-border on breaking news */
+.news-card.breaking {
+  border-left: 4px solid var(--saffron);
+}
+.nc-thumb {
+  width: 110px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  position: relative;
+  background: var(--offwhite);
+}
+.nc-thumb.nc1 { background: linear-gradient(135deg, #FFF8F0, #FFE8CC); }
+.nc-thumb.nc2 { background: linear-gradient(135deg, #F0F8FF, #CCE5FF); }
+.nc-thumb.nc3 { background: linear-gradient(135deg, #F0FFF0, #CCF0CC); }
+.nc-badge {
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--saffron);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+.nc-body {
+  flex: 1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.nc-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--saffron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.nc-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 7px;
+}
+.nc-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.55;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.nc-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nc-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+.author-dot {
+  width: 26px; height: 26px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.nc-read {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--saffron);
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border: 1.5px solid var(--saffron);
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+.nc-read:hover { background: var(--saffron); color: var(--white); }
+
+/* Ad Strip */
+.ad-strip {
+  margin-top: 20px;
+  background: var(--white);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 18px;
+  text-align: center;
+  color: var(--slate);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.sidebar-widget {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.sw-head {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sw-head::before {
+  content: '';
+  width: 3px; height: 14px;
+  background: var(--saffron);
+  border-radius: 2px;
+}
+.sw-body { padding: 14px 16px; }
+.trending-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.trending-item:last-child { border-bottom: none; }
+.trending-num {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--border);
+  line-height: 1;
+  min-width: 24px;
+  font-family: var(--font-sans);
+}
+.trending-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+.trending-cat {
+  font-size: 10.5px;
+  color: var(--saffron);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Weather widget */
+.weather-widget {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a55 100%);
+  border-radius: 8px;
+  padding: 18px;
+  color: var(--white);
+}
+.weather-city {
+  font-size: 11px;
+  color: var(--slate);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.weather-temp {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.weather-desc {
+  font-size: 13px;
+  color: #CBD6E2;
+}
+.weather-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 12px;
+  color: var(--slate);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--navy);
+  color: var(--white);
+  margin-top: 48px;
+  padding: 40px 20px 20px;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.footer-brand .logo-name { font-size: 22px; }
+.footer-brand .logo-tag { color: #556677; }
+.footer-desc {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  color: #8899AA;
+  margin-bottom: 9px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--saffron); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #55667788;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-bottom a { color: #55667788; }
+.footer-bottom a:hover { color: var(--saffron); }
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.lang-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  padding: 8px 20px 4px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+min-width: 220px
+justify-content: space-between
+}
+.lang-btn:hover { background: rgba(255,255,255,0.18); }
+.lang-btn .flag { font-size: 14px; line-height: 1; }
+.lang-btn .chevron {
+  font-size: 8px;
+  opacity: 0.7;
+  transition: transform 0.2s;
+}
+.lang-switcher.open .lang-btn .chevron { transform: rotate(180deg); }
+
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  overflow: hidden;
+  min-width: 200px;
+  z-index: 999;
+  animation: dropFade 0.15s ease;
+}
+@keyframes dropFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lang-switcher.open .lang-dropdown { display: block; }
+
+.lang-dropdown-head {
+  padding: 10px 14px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--slate);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.lang-option:last-child { border-bottom: none; }
+.lang-option:hover { background: var(--offwhite); }
+.lang-option.active { background: #FFF5EE; }
+.lang-option .lo-flag { font-size: 22px; line-height: 1; }
+.lang-option .lo-info { flex: 1; }
+.lang-option .lo-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+.lang-option .lo-sub {
+  font-size: 11px;
+  color: var(--slate);
+  margin-top: 1px;
+}
+.lang-option .lo-check {
+  color: var(--saffron);
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0;
+}
+.lang-option.active .lo-check { opacity: 1; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-wrap { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(3, 1fr); }
+  .main-wrap { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+@media (max-width: 580px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+  .topbar-links { display: none; }
+  .hero-title { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Notification Bar -->
+<div class="notif-bar" id="notif">
+  <a href="ns.html" target="_blank">
+    <span>🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</span>
+  </a>
+  <button class="notif-close" onclick="document.getElementById('notif').remove()" aria-label="Close">✕</button>
+</div>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-date" id="topbar-date">Loading...</div>
+    <div class="ticker-wrap">
+      <span class="ticker">PM addresses National Conference &nbsp;|&nbsp; Stock Market surges — Sensex climbs 500 points &nbsp;|&nbsp; IPL Final preparations begin &nbsp;|&nbsp; Monsoon to arrive soon &nbsp;|&nbsp; Delhi temperature crosses 42°C</span>
+    </div>
+    <div class="topbar-links">
+      <a href="#">e-Paper</a>
+      <a href="#">Live TV</a>
+      <a href="#">Podcast</a>
+    </div>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher" id="langSwitcher">
+      
+
+<button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+  <span class="flag" id="currentFlag">🇮🇳</span>
+  <span id="currentLangLabel">EN</span>
+  <span class="chevron">▼</span>
+</button>
+      <div class="lang-dropdown" id="langDropdown">
+  <div class="lang-dropdown-head">Choose Language</div>
+        <div class="lang-option" id="opt-hi" onclick="setLang('hi')">
+          <span class="lo-flag">🇮🇳</span>
+          <div class="lo-info">
+            <div class="lo-name">Hindi</div>
+            <div class="lo-sub">Hindi</div>
+          </div>
+          <span class="lo-check">✓</span>
+        </div>
+        <div class="lang-option active" id="opt-en" onclick="setLang('en')">
+          <span class="lo-flag">🇬🇧</span>
+          <div class="lo-info">
+            <div class="lo-name">English</div>
+            <div class="lo-sub">English</div>
+          </div>
+          <span class="lo-check">✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Masthead + Navbar -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="logo-block">
+      <div class="logo-name">Daily <span>Spark</span></div>
+      <div class="logo-tag">Where Knowledge Sparks Success</div>
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="parent.html">Parenting</a>
+      <a href="math.html">Math Playground</a>
+      <a href="gjobs.html">Govt. Jobs</a>
+      <a href="weather.html">Weather</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+    <div class="nav-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search news..."/>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero-wrap">
+  <div class="hero-main-card">
+    <div class="hero-bg">🏛️</div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-title">Focus is the Key to Success — Build habits that spark daily achievement</div>
+      <div class="hero-meta">
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-sidebar">
+    <a href="jac_josaa.pdf" class="card-link">
+      <div class="hs-card">
+        <div class="hs-icon ic1">🎓</div>
+        <div class="hs-body">
+          <div class="hs-cat">Education</div>
+          <div class="hs-title">JoSAA & JAC Delhi Counselling Schedule — B.Tech 2026</div>
+         
+        </div>
+      </div>
+    </a>
+    <a href="jac_cutoff.html" class="card-link">
+      <div class="hs-card">
+        <div class="hs-icon ic2">📊</div>
+        <div class="hs-body">
+          <div class="hs-cat">Education</div>
+          <div class="hs-title">JAC Delhi Cut-off Ranks — B.Tech Branch-wise Analysis</div>
+         
+        </div>
+      </div>
+    </a>
+    
+<a href="jac26.html" class="card-link">
+      <div class="hs-card">
+        <div class="hs-icon ic3">💼</div>
+        <div class="hs-body">
+          <div class="hs-cat">B.Tech</div>
+          <div class="hs-title">JAC Delhi Cut-off Ranks — B.Tech Branch-wise 2026</div>
+          
+        </div>
+      </div>
+    </a>
+
+<a href="https://josaa.admissions.nic.in/Applicant/SeatAllotmentResult/currentorcr.aspx" class="card-link">
+      <div class="hs-card">
+        <div class="hs-icon ic3">🎓</div>
+        <div class="hs-body">
+          <div class="hs-cat">Josaa Cutoff 2026</div>
+          <div class="hs-title">IITs, IISc, NITs, IIEST, IIITs and Other-GFTIs for the Academic Year 2026-27</div>
+          
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- Category Strip -->
+<div class="cat-strip-wrap">
+  <div class="cat-strip-head">
+    <h3>Explore Topics</h3>
+    <div class="cat-strip-head-line"></div>
+  </div>
+  <div class="cat-grid">
+    <a href="plant.html">
+      <div class="cat-item">
+        <div class="cat-emoji">🌾</div>
+        <div class="cat-label">Plants</div>
+        <div class="cat-sub">Bring positive energy home</div>
+      </div>
+    </a>
+    
+<a href="cook.html" onclick="redirectByLanguage()">
+  <div class="cat-item">
+    <div class="cat-emoji">👨‍🍳</div>
+    <div class="cat-label">Cooking</div>
+    <div class="cat-sub">A new recipe every day</div>
+  </div>
+</a>
+
+   <a href="gjobs.html">
+      <div class="cat-item">
+        <div class="cat-emoji">💼</div>
+        <div class="cat-label">Govt. Jobs</div>
+        <div class="cat-sub">Latest all over India Govt. Jobs</div>
+      </div>
+    </a>
+
+    <a href="jokes.html">
+      <div class="cat-item">
+        <div class="cat-emoji">🎬</div>
+        <div class="cat-label">Entertainment</div>
+        <div class="cat-sub">latest Jokes</div>
+      </div>
+    </a>
+    <a href="weather.html">
+      <div class="cat-item">
+        <div class="cat-emoji">🌧️</div>
+        <div class="cat-label">Weather</div>
+        <div class="cat-sub">98 latest stories</div>
+      </div>
+    </a>
+    <a href="gold.html">
+      <div class="cat-item">
+        <div class="cat-emoji">💹</div>
+        <div class="cat-label">Gold Rate</div>
+        <div class="cat-sub">Live market updates</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- Main Content + Sidebar -->
+<div class="main-wrap">
+
+  <div class="content-col">
+    <div class="sec-head">
+      <div class="sec-head-accent"></div>
+      <h2>Latest News</h2>
+      <div class="sec-head-line"></div>
+      <div class="sec-head-tag">Fresh</div>
+    </div>
+
+    <div class="news-grid">
+      <div class="news-card breaking">
+        <div class="nc-thumb nc1">
+          <span>🗳️</span>
+          <div class="nc-badge">Breaking</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-cat">Politics</div>
+          <div class="nc-title">Election dates announced for five major states</div>
+          <div class="nc-desc">The Election Commission announced assembly election dates for five major states. Preparations have already begun across the country.</div>
+          <div class="nc-meta">
+            <div class="nc-author"><div class="author-dot">R</div> Rajesh Sharma</div>
+            <a href="#" class="nc-read">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="nc-thumb nc2"><span>🌧️</span></div>
+        <div class="nc-body">
+          <div class="nc-cat">Weather</div>
+          <div class="nc-title">Monsoon arrives soon — reached the Kerala coast</div>
+          <div class="nc-desc">According to the Meteorological Department, the southwest monsoon is expected to reach Kerala's coast within the next 48 hours.</div>
+          <div class="nc-meta">
+             <a href="#" class="nc-read">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="health.html">
+      <div class="news-card">
+        <div class="nc-thumb nc3">
+          <span style="display: inline-block; width: 100px; height: 150px; background-image: url('health.png'); background-size: cover; background-repeat: no-repeat; object-fit: contain;"></span>
+          <div class="nc-badge" style="background:#2196F3;">Health</div>
+        </div>
+        <div class="nc-body">
+          <div class="nc-cat">Health</div>
+          <div class="nc-title">Do not ignore changes in your voice:</div>
+          <div class="nc-desc">These could be serious signs related to brain, lung and mental health conditions that need prompt attention.</div>
+          <div class="nc-meta">
+           
+            <a href="health.html" class="nc-read">Read →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+	</a>
+    <div class="ad-strip">📢 Advertisement Space</div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar-col">
+    <!-- Trending -->
+    <div class="sidebar-widget">
+      <div class="sw-head">Play with Maths</div>
+      <div class="sw-body">
+        
+<a href="magic.html">
+<div class="trending-item">
+          <div class="trending-num">01</div>
+          <div>
+            <div class="trending-text">Mind Reader</div>
+            <div class="trending-cat">Magic Cards</div>
+          </div>
+        </div>
+</a>
+
+
+<a href="snakes.html">
+        <div class="trending-item">
+          <div class="trending-num">02</div>
+          <div>
+            <div class="trending-text">Math Adventure Game</div>
+            <div class="trending-cat">Snakes & Ladders</div>
+          </div>
+        </div>
+</a>
+
+
+<a href="ludo.html">
+        <div class="trending-item">
+          <div class="trending-num">03</div>
+          <div>
+            <div class="trending-text">Math Example bar</div>
+            <div class="trending-cat">Ludo</div>
+          </div>
+        </div>
+</a>
+
+<a href="a.html">
+        <div class="trending-item">
+          <div class="trending-num">04</div>
+          <div>
+            <div class="trending-text">Delhi temperature crosses 42°C</div>
+            <div class="trending-cat">Weather</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</a>
+
+    <!-- Newsletter -->
+    <iframe src="ns.html" width="100%" height="420px" frameborder="0" scrolling="no" style="display: block; overflow: hidden; border: none; border-radius: 8px;"></iframe>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-name">Daily <span>Spark</span></div>
+        <div class="logo-tag">Where Knowledge Sparks Success</div>
+        <div class="footer-desc">India's trusted knowledge platform — Education, Jobs, Career guidance and everything that matters, all in one place.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Sections</h4>
+        <a href="#">National</a>
+        <a href="#">International</a>
+        <a href="#">Sports</a>
+        <a href="#">Entertainment</a>
+        <a href="#">Science</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Education Hub</a>
+        <a href="#">Job Board</a>
+        <a href="#">e-Paper</a>
+        <a href="#">Podcast</a>
+        <a href="#">Live TV</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Advertise</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Daily Spark. All rights reserved.</span>
+      <span>Made with ❤️ for India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== TRANSLATIONS =====
+const T = {
+  hi: {
+    // topbar
+    notif: '🔔 <strong>Trending News at Your Fingertips</strong> — रोज़ की ताज़ा खबरें पाएं',
+    ticker: 'PM addresses National Conference &nbsp;|&nbsp; Stock Market surges — Sensex climbs 500 points &nbsp;|&nbsp; IPL Final preparations begin &nbsp;|&nbsp; Monsoon to arrive soon &nbsp;|&nbsp; Delhi temperature crosses 42°C',
+    epaper: 'e-पेपर', livetv: 'लाइव TV', podcast: 'पॉडकास्ट',
+    // navbar
+    home: 'होम', national: 'राष्ट्रीय', intl: 'अंतर्राष्ट्रीय', sports: 'खेल',
+    ent: 'मनोरंजन', edu: 'शिक्षा', jobs: 'नौकरी', science: 'विज्ञान',
+    searchph: 'खबर खोजें...',
+    // hero
+    heroEyebrow: '🔴 Live Update &nbsp; राष्ट्रीय',
+    heroTitle: 'संसद के मानसून सत्र में बड़े विधेयक पारित होने की उम्मीद — सरकार ने तैयारी तेज़ की',
+    heroMeta1: '✍️ विशेष संवाददाता', heroMeta2: '🕐 2 घंटे पहले', heroMeta3: '👁️ 12 लाख पाठक',
+    // sidebar cards
+    hs1cat: 'शिक्षा', hs1title: 'JoSAA और JAC दिल्ली काउंसलिंग शेड्यूल — B.Tech 2025', hs1time: '⏱ 3 घंटे पहले',
+    hs2cat: 'शिक्षा', hs2title: 'JAC दिल्ली कट-ऑफ रैंक — B.Tech शाखावार विश्लेषण', hs2time: '⏱ 3 घंटे पहले',
+    hs3cat: 'नौकरी', hs3title: 'सरकारी नौकरियां — नवीनतम रिक्तियां और परीक्षा तिथियां', hs3time: '⏱ 5 घंटे पहले',
+    // cat strip
+    catHead: 'विषय खोजें',
+    cat1n: 'पौधे', cat1s: 'घर में लाएं सकारात्मक ऊर्जा',
+    cat2n: 'खाना', cat2s: 'रोज़ नई रेसिपी, रोज़ नया स्वाद',
+    cat3n: 'खेल', cat3s: '310 खबरें',
+    cat4n: 'मनोरंजन', cat4s: '189 खबरें',
+    cat5n: 'विज्ञान', cat5s: '98 खबरें',
+    cat6n: 'सोने का भाव', cat6s: 'लाइव बाज़ार अपडेट',
+    // news section
+    sectionHead: 'ताज़ा खबरें', sectionTag: 'नवीनतम',
+    n1cat: 'राजनीति', n1title: 'पाँच राज्यों में चुनाव की तारीखों का हुआ ऐलान', n1desc: 'चुनाव आयोग ने पाँच प्रमुख राज्यों में विधानसभा चुनाव की तिथियों की घोषणा की। तैयारियाँ शुरू हो गई हैं।', n1author: 'राजेश शर्मा', n1read: 'पढ़ें →',
+    n2cat: 'मौसम', n2title: 'मानसून जल्द दस्तक देगा — केरल तट पर पहुँचा', n2desc: 'मौसम विभाग के अनुसार दक्षिण-पश्चिम मानसून अगले 48 घंटों में केरल तट पर दस्तक दे सकता है।', n2author: 'प्रिया वर्मा', n2read: 'पढ़ें →',
+    n3cat: 'स्वास्थ्य', n3title: 'नई स्वास्थ्य नीति — सरकारी अस्पतालों में मुफ़्त दवाएं', n3desc: 'केंद्र सरकार ने नई राष्ट्रीय स्वास्थ्य नीति लागू की जिसमें सरकारी अस्पतालों में 300 दवाएं निशुल्क दी जाएंगी।', n3author: 'अनीता जोशी', n3read: 'पढ़ें →',
+    // sidebar
+    swTrending: 'Trending Now', tr1: 'सेंसेक्स 500 अंक उछला, निवेशकों में उत्साह', tr1cat: 'बाज़ार',
+    tr2: 'IPL 2025 फाइनल टिकट बिक्री शुरू', tr2cat: 'खेल',
+    tr3: 'JoSAA Round 1 सीट आवंटन कल', tr3cat: 'शिक्षा',
+    tr4: 'दिल्ली में तापमान 42°C पार', tr4cat: 'मौसम',
+    weatherCity: '📍 नई दिल्ली', weatherDesc: '☀️ धूप — गर्म और उमस भरा दिन',
+    weatherH: '💧 आर्द्रता: 38%', weatherW: '💨 हवा: 14 km/h',
+    swNewsletter: 'Daily Newsletter',
+    nlDesc: 'रोज़ सुबह ताज़ा खबरें सीधे आपके inbox में पाएं।',
+    nlPh: 'आपका email address', nlBtn: 'Subscribe करें →',
+    // footer
+    footerDesc: 'India's trusted knowledge platform — Education, Jobs, Career guidance and everything that matters, all in one place.',
+    fh1: 'Sections', fl1: 'राष्ट्रीय', fl2: 'अंतर्राष्ट्रीय', fl3: 'खेल', fl4: 'मनोरंजन', fl5: 'विज्ञान',
+    fh2: 'सेवाएं', fh3: 'कंपनी',
+    fa1: 'हमारे बारे में', fa2: 'संपर्क', fa3: 'विज्ञापन', fa4: 'गोपनीयता नीति', fa5: 'उपयोग की शर्तें',
+    footerCopy: '© 2025 Daily Spark. सर्वाधिकार सुरक्षित।', footerMade: 'भारत के लिए ❤️ के साथ बनाया',
+    adText: '📢 विज्ञापन स्थान',
+  },
+  en: {
+    notif: '🔔 <strong>Trending News at Your Fingertips</strong> — Get the latest updates daily',
+    ticker: 'PM addresses National Conference &nbsp;|&nbsp; Stock Market surges — Sensex climbs 500 points &nbsp;|&nbsp; IPL Final preparations begin &nbsp;|&nbsp; Monsoon to arrive soon',
+    epaper: 'e-Paper', livetv: 'Live TV', podcast: 'Podcast',
+    home: 'Home', national: 'National', intl: 'International', sports: 'Sports',
+    ent: 'Entertainment', edu: 'Education', jobs: 'Jobs', science: 'Science',
+    searchph: 'Search news...',
+    heroEyebrow: '🔴 Live Update &nbsp; National',
+    heroTitle: 'Major bills expected to pass in Parliament\'s Monsoon Session — Government accelerates preparations',
+    heroMeta1: '✍️ Special Correspondent', heroMeta2: '🕐 2 hours ago', heroMeta3: '👁️ 1.2M readers',
+    hs1cat: 'Education', hs1title: 'JoSAA & JAC Delhi Counselling Schedule — B.Tech 2025', hs1time: '⏱ 3 hours ago',
+    hs2cat: 'Education', hs2title: 'JAC Delhi Cut-off Ranks — B.Tech Branch-wise Analysis', hs2time: '⏱ 3 hours ago',
+    hs3cat: 'Jobs', hs3title: 'Government Jobs — Latest Vacancies & Exam Dates', hs3time: '⏱ 5 hours ago',
+    catHead: 'Explore Topics',
+    cat1n: 'Plants', cat1s: 'Bring positivity home',
+    cat2n: 'Cooking', cat2s: 'New recipe every day',
+    cat3n: 'Sports', cat3s: '310 stories',
+    cat4n: 'Entertainment', cat4s: '189 stories',
+    cat5n: 'Science', cat5s: '98 stories',
+    cat6n: 'Gold Rate', cat6s: 'Live market updates',
+    sectionHead: 'Latest News', sectionTag: 'Fresh',
+    n1cat: 'Politics', n1title: 'Election dates announced for five states', n1desc: 'The Election Commission announced assembly election dates for five major states. Preparations have begun across the country.', n1author: 'Rajesh Sharma', n1read: 'Read →',
+    n2cat: 'Weather', n2title: 'Monsoon to arrive soon — reached Kerala coast', n2desc: 'According to the Meteorological Department, the southwest monsoon may reach Kerala\'s coast within the next 48 hours.', n2author: 'Priya Verma', n2read: 'Read →',
+    n3cat: 'Health', n3title: 'Do not ignore changes in voice', n3desc: 'These could be serious signs related to brain, lungs and mental health.', n3author: 'Health Desk', n3read: 'Read →',
+    swTrending: 'Trending Now', tr1: 'Sensex jumps 500 points, investors excited', tr1cat: 'Market',
+    tr2: 'IPL 2025 Final ticket sales begin', tr2cat: 'Sports',
+    tr3: 'JoSAA Round 1 seat allotment tomorrow', tr3cat: 'Education',
+    tr4: 'Delhi temperature crosses 42°C', tr4cat: 'Weather',
+    weatherCity: '📍 New Delhi', weatherDesc: '☀️ Sunny — Hot and humid day',
+    weatherH: '💧 Humidity: 38%', weatherW: '💨 Wind: 14 km/h',
+    swNewsletter: 'Daily Newsletter',
+    nlDesc: 'Get fresh news in your inbox every morning.',
+    nlPh: 'Your email address', nlBtn: 'Subscribe →',
+    footerDesc: 'India\'s trusted news platform — Education, Jobs, Politics and everything that matters, all in one place.',
+    fh1: 'Sections', fl1: 'National', fl2: 'International', fl3: 'Sports', fl4: 'Entertainment', fl5: 'Science',
+    fh2: 'Services', fh3: 'Company',
+    fa1: 'About Us', fa2: 'Contact', fa3: 'Advertise', fa4: 'Privacy Policy', fa5: 'Terms of Use',
+    footerCopy: '© 2025 Daily Spark. All rights reserved.', footerMade: 'Made with ❤️ for India',
+    adText: '📢 Advertisement Space',
+  }
+};
+
+let currentLang = 'en';
+
+function applyLang(lang) {
+  const t = T[lang];
+  // html lang
+  document.documentElement.lang = lang;
+
+  // Notif
+  const notifSpan = document.querySelector('#notif a span');
+  if (notifSpan) notifSpan.innerHTML = t.notif;
+
+  // Ticker
+  const ticker = document.querySelector('.ticker');
+  if (ticker) ticker.innerHTML = t.ticker;
+
+  // Topbar links
+  const tbLinks = document.querySelectorAll('.topbar-links a');
+  if (tbLinks[0]) tbLinks[0].textContent = t.epaper;
+  if (tbLinks[1]) tbLinks[1].textContent = t.livetv;
+  if (tbLinks[2]) tbLinks[2].textContent = t.podcast;
+
+  // Lang button label
+  document.getElementById('currentLangLabel').textContent = lang === 'hi' ? 'हिं' : 'EN';
+
+  // Navbar links
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navKeys = ['home','national','intl','sports','ent','edu','jobs','science'];
+  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
+
+  // Search placeholder
+  const searchInput = document.querySelector('.nav-search input');
+  if (searchInput) searchInput.placeholder = t.searchph;
+
+  // Hero
+  const heroEye = document.querySelector('.hero-eyebrow');
+  if (heroEye) heroEye.innerHTML = t.heroEyebrow;
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) heroTitle.textContent = t.heroTitle;
+  const heroMeta = document.querySelectorAll('.hero-meta span');
+  if (heroMeta[0]) heroMeta[0].textContent = t.heroMeta1;
+  if (heroMeta[1]) heroMeta[1].textContent = t.heroMeta2;
+  if (heroMeta[2]) heroMeta[2].textContent = t.heroMeta3;
+
+  // Hero sidebar cards
+  const hsCats = document.querySelectorAll('.hs-cat');
+  const hsTitles = document.querySelectorAll('.hs-title');
+  const hsTimes = document.querySelectorAll('.hs-time');
+  ['hs1','hs2','hs3'].forEach((k, i) => {
+    if (hsCats[i]) hsCats[i].textContent = t[k+'cat'];
+    if (hsTitles[i]) hsTitles[i].textContent = t[k+'title'];
+    if (hsTimes[i]) hsTimes[i].textContent = t[k+'time'];
+  });
+
+  // Category strip head
+  const catHead = document.querySelector('.cat-strip-head h3');
+  if (catHead) catHead.textContent = t.catHead;
+
+  // Category items
+  const catLabels = document.querySelectorAll('.cat-label');
+  const catSubs = document.querySelectorAll('.cat-sub');
+  ['cat1','cat2','cat3','cat4','cat5','cat6'].forEach((k, i) => {
+    if (catLabels[i]) catLabels[i].textContent = t[k+'n'];
+    if (catSubs[i]) catSubs[i].textContent = t[k+'s'];
+  });
+
+  // News section head
+  const secHead = document.querySelector('.sec-head h2');
+  if (secHead) secHead.textContent = t.sectionHead;
+  const secTag = document.querySelector('.sec-head-tag');
+  if (secTag) secTag.textContent = t.sectionTag;
+
+  // News cards
+  const ncCats = document.querySelectorAll('.nc-cat');
+  const ncTitles = document.querySelectorAll('.nc-title');
+  const ncDescs = document.querySelectorAll('.nc-desc');
+  const ncAuthors = document.querySelectorAll('.nc-author');
+  const ncReads = document.querySelectorAll('.nc-read');
+  ['n1','n2','n3'].forEach((k, i) => {
+    if (ncCats[i]) ncCats[i].textContent = t[k+'cat'];
+    if (ncTitles[i]) ncTitles[i].textContent = t[k+'title'];
+    if (ncDescs[i]) ncDescs[i].textContent = t[k+'desc'];
+    if (ncAuthors[i]) {
+      const dot = ncAuthors[i].querySelector('.author-dot');
+      const dotChar = dot ? dot.textContent : '';
+      ncAuthors[i].innerHTML = `<div class="author-dot">${dotChar}</div> ${t[k+'author']}`;
+    }
+    if (ncReads[i]) ncReads[i].textContent = t[k+'read'];
+  });
+
+  // Ad strip
+  const adStrip = document.querySelector('.ad-strip');
+  if (adStrip) adStrip.textContent = t.adText;
+
+  // Sidebar trending
+  const swHeads = document.querySelectorAll('.sw-head');
+  if (swHeads[0]) swHeads[0].textContent = t.swTrending;
+
+  const trTexts = document.querySelectorAll('.trending-text');
+  const trCats = document.querySelectorAll('.trending-cat');
+  ['tr1','tr2','tr3','tr4'].forEach((k, i) => {
+    if (trTexts[i]) trTexts[i].textContent = t[k];
+    if (trCats[i]) trCats[i].textContent = t[k+'cat'];
+  });
+
+  // Weather
+  const wCity = document.querySelector('.weather-city');
+  if (wCity) wCity.textContent = t.weatherCity;
+  const wDesc = document.querySelector('.weather-desc');
+  if (wDesc) wDesc.textContent = t.weatherDesc;
+  const wRow = document.querySelectorAll('.weather-row span');
+  if (wRow[0]) wRow[0].textContent = t.weatherH;
+  if (wRow[1]) wRow[1].textContent = t.weatherW;
+
+  // Newsletter widget
+  if (swHeads[1]) swHeads[1].textContent = t.swNewsletter;
+  const nlDesc = document.querySelector('.sw-body p');
+  if (nlDesc) nlDesc.textContent = t.nlDesc;
+  const nlInput = document.querySelector('.sw-body input[type="email"]');
+  if (nlInput) nlInput.placeholder = t.nlPh;
+  const nlBtn = document.querySelector('.sw-body button');
+  if (nlBtn) nlBtn.textContent = t.nlBtn;
+
+  // Footer
+  const footerDesc = document.querySelector('.footer-desc');
+  if (footerDesc) footerDesc.textContent = t.footerDesc;
+
+  const fColHeads = document.querySelectorAll('.footer-col h4');
+  if (fColHeads[0]) fColHeads[0].textContent = t.fh1;
+  if (fColHeads[1]) fColHeads[1].textContent = t.fh2;
+  if (fColHeads[2]) fColHeads[2].textContent = t.fh3;
+
+  const fCol1Links = document.querySelectorAll('.footer-col:nth-child(2) a');
+  ['fl1','fl2','fl3','fl4','fl5'].forEach((k,i) => { if(fCol1Links[i]) fCol1Links[i].textContent = t[k]; });
+
+  const fCol3Links = document.querySelectorAll('.footer-col:nth-child(4) a');
+  ['fa1','fa2','fa3','fa4','fa5'].forEach((k,i) => { if(fCol3Links[i]) fCol3Links[i].textContent = t[k]; });
+
+  const footerBottom = document.querySelectorAll('.footer-bottom span');
+  if (footerBottom[0]) footerBottom[0].textContent = t.footerCopy;
+  if (footerBottom[1]) footerBottom[1].textContent = t.footerMade;
+
+  // Active state in dropdown
+  document.getElementById('opt-hi').classList.toggle('active', lang === 'hi');
+  document.getElementById('opt-en').classList.toggle('active', lang === 'en');
+}
+
+
+
+function setLang(lang) {
+    /* lang saved in memory */ currentLang = lang;
+
+    applyLang(lang);
+
+    document.getElementById("langSwitcher").classList.remove("open");
+}
+
+function toggleLangMenu() {
+  document.getElementById('langSwitcher').classList.toggle('open');
+}
+function closeLangMenu() {
+  document.getElementById('langSwitcher').classList.remove('open');
+}
+
+// Close on outside click
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('langSwitcher').contains(e.target)) closeLangMenu();
+});
+
+// Live date
+function setEnglishDate() {
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const d = new Date();
+  const el = document.getElementById('topbar-date');
+  if (el) el.textContent = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    const savedLang = currentLang || "en";
+    applyLang(savedLang);
+});
+
+// Animate poll bars (legacy)
+window.addEventListener('load', () => {
+  document.querySelectorAll('.poll-bar-fill').forEach(bar => {
+    const w = bar.style.width;
+    bar.style.width = '0';
+    setTimeout(() => { bar.style.width = w; }, 100);
+  });
+});
+
+</body>
+</html>

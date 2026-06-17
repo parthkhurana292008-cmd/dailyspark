@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आवाज में बदलाव: सेहत के गंभीर संकेत - Daily Spark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --crimson: #B91C1C;
+            --crimson-dark: #7F1D1D;
+            --crimson-light: #FEF2F2;
+            --navy: #0F172A;
+            --slate: #334155;
+            --muted: #64748B;
+            --border: #E2E8F0;
+            --surface: #FFFFFF;
+            --bg: #F8FAFC;
+            --accent-line: #F59E0B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* बैकग्राउंड फिक्स करने के लिए */
+body {
+    margin: 0;
+    padding: 0;
+    /* यह बैकग्राउंड को फिक्स्ड रखेगा */
+    background-color: #F8FAFC;
+    background-image: url('h1.jpg'); /* यदि कोई इमेज है */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.75;
+}
+/* टेक्स्ट एनीमेशन के लिए */
+/* टेक्स्ट एनीमेशन के लिए CSS */
+@keyframes moveUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+        /* ─── MASTHEAD ──────────────────────────────── */
+        .masthead {
+            background: var(--navy);
+            border-bottom: 3px solid var(--crimson);
+        }
+        .masthead-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            height: 64px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .brand-icon {
+            width: 36px; height: 36px;
+            background: var(--crimson);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+        .brand-name span { color: var(--accent-line); }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            background: var(--crimson);
+            color: #fff !important;
+            padding: 6px 16px;
+            border-radius: 4px;
+        }
+        .nav-cta:hover { background: #991B1B; }
+
+        /* ─── LAYOUT ──────────────────────────────── */
+       .page-wrap{
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+        @media (max-width: 900px) {
+            .page-wrap { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+
+        /* ─── ARTICLE ──────────────────────────────── */
+        .article-card{
+    width:100%;
+    max-width:1100px;
+    margin:40px auto;
+    border-radius:16px;
+
+}
+
+.article-hero{
+    position: relative;
+    overflow: hidden;
+}
+
+.article-body{
+    padding: 50px 60px;
+}
+
+.article-hero img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    display: block;
+}
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15,23,42,0.7) 0%, transparent 55%);
+        }
+        .hero-category {
+            position: absolute;
+            top: 20px; left: 24px;
+            background: var(--crimson);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 3px;
+        }
+
+       
+        @media (max-width: 600px) {
+            .article-body { padding: 24px 20px; }
+            .article-hero img{
+height:auto;
+max-height:300px;
+}
+        }
+
+        .article-title {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            line-height: 1.45;
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--muted);
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+
+        .lead-text {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--slate);
+            border-left: 4px solid var(--crimson);
+            padding-left: 18px;
+            margin-bottom: 35px;
+            font-family: 'Noto Serif Devanagari', serif;
+            line-height: 1.7;
+        }
+
+        .article-body p {
+            color: var(--slate);
+            margin-bottom: 20px;
+            font-size: 15.5px;
+        }
+
+        /* ─── SECTION HEADINGS ──────────────────────────────── */
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 50px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+        .section-heading .icon-badge {
+            width: 34px; height: 34px;
+            background: var(--crimson-light);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ─── SYMPTOM LIST ──────────────────────────────── */
+        .symptom-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .symptom-list li {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 15px;
+            color: var(--slate);
+            position: relative;
+            padding-left: 18px;
+            border-left: 3px solid var(--crimson);
+        }
+        .symptom-list li strong {
+            color: var(--navy);
+            display: block;
+            margin-bottom: 2px;
+            font-size: 14px;
+        }
+
+        /* ─── TABLE ──────────────────────────────── */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 28px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14.5px;
+        }
+        .data-table thead tr {
+            background: var(--navy);
+            color: #fff;
+        }
+        .data-table th {
+            padding: 13px 18px;
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: 0.2px;
+        }
+        .data-table td {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            color: var(--slate);
+            vertical-align: top;
+        }
+        .data-table tbody tr:last-child td { border-bottom: none; }
+        .data-table tbody tr:nth-child(even) { background: #F8FAFC; }
+        .voice-tag {
+            display: inline-block;
+            background: var(--crimson-light);
+            color: var(--crimson);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ─── ALERT BOX ──────────────────────────────── */
+        .alert-box {
+            background: var(--crimson-light);
+            border: 1px solid #FECACA;
+            border-left: 5px solid var(--crimson);
+            border-radius: 8px;
+            padding: 28px 28px 24px;
+            margin: 32px 0 0;
+        }
+        .alert-box .alert-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--crimson-dark);
+            margin-bottom: 12px;
+        }
+        .alert-box .alert-note {
+            font-size: 14px;
+            color: #7F1D1D;
+            margin-bottom: 16px;
+            line-height: 1.65;
+        }
+        .alert-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .alert-list li {
+            font-size: 14.5px;
+            color: #991B1B;
+            padding-left: 24px;
+            position: relative;
+        }
+        .alert-list li::before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 13px;
+        }
+        .alert-list li strong { color: var(--crimson-dark); }
+
+
+        .widget {
+            background: var(--surface);
+            border-radius: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 14px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        .widget-header {
+            padding: 14px 20px;
+            background: var(--navy);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .widget-body { padding: 20px; }
+
+        .tips-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .tips-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .tips-list li:last-child { border-bottom: none; padding-bottom: 0; }
+        .tips-list li strong {
+            display: block;
+            color: var(--navy);
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        /* AI Insight Widget */
+        .ai-card {
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+            border-radius: 10px;
+            padding: 22px 20px;
+            color: #fff;
+        }
+        .ai-card .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245,158,11,0.2);
+            border: 1px solid rgba(245,158,11,0.4);
+            color: var(--accent-line);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .ai-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.45;
+        }
+        .ai-card p {
+            font-size: 13.5px;
+            color: #94A3B8;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .ai-card .ai-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .ai-stat .num {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-line);
+            line-height: 1;
+        }
+        .ai-stat .label {
+            font-size: 12px;
+            color: #CBD5E1;
+        }
+
+
+main{
+    width:100%;
+}
+
+/* ─── SIDEBAR ──────────────────────────────── */
+
+.sidebar{
+    width:100%;
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.sidebar .widget,
+.sidebar .ai-card{
+    flex:1 1 350px;
+}
+
+@media (max-width:768px){
+
+.page-wrap{
+    margin:20px auto;
+    padding:0 15px;
+}
+
+.article-body{
+    padding:25px 18px;
+}
+
+}
+
+
+@keyframes flash {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-5px);
+        opacity: 0.85;
+    }
+}
+    </style>
+</head>
+<body>
+
+<!-- Page Layout -->
+<div class="page-wrap">
+
+    <!-- Main Article -->
+    <main>
+        
+
+            <div class="article-body">
+                <h1 class="article-title" style="text-align:center";>आवाज में बदलाव को न करें नजरअंदाज: </h1>
+		<h1 style="text-align:center";>यह हो सकते हैं ब्रेन, लंग्स और मेंटल हेल्थ से जुड़े गंभीर संकेत</h1>
+<article class="article-card">
+            <div class="article-hero">
+                <img src="health.png" alt="Voice Health Care">
+                <div class="hero-overlay"></div>
+                <span class="hero-category">Health & Wellness</span>
+            </div>
+                <p class="lead-text">
+ हमारी आवाज सिर्फ बात करने का माध्यम नहीं है — यह हमारी सेहत का एक आईना भी है। हेल्थ एक्सपर्ट्स के मुताबिक, आवाज में आने वाले अचानक या लंबे समय तक रहने वाले बदलाव शरीर के अंदर पनप रही किसी बड़ी बीमारी का शुरुआती संकेत हो सकते हैं।
+                </p>
+
+                <p>आवाज में बदलाव को अक्सर लोग केवल सामान्य गला खराब होना या थकान समझकर नजरअंदाज कर देते हैं, लेकिन यह शरीर के अंदर चल रही कुछ गंभीर समस्याओं का शुरुआती संकेत हो सकता है। यदि आपकी आवाज में कोई बदलाव <strong>दो हफ्ते से ज्यादा</strong> बना रहता है, तो इसे बिल्कुल भी हल्के में न लें।</p>
+
+                <p>आज के समय में वॉयस एनालिसिस और AI तकनीकों की मदद से आवाज के पैटर्न को देखकर बीमारियों का पहले ही अंदाजा लगाया जा सकता है। चिकित्सा जगत अब आवाज के सूक्ष्म बदलावों को भी गंभीरता से ले रहा है।</p>
+
+                <!-- Section 1 -->
+                <div class="section-heading">
+                    <div class="icon-badge">🧠</div>
+                    <span>1. मानसिक स्वास्थ्य और आवाज का कनेक्शन</span>
+                </div>
+
+                <p>हमारी मानसिक स्थिति का असर सीधे हमारी बोलने की शैली पर पड़ता है। जब हम मानसिक तनाव, अवसाद या किसी न्यूरोलॉजिकल स्थिति से गुजरते हैं, तो हमारा ऑटोनोमिक नर्वस सिस्टम (ANS) प्रभावित होता है — जिससे आवाज के लहजे, पिच और गति में बदलाव आता है।</p>
+
+                <ul class="symptom-list">
+                    <li>
+                        <strong>डिप्रेशन (Depression)</strong>
+                        अवसाद के दौरान आवाज काफी धीमी, सपाट (Flat) और बिना किसी ऊर्जा वाली हो जाती है। इसे 'साइकोमोटर रिटार्डेशन' कहते हैं।
+                    </li>
+                    <li>
+                        <strong>एंग्जाइटी (Anxiety)</strong>
+                        घबराहट के दौरान गले की मांसपेशियां सिकुड़ती हैं, जिससे आवाज कांपती (Tremulous) हुई और ऊंची पिच वाली हो जाती है।
+                    </li>
+                    <li>
+                        <strong>क्रॉनिक स्ट्रेस (Chronic Stress)</strong>
+                        लंबे तनाव से सांस का पैटर्न बदलता है — व्यक्ति जल्दी-जल्दी बोलने लगता है और शब्दों की स्पष्टता घटती है।
+                    </li>
+                    <li>
+                        <strong>स्किजोफ्रेनिया (Schizophrenia)</strong>
+                        आवाज में 'फ्लैट अफेक्ट' — कोई भावनात्मक उतार-चढ़ाव नहीं, न खुशी, न दुःख। यह सामाजिक दूरी का संकेत हो सकता है।
+                    </li>
+                    <li>
+                        <strong>स्ट्रोक (Stroke)</strong>
+                        बोलने की मांसपेशियाँ कमजोर होने से आवाज लड़खड़ाती है।
+                    </li>
+                </ul>
+
+                <!-- Section 2 -->
+                <div class="section-heading">
+                    <div class="icon-badge">⚡</div>
+                    <span>2. न्यूरोलॉजिकल बीमारियां (Brain & Nervous System)</span>
+                </div>
+
+                <p>मस्तिष्क और नसों का हमारी बोलने वाली मांसपेशियों पर सीधा नियंत्रण होता है। इनमें गड़बड़ी होने पर निम्नलिखित लक्षण दिखते हैं:</p>
+
+                <ul class="symptom-list">
+                    <li>
+                        <strong>पार्किंसन डिजीज (Parkinson's)</strong>
+                        आवाज धीमी, मोनोटोन और कम वॉल्यूम वाली हो जाती है। इसे 'हाइपोफोनिया' (Hypophonia) कहते हैं।
+                    </li>
+                    <li>
+                        <strong>अल्जाइमर्स / डिमेंशिया</strong>
+                        बोलने की स्पीड काफी धीमी होती है, व्यक्ति सही शब्द खोजने के लिए बार-बार रुकता है।
+                    </li>
+                    <li>
+                        <strong>मल्टीपल स्क्लेरोसिस (MS)</strong>
+                        शब्दों का उच्चारण रुक-रुक कर और अलग-अलग लय में होता है — इसे 'स्कैन्ड स्पीच' कहते हैं।
+                    </li>
+                </ul>
+
+                <!-- Section 3 -->
+                <div class="section-heading">
+                    <div class="icon-badge">🌬️</div>
+                    <span>3. फेफड़े और वोकल कॉर्ड्स की कमजोरी</span>
+                </div>
+
+                <p>बढ़ती उम्र या आंतरिक बीमारियों के कारण जब फेफड़ों की क्षमता घटती है, तो आवाज में ताकत कम हो जाती है। लंबे समय तक बोलने पर थकावट, हल्का कंपन, और पहले से बहुत धीमी आवाज — ये फेफड़ों और वोकल कॉर्ड्स की कमजोरी के संकेत हो सकते हैं।</p>
+
+                <!-- Table -->
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>आवाज का प्रकार</th>
+                                <th>संभावित कारण / संकेत</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="voice-tag">होर्सनेस</span></td>
+                                <td>गला बैठना, इन्फेक्शन या थायराइड की समस्या</td>
+                            </tr>
+                            <tr>
+                                <td><span class="voice-tag">कमजोर / धीमी आवाज</span></td>
+                                <td>फेफड़ों की कमजोरी, पार्किंसन या डिप्रेशन</td>
+                            </tr>
+                            <tr>
+                                <td><span class="voice-tag">मोनोटोन (सपाट)</span></td>
+                                <td>अल्जाइमर्स, स्किजोफ्रेनिया या गंभीर तनाव</td>
+                            </tr>
+                            <tr>
+                                <td><span class="voice-tag">कांपती हुई आवाज</span></td>
+                                <td>एंग्जाइटी, घबराहट या न्यूरोलॉजिकल डिसऑर्डर</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Alert Box -->
+                <div class="alert-box">
+                    <div class="alert-title">
+                        🚨 रेड फ्लैग्स: ये लक्षण दिखें तो तुरंत डॉक्टर से मिलें
+                    </div>
+                    <p class="alert-note">
+                        <strong>महत्वपूर्ण:</strong> यदि आवाज में बदलाव <strong>2 से 3 हफ्ते</strong> से अधिक बना रहे, या बोलने, निगलने और सांस लेने में परेशानी हो, तो तुरंत ENT Specialist से संपर्क करें।
+                    </p>
+                    <ul class="alert-list">
+                        <li><strong>लगातार होर्सनेस:</strong> आवाज का भारीपन या खुरदरापन लंबे समय तक ठीक न होना।</li>
+                        <li><strong>बोलने की स्पीड में अचानक बदलाव:</strong> कभी बहुत तेज, कभी बहुत धीमा।</li>
+                        <li><strong>गले में तकलीफ:</strong> बोलते या निगलते समय दर्द।</li>
+                        <li><strong>सांस की समस्या:</strong> बोलने के दौरान सांस लेने में कठिनाई।</li>
+                        <li><strong>बोली का लड़खड़ाना (Slurred Speech):</strong> अचानक शब्दों का साफ न निकलना।</li>
+                        <li><strong>न्यूरोलॉजिस्ट:</strong> यदि समस्या मस्तिष्क से जुड़ी महसूस हो तो न्यूरोलॉजिकल जांच आवश्यक है।</li>
+                        <li><strong>मनोचिकित्सक (Psychiatrist):</strong> आवाज में बदलाव के साथ मानसिक तनाव के लक्षण हों तो मानसिक स्वास्थ्य विशेषज्ञ की सलाह लें।</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <!-- AI Insight Card -->
+        <div class="ai-card">
+            <div class="ai-badge">🤖 AI Insight</div>
+            <h3>Voice Analysis से बीमारी की पहचान</h3>
+            <p>AI-powered voice analysis अब न्यूरोलॉजिकल और मानसिक विकारों का शुरुआती पता लगाने में सक्षम है।</p>
+            <div class="ai-stat">
+                <span class="num">85%</span>
+                <span class="label">सटीकता के साथ पार्किंसन की पहचान</span>
+            </div>
+            <div class="ai-stat">
+                <span class="num">2 हफ्ते</span>
+                <span class="label">से अधिक बदलाव पर डॉक्टर से मिलें</span>
+            </div>
+        </div>
+
+        <!-- Tips Widget -->
+        <div class="widget">
+            <div class="widget-header">💡 वोकल हेल्थ टिप्स</div>
+            <div class="widget-body">
+                <ul class="tips-list">
+                    <li>
+                        <strong>भरपूर पानी पीएं</strong>
+                        वोकल कॉर्ड्स में नमी बनाए रखने के लिए दिनभर गुनगुना पानी पीते रहें।
+                    </li>
+                    <li>
+                        <strong>धूम्रपान से पूर्ण परहेज</strong>
+                        स्मोकिंग वोकल कॉर्ड्स के टिश्यूज को सीधे नुकसान पहुंचाती है।
+                    </li>
+                    <li>
+                        <strong>गले को आराम दें</strong>
+                        लगातार चिल्लाने या बिना रुके बोलने से बचें।
+                    </li>
+                </ul>
+            </div>
+       
+</aside>
+ </div>
+        </body>
+</html>
+
+

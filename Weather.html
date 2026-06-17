@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>India Weather Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gb:rgba(255,255,255,0.07);
+  --gbord:rgba(255,255,255,0.12);
+  --gh:rgba(255,255,255,0.11);
+  --tp:#fff;
+  --ts:rgba(255,255,255,0.6);
+  --tm:rgba(255,255,255,0.38);
+  --acc:#60A5FA;
+  --r:14px;
+}
+html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;color:var(--tp);overflow-x:hidden}
+
+/* BG */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4;animation:drift 22s ease-in-out infinite}
+.orb.a{width:700px;height:700px;top:-150px;left:-150px;background:radial-gradient(circle,#1e3a8a,transparent);animation-delay:0s}
+.orb.b{width:500px;height:500px;top:40%;right:-100px;background:radial-gradient(circle,#0c4a6e,transparent);animation-delay:-8s}
+.orb.c{width:450px;height:450px;bottom:-100px;left:20%;background:radial-gradient(circle,#3b0764,transparent);animation-delay:-16s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
+.app{position:relative;z-index:1}
+
+/* HEADER */
+.hdr{padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,0.25);backdrop-filter:blur(24px);border-bottom:1px solid var(--gbord);position:sticky;top:0;z-index:200}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#f97316,#ef4444);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700}
+.logo-text span{color:#f97316}
+.hdr-center{flex:1;max-width:360px;margin:0 auto}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--gb);border:1px solid var(--gbord);border-radius:24px;padding:8px 16px;transition:border-color .2s}
+.search-box:focus-within{border-color:rgba(96,165,250,.5)}
+.search-box input{background:transparent;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;flex:1}
+.search-box input::placeholder{color:var(--tm)}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.unit-toggle{display:flex;background:var(--gb);border:1px solid var(--gbord);border-radius:20px;overflow:hidden}
+.ut{padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--tm);font-family:inherit;transition:all .2s;letter-spacing:.3px}
+.ut.active{background:#f97316;color:#fff}
+.refresh-all-btn{display:flex;align-items:center;gap:5px;padding:7px 14px;background:var(--gb);border:1px solid var(--gbord);border-radius:20px;font-size:12px;color:var(--ts);cursor:pointer;font-family:inherit;transition:all .2s}
+.refresh-all-btn:hover{border-color:rgba(249,115,22,.5);color:#f97316}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
+
+/* HERO STATS */
+.india-hero{background:var(--gb);border:1px solid var(--gbord);border-radius:var(--r);padding:20px;margin-bottom:20px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+.india-hero::before{content:'🇮🇳';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.12;pointer-events:none}
+.hero-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.hero-stat{text-align:center;flex:1;min-width:80px}
+.hero-stat .val{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;line-height:1}
+.hero-stat .lbl{font-size:11px;color:var(--ts);text-transform:uppercase;letter-spacing:.07em;margin-top:4px}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
+.hero-sub{font-size:13px;color:var(--ts)}
+.live-dot{display:inline-block;width:7px;height:7px;background:#6EE7B7;border-radius:50%;animation:pulse 2s ease-in-out infinite;margin-right:5px}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+
+/* FILTER TABS */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.ftab{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--gbord);background:var(--gb);color:var(--ts);transition:all .2s;backdrop-filter:blur(10px)}
+.ftab:hover{background:var(--gh);color:#fff}
+.ftab.active{background:#f97316;border-color:#f97316;color:#fff}
+
+/* REGION SECTION */
+.region-sec{margin-bottom:24px}
+.region-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.region-label{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.08em}
+.region-line{flex:1;height:1px;background:linear-gradient(to right,var(--gbord),transparent)}
+.region-count{font-size:11px;color:var(--tm);background:var(--gb);border:1px solid var(--gbord);border-radius:10px;padding:2px 8px}
+
+/* CITY GRID */
+.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+
+/* CITY CARD */
+.city-card{background:var(--gb);border:1px solid var(--gbord);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .25s;backdrop-filter:blur(16px);position:relative;overflow:hidden}
+.city-card:hover{background:var(--gh);border-color:rgba(249,115,22,.35);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.city-card.loading{opacity:.6}
+.city-card.error{border-color:rgba(248,113,113,.25)}
+.city-card.hot{border-color:rgba(239,68,68,.3)}
+.city-card.cold{border-color:rgba(96,165,250,.3)}
+.city-card.rainy{border-color:rgba(110,231,183,.3)}
+
+.cc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.cc-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;line-height:1.2}
+.cc-state{font-size:10px;color:var(--tm);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.cc-icon{font-size:26px;line-height:1}
+.cc-temp{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:300;line-height:1;margin-bottom:2px}
+.cc-temp sup{font-size:14px;vertical-align:super;font-weight:500}
+.cc-cond{font-size:11px;color:var(--ts);margin-bottom:8px}
+.cc-chips{display:flex;gap:5px;flex-wrap:wrap}
+.cc-chip{font-size:10px;color:var(--tm);display:flex;align-items:center;gap:3px}
+.cc-chip i{font-size:11px;color:var(--acc)}
+
+/* SKELETON */
+.skeleton{background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:4px;height:14px;margin-bottom:6px}
+.skeleton.sm{height:10px;width:70%}
+.skeleton.lg{height:28px;width:50%}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* DETAIL MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.show{opacity:1;pointer-events:all}
+.modal{background:#0f172a;border:1px solid var(--gbord);border-radius:20px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .25s}
+.modal-overlay.show .modal{transform:translateY(0)}
+.modal-hdr{padding:18px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:sticky;top:0;background:#0f172a;z-index:10;padding-bottom:14px;border-bottom:1px solid var(--gbord)}
+.modal-close{width:32px;height:32px;border-radius:50%;background:var(--gb);border:1px solid var(--gbord);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ts);transition:all .2s;flex-shrink:0}
+.modal-close:hover{background:var(--gh);color:#fff}
+.modal-body{padding:16px 20px 20px}
+
+/* MODAL SECTIONS */
+.mod-temp-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+.mod-temp{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:300;line-height:1;letter-spacing:-3px}
+.mod-right{text-align:right}
+.mod-cond{font-size:15px;font-weight:600;margin-bottom:4px}
+.mod-hl{font-size:13px;color:var(--ts)}
+.mod-feels{font-size:12px;color:var(--tm);margin-top:3px}
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.mg-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px}
+.mg-lbl{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.mg-lbl i{font-size:13px;color:var(--acc)}
+.mg-val{font-size:18px;font-weight:600;font-family:'Space Grotesk',sans-serif}
+.mg-sub{font-size:10px;color:var(--tm);margin-top:2px}
+
+.mod-hourly{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
+.mod-hourly::-webkit-scrollbar{height:2px}
+.mod-hourly::-webkit-scrollbar-thumb{background:rgba(96,165,250,.3);border-radius:1px}
+.mhc{text-align:center;min-width:54px;padding:8px 6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px}
+.mhc.now{border-color:rgba(96,165,250,.4);background:rgba(96,165,250,.1)}
+.mhc-time{font-size:9px;color:var(--tm);font-weight:600}
+.mhc-icon{font-size:18px;margin:5px 0;display:block;color:rgba(255,255,255,.6)}
+.mhc.now .mhc-icon{color:var(--acc)}
+.mhc-temp{font-size:12px;font-weight:600}
+.mhc-rain{font-size:9px;color:var(--acc);margin-top:2px}
+
+.mod-7day{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.mfr{display:flex;align-items:center;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05);gap:8px;font-size:12px}
+.mfr:last-child{border-bottom:none}
+.mfr-day{font-weight:600;width:44px}
+.mfr-icon{width:20px;text-align:center;color:var(--acc)}
+.mfr-cond{flex:1;color:var(--ts);font-size:11px}
+.mfr-rain{color:var(--acc);font-size:11px;width:28px;text-align:right}
+.mfr-temps{display:flex;gap:8px;width:64px;justify-content:flex-end}
+.mfr-hi{font-weight:600}
+.mfr-lo{color:var(--tm)}
+
+/* TOP STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat-card{background:var(--gb);border:1px solid var(--gbord);border-radius:var(--r);padding:14px;text-align:center;backdrop-filter:blur(16px)}
+.stat-card .sv{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;line-height:1;margin-bottom:3px}
+.stat-card .sl{font-size:10px;color:var(--ts);text-transform:uppercase;letter-spacing:.07em}
+.stat-card .sc{font-size:11px;color:var(--tm);margin-top:2px}
+
+/* SEARCH HIGHLIGHT */
+.city-card.highlighted{border-color:rgba(249,115,22,.6);box-shadow:0 0 0 2px rgba(249,115,22,.15)}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .city-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .hdr-center{order:3;width:100%;max-width:none}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade{animation:fadeUp .4s ease forwards;opacity:0}
+
+/* SORT BAR */
+.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.sort-lbl{font-size:11px;color:var(--tm)}
+.sort-btn{padding:5px 12px;border-radius:14px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid var(--gbord);background:var(--gb);color:var(--ts);transition:all .2s}
+.sort-btn.active{background:rgba(96,165,250,.15);border-color:rgba(96,165,250,.4);color:var(--acc)}
+
+/* LOADING OVERLAY */
+.load-overlay{text-align:center;padding:48px 20px}
+.spin{width:48px;height:48px;border:3px solid rgba(249,115,22,.15);border-top-color:#f97316;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="bg">
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+</div>
+
+<div class="app">
+<!-- HEADER -->
+<header class="hdr">
+  <div class="logo">
+    <div class="logo-icon">🇮🇳</div>
+    <div class="logo-text">India <span>Weather</span></div>
+  </div>
+  <div class="hdr-center">
+    <div class="search-box">
+      <i class="ti ti-search" style="font-size:14px;color:var(--tm)"></i>
+      <input type="text" id="globalSearch" placeholder="City dhundhein... (e.g. Mumbai, Pune)" oninput="filterCities(this.value)"/>
+      <i class="ti ti-x" style="font-size:13px;color:var(--tm);cursor:pointer" onclick="clearGlobalSearch()"></i>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="unit-toggle">
+      <button class="ut active" id="btnC" onclick="setUnit('C')">°C</button>
+      <button class="ut" id="btnF" onclick="setUnit('F')">°F</button>
+    </div>
+    <button class="refresh-all-btn" onclick="refreshAll()">
+      <i class="ti ti-refresh"></i> Refresh
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- Summary stats -->
+  <div class="stats-bar" id="statsBar" style="display:none">
+    <div class="stat-card fade" style="animation-delay:.05s">
+      <div class="sv" id="statHot" style="color:#F87171">—</div>
+      <div class="sl">🔥 Hottest City</div>
+      <div class="sc" id="statHotName">Loading...</div>
+    </div>
+    <div class="stat-card fade" style="animation-delay:.1s">
+      <div class="sv" id="statCold" style="color:#60A5FA">—</div>
+      <div class="sl">❄️ Coldest City</div>
+      <div class="sc" id="statColdName">Loading...</div>
+    </div>
+    <div class="stat-card fade" style="animation-delay:.15s">
+      <div class="sv" id="statRain" style="color:#6EE7B7">—</div>
+      <div class="sl">🌧️ Most Rain Chance</div>
+      <div class="sc" id="statRainName">Loading...</div>
+    </div>
+    <div class="stat-card fade" style="animation-delay:.2s">
+      <div class="sv" id="statLoaded" style="color:#FCD34D">0</div>
+      <div class="sl">✅ Cities Loaded</div>
+      <div class="sc" id="statTotal">of 40</div>
+    </div>
+  </div>
+
+  <!-- Filter + sort -->
+  <div id="controlsBar" style="display:none">
+    <div class="filter-bar" id="filterBar">
+      <button class="ftab active" onclick="filterRegion('all',this)">🌏 All India</button>
+      <button class="ftab" onclick="filterRegion('north',this)">🏔️ North</button>
+      <button class="ftab" onclick="filterRegion('south',this)">🌴 South</button>
+      <button class="ftab" onclick="filterRegion('east',this)">🌊 East</button>
+      <button class="ftab" onclick="filterRegion('west',this)">🏜️ West</button>
+      <button class="ftab" onclick="filterRegion('central',this)">🌾 Central</button>
+      <button class="ftab" onclick="filterRegion('northeast',this)">🍵 Northeast</button>
+    </div>
+    <div class="sort-bar">
+      <span class="sort-lbl">Sort by:</span>
+      <button class="sort-btn active" id="sort-default" onclick="sortCities('default',this)">Default</button>
+      <button class="sort-btn" id="sort-temp-h" onclick="sortCities('temp-h',this)">🌡️ Hottest First</button>
+      <button class="sort-btn" id="sort-temp-l" onclick="sortCities('temp-l',this)">❄️ Coldest First</button>
+      <button class="sort-btn" id="sort-rain" onclick="sortCities('rain',this)">🌧️ Most Rain</button>
+      <button class="sort-btn" id="sort-alpha" onclick="sortCities('alpha',this)">A–Z</button>
+    </div>
+  </div>
+
+  <div id="dashboard">
+    <div class="load-overlay">
+      <div class="spin"></div>
+      <div style="font-size:14px;color:var(--ts);margin-bottom:6px">India ke saare cities ka weather load ho raha hai...</div>
+      <div style="font-size:12px;color:var(--tm)">Open-Meteo API se real-time data fetch ho raha hai</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-hdr">
+      <div>
+        <div id="modalCity" style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700"></div>
+        <div id="modalState" style="font-size:12px;color:var(--ts);margin-top:2px"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalBtn()"><i class="ti ti-x" style="font-size:16px"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== CITY DATABASE (40 cities across all regions) =====
+const CITIES = [
+  // NORTH
+  {name:'New Delhi',state:'Delhi',lat:28.6139,lon:77.2090,region:'north'},
+  {name:'Jaipur',state:'Rajasthan',lat:26.9124,lon:75.7873,region:'north'},
+  {name:'Lucknow',state:'Uttar Pradesh',lat:26.8467,lon:80.9462,region:'north'},
+  {name:'Chandigarh',state:'Punjab/Haryana',lat:30.7333,lon:76.7794,region:'north'},
+  {name:'Amritsar',state:'Punjab',lat:31.6340,lon:74.8723,region:'north'},
+  {name:'Dehradun',state:'Uttarakhand',lat:30.3165,lon:78.0322,region:'north'},
+  {name:'Shimla',state:'Himachal Pradesh',lat:31.1048,lon:77.1734,region:'north'},
+  {name:'Srinagar',state:'J&K',lat:34.0837,lon:74.7973,region:'north'},
+  // SOUTH
+  {name:'Mumbai',state:'Maharashtra',lat:19.0760,lon:72.8777,region:'south'},
+  {name:'Bengaluru',state:'Karnataka',lat:12.9716,lon:77.5946,region:'south'},
+  {name:'Chennai',state:'Tamil Nadu',lat:13.0827,lon:80.2707,region:'south'},
+  {name:'Hyderabad',state:'Telangana',lat:17.3850,lon:78.4867,region:'south'},
+  {name:'Kochi',state:'Kerala',lat:9.9312,lon:76.2673,region:'south'},
+  {name:'Thiruvananthapuram',state:'Kerala',lat:8.5241,lon:76.9366,region:'south'},
+  {name:'Visakhapatnam',state:'Andhra Pradesh',lat:17.6868,lon:83.2185,region:'south'},
+  {name:'Madurai',state:'Tamil Nadu',lat:9.9252,lon:78.1198,region:'south'},
+  // EAST
+  {name:'Kolkata',state:'West Bengal',lat:22.5726,lon:88.3639,region:'east'},
+  {name:'Bhubaneswar',state:'Odisha',lat:20.2961,lon:85.8245,region:'east'},
+  {name:'Patna',state:'Bihar',lat:25.5941,lon:85.1376,region:'east'},
+  {name:'Ranchi',state:'Jharkhand',lat:23.3441,lon:85.3096,region:'east'},
+  {name:'Port Blair',state:'A&N Islands',lat:11.6234,lon:92.7265,region:'east'},
+  // WEST
+  {name:'Ahmedabad',state:'Gujarat',lat:23.0225,lon:72.5714,region:'west'},
+  {name:'Surat',state:'Gujarat',lat:21.1702,lon:72.8311,region:'west'},
+  {name:'Pune',state:'Maharashtra',lat:18.5204,lon:73.8567,region:'west'},
+  {name:'Jodhpur',state:'Rajasthan',lat:26.2389,lon:73.0243,region:'west'},
+  {name:'Goa (Panaji)',state:'Goa',lat:15.4909,lon:73.8278,region:'west'},
+  // CENTRAL
+  {name:'Bhopal',state:'Madhya Pradesh',lat:23.2599,lon:77.4126,region:'central'},
+  {name:'Indore',state:'Madhya Pradesh',lat:22.7196,lon:75.8577,region:'central'},
+  {name:'Nagpur',state:'Maharashtra',lat:21.1458,lon:79.0882,region:'central'},
+  {name:'Raipur',state:'Chhattisgarh',lat:21.2514,lon:81.6296,region:'central'},
+  {name:'Varanasi',state:'Uttar Pradesh',lat:25.3176,lon:82.9739,region:'central'},
+  {name:'Agra',state:'Uttar Pradesh',lat:27.1767,lon:78.0081,region:'central'},
+  // NORTHEAST
+  {name:'Guwahati',state:'Assam',lat:26.1445,lon:91.7362,region:'northeast'},
+  {name:'Shillong',state:'Meghalaya',lat:25.5788,lon:91.8933,region:'northeast'},
+  {name:'Imphal',state:'Manipur',lat:24.8170,lon:93.9368,region:'northeast'},
+  {name:'Aizawl',state:'Mizoram',lat:23.7271,lon:92.7176,region:'northeast'},
+  {name:'Itanagar',state:'Arunachal Pradesh',lat:27.0844,lon:93.6053,region:'northeast'},
+  {name:'Gangtok',state:'Sikkim',lat:27.3314,lon:88.6138,region:'northeast'},
+  {name:'Dimapur',state:'Nagaland',lat:25.9100,lon:93.7200,region:'northeast'},
+  {name:'Agartala',state:'Tripura',lat:23.8315,lon:91.2868,region:'northeast'},
+];
+
+const REGION_LABELS = {
+  north:'North India',south:'South India',east:'East India',
+  west:'West India',central:'Central India',northeast:'Northeast India'
+};
+
+let unit='C', weatherCache={}, currentRegion='all', currentSort='default', searchQuery='';
+let loadedCount=0;
+
+// ===== HELPERS =====
+function T(c){return unit==='C'?Math.round(c)+'°C':Math.round(c*9/5+32)+'°F';}
+function TN(c){return unit==='C'?Math.round(c):Math.round(c*9/5+32);}
+function W(k){return unit==='C'?Math.round(k)+' km/h':Math.round(k*.621)+' mph';}
+function wIcon(code){
+  if(code===0)return'ti-sun';if(code<=2)return'ti-cloud-sun';if(code<=3)return'ti-cloud';
+  if(code<=49)return'ti-cloud-fog';if(code<=59)return'ti-cloud-drizzle';if(code<=69)return'ti-cloud-rain';
+  if(code<=79)return'ti-snowflake';if(code<=82)return'ti-cloud-rain';if(code<=86)return'ti-snowflake';
+  return'ti-cloud-storm';
+}
+function wEmoji(code){
+  if(code===0)return'☀️';if(code<=2)return'⛅';if(code<=3)return'☁️';
+  if(code<=49)return'🌫️';if(code<=59)return'🌦️';if(code<=69)return'🌧️';
+  if(code<=79)return'❄️';if(code<=82)return'🌦️';if(code<=86)return'🌨️';return'⛈️';
+}
+function wDesc(code){
+  if(code===0)return'Clear Sky';if(code<=2)return'Partly Cloudy';if(code<=3)return'Overcast';
+  if(code<=49)return'Foggy';if(code<=59)return'Drizzle';if(code<=69)return'Rain';
+  if(code<=79)return'Snow';if(code<=82)return'Showers';if(code<=86)return'Snow Showers';return'Thunderstorm';
+}
+function windDir(deg){return['N','NE','E','SE','S','SW','W','NW'][Math.round(deg/45)%8];}
+function tempColor(t){
+  if(t>=40)return'#F87171';if(t>=35)return'#FB923C';if(t>=28)return'#FCD34D';
+  if(t>=20)return'#6EE7B7';if(t>=10)return'#60A5FA';return'#A78BFA';
+}
+
+// ===== UNIT TOGGLE =====
+function setUnit(u){
+  unit=u;
+  document.getElementById('btnC').className='ut'+(u==='C'?' active':'');
+  document.getElementById('btnF').className='ut'+(u==='F'?' active':'');
+  renderDashboard();
+}
+
+// ===== FETCH WEATHER FOR ONE CITY =====
+async function fetchCity(city){
+  try{
+    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,relative_humidity_2m,surface_pressure,precipitation&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max&timezone=auto&forecast_days=7&wind_speed_unit=kmh`);
+    const d=await r.json();
+    weatherCache[city.name]={status:'ok',data:d,ts:Date.now()};
+  }catch(e){
+    weatherCache[city.name]={status:'error'};
+  }
+  loadedCount++;
+  document.getElementById('statLoaded').textContent=loadedCount;
+  // Update card in place
+  const el=document.getElementById('card-'+city.name.replace(/\s|\(|\)/g,'_'));
+  if(el) updateCard(el,city);
+}
+
+// ===== LOAD ALL =====
+async function loadAll(){
+  loadedCount=0;
+  document.getElementById('statsBar').style.display='grid';
+  document.getElementById('controlsBar').style.display='block';
+  document.getElementById('statTotal').textContent='of '+CITIES.length;
+  renderDashboard(); // show skeletons
+  // Batch requests: 5 at a time
+  const batch=5;
+  for(let i=0;i<CITIES.length;i+=batch){
+    const slice=CITIES.slice(i,i+batch);
+    await Promise.all(slice.map(c=>fetchCity(c)));
+    updateSummaryStats();
+    if(i===0) renderDashboard(); // re-render after first batch
+  }
+  renderDashboard(); // final render
+}
+
+function refreshAll(){
+  weatherCache={};loadedCount=0;
+  document.getElementById('statLoaded').textContent='0';
+  loadAll();
+}
+
+// ===== SUMMARY STATS =====
+function updateSummaryStats(){
+  const loaded=CITIES.filter(c=>weatherCache[c.name]?.status==='ok');
+  if(!loaded.length)return;
+  const byTemp=loaded.slice().sort((a,b)=>(weatherCache[b.name].data.current.temperature_2m)-(weatherCache[a.name].data.current.temperature_2m));
+  const hotC=byTemp[0],coldC=byTemp[byTemp.length-1];
+  const byRain=loaded.slice().sort((a,b)=>(weatherCache[b.name].data.daily.precipitation_probability_max[0]||0)-(weatherCache[a.name].data.daily.precipitation_probability_max[0]||0));
+  document.getElementById('statHot').textContent=T(weatherCache[hotC.name].data.current.temperature_2m);
+  document.getElementById('statHotName').textContent=hotC.name;
+  document.getElementById('statCold').textContent=T(weatherCache[coldC.name].data.current.temperature_2m);
+  document.getElementById('statColdName').textContent=coldC.name;
+  const rainPct=weatherCache[byRain[0].name].data.daily.precipitation_probability_max[0]||0;
+  document.getElementById('statRain').textContent=rainPct+'%';
+  document.getElementById('statRainName').textContent=byRain[0].name;
+}
+
+// ===== FILTER / SORT =====
+function filterRegion(region,btn){
+  currentRegion=region;
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDashboard();
+}
+function sortCities(sort,btn){
+  currentSort=sort;
+  document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDashboard();
+}
+function filterCities(q){
+  searchQuery=q.toLowerCase();
+  renderDashboard();
+}
+function clearGlobalSearch(){
+  document.getElementById('globalSearch').value='';
+  searchQuery='';
+  renderDashboard();
+}
+
+// ===== RENDER DASHBOARD =====
+function renderDashboard(){
+  let cities=CITIES.filter(c=>{
+    if(currentRegion!=='all'&&c.region!==currentRegion)return false;
+    if(searchQuery&&!c.name.toLowerCase().includes(searchQuery)&&!c.state.toLowerCase().includes(searchQuery))return false;
+    return true;
+  });
+
+  // Sort
+  if(currentSort!=='default'&&currentSort!=='alpha'){
+    cities=cities.filter(c=>weatherCache[c.name]?.status==='ok');
+    if(currentSort==='temp-h') cities.sort((a,b)=>weatherCache[b.name].data.current.temperature_2m-weatherCache[a.name].data.current.temperature_2m);
+    if(currentSort==='temp-l') cities.sort((a,b)=>weatherCache[a.name].data.current.temperature_2m-weatherCache[b.name].data.current.temperature_2m);
+    if(currentSort==='rain') cities.sort((a,b)=>(weatherCache[b.name].data.daily.precipitation_probability_max[0]||0)-(weatherCache[a.name].data.daily.precipitation_probability_max[0]||0));
+  } else if(currentSort==='alpha'){
+    cities=cities.slice().sort((a,b)=>a.name.localeCompare(b.name));
+  }
+
+  const dash=document.getElementById('dashboard');
+  if(!cities.length){
+    dash.innerHTML=`<div style="text-align:center;padding:48px 20px;color:var(--ts)"><i class="ti ti-search-off" style="font-size:36px;display:block;margin-bottom:12px;color:var(--tm)"></i>Koi city nahi mili: "${searchQuery}"</div>`;
+    return;
+  }
+
+  // Group by region (for default sort/view)
+  if(currentSort==='default'&&!searchQuery){
+    const regions=currentRegion==='all'
+      ?['north','south','east','west','central','northeast']
+      :[currentRegion];
+    dash.innerHTML=regions.map(reg=>{
+      const regCities=cities.filter(c=>c.region===reg);
+      if(!regCities.length)return'';
+      return`<div class="region-sec" id="region-${reg}">
+        <div class="region-head">
+          <div class="region-label">${REGION_LABELS[reg]}</div>
+          <div class="region-line"></div>
+          <div class="region-count">${regCities.length} cities</div>
+        </div>
+        <div class="city-grid">${regCities.map(c=>cityCardHTML(c)).join('')}</div>
+      </div>`;
+    }).join('');
+  } else {
+    dash.innerHTML=`<div class="city-grid">${cities.map(c=>cityCardHTML(c)).join('')}</div>`;
+  }
+
+  updateSummaryStats();
+}
+
+// ===== CARD HTML =====
+function cityCardHTML(city){
+  const id='card-'+city.name.replace(/\s|\(|\)/g,'_');
+  const w=weatherCache[city.name];
+  if(!w||w.status==='loading'){
+    return`<div class="city-card loading fade" id="${id}">
+      <div class="cc-top"><div><div class="cc-name">${city.name}</div><div class="cc-state">${city.state}</div></div></div>
+      <div class="skeleton lg"></div><div class="skeleton sm"></div><div class="skeleton sm"></div>
+    </div>`;
+  }
+  if(w.status==='error'){
+    return`<div class="city-card error fade" id="${id}" onclick="retryCity('${city.name}')">
+      <div class="cc-top"><div><div class="cc-name">${city.name}</div><div class="cc-state">${city.state}</div></div>
+      <span style="font-size:18px">⚠️</span></div>
+      <div style="font-size:11px;color:var(--ts);margin-top:8px">Tap to retry</div>
+    </div>`;
+  }
+  const c=w.data.current;
+  const daily=w.data.daily;
+  const temp=c.temperature_2m;
+  const rain=daily.precipitation_probability_max[0]||0;
+  const cls=temp>=38?'hot':temp<=10?'cold':rain>=60?'rainy':'';
+  return`<div class="city-card ${cls} fade" id="${id}" onclick="openModal('${city.name}')">
+    <div class="cc-top">
+      <div><div class="cc-name">${city.name}</div><div class="cc-state">${city.state}</div></div>
+      <div class="cc-icon">${wEmoji(c.weather_code)}</div>
+    </div>
+    <div class="cc-temp" style="color:${tempColor(temp)}">${TN(temp)}<sup>${unit==='C'?'°C':'°F'}</sup></div>
+    <div class="cc-cond">${wDesc(c.weather_code)}</div>
+    <div class="cc-chips">
+      <span class="cc-chip"><i class="ti ti-droplet"></i>${c.relative_humidity_2m}%</span>
+      <span class="cc-chip"><i class="ti ti-wind"></i>${Math.round(c.wind_speed_10m)}</span>
+      <span class="cc-chip"><i class="ti ti-cloud-rain"></i>${rain}%</span>
+    </div>
+  </div>`;
+}
+
+function updateCard(el,city){
+  el.outerHTML=cityCardHTML(city);
+}
+
+async function retryCity(name){
+  const city=CITIES.find(c=>c.name===name);
+  if(city){await fetchCity(city);renderDashboard();}
+}
+
+// ===== MODAL =====
+function openModal(cityName){
+  const city=CITIES.find(c=>c.name===cityName);
+  const w=weatherCache[cityName];
+  if(!w||w.status!=='ok')return;
+  const d=w.data;
+  const c=d.current;
+  const daily=d.daily;
+  const now=new Date();
+
+  document.getElementById('modalCity').textContent=cityName;
+  document.getElementById('modalState').textContent=city.state+' • '+city.region.charAt(0).toUpperCase()+city.region.slice(1)+' India';
+
+  // Hourly
+  const hourSlice=d.hourly.time.map((t,i)=>({
+    t,temp:d.hourly.temperature_2m[i],
+    rain:d.hourly.precipitation_probability[i],
+    code:d.hourly.weather_code[i]
+  })).filter(x=>new Date(x.t)>=now).slice(0,8);
+
+  const uv=Math.round(daily.uv_index_max[0]||0);
+
+  document.getElementById('modalBody').innerHTML=`
+    <div class="mod-temp-row">
+      <div>
+        <div style="font-size:13px;color:var(--ts);margin-bottom:4px;display:flex;align-items:center;gap:5px"><span style="font-size:20px">${wEmoji(c.weather_code)}</span>${wDesc(c.weather_code)}</div>
+        <div class="mod-temp" style="color:${tempColor(c.temperature_2m)}">${T(c.temperature_2m)}</div>
+        <div style="font-size:12px;color:var(--tm);margin-top:4px">Feels like ${T(c.apparent_temperature)}</div>
+      </div>
+      <div class="mod-right">
+        <div style="font-size:13px;color:var(--ts)">H: ${T(daily.temperature_2m_max[0])}</div>
+        <div style="font-size:13px;color:var(--tm)">L: ${T(daily.temperature_2m_min[0])}</div>
+        <div style="font-size:11px;color:var(--tm);margin-top:6px">UV: ${uv}</div>
+      </div>
+    </div>
+
+    <div class="mod-grid">
+      <div class="mg-item"><div class="mg-lbl"><i class="ti ti-droplet"></i>Humidity</div><div class="mg-val">${c.relative_humidity_2m}%</div><div class="mg-sub">${c.relative_humidity_2m>70?'Humid':'Comfortable'}</div></div>
+      <div class="mg-item"><div class="mg-lbl"><i class="ti ti-wind"></i>Wind</div><div class="mg-val">${W(c.wind_speed_10m)}</div><div class="mg-sub">${windDir(c.wind_direction_10m)}</div></div>
+      <div class="mg-item"><div class="mg-lbl"><i class="ti ti-gauge"></i>Pressure</div><div class="mg-val">${Math.round(c.surface_pressure)}</div><div class="mg-sub">hPa</div></div>
+      <div class="mg-item"><div class="mg-lbl"><i class="ti ti-cloud-rain"></i>Rain today</div><div class="mg-val">${daily.precipitation_probability_max[0]||0}%</div><div class="mg-sub">${c.precipitation||0} mm now</div></div>
+    </div>
+
+    <div style="font-size:11px;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;display:flex;align-items:center;gap:6px"><i class="ti ti-clock-hour-3" style="font-size:14px;color:var(--acc)"></i>Hourly</div>
+    <div class="mod-hourly">
+      ${hourSlice.map((x,i)=>{
+        const h=new Date(x.t).getHours();
+        const lbl=i===0?'Now':h===0?'12AM':h<12?h+'AM':h===12?'12PM':(h-12)+'PM';
+        return`<div class="mhc${i===0?' now':''}">
+          <div class="mhc-time">${lbl}</div>
+          <i class="ti ${wIcon(x.code)} mhc-icon"></i>
+          <div class="mhc-temp">${T(x.temp)}</div>
+          <div class="mhc-rain">${x.rain||0}%</div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div style="font-size:11px;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;display:flex;align-items:center;gap:6px"><i class="ti ti-calendar-week" style="font-size:14px;color:var(--acc)"></i>7-Day Forecast</div>
+    <div class="mod-7day">
+      ${daily.time.map((t,i)=>{
+        const dn=i===0?'Today':i===1?'Tom':new Date(t).toLocaleDateString('en-IN',{weekday:'short'});
+        return`<div class="mfr">
+          <div class="mfr-day">${dn}</div>
+          <i class="ti ${wIcon(daily.weather_code[i])} mfr-icon"></i>
+          <div class="mfr-cond">${wDesc(daily.weather_code[i])}</div>
+          <div class="mfr-rain">${daily.precipitation_probability_max[i]||0}%</div>
+          <div class="mfr-temps"><span class="mfr-hi">${T(daily.temperature_2m_max[i])}</span><span class="mfr-lo">${T(daily.temperature_2m_min[i])}</span></div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div style="font-size:11px;color:var(--tm);text-align:center;margin-top:4px">Lat: ${city.lat.toFixed(2)}° · Lon: ${city.lon.toFixed(2)}°</div>`;
+
+  document.getElementById('modalOverlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){if(e.target===document.getElementById('modalOverlay'))closeModalBtn();}
+function closeModalBtn(){
+  document.getElementById('modalOverlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
+
+// ===== START =====
+loadAll();
+</script>
+</body>
+</html>

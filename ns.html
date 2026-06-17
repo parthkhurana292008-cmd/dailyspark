@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscribe to Newsletter — Bharat News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --card-bg: #EDE9E1; 
+      --text-dark: #1E1E1E;
+      --button-green: #25d366;
+      --button-hover-green: #1ebd58;
+      --input-bg: #ffffff;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: transparent; 
+      display: flex;
+      align-items: flex-start; 
+      justify-content: center;
+      min-height: auto; 
+      padding: 0; 
+    }
+
+    /* ── Newsletter Main Card ── */
+    .newsletter-card {
+      background: var(--card-bg);
+      color: var(--text-dark);
+      width: 100%;            
+      max-width: 440px;       
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      border: 1px solid #E0D8CC; 
+    }
+
+    .newsletter-card h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-dark);
+    }
+
+    .newsletter-card p.desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4A423A;
+      margin-bottom: 20px;
+    }
+
+    /* ── Tab Buttons ── */
+    .tab-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid #E0D8CC;
+      color: #555;
+      padding: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #FF6600; 
+      border-color: #FF6600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    /* ── Input Fields ── */
+    .input-group {
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .input-group.active {
+      display: block;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      font-size: 16px;
+      border: 1px solid #E0D8CC;
+      border-radius: 8px;
+      outline: none;
+      color: #333;
+      background: var(--input-bg);
+    }
+    .input-field:focus {
+      border-color: #FF6600;
+    }
+
+    /* ── Submit Button ── */
+    .btn-submit {
+      width: 100%;
+      height: 48px;
+      background: var(--button-green);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--button-hover-green);
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 12px;
+      color: #7A7068;
+      margin-top: 16px;
+    }
+
+    /* ── Success Area ── */
+    #success-area {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    #success-area h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    #success-msg {
+      font-size: 14px;
+      color: #4A423A;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="newsletter-card">
+    
+    <div id="form-area">
+      <h1>Subscribe to Newsletter</h1>
+      <p class="desc">Choose your preferred platform and enter your details to receive breaking news updates directly.</p>
+
+      <div class="tab-container">
+        <button class="tab-btn" id="tab-email" onclick="switchTab('email')">
+          📩 Via Email
+        </button>
+        <button class="tab-btn active" id="tab-wa" onclick="switchTab('whatsapp')">
+          💬 Via WhatsApp
+        </button>
+      </div>
+
+      <div class="input-group active" id="group-whatsapp">
+        <label for="whatsapp">Your WhatsApp Number</label>
+        <div style="position: relative; display: flex; align-items: center;">
+          <span style="position: absolute; left: 12px; display: flex; align-items: center; gap: 6px; color: #555; font-weight: 600; font-size: 15px; pointer-events: none;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px; fill: #25d366;">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M11.998 2.007C6.476 2.007 2 6.483 2 12.006c0 1.76.458 3.411 1.258 4.845L2.007 22l5.262-1.382a9.948 9.948 0 0 0 4.73 1.2c5.521 0 9.997-4.476 9.997-9.999 0-5.522-4.476-9.812-9.998-9.812zm0 18.18a8.263 8.263 0 0 1-4.21-1.15l-.302-.179-3.123.82.834-3.047-.197-.313A8.253 8.253 0 0 1 3.74 12.006c0-4.557 3.703-8.26 8.258-8.26 4.556 0 8.26 3.703 8.26 8.26 0 4.556-3.704 8.181-8.26 8.181z"/>
+            </svg>
+            +91
+          </span>
+          <input type="tel" id="whatsapp" class="input-field" placeholder="XXXXXXXXXX" autocomplete="tel" maxlength="10" style="padding-left: 75px;" />
+        </div>
+      </div>
+
+      <div class="input-group" id="group-email">
+        <label for="email">Your Email Address</label>
+        <input type="email" id="email" class="input-field" placeholder="example@email.com">
+      </div>
+
+      <button class="btn-submit" onclick="handleSubmit()">Subscribe Now</button>
+      
+      <p class="footer-text">We don't spam. You can unsubscribe at any time.</p>
+    </div>
+
+    <div id="success-area">
+      <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+      <h2>Submitted Successfully!</h2>
+      <p id="success-msg"></p> 
+    </div>
+
+  </div>
+
+<script>
+  let currentMode = 'whatsapp'; 
+
+  function switchTab(mode) {
+    currentMode = mode;
+    document.getElementById('tab-email').classList.toggle('active', mode === 'email');
+    document.getElementById('tab-wa').classList.toggle('active', mode === 'whatsapp');
+    document.getElementById('group-email').classList.toggle('active', mode === 'email');
+    document.getElementById('group-whatsapp').classList.toggle('active', mode === 'whatsapp');
+  }
+
+  function handleSubmit() {
+    if (currentMode === 'whatsapp') {
+      const waEl = document.getElementById('whatsapp');
+      const waRaw = waEl.value.trim().replace(/\D/g, ''); 
+
+      if (waRaw.length !== 10) {
+        alert("Please enter a valid 10-digit WhatsApp number.");
+        waEl.focus();
+        return;
+      }
+
+      saveSubscriber({ whatsapp: waRaw, email: '', type: 'whatsapp', date: new Date().toLocaleDateString('en-IN') });
+      showSuccess("Redirecting you to WhatsApp chat...");
+
+      setTimeout(function() {
+        const message = "Welcome to Bharat News! https://bharatlatestnews.github.io/bharatnews/index.html";
+        window.open(`https://wa.me/91${waRaw}?text=${encodeURIComponent(message)}`, "_blank");
+      }, 100);
+
+    } else {
+      const emailEl = document.getElementById('email');
+      const email = emailEl.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email || !emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        emailEl.focus();
+        return;
+      }
+
+      saveSubscriber({ whatsapp: '', email: email, type: 'email', date: new Date().toLocaleDateString('en-IN') });
+      showSuccess("Thank you! Weekly newsletter updates will be sent to your email.");
+    }
+  }
+
+  function saveSubscriber(userObj) {
+    let subscribers = [];
+    try {
+      subscribers = JSON.parse(localStorage.getItem('site_subscribers')) || [];
+    } catch(e) {
+      subscribers = [];
+    }
+    subscribers.push(userObj);
+    localStorage.setItem('site_subscribers', JSON.stringify(subscribers));
+  }
+
+  function showSuccess(msg) {
+    document.getElementById('form-area').style.display = 'none';
+    const successArea = document.getElementById('success-area');
+    successArea.style.display = 'block';
+    document.getElementById('success-msg').textContent = msg;
+
+    // Send postMessage to parent window (index.html) after 20 seconds to hide sidebar
+    setTimeout(function() {
+      window.parent.postMessage('hideNewsletterSidebar', '*');
+      resetForm();
+    }, 20000);
+  }
+
+  function resetForm() {
+    document.getElementById('whatsapp').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('success-msg').textContent = ''; 
+    document.getElementById('success-area').style.display = 'none';
+    document.getElementById('form-area').style.display = 'block';
+  }
+</script>
+</body>
+</html>

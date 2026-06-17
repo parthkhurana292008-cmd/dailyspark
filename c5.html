@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>बच्चों में अंगूठा चूसने की आदत कैसे छुड़ाएं? | पैरेंटिंग गाइड - Daily Spark</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Modern CSS Variables & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2F5D62;
+            --secondary-color: #1B4332;
+            --accent-color: #EAF4F4;
+            --text-color: #2D3748;
+            --light-bg: #FAFAF8;
+            --white: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            --border-radius: 16px;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            font-family: 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            font-size: 16px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode Preferences */
+        body.dark {
+            --light-bg: #111827;
+            --text-color: #F9FAFB;
+            --white: #1F2937;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Top Scroll Progress Bar */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0;
+            z-index: 9999;
+            background: linear-gradient(90deg, #2F5D62, #10B981);
+            transition: width 0.1s ease-out;
+        }
+
+        /* Floating Dark Mode Toggle */
+        .theme-toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #darkMode {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+        }
+        #darkMode:hover {
+            transform: scale(1.1);
+        }
+
+        /* Header / Navbar Branding */
+        header {
+            background-color: var(--white);
+            padding: 1rem max(4%, calc((100% - 1150px) / 2));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        body.dark .logo { color: #34D399; }
+
+        /* Premium Hero Section */
+        .health-parent {
+            min-height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f2f7f5, #ffffff);
+            padding: 3rem max(4%, calc((100% - 1150px) / 2));
+        }
+        body.dark .health-parent {
+            background: linear-gradient(135deg, #1f2937, #111827);
+        }
+
+        .glass-card {
+            max-width: 1150px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-img-container {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+        }
+
+        .hero-text-container {
+            flex: 1.2;
+            min-width: 300px;
+        }
+
+        .hero-text-container h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        body.dark .hero-text-container h1 { color: #A7F3D0; }
+
+        .hero-text-container p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            color: #4A5568;
+        }
+        body.dark .hero-text-container p { color: #D1D5DB; }
+
+        /* Balanced Left/Right Layout Container */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 4rem max(4%, calc((100% - 1150px) / 2));
+        }
+
+        section {
+            margin-bottom: 5rem;
+            width: 100%;
+        }
+
+        h1.section-title {
+            color: var(--secondary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        body.dark h1.section-title { color: #A7F3D0; }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 0.6rem;
+            font-weight: 700;
+        }
+        body.dark h2 { color: #A7F3D0; }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .intro-p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        /* Grid Cards Layout */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        body.dark .card h3 { color: #34D399; }
+
+        /* Main List Cards Layout */
+        .main-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            width: 100%;
+        }
+
+        .main-card strong {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        body.dark .main-card strong { color: #A7F3D0; }
+
+        ol {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        ol li {
+            margin-bottom: 0.5rem;
+            list-style-type: decimal;
+        }
+
+        /* Expert Tips Box */
+        .tips-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+        }
+
+        .styled-list {
+            list-style: none;
+        }
+
+        .styled-list li {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .styled-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-check { color: #10B981; font-size: 1.3rem; }
+        .icon-cross { color: #EF4444; font-size: 1.3rem; }
+
+        /* Notice / Highlight Alert Box */
+        .alert-box {
+            background-color: #FFFBEB;
+            border-left: 5px solid #F59E0B;
+            padding: 2rem;
+            border-radius: 12px;
+            color: #2D3748;
+            width: 100%;
+        }
+        body.dark .alert-box {
+            background-color: #1E1B4B;
+            border-left-color: #818CF8;
+            color: #E0E7FF;
+        }
+
+        /* Animated Expert Advice Box Styling */
+        .expert-box {
+            position: relative;
+            background: linear-gradient(135deg, #fff8e1, #fff3c4);
+            border-left: 6px solid #f59e0b;
+            padding: 22px 24px;
+            margin: 30px 0;
+            border-radius: 16px;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #444;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+            overflow: hidden;
+            width: 100%;
+            animation: pulseGlow 3s infinite ease-in-out;
+            transition: all 0.4s ease;
+        }
+
+        body.dark .expert-box {
+            background: linear-gradient(135deg, #2D2510, #231B0C);
+            color: #F3F4F6;
+            border-left-color: #F59E0B;
+        }
+
+        .expert-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3);
+        }
+
+        .expert-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            animation: bulbBounce 2s infinite;
+        }
+
+        .expert-box strong {
+            color: #b45309;
+        }
+        body.dark .expert-box strong { color: #FBBF24; }
+
+        .expert-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 60%;
+            height: 200%;
+            background: rgba(255,255,255,0.4);
+            transform: rotate(25deg);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 8px 25px rgba(245,158,11,0.15); }
+            50% { box-shadow: 0 12px 35px rgba(245,158,11,0.35); }
+        }
+
+        @keyframes bulbBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 150%; }
+        }
+
+        /* FAQ Accordion Layout */
+        .faq-container {
+            width: 100%;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .faq-question:hover {
+            background: var(--accent-color);
+        }
+        body.dark .faq-question:hover { background: #374151; }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: "−";
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            background: var(--white);
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 400px;
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid rgba(0,0,0,0.02);
+        }
+
+        /* Buttons & Footer */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(47, 93, 98, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--white);
+            color: #718096;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            width: 100%;
+        }
+        body.dark footer { background: #1F2937; border-top: none; }
+
+        /* Precision Responsiveness */
+        @media (max-width: 992px) {
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text-container h1 { font-size: 1.85rem; text-align: center; }
+            .hero-text-container p { text-align: center; }
+            h2 { font-size: 1.6rem; }
+            .glass-card { flex-direction: column; text-align: center; gap: 30px; }
+            .health-parent { padding: 2rem 1rem; }
+            .container { padding: 2.5rem 1rem; }
+        }
+
+        @media (max-width: 650px) {
+            .grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+
+<div class="theme-toggle-container">
+    <button id="darkMode" aria-label="Toggle Dark Mode">🌙</button>
+</div>
+
+<main>
+    <section class="health-parent">
+        <div class="glass-card" data-aos="fade-up">
+            <div class="hero-img-container">
+               <img src="c51.png" alt="बच्चों में अंगूठा चूसने की आदत छुड़ाने की पैरेंटिंग गाइड">
+            </div>
+            <div class="hero-text-container">
+                <h1>बच्चों की खुशहाल परवरिश के लिए विशेषज्ञ मार्गदर्शन</h1>
+                <p>प्यार, धैर्य और सही वैज्ञानिक रणनीतियों के साथ बच्चों की अंगूठा चूसने की आदत को आसानी से छुड़ाया जा सकता है। जानिए इसके सही समाधान।</p>
+                <a href="#article" class="btn">पूरी गाइड पढ़ें</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" id="article">
+
+        <section id="causes" data-aos="fade-up">
+            <p class="intro-p">क्या आपका बच्चा भी टीवी देखते हुए, सोते समय या बस यूं ही बैठे-बैठे अचानक अपने अंगूठे को मुंह में डाल लेता है? थम्ब-सकिंग (Thumb-sucking) यानी अंगूठा चूसना लगभग हर घर की एक आम समस्या बन चुका है। कई बार पैरेंट्स इसे देखकर पैनिक मोड में आ जाते हैं। लेकिन क्या आप जानते हैं कि बच्चों का अंगूठा चूसना सिर्फ एक रैंडम आदत नहीं है, बल्कि इसके पीछे एक गहरी इनबिल्ट विज्ञान (Inbuilt Science) काम करती है?</p>
+            
+            <h2>बच्चे अंगूठा क्यों चूसते हैं?</h2>
+            <p>आदत बदलने से पहले उसके पीछे के वैज्ञानिक कारण को समझना बेहद जरूरी है। आमतौर पर बच्चे इन प्रमुख वजहों से अंगूठा चूसते हैं:</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>1. खुद को शांत करना (Self-Soothing)</h3>
+                    <p>अंगूठा चूसने की आदत बच्चे में पैदा होने के बाद नहीं, बल्कि गर्भ में ही आ जाती है। यह एक प्री-बॉर्न रिफ्लेक्स (Pre-born Reflex) है। अल्ट्रासाउंड स्कैन्स में देखा गया है कि बच्चे मां के पेट के अंदर भी अंगूठा चूसते हैं, जो उन्हें सुरक्षित और शांत महसूस कराता है।</p>
+                </div>
+                <div class="card">
+                    <h3>2. नींद की कमी या थकान</h3>
+                    <p>अक्सर बच्चे सोते समय या जब उन्हें बहुत ज्यादा शारीरिक या मानसिक थकान महसूस होती है, तब अनजाने में अंगूठा मुंह में डाल लेते हैं। थम्ब-सकिंग बच्चों के लिए एक नेचुरल स्लीप ऐड (Natural Sleep Aid) की तरह काम करता है, जिससे वे आसानी से गहरी नींद में चले जाते हैं।</p>
+                </div>
+                <div class="card">
+                    <h3>3. बोरियत या असुरक्षा</h3>
+                    <p>जब बच्चा अकेला महसूस करता है, पूरी तरह बोर होता है या किसी नए माहौल में असहज होता है, तो वह अंगूठा चूसकर खुद को व्यस्त रखता है। टीवी देखते समय या कार में सफर करते समय दिमाग खाली होने पर यह आदत अचानक ट्रिगर हो सकती है।</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="side-effects" data-aos="fade-up">
+            <h1 class="section-title">लंबे समय तक अंगूठा चूसने के नुकसान</h1>
+            <p class="intro-p">यदि बच्चा 4-5 वर्ष की आयु के बाद भी लगातार अंगूठा चूसता है, तो उसके दांतों और जबड़े के विकास पर नकारात्मक प्रभाव पड़ सकता है। इसके मुख्य नुकसान निम्नलिखित हैं:</p>
+
+            <ul>
+                <li class="main-card">
+                    <strong>1. दांतों की बनावट पर असर (Dental Problems)</strong>
+                    <ol>
+                        <li><strong>ओपन बाइट (Open Bite):</strong> ऊपर और नीचे के सामने वाले दांत आपस में पूरी तरह नहीं मिल पाते, जिससे उनके बीच स्थायी गैप बन सकता है।</li>
+                        <li><strong>ओवरबाइट (Overbite):</strong> लगातार अंगूठा चूसने से ऊपरी सामने के दांत बाहर की ओर निकल सकते हैं, जबकि निचले दांत पीछे की ओर दब सकते हैं। इससे दांत टेढ़े-मेढ़े हो सकते हैं जिसे आम बोलचाल में 'दांत बाहर आना' कहते हैं।</li>
+                        <li><strong>क्रॉसबाइट (Crossbite):</strong> जब बच्चा अंगूठा चूसता है, तो गालों का दबाव पड़ने से ऊपर का जबड़ा सिकुड़ सकता है, जिससे दांत टेढ़े-मेढ़े दिखाई दे सकते हैं।</li>
+                    </ol>
+                </li>
+
+                <li class="main-card">
+                    <strong>2. जबड़े का विकास प्रभावित होना (Skeletal Changes)</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.05rem;">अंगूठे के ऊपर की ओर पड़ने वाले दबाव से मुंह की ऊपरी छत यानी तालू (Palate) संकुचित या संकरी हो सकती है। ऊपरी जबड़ा सही तरीके से विकसित नहीं हो पाने के कारण आगे चलकर बच्चे को खाना चबाने और निगलने में कठिनाई आ सकती है। इससे चेहरे की स्वाभाविक बनावट और मुस्कान (Smile) पर असर पड़ता है।</p>
+                </li>
+
+                <li class="main-card">
+                    <strong>3. बोलने में कठिनाई (तुतलाना) (Speech Defects)</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.05rem;">दांतों और जबड़े की गलत बनावट का सीधा असर बच्चे के उच्चारण पर पड़ता है। जीभ सही जगह न आने से बच्चा 'स' (S) या 'ज़' (Z) जैसे शब्दों को बोलते समय तुतलाने (Lisping) लगता है और स्पष्ट नहीं बोल पाता।</p>
+                </li>
+
+                <li class="main-card">
+                    <strong>4. सामाजिक झिझक और हीन भावना (Social & Psychological Impact)</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.05rem;">School जाने की उम्र (5 वर्ष से ऊपर) में भी यह आदत न छूटने पर स्कूल या दोस्तों के बीच उसका मजाक उड़ाया जा सकता है। इसके कारण बच्चे में हीन भावना (Low Self-Esteem), आत्मविश्वास में कमी और चिड़चिड़ेपन का शिकार होकर सामाजिक रूप से घुलने-मिलने से कतराने लगता है।</p>
+                </li>
+
+                <li class="main-card">
+                    <strong>5. त्वचा और नाखून के संक्रमण (Skin & Infection Issues)</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.05rem;">लगातार लार (Saliva) के संपर्क में रहने से अंगूठे की त्वचा छिल सकती है और चमड़ी सख्त होकर उसमें क्रैक्स (दरारें) आ सकते हैं। अंगूठा बार-बार मुंह में डालने से बच्चे खेलते समय कई चीजों को छूते हैं। ऐसे में बिना हाथ धोए अंगूठा मुंह में डालने से कीटाणु और बैक्टीरिया शरीर के अंदर चले जाते हैं, जिससे पेट की बीमारियां या मुंह का संक्रमण हो सकता है।</p>
+                </li>
+            </ul>
+        </section>
+
+        <div class="expert-box" data-aos="fade-up">
+            <div class="expert-icon">💡</div>
+            <strong>विशेषज्ञ की सलाह:</strong>
+            <p style="margin-top: 5px;">चिकित्सकों के अनुसार, 2 से 4 साल की उम्र तक अंगूठा चूसना पूरी तरह सामान्य है। लेकिन अगर आपका बच्चा <strong>5 साल या उससे बड़ा</strong> हो गया है और उसकी यह आदत नहीं छूट रही है, तो किसी <strong>बाल रोग दंत विशेषज्ञ (Pediatric Dentist)</strong> से सलाह अवश्य लें ताकि आने वाले <strong>पक्के दांतों (Permanent Teeth)</strong> को सुरक्षित रखा जा सकें।</p>
+        </div>
+
+        <section id="tips" data-aos="fade-up">
+            <h2>आदत छुड़ाने के लिए विशेषज्ञों की सकारात्मक सलाह</h2>
+            <p style="margin-bottom: 2rem;">बच्चों के साथ जबरदस्ती करने के बजाय प्यार, धीरज और सूझबूझ से काम लें। नीचे दिए गए सकारात्मक तरीके अपनाएं:</p>
+            
+            <div class="tips-box">
+                <ul class="styled-list">
+                    <li>
+                        <span class="icon-check">✅</span>
+                        <div>
+                            <strong>सकारात्मक प्रोत्साहन (Positive Reinforcement):</strong> बच्चे को बार-बार टोकने या डांटने के बजाय, जब वह अंगूठा न चूसे, तो उसकी तारीफ करें या उसे रिवॉर्ड के तौर पर क्यूट स्टिकर दें।
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-check">✅</span>
+                        <div>
+                            <strong>ट्रिगर्स (Triggers) पहचानें:</strong> ध्यान दें कि बच्चा किस समय अंगूठा मुंह में डालता है। यदि वह किसी डर या असुरक्षा के कारण ऐसा कर रहा है, तो उसे गले लगाएं, प्यार से बात करें और उसकी चिंता दूर करें।
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-check">✅</span>
+                        <div>
+                            <strong>ध्यान भटकाएं (Distraction):</strong> जैसे ही बच्चा अंगूठा मुंह में डालने लगे, उसका ध्यान ड्रॉइंग, क्ले मॉडलिंग, पहेली (Puzzle) या ब्लॉक्स बिल्डिंग जैसी एक्टिविटी में लगाएं ताकि उसके दोनों हाथ व्यस्त रहें।
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-check">✅</span>
+                        <div>
+                            <strong>सौम्य अनुस्मारक (Gentle Reminders):</strong> सोते समय बच्चे के हाथ पर कोई सॉफ्ट पट्टी या दस्ताना (mitten) पहना दें, ताकि मुंह में हाथ जाते ही उसे अनजाने में इसका अहसास हो जाए।
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon-cross">❌</span>
+                        <div>
+                            <strong>डांटना या सजा देना पूरी तरह बंद करें:</strong> जबरदस्ती हाथ बांधने, डराने या अंगूठे पर मिर्च लगाने से बच्चा अधिक तनाव में आकर छुपकर और ज्यादा अंगूठा चूसने लगता है।
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="doctor" data-aos="fade-up">
+            <h2>डॉक्टर से कब संपर्क करें?</h2>
+            <div class="alert-box">
+                <p><strong>महत्वपूर्ण नोट:</strong> आमतौर पर 4 वर्ष की आयु तक बच्चे खुद ही यह आदत छोड़ देते हैं। लेकिन यदि आपका बच्चा <strong>5 वर्ष से बड़ा</strong> हो चुका है और आदत नहीं छूट रही है, तो आपको किसी पीडियाट्रिशियन (बाल रोग विशेषज्ञ) या डेंटिस्ट से सलाह अवश्य लेनी चाहिए जो इसे रोकने के लिए विशेष डेंटल अप्लायंस (जैसे- Palatal Crib) की मदद ले सकते हैं। ताकि आने वाले नए पक्के दांतों (Permanent Teeth) को सुरक्षित रखा जा सके। समय रहते सही मार्गदर्शन और सकारात्मक प्रोत्साहन से इस आदत को छुड़ाया जा सकता हैं।</p>
+            </div>
+        </section>
+
+        <section id="faq" data-aos="fade-up">
+            <h2 style="text-align: center; margin-bottom: 3rem;">अक्सर पूछे जाने वाले सवाल (FAQs)</h2>
+            
+            <div class="faq-container">
+<div class="faq-item">
+                    <div class="faq-question">क्या अंगूठा चूसने से हमेशा दांत बाहर की ओर निकल आते हैं?</div>
+                    <div class="faq-answer">
+                        <p>यह इस बात पर निर्भर करता है कि बच्चा अंगूठा किस तरह चूसता है। यदि बच्चा सिर्फ मुंह में अंगूठा आराम से रखता है, तो नुकसान कम होता है। लेकिन अगर बच्चा अंगूठे को जोर से चूसता है और ऊपर की तरफ दबाव बनाता है, तो ऊपर के दांत बाहर निकल आते हैं (Overbite), जबड़ा संकुचित हो जाता है और सामने के दांतों के बीच गैप (Open bite) बन सकता है।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">क्या अंगूठा चूसना कोई मानसिक समस्या है या असुरक्षा का संकेत है?</div>
+                    <div class="faq-answer">
+                        <p>नहीं, शुरुआती सालों में यह पूरी तरह से स्वाभाविक है। बच्चे जब गर्भ (Womb) में होते हैं, तब से ही उनमें यह रिफ्लेक्स होता है। जन्म के बाद वे खुद को शांत (Self-soothe) करने, थकान मिटाने, या नींद में जाने के लिए ऐसा करते हैं। हालांकि, यदि 5 साल के बाद भी बच्चा तनाव या डरने पर बहुत ज्यादा अंगूठा चूसता है, तो यह चिंता या असुरक्षा का संकेत हो सकता हैं।</p>
+                    </div>
+                </div>
+
+		<div class="faq-question">रात में सोते समय अनजाने में अंगूठा चूसने से कैसे रोकें?</div>
+                    <div class="faq-answer">
+                        <p>सोते समय बच्चे का अपनी आदत पर कंट्रोल नहीं रहता। इसके लिए आप रात को सोते समय उसके हाथ पर कोई सॉफ्ट सूती कपड़ा, दस्ताना (Mitten) पहन सकते हैं या उंगली पर एक ढीली पट्टी (Bandage) बांध सकते हैं। यह बच्चे को सजा देने के लिए नहीं, बल्कि सोते समय अनजाने में मुंह में अंगूठा जाने पर एक 'जेंटल रिमाइंडर' (याद दिलाने) के रूप में काम करता है।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">किस उम्र तक अंगूठा चूसना सामान्य माना जाता है?</div>
+                    <div class="faq-answer">
+                        <p>चिकित्सकों के अनुसार, 2 से 4 साल की उम्र तक अंगूठा चूसना पूरी तरह सामान्य है। इस उम्र के बाद स्कूल जाने और बाहरी खेलों में व्यस्त होने के कारण यह आदत खुद-ब-खुद छूट जाती हैं। यदि बच्चा 5 साल या उससे अधिक का हो गया है, तो इसे छुड़ाने का प्रयास करना जरूरी हो जाता है क्योंकि इस उम्र में पक्के दांत (Permanent Teeth) आने लगते हैं।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">क्या अंगूठे पर कड़वी दवा या तेल लगाना सही है?</div>
+                    <div class="faq-answer">
+                        <p>विशेषज्ञ इस तरह के नकारात्मक तरीकों (Negative Reinforcement) को न अपनाने की सलाह देते हैं। जबरदस्ती कड़वा लगाने या डांटने-फटकारने से बच्चा चिड़चिड़ा हो सकता है और वह छिपकर या तनाव में आकर और अधिक अंगूठा चूसने लग सकता है। इसकी जगह प्यार से समझाना और सकारात्मक प्रोत्साहन (तारीफ या रिवॉर्ड देना) ज्यादा कारगर होता है। विशेषज्ञ सबसे पहले प्यार और सकारात्मक तरीकों की सलाह देते हैं। अगर बच्चा बड़ा है, तो डॉक्टर की सलाह से प्रमाणित कड़वा लिक्विड लगाया जा सकता है, लेकिन इसे कभी भी सजा के रूप में इस्तेमाल न करें।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">क्या अंगूठा चूसने से बच्चे के दांत हमेशा खराब हो सकते हैं?</div>
+                    <div class="faq-answer">
+                        <p>हाँ, लेकिन मुख्य रूप से तब जब बच्चा 5 साल की उम्र के बाद भी लगातार अंगूठा चूसता रहे, क्योंकि इस उम्र में पक्के दांत (Permanent Teeth) आने शुरू होते हैं जिन पर दबाव पड़ने से दांतों का नेचुरल अलाइनमेंट बिगड़ सकता हैं।</p>
+                    </div>
+                </div>
+<div class="faq-item">
+                    <div class="faq-question">हमें कब किसी डॉक्टर या डेंटिस्ट से संपर्क करना चाहिए?</div>
+                    <div class="faq-answer">
+                        <p>आपको निम्नलिखित स्थितियों में विशेषज्ञ (Pediatric Dentist) से मिलना चाहिए:
+			<ol>
+			<li>यदि बच्चा 5 साल की उम्र पार कर चुका है और आदत नहीं छोड़ रहा।</li>
+			<li>यदि आपको उसके सामने के दांतों की बनावट में बदलाव या टेढ़ापन दिखने लगा हो।</li>
+			<li>यदि अंगूठा चूसने के कारण बच्चा बोलते समय बहुत ज्यादा तुतलाने (Lisping) लगा हो।</li>
+			<li>डेंटिस्ट इसके लिए मुंह के अंदर फिट होने वाला एक छोटा अप्लायंस (Habit Breaker/Palatal Crib) लगा सकते हैं, जिससे यह आदत आसानी से छूट जाती है।</li>
+			</ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+</body>
+</html>

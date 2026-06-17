@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Spark— JAC Delhi 2025 Cutoff Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;900&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --surface2: #f2f1ee;
+    --border: #e0ddd8;
+    --text: #1a1a18;
+    --text2: #6b6a66;
+    --text3: #9b9a96;
+    --accent: #2563eb;
+    --dtu: #185FA5;
+    --nsut: #15803d;
+    --igdtuw: #b45309;
+    --iiitd: #6d28d9;
+    --dtu-bg: #eff6ff;
+    --nsut-bg: #f0fdf4;
+    --igdtuw-bg: #fffbeb;
+    --iiitd-bg: #f5f3ff;
+    --green-bg: #f0fdf4; --green-txt: #15803d;
+    --red-bg: #fef2f2; --red-txt: #b91c1c;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 28px 16px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .page-header h1 { font-size: 20px; font-weight: 600; letter-spacing: -.3px; }
+  .page-header p { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .college-dots { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
+  .college-dot { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ── Layout ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+  /* ── Filter bar ── */
+  .filters {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;
+    margin-bottom: 20px;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; }
+  .filter-group label { font-size: 11px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: .04em; }
+  select {
+    padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--bg); color: var(--text); font-size: 13px; cursor: pointer; min-width: 160px;
+  }
+  select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .filter-actions { display: flex; gap: 8px; align-items: flex-end; }
+  .btn {
+    padding: 7px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500;
+    cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    transition: background .15s;
+  }
+  .btn:hover { background: var(--surface2); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { background: #1d4ed8; }
+
+  /* ── Metric cards ── */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .metric-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+  }
+  .metric-card .lbl { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+  .metric-card .val { font-size: 22px; font-weight: 600; color: var(--text); line-height: 1.1; }
+  .metric-card .sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .metric-card.accent-dtu { border-left: 3px solid var(--dtu); }
+  .metric-card.accent-nsut { border-left: 3px solid var(--nsut); }
+  .metric-card.accent-igdtuw { border-left: 3px solid var(--igdtuw); }
+  .metric-card.accent-iiitd { border-left: 3px solid var(--iiitd); }
+
+  /* ── Tabs ── */
+  .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 20px; gap: 0; }
+  .tab-btn {
+    padding: 9px 18px; font-size: 13px; font-weight: 500; cursor: pointer;
+    border: none; background: none; color: var(--text2); border-bottom: 2px solid transparent;
+    margin-bottom: -1px; transition: color .15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Section ── */
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 20px; overflow: hidden; }
+  .section-head { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .section-head h3 { font-size: 14px; font-weight: 600; }
+  .section-head span { font-size: 12px; color: var(--text2); }
+  .section-body { padding: 16px 20px; }
+
+  /* ── Charts ── */
+  .chart-wrap { position: relative; width: 100%; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 12px; font-size: 12px; color: var(--text2); }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-sq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    background: var(--surface2); color: var(--text2); font-weight: 500; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .04em;
+    padding: 9px 12px; text-align: left; white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--surface2); }
+  .rank { font-variant-numeric: tabular-nums; font-size: 13px; }
+  .rank-na { color: var(--text3); font-size: 12px; }
+  .badge {
+    display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600; white-space: nowrap;
+  }
+  .badge-dtu { background: var(--dtu-bg); color: var(--dtu); }
+  .badge-nsut { background: var(--nsut-bg); color: var(--nsut); }
+  .badge-igdtuw { background: var(--igdtuw-bg); color: var(--igdtuw); }
+  .badge-iiitd { background: var(--iiitd-bg); color: var(--iiitd); }
+  .change-pos { color: var(--red-txt); background: var(--red-bg); padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+  .change-neg { color: var(--green-txt); background: var(--green-bg); padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+  .best-cell { font-weight: 600; color: var(--green-txt); }
+
+  /* ── Round trend mini bars ── */
+  .mini-trend { display: flex; gap: 2px; align-items: flex-end; height: 24px; }
+  .mini-bar { width: 8px; border-radius: 2px 2px 0 0; background: #ddd; transition: background .2s; min-height: 3px; }
+
+  /* ── Info boxes ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .info-box { background: var(--surface2); border-radius: var(--radius-sm); padding: 12px 14px; }
+  .info-box h4 { font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .04em; }
+  .info-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .info-row:last-child { border-bottom: none; }
+  .info-row span:first-child { color: var(--text2); font-size: 12px; }
+  .info-row span:last-child { font-weight: 500; font-size: 13px; }
+
+  /* ── Rank input ── */
+  .rank-checker { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; }
+  .rank-checker h3 { font-size: 14px; font-weight: 600; color: #1e40af; margin-bottom: 10px; }
+  .rank-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+  .rank-input-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .rank-input-wrap label { font-size: 11px; font-weight: 500; color: #1e40af; text-transform: uppercase; letter-spacing: .04em; }
+  input[type="number"] {
+    padding: 7px 12px; border: 1px solid #93c5fd; border-radius: var(--radius-sm);
+    background: white; color: var(--text); font-size: 14px; font-weight: 500; width: 160px;
+  }
+  .result-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .result-chip {
+    padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 500;
+    border: 1px solid;
+  }
+  .chip-yes { background: #f0fdf4; color: #15803d; border-color: #86efac; }
+  .chip-no { background: #fef2f2; color: #b91c1c; border-color: #fca5a5; }
+
+  /* ── Footer ── */
+  .footer { text-align: center; padding: 20px; color: var(--text3); font-size: 12px; }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 14px 16px 10px; }
+    .main { padding: 16px 12px; }
+    .filters { gap: 10px; }
+    select { min-width: 130px; }
+  }
+
+  @media print {
+    .page-header { position: static; }
+    .filters, .rank-checker, .tabs { display: none; }
+    .tab-panel { display: block !important; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar-wrap">
+  <div id="navbar"></div>
+  <script src="navbar.js"></script>
+</div>
+
+
+<div class="page-header">
+  <h1>JAC Delhi 2025 — B.Tech Cutoff Analysis</h1>
+  <p>DTU &nbsp;·&nbsp; NSUT &nbsp;·&nbsp; IGDTUW &nbsp;·&nbsp; IIIT-Delhi &nbsp;|&nbsp; All 5 Counselling Rounds &nbsp;|&nbsp; JEE Main CRL Ranks</p>
+  <div class="college-dots">
+    <span class="college-dot"><span class="dot" style="background:var(--dtu)"></span>DTU</span>
+    <span class="college-dot"><span class="dot" style="background:var(--nsut)"></span>NSUT</span>
+    <span class="college-dot"><span class="dot" style="background:var(--igdtuw)"></span>IGDTUW</span>
+    <span class="college-dot"><span class="dot" style="background:var(--iiitd)"></span>IIIT-Delhi</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Rank Checker -->
+  <div class="rank-checker">
+    <h3>🎯 Check Your Rank</h3>
+    <div class="rank-row">
+      <div class="rank-input-wrap">
+        <label>Your JEE Main Rank</label>
+        <input type="number" id="myRank" placeholder="e.g. 15000" min="1" max="1500000" oninput="checkRank()">
+      </div>
+      <div class="rank-input-wrap">
+        <label>Category</label>
+        <select id="rankCat" onchange="checkRank()">
+          <option value="GN">General</option>
+          <option value="OBC">OBC</option>
+          <option value="SC">SC</option>
+          <option value="ST">ST</option>
+          <option value="EWS">EWS</option>
+        </select>
+      </div>
+      <div class="rank-input-wrap">
+        <label>Region</label>
+        <select id="rankReg" onchange="checkRank()">
+          <option value="D">Delhi</option>
+          <option value="O">Outside Delhi</option>
+        </select>
+      </div>
+    </div>
+    <div class="result-row" id="rankResults"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <div class="filter-group">
+      <label>Category</label>
+      <select id="catSel" onchange="render()">
+        <option value="GN">General (GN)</option>
+        <option value="OBC">OBC</option>
+        <option value="SC">SC</option>
+        <option value="ST">ST</option>
+        <option value="EWS">EWS</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Region</label>
+      <select id="regSel" onchange="render()">
+        <option value="D">Delhi Region</option>
+        <option value="O">Outside Delhi</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Branch</label>
+      <select id="branchSel" onchange="render()">
+        <option value="ALL">— All Branches —</option>
+      </select>
+    </div>
+    <div class="filter-actions">
+      <button class="btn btn-primary" onclick="render()">Update</button>
+    </div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="metric-grid" id="metricGrid"></div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('compare',this)">College Comparison</button>
+    <button class="tab-btn" onclick="switchTab('trend',this)">Round-wise Trend</button>
+    <button class="tab-btn" onclick="switchTab('allbranch',this)">All Branches</button>
+    <button class="tab-btn" onclick="switchTab('fulldata',this)">Complete Data</button>
+  </div>
+
+  <!-- Tab: Compare -->
+  <div id="tab-compare" class="tab-panel active">
+    <div class="section">
+      <div class="section-head">
+        <h3>Cutoff Rank Comparison — All Rounds</h3>
+        <span id="compareSubtitle"></span>
+      </div>
+      <div class="section-body">
+        <div class="legend-row" id="compareLegend"></div>
+        <div class="chart-wrap" style="height:300px"><canvas id="compareChart" role="img" aria-label="Bar chart comparing cutoff ranks across colleges and rounds">Cutoff comparison across colleges</canvas></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-head"><h3>Round-by-Round Cutoffs</h3><span>Lower rank = tougher</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>College</th><th>Branch</th><th>Round 1</th><th>Round 2</th><th>Round 3</th><th>Round 4</th><th>Round 5</th><th>R1→R5</th></tr></thead>
+          <tbody id="compareTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Trend -->
+  <div id="tab-trend" class="tab-panel">
+    <div class="section">
+      <div class="section-head"><h3>Cutoff Movement Across Rounds</h3><span>How ranks relaxed each round</span></div>
+      <div class="section-body">
+        <div class="legend-row" id="trendLegend"></div>
+        <div class="chart-wrap" style="height:320px"><canvas id="trendChart" role="img" aria-label="Line chart showing how cutoffs changed across rounds">Cutoff trend across rounds</canvas></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-head"><h3>Relaxation Summary</h3><span>How much did cutoffs ease from Round 1 to Round 5</span></div>
+      <div class="section-body">
+        <div class="info-grid" id="trendInfo"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: All Branches -->
+  <div id="tab-allbranch" class="tab-panel">
+    <div class="section">
+      <div class="section-head"><h3>All Branches — Round 5 Final Cutoffs</h3><span id="allbranchSubtitle"></span></div>
+      <div class="chart-wrap" style="padding:16px 20px;height:420px"><canvas id="allbranchChart" role="img" aria-label="Horizontal bar chart of all branches cutoffs">All branches cutoffs</canvas></div>
+    </div>
+    <div class="section">
+      <div class="section-head"><h3>Branch-wise Table (Round 5)</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>College</th><th>Branch</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5 (Final)</th><th>Change</th></tr></thead>
+          <tbody id="allbranchTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Full Data -->
+  <div id="tab-fulldata" class="tab-panel">
+    <div class="section">
+      <div class="section-head"><h3>Complete Cutoff Data — All Colleges, All Branches</h3><span id="fullSubtitle"></span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>College</th><th>Branch</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>Movement</th></tr></thead>
+          <tbody id="fullTbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn" onclick="exportCSV()">⬇ Download as CSV</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Data sourced from JAC Delhi official cutoff documents 2025 &nbsp;·&nbsp; All ranks are JEE Main CRL &nbsp;·&nbsp; Lower rank = tougher cutoff</div>
+
+<script>
+const DATA = {
+  DTU:{
+    GN:{
+      D:{
+        CSE:[6105,8704,9058,9403,11352],
+        IT:[9456,12047,12210,12311,14561],
+        ECE:[16466,19036,19378,19546,22278],
+        EE:[25266,25922,26555,26555,31589],
+        ME:[35566,35669,36330,36330,44365],
+        MAC:[13808,16851,17155,17348,20458],
+        SE:[12475,14639,14897,15020,18706],
+        CSDS:[7283,9757,10040,10296,12442],
+        VLSI:[18214,20179,20320,20531,24842],
+        CHE:[40718,41607,42775,42775,49816],
+        PIE:[42551,43558,44365,44365,51783],
+        EP:[35427,35636,36553,36168,45024],
+        BT:[48205,48760,50202,50202,59055],
+        CE:[45192,45808,46631,46631,56161],
+        ENV:[46543,47612,49895,49895,58622],
+        MA:[36818,38169,38440,38440,45443]
+      },
+      O:{
+        CSE:[2285,4034,4666,5028,6200],
+        IT:[3847,4952,6050,6135,7360],
+        ECE:[5113,7122,7617,7967,9569],
+        EE:[7122,9518,10350,10562,11227],
+        ME:[9382,11784,12863,13643,16022],
+        MAC:[4411,5555,6561,7378,8348],
+        SE:[4705,5961,6821,7360,8165],
+        CSDS:[3026,4272,4788,5683,6268],
+        VLSI:[6050,7360,8165,8661,9836],
+        CHE:[10350,12820,14214,14535,16697],
+        PIE:[11144,14428,15674,17578,18665],
+        EP:[8595,10845,11631,12808,14482],
+        BT:[10938,13167,15269,16697,19876],
+        CE:[11799,14787,16053,17630,19179],
+        ENV:[12570,14674,16213,17892,19949],
+        MA:[9154,10908,12820,13804,14546]
+      }
+    },
+    OBC:{
+      D:{
+        CSE:[42250,48024,49118,49326,49930],
+        IT:[55360,67895,69101,69101,70083],
+        ECE:[92387,100268,102436,104341,105320],
+        EE:[130895,138717,142702,147225,147712],
+        ME:[162648,167806,176886,179211,183462],
+        MAC:[86001,90120,92354,96073,100268]
+      },
+      O:{
+        CSE:[8016,9980,11054,11404,12574],
+        IT:[null,12574,13743,13743,14868],
+        ECE:[null,16560,17953,18525,19779],
+        EE:[18669,22371,41404,42156,43567],
+        ME:[32775,46566,51115,51115,51115],
+        MAC:[null,15667,17794,17794,18561]
+      }
+    },
+    SC:{
+      D:{
+        CSE:[80206,90481,101006,103890,109484],
+        IT:[111573,127267,128048,128048,134617],
+        ECE:[175923,197428,200437,203230,209811],
+        EE:[229539,251258,261778,271066,286821],
+        ME:[283480,291592,307075,363917,378952],
+        MAC:[172911,186877,188992,191557,200587]
+      },
+      O:{
+        CSE:[39893,47049,53632,53632,53632],
+        IT:[null,53670,61672,61672,61749],
+        ECE:[null,76383,79361,79361,85687],
+        EE:[83184,89313,95474,99513,108911],
+        ME:[92528,101431,114415,120894,130322],
+        MAC:[60699,68935,78739,78739,78739]
+      }
+    },
+    ST:{
+      D:{
+        CSE:[304203,304227,345313,345313,356659],
+        IT:[375308,387229,436084,456877,553889],
+        ECE:[724927,724927,769060,887678,911267],
+        EE:[994975,1082355,1117103,1235423,1235423],
+        ME:[1353901,1220645,1220645,1217615,1217615],
+        MAC:[664373,664373,716182,795181,960804]
+      },
+      O:{
+        CSE:[66042,66042,66042,66042,92242],
+        IT:[null,64565,85292,85292,null],
+        ECE:[null,89324,89324,89324,null],
+        EE:[150322,166647,178527,178527,212113],
+        ME:[153270,182782,193127,193127,206370],
+        MAC:[105153,105153,105153,111434,null]
+      }
+    },
+    EWS:{
+      D:{
+        CSE:[21103,22463,25018,25031,27670],
+        IT:[30402,31247,31611,31611,33875],
+        ECE:[52149,51840,52235,52235,55620],
+        EE:[71570,71351,76195,76195,79048],
+        ME:[95659,95659,98904,101716,110006],
+        MAC:[44289,44289,44691,44691,49805]
+      },
+      O:{
+        CSE:[4915,7024,8073,8073,8557],
+        IT:[10340,12574,13743,13743,14868],
+        ECE:[13954,16560,17953,18525,19779],
+        EE:[14083,15016,15296,15296,16450],
+        ME:[16450,16939,18029,17559,20369],
+        MAC:[9324,10584,10962,11297,11956]
+      }
+    }
+  },
+  NSUT:{
+    GN:{
+      D:{
+        CSE:[4889,7704,7946,8019,10907],
+        CSAI:[2922,5178,5226,5398,7946],
+        IT:[9845,12311,12602,13103,16301],
+        ECE:[18031,20622,21182,21182,25052],
+        EE:[26555,27447,28346,28346,34252],
+        ME:[39529,39565,40875,40875,48319],
+        MAC:[13639,16961,17176,17176,20967],
+        CSDS:[6844,9551,9715,10137,12614],
+        ITNS:[12399,15020,15647,15988,19226],
+        EVDT:[20142,21592,22049,22049,26229],
+        ICE:[31856,31951,32800,32800,39133],
+        BT:[48858,49387,50912,50912,60434],
+        CE:[50646,51473,52192,52192,61299]
+      },
+      O:{
+        CSE:[2612,3925,4176,4519,6249],
+        CSAI:[2092,3299,4233,4411,6050],
+        IT:[4013,5527,6132,6495,7651],
+        ECE:[5540,7357,7841,8376,9819],
+        EE:[7456,10018,10601,10811,11618],
+        ME:[10182,12567,13642,14899,16519],
+        MAC:[4181,5498,5513,7476,7841],
+        CSDS:[3161,4234,4927,5459,7037],
+        ITNS:[4773,6394,6942,7315,8583],
+        EVDT:[6389,7651,8661,9135,10438],
+        ICE:[8803,10874,12360,12860,13847],
+        BT:[12513,14848,16442,16059,19843],
+        CE:[12457,15325,16329,18202,19710]
+      }
+    },
+    OBC:{
+      D:{
+        CSE:[37497,45378,45586,45586,48539],
+        CSAI:[19550,31433,31699,31699,35812],
+        IT:[60098,67887,68160,70201,72460],
+        ECE:[103771,105265,107654,113914,115535],
+        EE:[136007,144477,150399,157393,160670],
+        ME:[175628,183111,190852,199028,207591],
+        MAC:[79469,90935,93114,96700,98154]
+      },
+      O:{
+        CSE:[8982,12098,13207,13695,15149],
+        CSAI:[8213,10969,12098,12098,14512],
+        IT:[12369,15038,16330,16330,16836],
+        ECE:[15623,17755,19624,20126,20462],
+        EE:[18481,20760,22906,23620,25227],
+        ME:[23847,25772,28807,29634,30636],
+        MAC:[13421,16388,18685,18263,18719]
+      }
+    },
+    SC:{
+      D:{
+        CSE:[85621,95775,98194,107246,117715],
+        CSAI:[62948,85621,85621,87219,107246],
+        IT:[128048,148245,150103,156936,172341],
+        ECE:[196760,207595,211420,222447,235553],
+        EE:[239225,266111,277372,310313,341340],
+        ME:[303294,328178,347181,420385,474963],
+        MAC:[172848,192972,196005,200188,205362]
+      },
+      O:{
+        CSE:[44260,51685,51685,53632,55475],
+        CSAI:[38922,52893,52893,52893,55963],
+        IT:[53632,68362,75651,75651,76142],
+        ECE:[70933,82928,85191,85191,93958],
+        EE:[85191,91034,98039,99690,110025],
+        ME:[95807,107984,120203,129765,137329],
+        MAC:[61055,69379,79795,80343,83360]
+      }
+    },
+    ST:{
+      D:{
+        CSE:[263490,279681,312582,336846,343647],
+        CSAI:[160822,160822,160822,160822,180658],
+        IT:[495846,480777,500778,606589,616283],
+        ECE:[740980,754105,946245,994613,1100168],
+        EE:[1248079,1239492,1150595,1150595,1150595],
+        ME:[904236,904236,904236,904236,904236],
+        MAC:[666401,668241,719789,947189,947189]
+      },
+      O:{
+        CSE:[84138,122889,122889,122889,125637],
+        CSAI:[81809,50791,50791,80545,133524],
+        IT:[122527,124480,124480,124480,140115],
+        ECE:[124359,140115,153270,166647,209471],
+        EE:[166647,177948,182782,182782,218317],
+        ME:[168205,187446,194125,206370,224750],
+        MAC:[133524,133524,140115,140115,162475]
+      }
+    },
+    EWS:{
+      D:{
+        CSE:[22463,26695,27670,27670,29658],
+        CSAI:[16481,17520,17520,17520,18161],
+        IT:[36194,36194,38219,38273,44570],
+        ECE:[54686,55189,57047,57047,61377],
+        EE:[75946,77320,78775,79231,84176],
+        ME:[106112,107485,111566,115185,123175],
+        MAC:[45577,46460,47297,47238,50842]
+      },
+      O:{
+        CSE:[5100,5940,5940,5940,9255],
+        CSAI:[5940,6476,7709,7709,9647],
+        IT:[7024,9255,9396,9255,11736],
+        ECE:[11369,11823,11953,12086,14401],
+        EE:[14288,15296,15706,14691,17516],
+        ME:[18558,19018,20162,19662,20721],
+        MAC:[9255,10940,11153,11366,12102]
+      }
+    }
+  },
+  IGDTUW:{
+    GN:{
+      D:{
+        CSE:[42200,45007,45325,45659,50687],
+        CSAI:[38234,38825,39013,39100,44405],
+        IT:[56271,58483,58767,58837,64223],
+        ECE:[68722,69986,70912,70912,79574],
+        ECAI:[65013,67159,67756,67897,75759],
+        ME:[80409,80880,82767,82767,92818],
+        MAC:[59615,63345,63732,63515,69001],
+        AIML:[49593,54234,55305,55305,64133],
+        DMAM:[83732,84268,88223,88223,94672]
+      },
+      O:{
+        CSE:[12437,15910,17974,17974,20667],
+        CSAI:[13526,18174,19558,19657,23158],
+        IT:[16659,20220,21745,22432,25486],
+        ECE:[18919,20747,22432,23400,27449],
+        ME:[24315,25397,26561,27044,30228],
+        MAC:[16158,20823,22952,23380,26176],
+        AIML:[15577,18978,21208,21745,25326],
+        DMAM:[26561,26561,28131,29448,31577]
+      }
+    },
+    OBC:{
+      D:{
+        CSE:[184407,193033,195997,199828,204747],
+        CSAI:[175296,176925,179465,184818,186225],
+        IT:[233350,248139,253336,259799,270817],
+        ECE:[283994,305126,317456,329695,346713],
+        ME:[356937,366900,388011,388011,425801],
+        MAC:[268016,280759,281858,305126,306445]
+      },
+      O:{
+        CSE:[21074,36346,39715,40534,44123],
+        CSAI:[26283,38191,41417,41487,48607],
+        IT:[27866,40388,43695,48908,50746],
+        ECE:[36977,42030,45122,50618,53744],
+        ME:[43352,50746,51611,55610,59229],
+        MAC:[34300,41487,45848,50763,53447]
+      }
+    },
+    SC:{
+      D:{
+        CSE:[297159,327701,341245,369691,399917],
+        CSAI:[336149,346554,349029,392640,413693],
+        IT:[382206,383442,384960,494818,516592],
+        ECE:[403932,423369,423369,584896,597563],
+        ME:[542305,552224,567974,727646,820634],
+        MAC:[436165,455103,455103,563697,617454]
+      },
+      O:{
+        CSE:[85831,134724,146010,159820,159820],
+        CSAI:[104350,136050,149922,171001,171651],
+        IT:[109922,146858,159820,173161,181040],
+        ECE:[114708,160586,172092,178082,189771],
+        ME:[152859,169892,177188,189287,193338],
+        MAC:[136050,149182,171001,187743,190705]
+      }
+    },
+    ST:{
+      D:{
+        CSE:[969509,969509,969509,969509,969509],
+        CSAI:[1183864,1183864,1183864,1183864,1183864],
+        IT:[null,null,null,null,null],
+        ECE:[null,null,null,null,null],
+        ME:[null,null,null,null,null],
+        MAC:[null,null,null,null,null]
+      },
+      O:{
+        CSE:[183056,183056,183056,183056,298847],
+        CSAI:[240177,240177,240177,240177,240177],
+        IT:[237746,258784,330448,298847,339001],
+        ECE:[259004,237746,335266,335266,237746],
+        ME:[335642,327635,356418,363156,385313],
+        MAC:[334514,309691,342860,356418,356418]
+      }
+    },
+    EWS:{
+      D:{
+        CSE:[117689,117689,117689,117689,118163],
+        CSAI:[90813,90813,90813,90813,90958],
+        IT:[151085,151085,151085,151085,151085],
+        ECE:[185801,180361,180361,178912,192517],
+        ME:[230706,230706,230706,230706,244309],
+        MAC:[161353,161353,161353,161353,163983]
+      },
+      O:{
+        CSE:[15631,19435,22999,26656,29387],
+        CSAI:[19435,22999,26656,29186,32454],
+        IT:[22999,25593,29387,30009,32978],
+        ECE:[28157,30009,30298,32978,36953],
+        ME:[30639,35899,35899,37700,40700],
+        MAC:[26656,27550,31319,31319,35532]
+      }
+    }
+  },
+  IIITD:{
+    GN:{
+      D:{
+        CSE:[4351,null,null,null,10557],
+        CSAI:[7441,null,null,null,20707],
+        ECE:[16960,null,null,null,25106],
+        CSAM:[null,null,null,null,15152],
+        CSB:[16098,null,null,null,25106],
+        CSD:[9594,null,null,null,17205],
+        CSEcon:[7429,null,null,null,15165],
+        CSSS:[13365,null,null,null,23202],
+        EVE:[20531,null,null,null,28282]
+      },
+      O:{
+        CSE:[1243,null,null,null,7752],
+        CSAI:[2288,null,null,null,7378],
+        ECE:[3250,null,null,null,9688],
+        CSB:[5717,null,null,null,17892],
+        CSD:[3898,null,null,null,14128],
+        CSEcon:[4855,null,null,null,8493],
+        CSSS:[5397,null,null,null,15879],
+        EVE:[5979,null,null,null,12955],
+        CSAM:[null,null,null,null,8661]
+      }
+    },
+    OBC:{
+      D:{
+        CSE:[53498,null,null,null,75387],
+        CSAI:[77936,null,null,null,62315],
+        ECE:[111125,null,null,null,140257],
+        CSB:[111060,null,null,null,123914],
+        CSD:[78924,null,null,null,102170],
+        CSEcon:[96040,null,null,null,100923],
+        CSSS:[108192,null,null,null,132644],
+        EVE:[123511,null,null,null,152383],
+        CSAM:[null,null,null,null,90365]
+      },
+      O:{
+        CSE:[8671,null,null,null,15254],
+        CSAI:[10994,null,null,null,16311],
+        ECE:[13745,null,null,null,22252],
+        CSB:[16560,null,null,null,25772],
+        CSD:[13289,null,null,null,18685],
+        CSEcon:[10448,null,null,null,16543],
+        CSSS:[13969,null,null,null,23472],
+        EVE:[16242,null,null,null,23639],
+        CSAM:[null,null,null,null,18432]
+      }
+    },
+    SC:{
+      D:{
+        CSE:[109168,null,null,null,179714],
+        CSAI:[165771,null,null,null,162056],
+        ECE:[202142,null,null,null,353099],
+        CSB:[199264,null,null,null,341245],
+        CSD:[170982,null,null,null,213016],
+        CSEcon:[178256,null,null,null,265473],
+        CSSS:[186117,null,null,null,343561],
+        EVE:[249271,null,null,null,407699],
+        CSAM:[null,null,null,null,249362]
+      },
+      O:{
+        CSE:[68362,null,null,null,118125],
+        CSAI:[49984,null,null,null,58531],
+        ECE:[74741,null,null,null,108031],
+        CSB:[71309,null,null,null,85420],
+        CSD:[50852,null,null,null,95474],
+        CSEcon:[44134,null,null,null,76383],
+        CSSS:[64321,null,null,null,157663],
+        EVE:[null,null,null,null,null],
+        CSAM:[null,null,null,null,80551]
+      }
+    },
+    ST:{
+      D:{
+        CSE:[333378,null,null,null,719369],
+        CSAI:[776601,null,null,null,null],
+        ECE:[830181,null,null,null,null],
+        CSB:[1133911,null,null,null,null],
+        CSD:[960804,null,null,null,null],
+        CSEcon:[593505,null,null,null,null],
+        CSSS:[1092371,null,null,null,null],
+        EVE:[null,null,null,null,579692],
+        CSAM:[null,null,null,null,664373]
+      },
+      O:{
+        CSE:[19605,null,null,null,null],
+        CSAI:[119199,null,null,null,null],
+        ECE:[null,null,null,null,190847],
+        CSB:[146363,null,null,null,146363],
+        CSD:[130882,null,null,null,133390],
+        CSEcon:[null,null,null,null,null],
+        CSSS:[162475,null,null,null,169173],
+        EVE:[149862,null,null,null,null],
+        CSAM:[null,null,null,null,209981],
+        CSAI2:[null,null,null,null,145332]
+      }
+    },
+    EWS:{
+      D:{
+        CSE:[33773,null,null,null,37923],
+        CSAI:[44339,null,null,null,39621],
+        ECE:[57242,null,null,null,67351],
+        CSB:[53766,null,null,null,65682],
+        CSD:[46460,null,null,null,53334],
+        CSEcon:[46621,null,null,null,49638],
+        CSSS:[53116,null,null,null,75946],
+        EVE:[60649,null,null,null,78531],
+        CSAM:[null,null,null,null,45317]
+      },
+      O:{
+        CSE:[10091,null,null,null,20013],
+        CSAI:[8557,null,null,null,10708],
+        ECE:[10584,null,null,null,19800],
+        CSB:[10708,null,null,null,20369],
+        CSD:[6973,null,null,null,19321],
+        CSEcon:[5252,null,null,null,11823],
+        CSSS:[11217,null,null,null,21235],
+        EVE:[null,null,null,null,null],
+        CSAM:[null,null,null,null,12304]
+      }
+    }
+  }
+};
+
+const COLLEGES = ['DTU','NSUT','IGDTUW','IIITD'];
+const C_COLORS = {DTU:'#185FA5',NSUT:'#15803d',IGDTUW:'#b45309',IIITD:'#6d28d9'};
+const C_LABELS = {DTU:'DTU',NSUT:'NSUT',IGDTUW:'IGDTUW',IIITD:'IIIT-D'};
+const R_LABELS = ['Round 1','Round 2','Round 3','Round 4','Round 5'];
+const BRANCH_NAMES = {
+  CSE:'CSE',CSAI:'CSE (AI)',IT:'IT',ECE:'ECE',EE:'EE',ME:'ME',MAC:'M&C',
+  SE:'Software Engg',CSDS:'CSE (Data Sci)',VLSI:'ECE (VLSI)',CHE:'Chemical Engg',
+  PIE:'Production & IE',EP:'Engg Physics',BT:'Bio-Tech',CE:'Civil Engg',
+  ENV:'Environmental',MA:'ME (Automotive)',ECAI:'ECE (AI)',AIML:'AI & ML',
+  DMAM:'DMAM',ITNS:'IT (Ntwk Sec)',EVDT:'ECE (VLSI)',ICE:'Instrumentation',
+  CSAM:'CSE (Algo & Math)',CSB:'CS (Bioscience)',CSD:'CS (Design)',
+  CSEcon:'CS (Econ)',CSSS:'CS (Soc Sci)',EVE:'EVE',CSAI2:'CS (AI)'
+};
+
+const CORE_BRANCHES = ['CSE','CSAI','IT','ECE','EE','ME','MAC'];
+
+let charts = {};
+
+function getV(college,cat,reg,branch,rIdx){
+  try{return DATA[college][cat][reg][branch]?.[rIdx]||null;}catch(e){return null;}
+}
+function fmt(n){if(!n&&n!==0)return null;return n.toLocaleString('en-IN');}
+function fmtD(n){return n?n.toLocaleString('en-IN'):'—';}
+
+function getCat(){return document.getElementById('catSel').value;}
+function getReg(){return document.getElementById('regSel').value;}
+function getBranch(){return document.getElementById('branchSel').value;}
+
+function getBranchData(college,cat,reg,branch){
+  return [0,1,2,3,4].map(i=>getV(college,cat,reg,branch,i));
+}
+
+function destroyChart(id){
+  if(charts[id]){charts[id].destroy();delete charts[id];}
+}
+
+function populateBranchDropdown(cat, reg) {
+  const sel = document.getElementById('branchSel');
+  const prev = sel.value;
+  const branchSet = new Set();
+  COLLEGES.forEach(c => {
+    const branches = DATA[c]?.[cat]?.[reg] ? Object.keys(DATA[c][cat][reg]) : [];
+    branches.forEach(b => branchSet.add(b));
+  });
+  const core = ['CSE','CSAI','IT','ECE','EE','ME','MAC'];
+  const sorted = [
+    ...core.filter(b => branchSet.has(b)),
+    ...[...branchSet].filter(b => !core.includes(b)).sort()
+  ];
+  sel.innerHTML = '<option value="ALL">— All Branches —</option>' +
+    sorted.map(b => `<option value="${b}"${b===prev?' selected':''}>${BRANCH_NAMES[b]||b}</option>`).join('');
+  if(![...sel.options].some(o=>o.value===prev)) sel.value='ALL';
+}
+
+function render(){
+  const cat=getCat(), reg=getReg();
+  populateBranchDropdown(cat, reg);
+  const branch=getBranch();
+  renderMetrics(cat,reg,branch);
+  renderCompare(cat,reg,branch);
+  renderTrend(cat,reg,branch);
+  renderAllBranch(cat,reg,branch);
+  renderFull(cat,reg,branch);
+  const brLabel = branch==='ALL' ? 'All Branches' : (BRANCH_NAMES[branch]||branch);
+  document.getElementById('compareSubtitle').textContent = `${brLabel} · ${cat} · ${reg==='D'?'Delhi':'Outside Delhi'}`;
+  document.getElementById('allbranchSubtitle').textContent = `${cat} · ${reg==='D'?'Delhi':'Outside Delhi'}`;
+  document.getElementById('fullSubtitle').textContent = `${cat} · ${reg==='D'?'Delhi':'Outside Delhi'}`;
+}
+
+function renderMetrics(cat,reg,branch){
+  const grid = document.getElementById('metricGrid');
+  let rows;
+  if(branch==='ALL'){
+    // For each college, find best (lowest) R5 cutoff across all branches
+    rows = COLLEGES.map(c=>{
+      const branches = DATA[c]?.[cat]?.[reg] ? Object.keys(DATA[c][cat][reg]) : [];
+      let bestBr=null, bestVals=[null,null,null,null,null];
+      branches.forEach(br=>{
+        const vals=getBranchData(c,cat,reg,br);
+        const v=vals[4]||vals[3]||vals[2]||vals[1]||vals[0];
+        const bv=bestVals[4]||bestVals[3]||bestVals[2]||bestVals[1]||bestVals[0];
+        if(v&&(!bv||v<bv)){bestBr=br;bestVals=vals;}
+      });
+      return {c, vals:bestVals, bestBr};
+    }).filter(r=>r.vals.some(v=>v));
+  } else {
+    rows = COLLEGES.map(c=>({c, vals:getBranchData(c,cat,reg,branch)}))
+      .filter(r=>r.vals.some(v=>v));
+  }
+  if(!rows.length){grid.innerHTML='<p style="color:var(--text3);padding:10px">No data for this selection.</p>';return;}
+  const r5s = rows.map(r=>({c:r.c,v:r.vals[4]})).filter(r=>r.v);
+  const best = r5s.length ? r5s.reduce((a,b)=>a.v<b.v?a:b) : null;
+  const moves = rows.filter(r=>r.vals[0]&&r.vals[4]).map(r=>r.vals[4]-r.vals[0]);
+  const avgMove = moves.length ? Math.round(moves.reduce((a,b)=>a+b,0)/moves.length) : null;
+
+  grid.innerHTML = rows.map(r=>{
+    const v = r.vals[4]||r.vals[3]||r.vals[2]||r.vals[1]||r.vals[0];
+    const cl = r.c.toLowerCase();
+    const sub = branch==='ALL' && r.bestBr ? `Best: ${BRANCH_NAMES[r.bestBr]||r.bestBr}` : 'Round 5 cutoff rank';
+    return `<div class="metric-card accent-${cl}">
+      <div class="lbl">${C_LABELS[r.c]}</div>
+      <div class="val">${fmtD(v)}</div>
+      <div class="sub">${sub}</div>
+    </div>`;
+  }).join('')
+  + (best?`<div class="metric-card"><div class="lbl">Easiest Admit</div><div class="val" style="font-size:16px;color:var(--green-txt)">${C_LABELS[best.c]}</div><div class="sub">${fmtD(best.v)} rank</div></div>`:'')
+  + (avgMove!==null?`<div class="metric-card"><div class="lbl">Avg Relaxation R1→R5</div><div class="val" style="font-size:18px">+${fmtD(avgMove)}</div><div class="sub">Ranks eased on avg</div></div>`:'');
+}
+
+function renderCompare(cat,reg,branch){
+  let rows, tableRows;
+  if(branch==='ALL'){
+    // Show all college+branch combos
+    const allRows=[];
+    COLLEGES.forEach(c=>{
+      const branches=DATA[c]?.[cat]?.[reg]?Object.keys(DATA[c][cat][reg]):[];
+      branches.forEach(br=>{
+        const vals=getBranchData(c,cat,reg,br);
+        if(vals.some(v=>v)) allRows.push({c,br,vals});
+      });
+    });
+    allRows.sort((a,b)=>{
+      const av=a.vals[4]||a.vals[3]||a.vals[2]||a.vals[1]||a.vals[0]||9999999;
+      const bv=b.vals[4]||b.vals[3]||b.vals[2]||b.vals[1]||b.vals[0]||9999999;
+      return av-bv;
+    });
+    rows = COLLEGES.map(c=>({c, vals:getBranchData(c,cat,reg,'CSE')})).filter(r=>r.vals.some(v=>v));
+    tableRows = allRows;
+  } else {
+    rows = COLLEGES.map(c=>({c,vals:getBranchData(c,cat,reg,branch)})).filter(r=>r.vals.some(v=>v));
+    tableRows = rows.map(r=>({...r,br:branch}));
+  }
+
+  const leg = document.getElementById('compareLegend');
+  leg.innerHTML = COLLEGES.map(c=>`<span class="legend-item"><span class="legend-sq" style="background:${C_COLORS[c]}"></span>${C_LABELS[c]}</span>`).join('');
+
+  destroyChart('compare');
+  const ctx = document.getElementById('compareChart').getContext('2d');
+  const chartRows = branch==='ALL' ? [] : rows;
+  charts.compare = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels: R_LABELS,
+      datasets: chartRows.map(r=>({
+        label: C_LABELS[r.c],
+        data: r.vals,
+        backgroundColor: C_COLORS[r.c]+'44',
+        borderColor: C_COLORS[r.c],
+        borderWidth:1.5, borderRadius:3, spanGaps:true
+      }))
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw?.toLocaleString('en-IN')}},
+        ...(branch==='ALL'?{title:{display:true,text:'Select a specific branch to see the comparison chart',font:{size:13},color:'#6b6a66'}}:{})
+      },
+      scales:{y:{reverse:true,title:{display:true,text:'JEE Rank (lower = tougher)',font:{size:11}},ticks:{callback:v=>v?.toLocaleString('en-IN'),font:{size:11}}},x:{ticks:{font:{size:12}}}}
+    }
+  });
+
+  const tb = document.getElementById('compareTbody');
+  tb.innerHTML = tableRows.map(r=>{
+    const cl = r.c.toLowerCase();
+    const change = (r.vals[0]&&r.vals[4]) ? (r.vals[4]-r.vals[0]) : null;
+    const chHtml = change!==null
+      ? `<span class="${change>0?'change-pos':'change-neg'}">${change>0?'+':''}${change.toLocaleString('en-IN')}</span>`
+      : '—';
+    const tds = r.vals.map(v=>`<td class="rank">${v?v.toLocaleString('en-IN'):'<span class="rank-na">—</span>'}</td>`).join('');
+    const brName = BRANCH_NAMES[r.br]||r.br||'';
+    return `<tr><td><span class="badge badge-${cl}">${C_LABELS[r.c]}</span></td><td style="color:var(--text2)">${brName}</td>${tds}<td>${chHtml}</td></tr>`;
+  }).join('') || '<tr><td colspan="8" style="text-align:center;padding:14px;color:var(--text3)">No data for this selection</td></tr>';
+}
+
+function renderTrend(cat,reg,branch){
+  const rows = branch==='ALL'
+    ? [] // no meaningful single-branch trend for ALL
+    : COLLEGES.map(c=>({c,vals:getBranchData(c,cat,reg,branch)})).filter(r=>r.vals.some(v=>v));
+  const leg = document.getElementById('trendLegend');
+  leg.innerHTML = rows.map(r=>`<span class="legend-item"><span class="legend-sq" style="background:${C_COLORS[r.c]}"></span>${C_LABELS[r.c]}</span>`).join('')
+    + (branch==='ALL'?'<span style="color:var(--text3);font-size:12px">Select a specific branch to see round-wise trend</span>':'');
+
+  destroyChart('trend');
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  charts.trend = new Chart(ctx,{
+    type:'line',
+    data:{
+      labels:R_LABELS,
+      datasets:rows.map(r=>({
+        label:C_LABELS[r.c],data:r.vals,
+        borderColor:C_COLORS[r.c],backgroundColor:'transparent',
+        borderWidth:2,pointRadius:5,pointBackgroundColor:C_COLORS[r.c],
+        tension:0.3,spanGaps:true
+      }))
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.raw?.toLocaleString('en-IN')||'N/A')}}},
+      scales:{y:{reverse:true,title:{display:true,text:'JEE Rank',font:{size:11}},ticks:{callback:v=>v?.toLocaleString('en-IN'),font:{size:11}}},x:{ticks:{font:{size:12}}}}
+    }
+  });
+
+  const info = document.getElementById('trendInfo');
+  info.innerHTML = rows.map(r=>{
+    const v0=r.vals[0], v4=r.vals[4];
+    const change = v0&&v4 ? (v4-v0) : null;
+    return `<div class="info-box">
+      <h4><span class="badge badge-${r.c.toLowerCase()}">${C_LABELS[r.c]}</span></h4>
+      <div class="info-row"><span>Round 1 cutoff</span><span>${fmtD(v0)}</span></div>
+      <div class="info-row"><span>Round 2 cutoff</span><span>${fmtD(r.vals[1])}</span></div>
+      <div class="info-row"><span>Round 3 cutoff</span><span>${fmtD(r.vals[2])}</span></div>
+      <div class="info-row"><span>Round 4 cutoff</span><span>${fmtD(r.vals[3])}</span></div>
+      <div class="info-row"><span>Round 5 cutoff</span><span>${fmtD(v4)}</span></div>
+      ${change!==null?`<div class="info-row"><span>Total relaxation</span><span class="${change>0?'change-pos':'change-neg'}">${change>0?'+':''}${change.toLocaleString('en-IN')}</span></div>`:''}
+    </div>`;
+  }).join('') || '<p style="color:var(--text3)">No data</p>';
+}
+
+function renderAllBranch(cat,reg,branch){
+  const cat_=cat, reg_=reg;
+  const allRows = [];
+  COLLEGES.forEach(c=>{
+    const branches = DATA[c]?.[cat_]?.[reg_] ? Object.keys(DATA[c][cat_][reg_]) : [];
+    branches.forEach(br=>{
+      const vals = getBranchData(c,cat_,reg_,br);
+      if(vals.some(v=>v)) allRows.push({c,br,vals});
+    });
+  });
+
+  const r5rows = allRows.filter(r=>r.vals[4]).sort((a,b)=>a.vals[4]-b.vals[4]);
+  const top20 = r5rows.slice(0,24);
+
+  destroyChart('allbranch');
+  const ctx = document.getElementById('allbranchChart').getContext('2d');
+  const barHeight = 36;
+  document.getElementById('allbranchChart').parentElement.style.height = (top20.length*barHeight+80)+'px';
+
+  charts.allbranch = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:top20.map(r=>`${C_LABELS[r.c]} ${BRANCH_NAMES[r.br]||r.br}`),
+      datasets:[{
+        label:'Round 5 Cutoff',
+        data:top20.map(r=>r.vals[4]),
+        backgroundColor:top20.map(r=>C_COLORS[r.c]+'55'),
+        borderColor:top20.map(r=>C_COLORS[r.c]),
+        borderWidth:1.5,borderRadius:3
+      }]
+    },
+    options:{
+      indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Rank: '+c.raw?.toLocaleString('en-IN')}}},
+      scales:{x:{reverse:false,title:{display:true,text:'JEE Main Rank (lower = tougher)',font:{size:11}},ticks:{callback:v=>v?.toLocaleString('en-IN'),font:{size:10}}},y:{ticks:{font:{size:11}}}}
+    }
+  });
+
+  const tb = document.getElementById('allbranchTbody');
+  tb.innerHTML = allRows.sort((a,b)=>{
+    const av=a.vals[4]||a.vals[3]||9999999;
+    const bv=b.vals[4]||b.vals[3]||9999999;
+    return av-bv;
+  }).map(r=>{
+    const cl=r.c.toLowerCase();
+    const v4=r.vals[4]||r.vals[3]||r.vals[2]||r.vals[1]||r.vals[0];
+    const change=(r.vals[0]&&r.vals[4])?(r.vals[4]-r.vals[0]):null;
+    const chHtml=change!==null?`<span class="${change>0?'change-pos':'change-neg'}">${change>0?'+':''}${change.toLocaleString('en-IN')}</span>`:'—';
+    const tds=r.vals.map(v=>`<td class="rank">${v?v.toLocaleString('en-IN'):'<span class="rank-na">—</span>'}</td>`).join('');
+    return `<tr><td><span class="badge badge-${cl}">${C_LABELS[r.c]}</span></td><td>${BRANCH_NAMES[r.br]||r.br}</td>${tds}<td>${chHtml}</td></tr>`;
+  }).join('');
+}
+
+function renderFull(cat,reg,branch){
+  const allRows=[];
+  COLLEGES.forEach(c=>{
+    const branches=DATA[c]?.[cat]?.[reg]?Object.keys(DATA[c][cat][reg]):[];
+    branches.forEach(br=>{
+      const vals=getBranchData(c,cat,reg,br);
+      if(vals.some(v=>v)) allRows.push({c,br,vals});
+    });
+  });
+  allRows.sort((a,b)=>{
+    const av=a.vals[4]||a.vals[3]||a.vals[2]||a.vals[1]||a.vals[0]||9999999;
+    const bv=b.vals[4]||b.vals[3]||b.vals[2]||b.vals[1]||b.vals[0]||9999999;
+    return av-bv;
+  });
+  const tb=document.getElementById('fullTbody');
+  tb.innerHTML=allRows.map(r=>{
+    const cl=r.c.toLowerCase();
+    const change=(r.vals[0]&&r.vals[4])?(r.vals[4]-r.vals[0]):null;
+    const chHtml=change!==null?`<span class="${change>0?'change-pos':'change-neg'}">${change>0?'+':''}${change.toLocaleString('en-IN')}</span>`:'—';
+    const tds=r.vals.map(v=>`<td class="rank">${v?v.toLocaleString('en-IN'):'<span class="rank-na">—</span>'}</td>`).join('');
+    return `<tr><td><span class="badge badge-${cl}">${C_LABELS[r.c]}</span></td><td>${BRANCH_NAMES[r.br]||r.br}</td>${tds}<td>${chHtml}</td></tr>`;
+  }).join('');
+}
+
+/* ── Rank Checker ── */
+function checkRank(){
+  const rank=parseInt(document.getElementById('myRank').value);
+  const cat=document.getElementById('rankCat').value;
+  const reg=document.getElementById('rankReg').value;
+  const res=document.getElementById('rankResults');
+  if(!rank||rank<1){res.innerHTML='';return;}
+
+  const matches=[];
+  COLLEGES.forEach(c=>{
+    const branches=DATA[c]?.[cat]?.[reg]?Object.keys(DATA[c][cat][reg]):[];
+    branches.forEach(br=>{
+      const r5=getV(c,cat,reg,br,4)||getV(c,cat,reg,br,3)||getV(c,cat,reg,br,2)||getV(c,cat,reg,br,1)||getV(c,cat,reg,br,0);
+      if(r5&&rank<=r5) matches.push({c,br,r5});
+    });
+  });
+  matches.sort((a,b)=>a.r5-b.r5);
+
+  if(!matches.length){
+    res.innerHTML='<span class="result-chip chip-no">No matches found — try a higher rank or different category</span>';
+    return;
+  }
+  res.innerHTML = matches.slice(0,12).map(m=>`<span class="result-chip chip-yes">${C_LABELS[m.c]} ${BRANCH_NAMES[m.br]||m.br} (cutoff ${m.r5.toLocaleString('en-IN')})</span>`).join('')
+    +(matches.length>12?`<span class="result-chip" style="background:var(--surface2);border-color:var(--border);color:var(--text2)">+${matches.length-12} more</span>`:'');
+}
+
+/* ── Tabs ── */
+function switchTab(name, el){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  if(name==='allbranch'||name==='compare'||name==='trend') render();
+}
+
+/* ── CSV Export ── */
+function exportCSV(){
+  const cat=getCat(), reg=getReg();
+  const rows=[['College','Branch','Round1','Round2','Round3','Round4','Round5']];
+  COLLEGES.forEach(c=>{
+    const branches=DATA[c]?.[cat]?.[reg]?Object.keys(DATA[c][cat][reg]):[];
+    branches.forEach(br=>{
+      const vals=getBranchData(c,cat,reg,br);
+      if(vals.some(v=>v)) rows.push([C_LABELS[c],BRANCH_NAMES[br]||br,...vals.map(v=>v||'')]);
+    });
+  });
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=`JAC_Delhi_2025_${cat}_${reg}.csv`;
+  a.click();
+}
+
+render();
+</script>
+</body>
+</html>

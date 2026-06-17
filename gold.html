@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Spark — Live Gold & Silver Rates India</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --bg:         #080A0F;
+      --surface:    #0D1017;
+      --card:       #111520;
+      --border:     rgba(255,255,255,.07);
+      --gold:       #F0B429;
+      --gold-dim:   rgba(240,180,41,.12);
+      --gold-glow:  rgba(240,180,41,.25);
+      --silver:     #A8B8CC;
+      --silver-dim: rgba(168,184,204,.12);
+      --green:      #22C55E;
+      --green-dim:  rgba(34,197,94,.12);
+      --red:        #EF4444;
+      --red-dim:    rgba(239,68,68,.12);
+      --text:       #E8EDF5;
+      --muted:      #5A6478;
+      --sub:        #8A94A8;
+      --font:       'Inter', system-ui, sans-serif;
+      --mono:       'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(8,10,15,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 16px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    .logo-dot {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--gold), #E8931A);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+    .nav-badge {
+      font-size: 10px; font-weight: 600;
+      background: var(--green-dim); color: var(--green);
+      border: 1px solid rgba(34,197,94,.25);
+      padding: 2px 8px; border-radius: 20px;
+      letter-spacing: .04em;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .6; }
+    }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-time {
+      display: flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-size: 12px;
+      color: var(--sub);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 5px 12px; border-radius: 8px;
+    }
+    .nav-time i { width: 13px; height: 13px; }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500;
+      color: var(--sub); text-decoration: none;
+      padding: 5px 12px; border-radius: 8px;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover { background: var(--card); color: var(--text); }
+
+    /* ─── HEADER BAND ─── */
+    .header-band {
+      padding: 28px 24px 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(240,180,41,.04) 0%, transparent 100%);
+    }
+    .header-row {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .header-title {
+      font-size: 26px; font-weight: 800;
+      color: var(--text); line-height: 1.2;
+    }
+    .header-title span { color: var(--gold); }
+    .header-sub {
+      margin-top: 4px;
+      font-size: 13px; color: var(--sub);
+    }
+    .market-status {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid rgba(34,197,94,.2);
+      padding: 6px 14px; border-radius: 20px;
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    /* ─── MAIN LAYOUT ─── */
+    main { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+    /* ─── RATE CARDS ─── */
+    .rate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .rate-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 22px 20px;
+      position: relative; overflow: hidden;
+      transition: border-color .25s, transform .2s;
+      cursor: default;
+    }
+    .rate-card:hover { transform: translateY(-2px); }
+    .rate-card.gold24:hover { border-color: rgba(240,180,41,.35); }
+    .rate-card.gold22:hover { border-color: rgba(220,150,30,.35); }
+    .rate-card.silver:hover  { border-color: rgba(168,184,204,.35); }
+    .card-glow {
+      position: absolute; top: -20px; right: -20px;
+      width: 120px; height: 120px; border-radius: 50%;
+      filter: blur(40px); opacity: .25; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .rate-card:hover .card-glow { opacity: .45; }
+    .gold24 .card-glow { background: var(--gold); }
+    .gold22 .card-glow { background: #DC961E; }
+    .silver  .card-glow { background: var(--silver); }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .card-meta {}
+    .card-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .gold24 .card-label { color: var(--gold); }
+    .gold22 .card-label { color: #DC961E; }
+    .silver  .card-label { color: var(--silver); }
+    .card-purity {
+      display: inline-block;
+      font-size: 10px; font-weight: 600;
+      padding: 2px 7px; border-radius: 4px; margin-top: 4px;
+    }
+    .gold24 .card-purity { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(240,180,41,.2); }
+    .gold22 .card-purity { background: rgba(220,150,30,.1); color: #DC961E; border: 1px solid rgba(220,150,30,.2); }
+    .silver  .card-purity { background: var(--silver-dim); color: var(--silver); border: 1px solid rgba(168,184,204,.2); }
+
+    .card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gold24 .card-icon { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(240,180,41,.2); }
+    .gold22 .card-icon { background: rgba(220,150,30,.1); color: #DC961E; border: 1px solid rgba(220,150,30,.2); }
+    .silver  .card-icon { background: var(--silver-dim); color: var(--silver); border: 1px solid rgba(168,184,204,.2); }
+    .card-icon i { width: 18px; height: 18px; }
+
+    .card-price-block { margin-top: 18px; }
+    .card-price {
+      font-family: var(--mono);
+      font-size: 32px; font-weight: 600;
+      color: var(--text); line-height: 1;
+    }
+    .card-price-unit { font-size: 13px; font-weight: 400; color: var(--muted); }
+    .card-price-10g {
+      font-family: var(--mono);
+      font-size: 13px; color: var(--sub);
+      margin-top: 5px;
+    }
+    .card-diff {
+      margin-top: 14px; display: flex; align-items: center; gap: 8px;
+    }
+    .diff-badge {
+      display: flex; align-items: center; gap: 4px;
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+      padding: 3px 8px; border-radius: 6px;
+    }
+    .diff-badge.up   { background: var(--green-dim); color: var(--green); }
+    .diff-badge.down { background: var(--red-dim); color: var(--red); }
+    .diff-badge i { width: 12px; height: 12px; }
+    .diff-label { font-size: 11px; color: var(--muted); }
+
+    /* ─── BOTTOM GRID ─── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 16px;
+    }
+
+    /* ─── CALCULATOR ─── */
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .card-header i { width: 16px; height: 16px; color: var(--gold); }
+    .card-header h3 { font-size: 14px; font-weight: 600; }
+    .calc-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+
+    .field-label {
+      display: block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--sub); margin-bottom: 7px;
+    }
+    .field-control {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: var(--font); font-size: 13px;
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+    }
+    .field-control:focus { border-color: rgba(240,180,41,.45); }
+    select.field-control { cursor: pointer; }
+
+    .calc-breakdown {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .breakdown-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 0;
+      font-size: 12px;
+    }
+    .breakdown-row + .breakdown-row { border-top: 1px solid var(--border); }
+    .breakdown-label { color: var(--sub); }
+    .breakdown-val { font-family: var(--mono); font-weight: 500; color: var(--text); }
+
+    .calc-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 4px;
+    }
+    .total-label { font-size: 13px; font-weight: 600; color: var(--text); }
+    .total-val {
+      font-family: var(--mono);
+      font-size: 22px; font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* ─── CITY TABLE ─── */
+    .table-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .table-header-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .table-header-left { display: flex; align-items: center; gap: 8px; }
+    .table-header-left i { width: 16px; height: 16px; color: var(--sub); }
+    .table-header-left h3 { font-size: 14px; font-weight: 600; }
+    .live-badge {
+      font-size: 10px; font-weight: 700;
+      color: var(--gold); background: var(--gold-dim);
+      border: 1px solid rgba(240,180,41,.25);
+      padding: 3px 9px; border-radius: 20px;
+      letter-spacing: .05em;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    thead th {
+      padding: 11px 20px;
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); text-align: left;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.025); }
+    tbody td { padding: 13px 20px; font-size: 13px; }
+    .city-name { font-weight: 600; color: var(--text); }
+    .city-flag { margin-right: 6px; }
+    .price-24k { font-family: var(--mono); font-weight: 600; color: var(--gold); }
+    .price-22k { font-family: var(--mono); color: #DC961E; }
+    .price-silver { font-family: var(--mono); color: var(--silver); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      max-width: 1200px; margin: 0 auto;
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .footer-brand { font-weight: 700; font-size: 14px; color: var(--gold); }
+    .footer-note { font-size: 11px; color: var(--muted); max-width: 1000px; line-height: 1.6; }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .rate-grid { grid-template-columns: 1fr; }
+      .bottom-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .header-title { font-size: 20px; }
+      main { padding: 16px; }
+      .card-price { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+<div id="navbar"></div>
+<script src="navbar.js"></script>
+
+
+<!-- ── HEADER BAND ── -->
+<div class="header-band">
+  <div class="header-row">
+    <div>
+      <div class="header-title">आज सोने-चाँदी के <span>भाव</span></div>
+      <div class="header-sub">भारत के प्रमुख शहरों में आज की थोक एवं खुदरा दरें (MCX / IBJA)</div>
+    </div>
+    <div class="market-status">
+      <div class="status-dot"></div>
+      बाज़ार खुला है
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── RATE CARDS ── -->
+  <div class="rate-grid">
+
+    <!-- 24K Gold -->
+    <div class="rate-card gold24">
+      <div class="card-glow"></div>
+      <div class="card-top">
+        <div class="card-meta">
+          <div class="card-label">Gold 24 Karat</div>
+          <span class="card-purity">99.9% शुद्ध</span>
+        </div>
+        <div class="card-icon"><i data-lucide="coins"></i></div>
+      </div>
+      <div class="card-price-block">
+        <div class="card-price">₹<span id="g24-1g">15,090</span> <span class="card-price-unit">/ ग्राम</span></div>
+        <div class="card-price-10g">₹<span id="g24-10g">1,50,900</span> / 10 ग्राम</div>
+      </div>
+      <div class="card-diff">
+        <span class="diff-badge" id="g24-diff-badge">
+          <i data-lucide="trending-up" id="g24-diff-icon"></i>
+          <span id="g24-diff-val"></span>
+        </span>
+        <span class="diff-label">कल की तुलना में</span>
+      </div>
+    </div>
+
+    <!-- 22K Gold -->
+    <div class="rate-card gold22">
+      <div class="card-glow"></div>
+      <div class="card-top">
+        <div class="card-meta">
+          <div class="card-label">Gold 22 Karat</div>
+          <span class="card-purity">आभूषण मानक</span>
+        </div>
+        <div class="card-icon"><i data-lucide="gem"></i></div>
+      </div>
+      <div class="card-price-block">
+        <div class="card-price">₹<span id="g22-1g">14,335</span> <span class="card-price-unit">/ ग्राम</span></div>
+        <div class="card-price-10g">₹<span id="g22-10g">1,43,350</span> / 10 ग्राम</div>
+      </div>
+      <div class="card-diff">
+        <span class="diff-badge" id="g22-diff-badge">
+          <i data-lucide="trending-up" id="g22-diff-icon"></i>
+          <span id="g22-diff-val"></span>
+        </span>
+        <span class="diff-label">कल की तुलना में</span>
+      </div>
+    </div>
+
+    <!-- Silver -->
+    <div class="rate-card silver">
+      <div class="card-glow"></div>
+      <div class="card-top">
+        <div class="card-meta">
+          <div class="card-label">Silver (XAG)</div>
+          <span class="card-purity">99.9% शुद्ध</span>
+        </div>
+        <div class="card-icon"><i data-lucide="zap"></i></div>
+      </div>
+      <div class="card-price-block">
+        <div class="card-price">₹<span id="s-1g">2,790</span> <span class="card-price-unit">/ ग्राम</span></div>
+        <div class="card-price-10g">₹<span id="s-1kg">27,90,000</span> / 1 किलो</div>
+      </div>
+      <div class="card-diff">
+        <span class="diff-badge" id="s-diff-badge">
+          <i data-lucide="trending-up" id="s-diff-icon"></i>
+          <span id="s-diff-val"></span>
+        </span>
+        <span class="diff-label">कल की तुलना में</span>
+      </div>
+    </div>
+
+  </div><!-- /rate-grid -->
+
+  <!-- ── BOTTOM GRID ── -->
+  <div class="bottom-grid">
+
+    <!-- CALCULATOR -->
+    <div class="calc-card">
+      <div class="card-header">
+        <i data-lucide="calculator"></i>
+        <h3>बिल एस्टिमेटर (GST सहित)</h3>
+      </div>
+      <div class="calc-body">
+
+        <div>
+          <label class="field-label">धातु चुनें</label>
+          <select class="field-control" id="calc-metal" onchange="calcBill()">
+            <option value="24k">सोना 24K (प्रति ग्राम)</option>
+            <option value="22k" selected>सोना 22K (प्रति ग्राम)</option>
+            <option value="silver">चाँदी (प्रति ग्राम)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="field-label">वज़न (ग्राम में)</label>
+          <input type="number" class="field-control" id="calc-weight" value="10" min="0.1" step="0.1" oninput="calcBill()"/>
+        </div>
+
+        <div class="calc-breakdown">
+          <div class="breakdown-row">
+            <span class="breakdown-label">आधार मूल्य</span>
+            <span class="breakdown-val" id="b-base">—</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">बनाई (5%)</span>
+            <span class="breakdown-val" id="b-making">—</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">GST (3%)</span>
+            <span class="breakdown-val" id="b-gst">—</span>
+          </div>
+          <div class="calc-total">
+            <span class="total-label">अनुमानित कुल</span>
+            <span class="total-val" id="b-total">—</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CITY TABLE -->
+    <div class="table-card">
+      <div class="table-header-row">
+        <div class="table-header-left">
+          <i data-lucide="map-pin"></i>
+          <h3>शहरवार खुदरा भाव (10 ग्राम)</h3>
+        </div>
+        <span class="live-badge">LIVE अपडेट</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>शहर</th>
+            <th>24K (10 ग्राम)</th>
+            <th>22K (10 ग्राम)</th>
+            <th>चाँदी (1 किलो)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="city-flag">🏙️</span><span class="city-name">मुंबई</span></td>
+            <td class="price-24k">₹1,50,900</td>
+            <td class="price-22k">₹1,38,410</td>
+            <td class="price-silver">₹2,79,000</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🏛️</span><span class="city-name">दिल्ली NCR</span></td>
+            <td class="price-24k">₹1,51,200</td>
+            <td class="price-22k">₹1,38,600</td>
+            <td class="price-silver">₹2,80,500</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🌊</span><span class="city-name">चेन्नई</span></td>
+            <td class="price-24k">₹1,51,800</td>
+            <td class="price-22k">₹1,39,150</td>
+            <td class="price-silver">₹2,82,000</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🎭</span><span class="city-name">कोलकाता</span></td>
+            <td class="price-24k">₹1,50,900</td>
+            <td class="price-22k">₹1,38,410</td>
+            <td class="price-silver">₹2,79,000</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🌸</span><span class="city-name">बेंगलुरु</span></td>
+            <td class="price-24k">₹1,51,050</td>
+            <td class="price-22k">₹1,38,550</td>
+            <td class="price-silver">₹2,80,000</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🕌</span><span class="city-name">हैदराबाद</span></td>
+            <td class="price-24k">₹1,51,300</td>
+            <td class="price-22k">₹1,38,750</td>
+            <td class="price-silver">₹2,80,800</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🎪</span><span class="city-name">जयपुर</span></td>
+            <td class="price-24k">₹1,51,100</td>
+            <td class="price-22k">₹1,38,500</td>
+            <td class="price-silver">₹2,79,500</td>
+          </tr>
+          <tr>
+            <td><span class="city-flag">🌴</span><span class="city-name">अहमदाबाद</span></td>
+            <td class="price-24k">₹1,50,850</td>
+            <td class="price-22k">₹1,38,280</td>
+            <td class="price-silver">₹2,78,700</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /bottom-grid -->
+
+</main>
+
+
+<script>
+  // ── DATA ──
+  const RATES = {
+    g24:  { cur: 15090, prev: 14667 },
+    g22:  { cur: 14335, prev: 14667 },
+    silver: { cur: 2790, prev: 2800 }
+  };
+
+  // ── FORMAT ──
+  function inr(n) {
+    return n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function inrInt(n) {
+    return n.toLocaleString('en-IN');
+  }
+
+  // ── DIFF BADGE ──
+  function renderDiff(badgeId, iconId, valId, diff) {
+    const badge = document.getElementById(badgeId);
+    const icon  = document.getElementById(iconId);
+    const val   = document.getElementById(valId);
+    if (diff >= 0) {
+      badge.className = 'diff-badge up';
+      icon.setAttribute('data-lucide', 'trending-up');
+      val.textContent = '+₹' + inrInt(diff);
+    } else {
+      badge.className = 'diff-badge down';
+      icon.setAttribute('data-lucide', 'trending-down');
+      val.textContent = '-₹' + inrInt(Math.abs(diff));
+    }
+  }
+
+  // ── POPULATE CARDS ──
+  function populateCards() {
+    // 24K
+    document.getElementById('g24-1g').textContent  = inrInt(RATES.g24.cur);
+    document.getElementById('g24-10g').textContent = inrInt(RATES.g24.cur * 10);
+    renderDiff('g24-diff-badge','g24-diff-icon','g24-diff-val', RATES.g24.cur - RATES.g24.prev);
+    // 22K
+    document.getElementById('g22-1g').textContent  = inrInt(RATES.g22.cur);
+    document.getElementById('g22-10g').textContent = inrInt(RATES.g22.cur * 10);
+    renderDiff('g22-diff-badge','g22-diff-icon','g22-diff-val', RATES.g22.cur - RATES.g22.prev);
+    // Silver
+    document.getElementById('s-1g').textContent   = inrInt(RATES.silver.cur);
+    document.getElementById('s-1kg').textContent  = inrInt(RATES.silver.cur * 1000);
+    renderDiff('s-diff-badge','s-diff-icon','s-diff-val', RATES.silver.cur - RATES.silver.prev);
+  }
+
+  // ── CALCULATOR ──
+  function calcBill() {
+    const metal  = document.getElementById('calc-metal').value;
+    const weight = parseFloat(document.getElementById('calc-weight').value) || 0;
+    let rate = metal === '24k' ? RATES.g24.cur : metal === '22k' ? RATES.g22.cur : RATES.silver.cur;
+    const base   = rate * weight;
+    const making = base * 0.05;
+    const gst    = (base + making) * 0.03;
+    const total  = base + making + gst;
+    document.getElementById('b-base').textContent   = '₹' + inr(base);
+    document.getElementById('b-making').textContent = '₹' + inr(making);
+    document.getElementById('b-gst').textContent    = '₹' + inr(gst);
+    document.getElementById('b-total').textContent  = '₹' + inr(total);
+  }
+
+  // ── CLOCK ──
+  function tick() {
+    const t = new Date().toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    document.getElementById('nav-time').textContent = t + ' IST';
+  }
+
+  // ── INIT ──
+  populateCards();
+  calcBill();
+  tick();
+  setInterval(tick, 1000);
+  lucide.createIcons();
+</script>
+</body>
+</html>
