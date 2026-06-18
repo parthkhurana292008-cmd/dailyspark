@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Daily Spark | Where Knowledge Sparks Success</title>
+  <meta name="description" content="Learn about Daily Spark — India's trusted knowledge platform for education, government jobs, health, cooking, and daily news. Built for every Indian, in every language." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink:        #0D1B2A;
+      --ink-soft:   #2C3E50;
+      --spark:      #E8500A;
+      --spark-lt:   #FF6B35;
+      --spark-dim:  rgba(232,80,10,0.10);
+      --gold:       #F0A500;
+      --gold-dim:   rgba(240,165,0,0.12);
+      --paper:      #FAFAF8;
+      --mist:       #F2F3F0;
+      --rule:       #E0DDD8;
+      --white:      #FFFFFF;
+      --text-body:  #3A3A3A;
+      --text-mute:  #7A7A7A;
+
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'Inter', system-ui, sans-serif;
+      --ff-hindi:   'Noto Sans Devanagari', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--text-body);
+      line-height: 1.75;
+      font-size: 1rem;
+      overflow-x: hidden;
+    }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,0.45);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.42rem 2rem;
+    }
+    .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .topbar a:hover { color: var(--spark-lt); }
+
+    /* ─── HEADER ─── */
+    .site-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--spark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+    }
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--spark);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+    .logo-text strong {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 1.28rem;
+      color: var(--ink);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .logo-text span {
+      font-size: 0.62rem;
+      color: var(--text-mute);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .nav-home {
+      font-size: 0.82rem;
+      color: var(--spark);
+      text-decoration: none;
+      font-weight: 600;
+      border: 1.5px solid var(--spark);
+      padding: 0.38rem 0.9rem;
+      border-radius: 4px;
+      transition: all 0.18s;
+    }
+    .nav-home:hover { background: var(--spark); color: white; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 2rem 0;
+    }
+    /* Animated spark lines — the page's signature element */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-lines span {
+      position: absolute;
+      display: block;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--spark-lt), transparent);
+      opacity: 0;
+      animation: spark-fall 4s infinite;
+    }
+    .hero-lines span:nth-child(1)  { left: 8%;   height: 180px; animation-delay: 0s;    animation-duration: 3.5s; }
+    .hero-lines span:nth-child(2)  { left: 22%;  height: 120px; animation-delay: 0.8s;  animation-duration: 4s; }
+    .hero-lines span:nth-child(3)  { left: 38%;  height: 220px; animation-delay: 1.5s;  animation-duration: 3s; }
+    .hero-lines span:nth-child(4)  { left: 55%;  height: 150px; animation-delay: 0.3s;  animation-duration: 4.5s; }
+    .hero-lines span:nth-child(5)  { left: 70%;  height: 100px; animation-delay: 1.2s;  animation-duration: 3.8s; }
+    .hero-lines span:nth-child(6)  { left: 85%;  height: 200px; animation-delay: 0.6s;  animation-duration: 3.2s; }
+    .hero-lines span:nth-child(7)  { left: 93%;  height: 130px; animation-delay: 2s;    animation-duration: 4.2s; }
+    .hero-lines span:nth-child(8)  { left: 48%;  height: 160px; animation-delay: 1.8s;  animation-duration: 3.6s; }
+
+    @keyframes spark-fall {
+      0%   { opacity: 0; top: -10%; }
+      20%  { opacity: 0.5; }
+      80%  { opacity: 0.3; }
+      100% { opacity: 0; top: 110%; }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: end;
+      padding-bottom: 0;
+    }
+    .hero-text { padding-bottom: 4rem; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--spark-dim);
+      border: 1px solid rgba(232,80,10,0.3);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--spark-lt);
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+    }
+    .hero-h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--spark-lt);
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .hero-hindi {
+      font-family: var(--ff-hindi);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.9;
+      border-left: 2px solid var(--spark);
+      padding-left: 1rem;
+    }
+    /* Stat card stack */
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-self: end;
+      padding-bottom: 3rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-bottom: none;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .stat-card:first-child { border-radius: 10px 10px 0 0; }
+    .stat-card:last-child  { border-bottom: 1px solid rgba(255,255,255,0.08); border-radius: 0 0 10px 10px; }
+    .stat-card:hover { background: rgba(255,255,255,0.09); }
+    .stat-icon {
+      font-size: 1.6rem;
+      width: 44px;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num sup {
+      font-size: 0.9rem;
+      color: var(--spark-lt);
+      vertical-align: super;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── WAVE DIVIDER ─── */
+    .wave {
+      display: block;
+      width: 100%;
+      height: 60px;
+      background: var(--ink);
+      clip-path: ellipse(55% 100% at 50% 0%);
+      margin-bottom: -2px;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section {
+      padding: 5rem 2rem;
+    }
+    .section-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .sec-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--spark);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sec-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--spark);
+      border-radius: 2px;
+    }
+    .sec-h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .sec-lead {
+      font-size: 1rem;
+      color: var(--text-mute);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* ─── STORY SECTION ─── */
+    .story-section { background: var(--white); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+    .story-body p {
+      color: var(--text-body);
+      margin-bottom: 1rem;
+      line-height: 1.85;
+    }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-pull {
+      font-family: var(--ff-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--ink);
+      border-left: 4px solid var(--spark);
+      padding: 1rem 1.5rem;
+      margin: 1.8rem 0;
+      background: var(--spark-dim);
+      border-radius: 0 8px 8px 0;
+      line-height: 1.5;
+    }
+    /* Timeline visual */
+    .story-visual {
+      position: relative;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--spark), var(--gold), var(--spark));
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 2.2rem;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -2rem;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      background: var(--spark);
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--spark);
+    }
+    .tl-dot.gold { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .tl-year {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--spark);
+      margin-bottom: 0.2rem;
+    }
+    .tl-year.gold { color: var(--gold); }
+    .tl-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .tl-desc { font-size: 0.84rem; color: var(--text-mute); line-height: 1.6; }
+
+    /* ─── MISSION SECTION ─── */
+    .mission-section {
+      background: var(--mist);
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .mission-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem 1.6rem;
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .mission-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--spark);
+    }
+    .mission-card.gold-top::before { background: var(--gold); }
+    .mission-card.ink-top::before  { background: var(--ink); }
+    .mc-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .mc-title {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .mc-body {
+      font-size: 0.88rem;
+      color: var(--text-mute);
+      line-height: 1.75;
+    }
+
+    /* ─── TOPICS / WHAT WE COVER ─── */
+    .topics-section { background: var(--white); }
+    .topics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .topic-chip {
+      background: var(--mist);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.18s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .topic-chip:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+    .topic-chip:hover .tc-name { color: white; }
+    .topic-chip:hover .tc-icon { transform: scale(1.15); }
+    .tc-icon { font-size: 1.8rem; transition: transform 0.18s; }
+    .tc-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+
+    /* ─── TEAM SECTION ─── */
+    .team-section { background: var(--ink); padding: 5rem 2rem; }
+    .team-section .sec-h2 { color: var(--white); }
+    .team-section .sec-eyebrow { color: var(--spark-lt); }
+    .team-section .sec-eyebrow::after { background: var(--spark-lt); }
+    .team-section .sec-lead { color: rgba(255,255,255,0.5); max-width: 560px; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .team-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .team-card:hover { background: rgba(255,255,255,0.09); }
+    .team-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+    .avatar-spark { background: linear-gradient(135deg, var(--spark), var(--spark-lt)); }
+    .avatar-gold  { background: linear-gradient(135deg, var(--gold), #e8c200); }
+    .avatar-blue  { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+    .avatar-green { background: linear-gradient(135deg, #22C55E, #16A34A); }
+    .team-name {
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    .team-role {
+      font-size: 0.72rem;
+      color: var(--spark-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+    .team-bio {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+    }
+
+    /* ─── VALUES SECTION ─── */
+    .values-section { background: var(--paper); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .value-block {
+      background: var(--white);
+      padding: 2.2rem 2rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: background 0.18s;
+    }
+    .value-block:hover { background: var(--mist); }
+    .vb-num {
+      font-family: var(--ff-display);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--spark-dim);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+    }
+    .vb-title {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .vb-desc { font-size: 0.85rem; color: var(--text-mute); line-height: 1.7; }
+
+    /* ─── CTA STRIP ─── */
+    .cta-strip {
+      background: linear-gradient(135deg, var(--spark) 0%, #c84000 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '⚡';
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.05;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-strip h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    .cta-strip p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .btn-primary {
+      background: var(--white);
+      color: var(--spark);
+      font-weight: 700;
+      padding: 0.75rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.18s;
+    }
+    .btn-primary:hover { background: var(--ink); color: white; }
+    .btn-ghost {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+      font-weight: 600;
+      padding: 0.75rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.18s;
+    }
+    .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+    /* ─── FOOTER ─── */
+    .site-footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2.2rem 2rem;
+      font-size: 0.78rem;
+    }
+    .site-footer a { color: var(--spark-lt); text-decoration: none; }
+    .site-footer a:hover { color: var(--gold); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.4rem;
+      margin-top: 0.7rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner    { grid-template-columns: 1fr; }
+      .hero-stats    { flex-direction: row; flex-wrap: wrap; align-self: stretch; padding-bottom: 2.5rem; }
+      .stat-card     { flex: 1 1 140px; border-bottom: 1px solid rgba(255,255,255,0.08) !important; border-radius: 8px !important; }
+      .story-grid    { grid-template-columns: 1fr; gap: 2.5rem; }
+      .mission-grid  { grid-template-columns: 1fr 1fr; }
+      .values-grid   { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .topbar         { display: none; }
+      .header-inner   { padding: 0.65rem 1rem; }
+      .hero           { padding: 3rem 1rem 0; }
+      .section        { padding: 3.5rem 1rem; }
+      .team-section   { padding: 3.5rem 1rem; }
+      .cta-strip      { padding: 3rem 1rem; }
+      .mission-grid   { grid-template-columns: 1fr; }
+      .hero-stats     { flex-direction: column; }
+      .stat-card      { border-radius: 8px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>Daily Spark — India's Trusted Knowledge Platform</span>
+    <span>🇮🇳 Serving readers since 2024</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo-wrap" href="index.html">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+          <strong>Daily Spark</strong>
+          <span>Where Knowledge Sparks Success</span>
+        </div>
+      </a>
+      <a class="nav-home" href="index.html">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-lines" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">⚡ About Daily Spark</div>
+        <h1 class="hero-h1">Built for <em>every Indian</em><br/>who wants to grow.</h1>
+        <p class="hero-lead">Daily Spark is India's knowledge companion — bringing together education, career guidance, health, cooking, and daily news in one trusted place. In your language. On your terms.</p>
+        <p class="hero-hindi">ज्ञान वो दीपक है जो कभी नहीं बुझता।<br/>Daily Spark आपके लिए — हर रोज़, हर विषय, हर भाषा में।</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-icon">📰</div>
+          <div>
+            <div class="stat-num">50<sup>+</sup></div>
+            <div class="stat-label">Articles Published</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+          <div>
+            <div class="stat-num">6<sup>+</sup></div>
+            <div class="stat-label">Knowledge Categories</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🇮🇳</div>
+          <div>
+            <div class="stat-num">2</div>
+            <div class="stat-label">Languages Supported</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🆓</div>
+          <div>
+            <div class="stat-num">100<sup>%</sup></div>
+            <div class="stat-label">Free for All Readers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="wave" aria-hidden="true"></div>
+
+  <!-- ─── OUR STORY ─── -->
+  <section class="section story-section">
+    <div class="section-inner">
+      <div class="sec-eyebrow">Our Story</div>
+      <h2 class="sec-h2">How Daily Spark was born</h2>
+      <div class="story-grid">
+        <div class="story-body">
+          <p>Daily Spark started with a simple observation: millions of Indian students, job seekers, and families search for reliable information every day — about JEE admissions, government jobs, health tips, recipes — but end up lost in cluttered, ad-heavy, unreliable sites.</p>
+          <div class="story-pull">"What if one platform gave every Indian the knowledge they need, clearly, honestly, and in their own language?"</div>
+          <p>That question became Daily Spark. We started as a small project focused on JoSAA and JAC Delhi counselling guidance for B.Tech aspirants, helping students navigate one of the most confusing processes of their academic lives.</p>
+          <p>Today, Daily Spark has grown into a multi-topic knowledge platform covering Education, Government Jobs, Health & Wellness, Cooking, Current Affairs, Weather, and more — all with the same commitment to clarity and trust that we started with.</p>
+          <p>We are proudly <strong>Made in India</strong>, built by young creators who understand what Indian readers need, and dedicated to keeping all our content permanently free.</p>
+        </div>
+        <div class="story-visual">
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-year">2024 — The Beginning</div>
+              <div class="tl-title">Daily Spark is Founded</div>
+              <div class="tl-desc">Started as a counselling guide for JoSAA & JAC Delhi B.Tech admissions, helping thousands of students navigate seat allotment.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot gold"></div>
+              <div class="tl-year gold">Early 2025 — Expansion</div>
+              <div class="tl-title">Multi-Topic Platform Launch</div>
+              <div class="tl-desc">Added Government Jobs, Health & Wellness, Cooking, and Entertainment sections — growing into a full knowledge hub for Indian families.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-year">2025 — Going Bilingual</div>
+              <div class="tl-title">Hindi + English Support</div>
+              <div class="tl-desc">Launched full Hindi language support so that readers across India can access knowledge in the language they are most comfortable with.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot gold"></div>
+              <div class="tl-year gold">2026 — Today</div>
+              <div class="tl-title">Growing Every Day</div>
+              <div class="tl-desc">Daily Spark continues to grow with new content, new topics, and an unwavering commitment to free, honest, reader-first knowledge.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MISSION ─── -->
+  <section class="section mission-section">
+    <div class="section-inner">
+      <div class="sec-eyebrow">What Drives Us</div>
+      <h2 class="sec-h2">Our Mission, Vision & Purpose</h2>
+      <div class="mission-grid">
+        <div class="mission-card">
+          <span class="mc-icon">🎯</span>
+          <div class="mc-title">Our Mission</div>
+          <div class="mc-body">To make reliable, high-quality knowledge freely accessible to every Indian — regardless of their language, background, or location — through clear, honest, and original content.</div>
+        </div>
+        <div class="mission-card gold-top">
+          <span class="mc-icon">🔭</span>
+          <div class="mc-title">Our Vision</div>
+          <div class="mc-body">A future where every Indian student, job seeker, parent, and curious mind has a single trusted platform they can return to daily for knowledge that helps them make better decisions and live better lives.</div>
+        </div>
+        <div class="mission-card ink-top">
+          <span class="mc-icon">💡</span>
+          <div class="mc-title">Our Purpose</div>
+          <div class="mc-body">We believe knowledge is the most democratizing force in society. Daily Spark exists to spark that knowledge — one article, one reader, one insight at a time — and to keep that spark free forever.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHAT WE COVER ─── -->
+  <section class="section topics-section">
+    <div class="section-inner">
+      <div class="topics-header">
+        <div>
+          <div class="sec-eyebrow">Our Coverage</div>
+          <h2 class="sec-h2">What you'll find on Daily Spark</h2>
+        </div>
+        <p class="sec-lead">Every topic chosen because it matters to real Indian readers — not clickbait, not filler.</p>
+      </div>
+      <div class="topics-grid">
+        <a class="topic-chip" href="gjobs.html">
+          <span class="tc-icon">💼</span>
+          <span class="tc-name">Government Jobs</span>
+        </a>
+        <a class="topic-chip" href="health.html">
+          <span class="tc-icon">🏥</span>
+          <span class="tc-name">Health & Wellness</span>
+        </a>
+        <a class="topic-chip" href="cook.html">
+          <span class="tc-icon">👨‍🍳</span>
+          <span class="tc-name">Cooking & Recipes</span>
+        </a>
+        <a class="topic-chip" href="weather.html">
+          <span class="tc-icon">🌦️</span>
+          <span class="tc-name">Weather</span>
+        </a>
+        <a class="topic-chip" href="plant.html">
+          <span class="tc-icon">🌿</span>
+          <span class="tc-name">Plants & Vastu</span>
+        </a>
+        <a class="topic-chip" href="gold.html">
+          <span class="tc-icon">💹</span>
+          <span class="tc-name">Gold Rate</span>
+        </a>
+        <a class="topic-chip" href="jokes.html">
+          <span class="tc-icon">🎬</span>
+          <span class="tc-name">Entertainment</span>
+        </a>
+        <a class="topic-chip" href="math.html">
+          <span class="tc-icon">🧮</span>
+          <span class="tc-name">Math Playground</span>
+        </a>
+        <a class="topic-chip" href="parent.html">
+          <span class="tc-icon">👨‍👩‍👧</span>
+          <span class="tc-name">Parenting</span>
+        </a>
+        <a class="topic-chip" href="jac_cutoff.html">
+          <span class="tc-icon">🎓</span>
+          <span class="tc-name">JoSAA & JAC</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TEAM ─── -->
+  <section class="team-section">
+    <div class="section-inner">
+      <div class="sec-eyebrow">The People</div>
+      <h2 class="sec-h2">Meet the Daily Spark team</h2>
+      <p class="sec-lead">A small, passionate team of writers, editors, and developers united by one belief: every Indian deserves access to knowledge that helps them grow.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar avatar-spark">🖊️</div>
+          <div class="team-name">Parth Khurana</div>
+          <div class="team-role">Founder & Editor-in-Chief</div>
+          <div class="team-bio">The spark behind Daily Spark. Parth started the platform to help Indian students find reliable, clear guidance on admissions and beyond.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar avatar-gold">📚</div>
+          <div class="team-name">Education Desk</div>
+          <div class="team-role">JoSAA · JAC · Careers</div>
+          <div class="team-bio">Dedicated to bringing accurate, timely information on JEE counselling, cutoffs, and career paths for students across India.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar avatar-blue">🏥</div>
+          <div class="team-name">Health & Wellness Desk</div>
+          <div class="team-role">Health · Science · Lifestyle</div>
+          <div class="team-bio">Our health writers research every article carefully, making medical knowledge accessible without jargon for everyday Indian readers.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar avatar-green">👨‍🍳</div>
+          <div class="team-name">Lifestyle Desk</div>
+          <div class="team-role">Cooking · Plants · Parenting</div>
+          <div class="team-bio">From Gujarati Handvo to Vastu-approved plants — the lifestyle team brings warmth and practicality to every Indian household.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VALUES ─── -->
+  <section class="section values-section">
+    <div class="section-inner">
+      <div class="sec-eyebrow">How We Work</div>
+      <h2 class="sec-h2">The principles we never compromise on</h2>
+      <div class="values-grid">
+        <div class="value-block">
+          <div class="vb-num">1</div>
+          <div>
+            <div class="vb-title">Accuracy First</div>
+            <div class="vb-desc">Every fact we publish is checked. We would rather say less and be right than say more and mislead. Our readers trust us — and we take that seriously.</div>
+          </div>
+        </div>
+        <div class="value-block">
+          <div class="vb-num">2</div>
+          <div>
+            <div class="vb-title">Always Free</div>
+            <div class="vb-desc">Daily Spark will never charge readers for access. Knowledge is a right, not a subscription. Our content stays free, forever — supported responsibly by advertising.</div>
+          </div>
+        </div>
+        <div class="value-block">
+          <div class="vb-num">3</div>
+          <div>
+            <div class="vb-title">Reader-First Design</div>
+            <div class="vb-desc">We design for clarity, not clicks. No misleading headlines, no sensationalism — just information presented so clearly that even a first-time reader can act on it.</div>
+          </div>
+        </div>
+        <div class="value-block">
+          <div class="vb-num">4</div>
+          <div>
+            <div class="vb-title">Bilingual at Heart</div>
+            <div class="vb-desc">India speaks many languages. Daily Spark speaks Hindi and English — because knowledge loses its power when it is only available to those who read one language.</div>
+          </div>
+        </div>
+        <div class="value-block">
+          <div class="vb-num">5</div>
+          <div>
+            <div class="vb-title">Privacy Respected</div>
+            <div class="vb-desc">We collect only what we need and never sell your data. Your trust is more valuable to us than any data point. Read our <a href="privacy-policy.html" style="color:var(--spark);">Privacy Policy</a>.</div>
+          </div>
+        </div>
+        <div class="value-block">
+          <div class="vb-num">6</div>
+          <div>
+            <div class="vb-title">Continuously Improving</div>
+            <div class="vb-desc">We are a growing platform. We listen to feedback, fix mistakes promptly, and keep adding content that genuinely serves our readers' lives — not just our metrics.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-strip">
+    <h2>Ready to explore Daily Spark?</h2>
+    <p>Thousands of readers trust us every day. Join them — it's completely free.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="index.html">Browse Daily Spark →</a>
+      <a class="btn-ghost"   href="contact.html">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>© 2026 Daily Spark. All rights reserved. Made with ❤️ for India.</div>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </nav>
+  </footer>
+
+</body>
+</html>

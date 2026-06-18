@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use — Daily Spark | Where Knowledge Sparks Success</title>
+  <meta name="description" content="Terms of Use for Daily Spark — India's trusted knowledge platform. Please read these terms carefully before using our website." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink:       #0D1B2A;
+      --ink-soft:  #2C3E50;
+      --spark:     #E8500A;
+      --spark-lt:  #FF6B35;
+      --spark-dim: rgba(232,80,10,0.10);
+      --gold:      #F0A500;
+      --paper:     #FAFAF8;
+      --mist:      #F2F3F0;
+      --rule:      #E0DDD8;
+      --white:     #FFFFFF;
+      --text-body: #3A3A3A;
+      --text-mute: #7A7A7A;
+
+      --ff-display:'Playfair Display', Georgia, serif;
+      --ff-body:   'Inter', system-ui, sans-serif;
+      --ff-hindi:  'Noto Sans Devanagari', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--text-body);
+      line-height: 1.75;
+      font-size: 1rem;
+      overflow-x: hidden;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,0.42);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.42rem 2rem;
+    }
+    .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .topbar a:hover { color: var(--spark-lt); }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--spark);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+    }
+    .header-inner {
+      max-width: 1140px; margin: 0 auto;
+      padding: 0.85rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px; background: var(--spark);
+      border-radius: 9px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.35rem; flex-shrink: 0;
+    }
+    .logo-text strong {
+      display: block; font-family: var(--ff-display);
+      font-size: 1.28rem; color: var(--ink); font-weight: 900; line-height: 1.1;
+    }
+    .logo-text span {
+      font-size: 0.62rem; color: var(--text-mute);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .nav-home {
+      font-size: 0.82rem; color: var(--spark); text-decoration: none;
+      font-weight: 600; border: 1.5px solid var(--spark);
+      padding: 0.38rem 0.9rem; border-radius: 4px; transition: all 0.18s;
+    }
+    .nav-home:hover { background: var(--spark); color: white; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      padding: 4.5rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '§';
+      position: absolute; right: 6%; top: 50%;
+      transform: translateY(-50%);
+      font-size: 22rem; font-weight: 900;
+      color: rgba(255,255,255,0.025);
+      font-family: var(--ff-display);
+      pointer-events: none; line-height: 1;
+      user-select: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1140px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: rgba(232,80,10,0.15);
+      border: 1px solid rgba(232,80,10,0.3);
+      border-radius: 20px; padding: 0.28rem 0.85rem;
+      font-size: 0.68rem; letter-spacing: 0.13em;
+      text-transform: uppercase; color: var(--spark-lt);
+      font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 900; color: var(--white); line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--spark-lt); }
+    .hero-sub {
+      font-size: 0.95rem; color: rgba(255,255,255,0.55);
+      line-height: 1.8; max-width: 520px;
+    }
+    .hero-meta-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 1.6rem 1.4rem;
+      min-width: 210px; flex-shrink: 0;
+    }
+    .hmb-row {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .hmb-item {}
+    .hmb-label {
+      font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-bottom: 0.15rem;
+    }
+    .hmb-value {
+      font-size: 0.88rem; font-weight: 600; color: var(--white);
+    }
+    .hmb-divider {
+      height: 1px; background: rgba(255,255,255,0.08);
+    }
+
+    /* ── LAYOUT ── */
+    .page-body {
+      max-width: 1100px; margin: 0 auto;
+      padding: 3.5rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 3.5rem; align-items: start;
+    }
+
+    /* ── STICKY TOC ── */
+    .toc {
+      position: sticky; top: 80px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px; padding: 1.4rem;
+      font-size: 0.82rem;
+    }
+    .toc-head {
+      font-weight: 700; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-mute); margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--spark);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .toc ol { list-style: none; counter-reset: toc; }
+    .toc ol li {
+      counter-increment: toc;
+      margin-bottom: 0.1rem;
+      padding: 0.2rem 0;
+    }
+    .toc ol li::before {
+      content: counter(toc, decimal-leading-zero) " ";
+      color: var(--spark); font-weight: 700;
+      font-size: 0.64rem; margin-right: 0.2rem;
+    }
+    .toc a {
+      color: var(--ink-soft); text-decoration: none;
+      line-height: 1.5; transition: color 0.15s;
+    }
+    .toc a:hover { color: var(--spark); }
+    .toc a.active { color: var(--spark); font-weight: 600; }
+    .toc-footer {
+      margin-top: 1.2rem; padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.71rem; color: var(--text-mute); line-height: 1.6;
+    }
+    .toc-footer a { color: var(--spark); text-decoration: none; }
+
+    /* ── CONTENT ── */
+    .terms-content > section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 90px;
+    }
+    .terms-content > section:last-child {
+      border-bottom: none; margin-bottom: 0;
+    }
+
+    .sec-label {
+      font-size: 0.64rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--spark);
+      font-weight: 700; margin-bottom: 0.4rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .sec-label::after {
+      content: ''; display: inline-block;
+      width: 20px; height: 2px;
+      background: var(--spark); border-radius: 2px;
+    }
+
+    h2 {
+      font-family: var(--ff-display);
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--ink); line-height: 1.25;
+      margin-bottom: 1.1rem;
+    }
+    h3 {
+      font-size: 0.98rem; font-weight: 700;
+      color: var(--ink-soft); margin: 1.5rem 0 0.5rem;
+    }
+    p { margin-bottom: 0.9rem; color: var(--text-body); }
+    p:last-child { margin-bottom: 0; }
+    a.inline { color: var(--spark); text-decoration: none; }
+    a.inline:hover { text-decoration: underline; }
+
+    ul.tlist {
+      list-style: none;
+      margin: 0.5rem 0 1rem;
+      display: flex; flex-direction: column; gap: 0.45rem;
+    }
+    ul.tlist li {
+      padding-left: 1.4rem; position: relative; color: var(--text-body);
+      line-height: 1.65;
+    }
+    ul.tlist li::before {
+      content: '▸'; position: absolute; left: 0;
+      color: var(--spark); font-size: 0.72rem; top: 0.28rem;
+    }
+    ul.tlist li strong { color: var(--ink); }
+
+    /* info boxes */
+    .box {
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      font-size: 0.88rem; line-height: 1.7;
+      border-left: 4px solid;
+    }
+    .box strong {
+      display: block; margin-bottom: 0.2rem;
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.06em; opacity: 0.7;
+    }
+    .box.orange { background: #FFF7F3; border-color: var(--spark); }
+    .box.blue   { background: #F0F6FF; border-color: #3B82F6; }
+    .box.green  { background: #F0FFF4; border-color: #22C55E; }
+    .box.yellow { background: #FFFBEB; border-color: var(--gold); }
+
+    /* prohibited table */
+    .pro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem; margin: 1rem 0;
+    }
+    .pro-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex; gap: 0.7rem; align-items: flex-start;
+    }
+    .pro-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .pro-text strong {
+      display: block; font-size: 0.82rem;
+      color: var(--ink); margin-bottom: 0.15rem;
+    }
+    .pro-text span { font-size: 0.77rem; color: var(--text-mute); line-height: 1.5; }
+
+    /* rights table */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.86rem; margin: 1rem 0;
+      background: var(--white);
+      border: 1px solid var(--rule); border-radius: 8px; overflow: hidden;
+    }
+    .data-table th {
+      background: var(--ink); color: white;
+      text-align: left; padding: 0.65rem 1rem;
+      font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .data-table td {
+      padding: 0.6rem 1rem; border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: var(--mist); }
+
+    /* Hindi note */
+    .hindi-note {
+      font-family: var(--ff-hindi);
+      font-size: 0.87rem; color: var(--text-mute);
+      background: var(--mist);
+      border-left: 3px solid var(--spark);
+      border-radius: 0 6px 6px 0;
+      padding: 0.85rem 1.1rem;
+      line-height: 1.9; margin-top: 1rem;
+    }
+    .hindi-note strong { color: var(--spark); }
+
+    /* contact card at end */
+    .contact-card {
+      background: linear-gradient(135deg, var(--ink) 0%, #1a2f44 100%);
+      color: white; border-radius: 12px; padding: 2rem;
+      margin-top: 0.5rem;
+    }
+    .contact-card h3 { color: white; margin-top: 0; }
+    .contact-card p { color: rgba(255,255,255,0.65); margin-bottom: 1rem; }
+    .contact-links {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+    }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1.1rem; border-radius: 6px;
+      font-size: 0.84rem; font-weight: 600; text-decoration: none;
+      transition: all 0.18s;
+    }
+    .contact-btn.primary {
+      background: var(--spark); color: white;
+    }
+    .contact-btn.primary:hover { background: var(--spark-lt); }
+    .contact-btn.ghost {
+      border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.75);
+    }
+    .contact-btn.ghost:hover { border-color: white; color: white; }
+
+    /* progress bar on scroll */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 200;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--spark), var(--gold));
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--ink); color: rgba(255,255,255,0.4);
+      text-align: center; padding: 2.2rem 2rem; font-size: 0.78rem;
+    }
+    .site-footer a { color: var(--spark-lt); text-decoration: none; }
+    .site-footer a:hover { color: var(--gold); }
+    .footer-links {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 0.3rem 1.4rem; margin-top: 0.7rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .page-body { grid-template-columns: 1fr; }
+      .toc { position: static; order: -1; }
+      .pro-grid { grid-template-columns: 1fr; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-meta-box { display: none; }
+    }
+    @media (max-width: 600px) {
+      .topbar { display: none; }
+      .header-inner { padding: 0.65rem 1rem; }
+      .hero { padding: 3rem 1rem 3rem; }
+      .page-body { padding: 2.5rem 1rem 3.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- READ PROGRESS BAR -->
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>Daily Spark — Where Knowledge Sparks Success</span>
+    <span>Effective: June 18, 2026 &nbsp;|&nbsp; Version 1.0</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo-wrap" href="index.html">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+          <strong>Daily Spark</strong>
+          <span>Where Knowledge Sparks Success</span>
+        </div>
+      </a>
+      <a class="nav-home" href="index.html">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">📋 Legal Document</div>
+        <h1>Terms of <em>Use</em></h1>
+        <p class="hero-sub">Please read these terms carefully. By accessing or using Daily Spark, you agree to be bound by the conditions described on this page. These terms protect both you and us.</p>
+        <div class="hindi-note" style="margin-top:1.5rem; background:rgba(255,255,255,0.05); border-color:var(--spark-lt); color:rgba(255,255,255,0.4);">
+          <strong>हिंदी में:</strong> इस वेबसाइट का उपयोग करके आप इन शर्तों से सहमत होते हैं। कृपया इन्हें ध्यान से पढ़ें।
+        </div>
+      </div>
+      <div class="hero-meta-box">
+        <div class="hmb-row">
+          <div class="hmb-item">
+            <div class="hmb-label">Document</div>
+            <div class="hmb-value">Terms of Use</div>
+          </div>
+          <div class="hmb-divider"></div>
+          <div class="hmb-item">
+            <div class="hmb-label">Effective Date</div>
+            <div class="hmb-value">June 18, 2026</div>
+          </div>
+          <div class="hmb-divider"></div>
+          <div class="hmb-item">
+            <div class="hmb-label">Version</div>
+            <div class="hmb-value">1.0</div>
+          </div>
+          <div class="hmb-divider"></div>
+          <div class="hmb-item">
+            <div class="hmb-label">Jurisdiction</div>
+            <div class="hmb-value">India 🇮🇳</div>
+          </div>
+          <div class="hmb-divider"></div>
+          <div class="hmb-item">
+            <div class="hmb-label">Sections</div>
+            <div class="hmb-value">13 Clauses</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE BODY -->
+  <div class="page-body">
+
+    <!-- STICKY TOC -->
+    <aside class="toc">
+      <div class="toc-head">📋 Sections</div>
+      <ol>
+        <li><a href="#acceptance" id="toc-acceptance">Acceptance of Terms</a></li>
+        <li><a href="#description" id="toc-description">About Daily Spark</a></li>
+        <li><a href="#use" id="toc-use">Permitted Use</a></li>
+        <li><a href="#prohibited" id="toc-prohibited">Prohibited Activities</a></li>
+        <li><a href="#ip" id="toc-ip">Intellectual Property</a></li>
+        <li><a href="#content" id="toc-content">User-Submitted Content</a></li>
+        <li><a href="#thirdparty" id="toc-thirdparty">Third-Party Links & Ads</a></li>
+        <li><a href="#disclaimer" id="toc-disclaimer">Disclaimers</a></li>
+        <li><a href="#liability" id="toc-liability">Limitation of Liability</a></li>
+        <li><a href="#privacy" id="toc-privacy">Privacy</a></li>
+        <li><a href="#changes" id="toc-changes">Changes to Terms</a></li>
+        <li><a href="#governing" id="toc-governing">Governing Law</a></li>
+        <li><a href="#contact" id="toc-contact">Contact Us</a></li>
+      </ol>
+      <div class="toc-footer">
+        Questions? <a href="contact.html">Contact us</a> or read our <a href="privacy-policy.html">Privacy Policy</a>.
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="terms-content">
+
+      <!-- 1. ACCEPTANCE -->
+      <section id="acceptance">
+        <div class="sec-label">Clause 01</div>
+        <h2>Acceptance of Terms</h2>
+        <p>Welcome to <strong>Daily Spark</strong>. These Terms of Use ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and Daily Spark ("we," "us," or "our"), governing your access to and use of the website located at <a class="inline" href="https://parthkhurana292008-cmd.github.io/dailyspark/">https://parthkhurana292008-cmd.github.io/dailyspark/</a> and all related pages, features, and content (collectively, the "Platform").</p>
+
+        <div class="box orange">
+          <strong>Important</strong>
+          By accessing, browsing, or using Daily Spark in any way, you confirm that you have read, understood, and agreed to be bound by these Terms. If you do not agree, please do not use our Platform.
+        </div>
+
+        <p>These Terms apply to all visitors, readers, subscribers, and any other users of the Platform. Your continued use of Daily Spark following any updates to these Terms constitutes your acceptance of the revised Terms.</p>
+
+        <p>If you are under 18 years of age, you represent that a parent or legal guardian has reviewed and agreed to these Terms on your behalf, or that you are accessing the Platform for educational purposes with appropriate supervision.</p>
+      </section>
+
+      <!-- 2. ABOUT DAILY SPARK -->
+      <section id="description">
+        <div class="sec-label">Clause 02</div>
+        <h2>About Daily Spark</h2>
+        <p>Daily Spark is a free, reader-first knowledge platform based in India, providing original content across the following categories:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>What We Cover</th>
+              <th>Nature of Content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🎓 Education</td>
+              <td>JoSAA, JAC Delhi counselling, cutoffs, B.Tech admissions</td>
+              <td>Informational / Guidance</td>
+            </tr>
+            <tr>
+              <td>💼 Government Jobs</td>
+              <td>Latest vacancies, exam dates, eligibility</td>
+              <td>Informational</td>
+            </tr>
+            <tr>
+              <td>🏥 Health & Wellness</td>
+              <td>General health tips, symptoms, wellness advice</td>
+              <td>General / Non-medical</td>
+            </tr>
+            <tr>
+              <td>👨‍🍳 Cooking</td>
+              <td>Recipes, cooking techniques, Indian cuisine</td>
+              <td>Instructional</td>
+            </tr>
+            <tr>
+              <td>🌿 Plants & Lifestyle</td>
+              <td>Indoor plants, Vastu tips, parenting</td>
+              <td>Informational</td>
+            </tr>
+            <tr>
+              <td>📰 Daily News</td>
+              <td>Current affairs, weather, gold rates</td>
+              <td>News / Reference</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>All content on Daily Spark is provided free of charge for personal, non-commercial, educational use. We reserve the right to add, modify, or discontinue any section or feature at any time without notice.</p>
+      </section>
+
+      <!-- 3. PERMITTED USE -->
+      <section id="use">
+        <div class="sec-label">Clause 03</div>
+        <h2>Permitted Use</h2>
+        <p>Daily Spark grants you a limited, non-exclusive, non-transferable, revocable licence to access and use the Platform for lawful, personal, and non-commercial purposes, subject to these Terms.</p>
+
+        <h3>You are permitted to:</h3>
+        <ul class="tlist">
+          <li><strong>Read and share:</strong> Browse all articles and share links to Daily Spark content on social media, messaging apps, or via email.</li>
+          <li><strong>Print for personal use:</strong> Print individual articles for your own personal, non-commercial, educational reference.</li>
+          <li><strong>Subscribe to newsletters:</strong> Sign up for our Daily Newsletter to receive content updates in your inbox.</li>
+          <li><strong>Use interactive tools:</strong> Access our Math Playground, weather widgets, gold rate tools, and other features for personal use.</li>
+          <li><strong>Reference our content:</strong> Cite or reference Daily Spark articles in academic or personal work, provided you clearly attribute the source with a link.</li>
+        </ul>
+
+        <div class="box green">
+          <strong>Student & Educational Use</strong>
+          Students may freely use Daily Spark content for research, school projects, competitive exam preparation, and academic reference. We encourage learning!
+        </div>
+      </section>
+
+      <!-- 4. PROHIBITED ACTIVITIES -->
+      <section id="prohibited">
+        <div class="sec-label">Clause 04</div>
+        <h2>Prohibited Activities</h2>
+        <p>The following activities are strictly prohibited on Daily Spark. Violation may result in termination of access and legal action under applicable Indian law.</p>
+
+        <div class="pro-grid">
+          <div class="pro-card">
+            <span class="pro-icon">🚫</span>
+            <div class="pro-text">
+              <strong>Copying Content Without Permission</strong>
+              <span>Reproducing, republishing, or copying our articles, images, or other content on any website, blog, or platform without written permission.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">🤖</span>
+            <div class="pro-text">
+              <strong>Automated Scraping</strong>
+              <span>Using bots, scrapers, crawlers, or automated tools to extract content or data from our Platform without prior written consent.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">💰</span>
+            <div class="pro-text">
+              <strong>Commercial Exploitation</strong>
+              <span>Using our content for commercial purposes — such as selling, licensing, or incorporating it into paid products — without our express written approval.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">🔓</span>
+            <div class="pro-text">
+              <strong>Security Interference</strong>
+              <span>Attempting to hack, probe, or compromise the security, integrity, or performance of our Platform or servers.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">🎭</span>
+            <div class="pro-text">
+              <strong>Impersonation</strong>
+              <span>Misrepresenting yourself as Daily Spark, our team members, or creating content that falsely appears to originate from us.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">📧</span>
+            <div class="pro-text">
+              <strong>Spam & Misuse of Contact</strong>
+              <span>Sending unsolicited messages, spam, or using our contact channels for anything other than genuine enquiries.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">⚖️</span>
+            <div class="pro-text">
+              <strong>Illegal Activity</strong>
+              <span>Using the Platform for any purpose that violates Indian law or any applicable local, national, or international regulation.</span>
+            </div>
+          </div>
+          <div class="pro-card">
+            <span class="pro-icon">🔗</span>
+            <div class="pro-text">
+              <strong>Framing Without Permission</strong>
+              <span>Embedding or framing Daily Spark pages within another website or application without our explicit written consent.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. INTELLECTUAL PROPERTY -->
+      <section id="ip">
+        <div class="sec-label">Clause 05</div>
+        <h2>Intellectual Property</h2>
+        <p>All content published on Daily Spark — including but not limited to text, articles, graphics, logos, images, audio, and the overall design and layout of the Platform — is the exclusive intellectual property of Daily Spark and its content creators, and is protected under applicable Indian and international copyright laws.</p>
+
+        <h3>Our Brand & Name</h3>
+        <p>The name "Daily Spark," the ⚡ logo, the tagline "Where Knowledge Sparks Success," and all associated branding are proprietary to Daily Spark. You may not use our brand name or logo in any context without our prior written permission.</p>
+
+        <h3>Attribution When Referencing Our Content</h3>
+        <ul class="tlist">
+          <li>You may quote brief excerpts (maximum 50 words) from our articles for purposes of commentary, criticism, or reference, provided you clearly attribute Daily Spark with a hyperlink to the original article.</li>
+          <li>You may not reproduce full articles, even with attribution, without written permission.</li>
+          <li>For republication or content partnership enquiries, contact us at <a class="inline" href="mailto:dailyspark@contact.in">dailyspark@contact.in</a>.</li>
+        </ul>
+
+        <div class="box yellow">
+          <strong>Copyright Notice</strong>
+          © 2026 Daily Spark. All rights reserved. Unauthorised reproduction or distribution of this website's content may result in civil or criminal penalties under the Copyright Act, 1957 (India).
+        </div>
+      </section>
+
+      <!-- 6. USER-SUBMITTED CONTENT -->
+      <section id="content">
+        <div class="sec-label">Clause 06</div>
+        <h2>User-Submitted Content</h2>
+        <p>If you contact us, submit feedback, send a message through our contact form, or contribute any content to Daily Spark (collectively, "User Content"), the following applies:</p>
+
+        <ul class="tlist">
+          <li><strong>Accuracy:</strong> You confirm that any information you submit is accurate, truthful, and not misleading.</li>
+          <li><strong>Ownership:</strong> You confirm that you own or have the right to submit any content you send us.</li>
+          <li><strong>Licence to us:</strong> By submitting content, you grant Daily Spark a non-exclusive, royalty-free, perpetual licence to use, reproduce, and publish that content in connection with operating and improving the Platform (e.g., publishing reader corrections or feedback in articles).</li>
+          <li><strong>No offensive content:</strong> You agree not to submit content that is defamatory, obscene, hateful, threatening, or in violation of any law.</li>
+          <li><strong>No spam or misinformation:</strong> You agree not to submit false information or use our contact channels for spam or promotional purposes.</li>
+        </ul>
+
+        <p>We reserve the right to refuse, remove, or edit any User Content at our sole discretion, without notice or liability.</p>
+      </section>
+
+      <!-- 7. THIRD-PARTY LINKS & ADS -->
+      <section id="thirdparty">
+        <div class="sec-label">Clause 07</div>
+        <h2>Third-Party Links &amp; Advertising</h2>
+
+        <h3>External Links</h3>
+        <p>Daily Spark may contain links to external websites — such as JoSAA official portals, JAC Delhi, government job boards, and other reference sources. These links are provided for your convenience and information only.</p>
+        <ul class="tlist">
+          <li>We do not control, endorse, or take responsibility for the content, privacy practices, or accuracy of any third-party website.</li>
+          <li>Visiting a third-party website is entirely at your own risk.</li>
+          <li>We encourage you to read the privacy policies of any external sites you visit.</li>
+        </ul>
+
+        <h3>Google AdSense Advertising</h3>
+        <p>Daily Spark displays advertisements through <strong>Google AdSense</strong> to support our free content model. By using the Platform, you acknowledge that:</p>
+        <ul class="tlist">
+          <li>Advertisements are served by Google LLC and are governed by <a class="inline" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google's advertising policies</a>.</li>
+          <li>Daily Spark does not control the specific ads displayed and is not responsible for the products or services advertised.</li>
+          <li>You may opt out of personalised advertising via <a class="inline" href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
+          <li>Clicking on advertisements is voluntary. We are not responsible for any transactions you make with advertisers.</li>
+        </ul>
+
+        <div class="box blue">
+          <strong>Ad-Free Commitment</strong>
+          Daily Spark does not accept paid content placements, sponsored articles, or advertorial content that is not clearly disclosed. Our editorial content is independent of our advertising.
+        </div>
+      </section>
+
+      <!-- 8. DISCLAIMERS -->
+      <section id="disclaimer">
+        <div class="sec-label">Clause 08</div>
+        <h2>Disclaimers</h2>
+        <p>Daily Spark provides content for general informational and educational purposes only. The following disclaimers apply to specific categories of content:</p>
+
+        <h3>Health &amp; Medical Content</h3>
+        <p>Articles on health, wellness, symptoms, and related topics published on Daily Spark are for <strong>general informational purposes only</strong> and do not constitute medical advice, diagnosis, or treatment. Always consult a qualified medical professional for any health concerns. Do not disregard professional medical advice based on content you read on Daily Spark.</p>
+
+        <h3>Educational &amp; Admission Content</h3>
+        <p>While we strive for accuracy in our JoSAA, JAC Delhi, and other admission-related content, official information may change. Always verify admission details, cutoff ranks, and deadlines from the <strong>official portals</strong> of the respective institutions (josaa.nic.in, jacdelhi.admissions.nic.in) before making decisions.</p>
+
+        <h3>Government Jobs Content</h3>
+        <p>Job listings, exam dates, and eligibility information are provided for reference only. We cannot guarantee the completeness or timeliness of this information. Always verify details from the official recruitment body or notification before applying.</p>
+
+        <h3>Financial Information</h3>
+        <p>Gold rate information and any market-related figures are provided for reference only and should not be construed as financial advice. Consult a qualified financial advisor before making investment decisions.</p>
+
+        <div class="box orange">
+          <strong>No Warranty</strong>
+          The Platform is provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.
+        </div>
+      </section>
+
+      <!-- 9. LIMITATION OF LIABILITY -->
+      <section id="liability">
+        <div class="sec-label">Clause 09</div>
+        <h2>Limitation of Liability</h2>
+        <p>To the fullest extent permitted by applicable Indian law, Daily Spark and its founders, editors, contributors, and affiliates shall not be liable for any:</p>
+
+        <ul class="tlist">
+          <li><strong>Direct, indirect, or consequential damages</strong> arising from your use of or inability to use the Platform.</li>
+          <li><strong>Losses resulting from reliance</strong> on any content, including health, educational, financial, or job-related information published on the Platform.</li>
+          <li><strong>Errors, inaccuracies, or omissions</strong> in any content, even if we have been advised of the possibility of such damages.</li>
+          <li><strong>Interruption or unavailability</strong> of the Platform due to technical issues, maintenance, or circumstances beyond our control.</li>
+          <li><strong>Unauthorised access or security breaches</strong> beyond our reasonable control.</li>
+          <li><strong>Actions of third-party advertisers or linked websites.</strong></li>
+        </ul>
+
+        <p>In any event, our maximum liability to you for any claim arising from your use of Daily Spark shall not exceed ₹0 (zero rupees), as the Platform is provided entirely free of charge.</p>
+      </section>
+
+      <!-- 10. PRIVACY -->
+      <section id="privacy">
+        <div class="sec-label">Clause 10</div>
+        <h2>Privacy</h2>
+        <p>Your privacy is important to us. Our collection, use, and protection of your personal information is governed by our <a class="inline" href="privacy-policy.html">Privacy Policy</a>, which is incorporated into these Terms by reference and forms part of this agreement.</p>
+        <p>By using Daily Spark, you also consent to the data practices described in our Privacy Policy, including our use of Google Analytics and Google AdSense cookies.</p>
+
+        <div class="box green">
+          <strong>Privacy First</strong>
+          We do not sell your personal data. We collect only what is necessary to operate the Platform and deliver our newsletter. Read the full <a class="inline" href="privacy-policy.html">Privacy Policy</a> for details.
+        </div>
+
+        <div class="hindi-note">
+          <strong>आपकी गोपनीयता:</strong> Daily Spark आपकी व्यक्तिगत जानकारी को कभी नहीं बेचता। हमारी <a href="privacy-policy.html" style="color:var(--spark);">Privacy Policy</a> में पूरी जानकारी है।
+        </div>
+      </section>
+
+      <!-- 11. CHANGES -->
+      <section id="changes">
+        <div class="sec-label">Clause 11</div>
+        <h2>Changes to These Terms</h2>
+        <p>We reserve the right to update or modify these Terms at any time, at our sole discretion. When we make material changes, we will:</p>
+
+        <ul class="tlist">
+          <li>Update the <strong>Effective Date</strong> shown at the top of this page and in the topbar.</li>
+          <li>Post a notice on our homepage for a reasonable period following the change.</li>
+          <li>Where practicable, notify newsletter subscribers via email.</li>
+        </ul>
+
+        <p>Your continued use of Daily Spark after any changes to these Terms constitutes your acceptance of the updated Terms. We encourage you to review this page periodically.</p>
+
+        <p>If you do not agree with the revised Terms, you should stop using the Platform immediately. Your only remedy in case of disagreement is to discontinue use of Daily Spark.</p>
+
+        <div class="box yellow">
+          <strong>Current Version</strong>
+          These Terms are Version 1.0, effective June 18, 2026. No prior versions exist. Future updates will be numbered and dated clearly.
+        </div>
+      </section>
+
+      <!-- 12. GOVERNING LAW -->
+      <section id="governing">
+        <div class="sec-label">Clause 12</div>
+        <h2>Governing Law &amp; Dispute Resolution</h2>
+        <p>These Terms of Use and any disputes arising from your use of Daily Spark shall be governed by and construed in accordance with the laws of <strong>India</strong>, without regard to conflict of law principles.</p>
+
+        <h3>Applicable Indian Legislation</h3>
+        <ul class="tlist">
+          <li><strong>Information Technology Act, 2000</strong> — governing electronic records, digital contracts, and cybercrime.</li>
+          <li><strong>Copyright Act, 1957</strong> — governing our intellectual property rights.</li>
+          <li><strong>Consumer Protection Act, 2019</strong> — governing user rights in digital services.</li>
+          <li><strong>Indian Contract Act, 1872</strong> — governing the contractual nature of these Terms.</li>
+        </ul>
+
+        <h3>Dispute Resolution</h3>
+        <p>In the event of any dispute, claim, or controversy arising out of or relating to these Terms or your use of Daily Spark, the parties agree to first attempt to resolve the matter amicably through good-faith negotiation via email at <a class="inline" href="mailto:dailyspark@contact.in">dailyspark@contact.in</a>.</p>
+        <p>If the dispute cannot be resolved informally within 30 days, it shall be subject to the exclusive jurisdiction of the competent courts located in <strong>New Delhi, India</strong>.</p>
+
+        <div class="box blue">
+          <strong>Language</strong>
+          These Terms are written in English. In the event of any inconsistency between an English version and a Hindi summary on this Platform, the English version shall prevail for legal purposes.
+        </div>
+      </section>
+
+      <!-- 13. CONTACT -->
+      <section id="contact">
+        <div class="sec-label">Clause 13</div>
+        <h2>Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding these Terms of Use, please contact us. We will respond to all queries within 30 business days.</p>
+
+        <div class="contact-card">
+          <h3>Daily Spark — Legal & Support</h3>
+          <p>We're here to help. Reach out via any of the channels below and our team will get back to you promptly.</p>
+          <div class="contact-links">
+            <a class="contact-btn primary" href="mailto:dailyspark@contact.in">📧 dailyspark@contact.in</a>
+            <a class="contact-btn ghost" href="contact.html">📝 Contact Form</a>
+            <a class="contact-btn ghost" href="privacy-policy.html">🔒 Privacy Policy</a>
+            <a class="contact-btn ghost" href="about.html">ℹ️ About Us</a>
+          </div>
+        </div>
+
+        <div class="hindi-note" style="margin-top:1.5rem;">
+          <strong>नोट:</strong> इन शर्तों के बारे में किसी भी प्रश्न के लिए हमें <a href="mailto:dailyspark@contact.in" style="color:var(--spark);">dailyspark@contact.in</a> पर लिखें। हम हिंदी और अंग्रेज़ी दोनों में जवाब देते हैं।
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>© 2026 Daily Spark. All rights reserved. Made with ❤️ for India.</div>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </nav>
+  </footer>
+
+  <script>
+    // ── Reading progress bar ──
+    window.addEventListener('scroll', () => {
+      const doc  = document.documentElement;
+      const top  = doc.scrollTop || document.body.scrollTop;
+      const h    = doc.scrollHeight - doc.clientHeight;
+      const pct  = h > 0 ? (top / h) * 100 : 0;
+      document.getElementById('progress-bar').style.width = pct + '%';
+    });
+
+    // ── Active TOC highlight on scroll ──
+    const sections = document.querySelectorAll('.terms-content > section[id]');
+    const tocLinks = document.querySelectorAll('.toc a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>

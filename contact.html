@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Daily Spark | Where Knowledge Sparks Success</title>
+  <meta name="description" content="Get in touch with Daily Spark — India's trusted knowledge platform. We'd love to hear from you. Reach out for queries, feedback, advertising, or partnerships." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink:       #0D1B2A;
+      --ink-soft:  #2C3E50;
+      --spark:     #E8500A;
+      --spark-lt:  #FF6B35;
+      --spark-dim: rgba(232,80,10,0.10);
+      --gold:      #F0A500;
+      --paper:     #FAFAF8;
+      --mist:      #F2F3F0;
+      --rule:      #E0DDD8;
+      --white:     #FFFFFF;
+      --text-body: #3A3A3A;
+      --text-mute: #7A7A7A;
+      --success:   #16A34A;
+      --success-bg:#F0FFF4;
+      --error:     #DC2626;
+      --error-bg:  #FEF2F2;
+
+      --ff-display:'Playfair Display', Georgia, serif;
+      --ff-body:   'Inter', system-ui, sans-serif;
+      --ff-hindi:  'Noto Sans Devanagari', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--paper);
+      color: var(--text-body);
+      line-height: 1.75;
+      font-size: 1rem;
+      overflow-x: hidden;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink);
+      color: rgba(255,255,255,0.42);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.42rem 2rem;
+    }
+    .topbar a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .topbar a:hover { color: var(--spark-lt); }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--spark);
+      position: sticky;
+      top: 0; z-index: 100;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+    }
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--spark);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; flex-shrink: 0;
+    }
+    .logo-text strong {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 1.28rem;
+      color: var(--ink);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .logo-text span {
+      font-size: 0.62rem;
+      color: var(--text-mute);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .nav-home {
+      font-size: 0.82rem;
+      color: var(--spark);
+      text-decoration: none;
+      font-weight: 600;
+      border: 1.5px solid var(--spark);
+      padding: 0.38rem 0.9rem;
+      border-radius: 4px;
+      transition: all 0.18s;
+    }
+    .nav-home:hover { background: var(--spark); color: white; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      padding: 4.5rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    /* Radial glow — signature: a warm light emanating from the centre like a spark */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(232,80,10,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 48px,
+        rgba(255,255,255,0.015) 48px,
+        rgba(255,255,255,0.015) 49px
+      );
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(232,80,10,0.15);
+      border: 1px solid rgba(232,80,10,0.3);
+      border-radius: 20px;
+      padding: 0.28rem 0.85rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--spark-lt);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--spark-lt); }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.8;
+      margin-bottom: 1.6rem;
+    }
+    .hero-hindi {
+      font-family: var(--ff-hindi);
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.35);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1rem;
+      line-height: 1.9;
+    }
+
+    /* response pills */
+    .response-pills {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .pill-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── PAGE BODY ── */
+    .page-body {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .form-card-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .form-card-header .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--spark);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .form-card-header .eyebrow::after {
+      content:'';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--spark);
+      border-radius: 2px;
+    }
+    .form-card-header h2 {
+      font-family: var(--ff-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .form-card-header p {
+      font-size: 0.88rem;
+      color: var(--text-mute);
+      margin-top: 0.4rem;
+    }
+
+    /* Subject tabs */
+    .subject-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+    .stab {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--rule);
+      background: var(--mist);
+      color: var(--text-mute);
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .stab:hover { border-color: var(--spark); color: var(--spark); }
+    .stab.active {
+      background: var(--spark);
+      border-color: var(--spark);
+      color: white;
+    }
+
+    /* Form fields */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+    .form-group:last-of-type { margin-bottom: 0; }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+    label .req { color: var(--spark); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1.5px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--spark);
+      box-shadow: 0 0 0 3px rgba(232,80,10,0.1);
+      background: var(--white);
+    }
+    input.invalid, select.invalid, textarea.invalid {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+    }
+    input.valid { border-color: var(--success); }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7A7A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      padding-right: 2.2rem;
+      cursor: pointer;
+    }
+
+    textarea { resize: vertical; min-height: 130px; line-height: 1.65; }
+
+    .char-count {
+      font-size: 0.7rem;
+      color: var(--text-mute);
+      text-align: right;
+      margin-top: 0.2rem;
+    }
+    .char-count.warn { color: var(--gold); }
+    .char-count.over { color: var(--error); }
+
+    .field-hint {
+      font-size: 0.72rem;
+      color: var(--text-mute);
+      margin-top: 0.2rem;
+    }
+    .field-error {
+      font-size: 0.72rem;
+      color: var(--error);
+      margin-top: 0.2rem;
+      display: none;
+    }
+    .field-error.show { display: block; }
+
+    /* Checkbox */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin: 1.4rem 0;
+    }
+    .check-row input[type="checkbox"] {
+      width: 18px; height: 18px;
+      min-width: 18px;
+      border: 1.5px solid var(--rule);
+      border-radius: 4px;
+      background: var(--paper);
+      cursor: pointer;
+      margin-top: 2px;
+      accent-color: var(--spark);
+    }
+    .check-row label {
+      font-size: 0.8rem;
+      color: var(--text-mute);
+      line-height: 1.5;
+      cursor: pointer;
+      font-weight: 400;
+    }
+    .check-row label a { color: var(--spark); text-decoration: none; }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      background: var(--spark);
+      color: white;
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.18s, transform 0.12s;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit:hover { background: #c84000; }
+    .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-submit .btn-arrow { transition: transform 0.18s; }
+    .btn-submit:hover .btn-arrow { transform: translateX(4px); }
+
+    /* Toast / success */
+    .form-toast {
+      display: none;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 1.1rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      margin-top: 1rem;
+    }
+    .form-toast.success {
+      background: var(--success-bg);
+      border: 1px solid #86efac;
+      color: var(--success);
+    }
+    .form-toast.error {
+      background: var(--error-bg);
+      border: 1px solid #fca5a5;
+      color: var(--error);
+    }
+    .form-toast.show { display: flex; }
+    .toast-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .toast-body strong { display: block; margin-bottom: 0.15rem; }
+
+    /* ── SIDEBAR ── */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ic-header {
+      background: var(--ink);
+      padding: 1rem 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .ic-header-icon { font-size: 1.1rem; }
+    .ic-header-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .ic-body { padding: 1.3rem; }
+
+    /* Contact methods */
+    .contact-methods { display: flex; flex-direction: column; gap: 0.9rem; }
+    .cm-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.9rem;
+      border-radius: 8px;
+      background: var(--mist);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .cm-item:hover { background: var(--spark-dim); }
+    .cm-icon {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .cm-icon.orange { background: var(--spark-dim); }
+    .cm-icon.gold   { background: var(--gold-dim, rgba(240,165,0,0.12)); }
+    .cm-icon.blue   { background: rgba(59,130,246,0.1); }
+    .cm-icon.green  { background: rgba(34,197,94,0.1); }
+    .cm-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-mute);
+      margin-bottom: 0.15rem;
+    }
+    .cm-value {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+      word-break: break-all;
+    }
+    .cm-note {
+      font-size: 0.72rem;
+      color: var(--text-mute);
+      margin-top: 0.1rem;
+    }
+
+    /* FAQ accordion */
+    .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq-item {}
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      font-family: var(--ff-body);
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--mist);
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: var(--spark-dim); }
+    .faq-q.open { background: var(--spark-dim); color: var(--spark); }
+    .faq-arrow {
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      transition: transform 0.2s;
+      color: var(--text-mute);
+    }
+    .faq-q.open .faq-arrow { transform: rotate(180deg); color: var(--spark); }
+    .faq-a {
+      font-size: 0.81rem;
+      color: var(--text-mute);
+      line-height: 1.7;
+      padding: 0 0.9rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-a.open { max-height: 200px; padding: 0.6rem 0.9rem 0.8rem; }
+
+    /* Response time card */
+    .resp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+    }
+    .resp-item {
+      background: var(--mist);
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .resp-time {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--spark);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .resp-label { font-size: 0.68rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.3; }
+
+    /* Hindi note */
+    .hindi-note {
+      font-family: var(--ff-hindi);
+      font-size: 0.82rem;
+      color: var(--text-mute);
+      background: var(--mist);
+      border-left: 3px solid var(--spark);
+      border-radius: 0 6px 6px 0;
+      padding: 0.8rem 1rem;
+      line-height: 1.9;
+      margin-top: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2.2rem 2rem;
+      font-size: 0.78rem;
+    }
+    .site-footer a { color: var(--spark-lt); text-decoration: none; }
+    .site-footer a:hover { color: var(--gold); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.4rem;
+      margin-top: 0.7rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .page-body {
+        grid-template-columns: 1fr;
+      }
+      .sidebar { order: -1; }
+      .resp-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .topbar { display: none; }
+      .header-inner { padding: 0.65rem 1rem; }
+      .hero { padding: 3rem 1rem 3.5rem; }
+      .page-body { padding: 2.5rem 1rem 3.5rem; gap: 2rem; }
+      .form-card { padding: 1.6rem 1.2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .resp-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>Daily Spark — India's Trusted Knowledge Platform</span>
+    <a href="mailto:dailyspark@contact.in">dailyspark@contact.in</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo-wrap" href="index.html">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+          <strong>Daily Spark</strong>
+          <span>Where Knowledge Sparks Success</span>
+        </div>
+      </a>
+      <a class="nav-home" href="index.html">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">✉️ Contact Us</div>
+      <h1>We'd love to <em>hear from you.</em></h1>
+      <p class="hero-sub">Questions, feedback, collaboration ideas, or just want to say hello? Our team reads every message and responds within 24 hours.</p>
+      <div class="response-pills">
+        <div class="pill"><span class="pill-dot"></span> Typically replies within 24 hrs</div>
+        <div class="pill">🇮🇳 Hindi &amp; English supported</div>
+        <div class="pill">📧 No spam, ever</div>
+      </div>
+      <p class="hero-hindi">हमें लिखें — हिंदी में भी। हम हर संदेश को ध्यान से पढ़ते हैं।</p>
+    </div>
+  </section>
+
+  <!-- PAGE BODY -->
+  <div class="page-body">
+
+    <!-- ── CONTACT FORM ── -->
+    <div>
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="eyebrow">Send a Message</div>
+          <h2>Get in Touch</h2>
+          <p>Fill in the form below and we'll get back to you as soon as possible.</p>
+        </div>
+
+        <!-- Subject quick-select -->
+        <div class="subject-tabs" role="group" aria-label="Message category">
+          <button class="stab active" onclick="selectTab(this,'General Enquiry')">💬 General</button>
+          <button class="stab" onclick="selectTab(this,'Feedback / Suggestion')">💡 Feedback</button>
+          <button class="stab" onclick="selectTab(this,'Advertising / Partnership')">📢 Advertise</button>
+          <button class="stab" onclick="selectTab(this,'Content Correction')">✏️ Correction</button>
+          <button class="stab" onclick="selectTab(this,'Career / Collaboration')">🤝 Collaborate</button>
+          <button class="stab" onclick="selectTab(this,'Other')">📁 Other</button>
+        </div>
+
+        <form id="contactForm" novalidate>
+          <!-- Hidden subject field -->
+          <input type="hidden" id="subject" name="subject" value="General Enquiry" />
+
+          <!-- Name + Email -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name <span class="req">*</span></label>
+              <input type="text" id="fname" name="fname" placeholder="Rahul" autocomplete="given-name" />
+              <span class="field-error" id="fname-err">Please enter your first name.</span>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Sharma" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="rahul@example.com" autocomplete="email" />
+              <span class="field-error" id="email-err">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" />
+              <span class="field-hint">We'll only call if you request it.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="topic">Topic / Category <span class="req">*</span></label>
+            <select id="topic" name="topic">
+              <option value="">— Select a topic —</option>
+              <optgroup label="Education">
+                <option>JoSAA / JAC Delhi Counselling</option>
+                <option>Government Jobs</option>
+                <option>Other Education Query</option>
+              </optgroup>
+              <optgroup label="Content">
+                <option>Content Correction / Feedback</option>
+                <option>Request New Article / Topic</option>
+                <option>Health &amp; Wellness</option>
+                <option>Cooking / Recipes</option>
+              </optgroup>
+              <optgroup label="Business">
+                <option>Advertising / Sponsorship</option>
+                <option>Partnership / Collaboration</option>
+              </optgroup>
+              <optgroup label="Technical">
+                <option>Website Bug / Issue</option>
+                <option>Privacy / Data Request</option>
+              </optgroup>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="topic-err">Please select a topic.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message <span class="req">*</span></label>
+            <textarea id="message" name="message" placeholder="Tell us what's on your mind. Write in Hindi or English — both are welcome!" maxlength="1000" oninput="updateCharCount(this)"></textarea>
+            <div class="char-count" id="charCount">0 / 1000 characters</div>
+            <span class="field-error" id="msg-err">Please write a message (at least 20 characters).</span>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="privacy" name="privacy" />
+            <label for="privacy">
+              I agree that Daily Spark may use my details to respond to this enquiry. I have read the <a href="privacy-policy.html">Privacy Policy</a>. <span class="req">*</span>
+            </label>
+          </div>
+          <span class="field-error" id="privacy-err">Please agree to continue.</span>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="btnText">Send Message</span>
+            <span class="btn-arrow" id="btnArrow">→</span>
+          </button>
+
+          <!-- Toast messages -->
+          <div class="form-toast success" id="successToast">
+            <span class="toast-icon">✅</span>
+            <div class="toast-body">
+              <strong>Message sent successfully!</strong>
+              Thank you for reaching out. Our team will reply to your email within 24 hours. <em>Dhanyavaad!</em>
+            </div>
+          </div>
+          <div class="form-toast error" id="errorToast">
+            <span class="toast-icon">❌</span>
+            <div class="toast-body">
+              <strong>Something went wrong.</strong>
+              Please try again or email us directly at <a href="mailto:dailyspark@contact.in" style="color:var(--error);">dailyspark@contact.in</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+
+      <!-- Contact Methods -->
+      <div class="info-card">
+        <div class="ic-header">
+          <span class="ic-header-icon">📬</span>
+          <span class="ic-header-title">Contact Channels</span>
+        </div>
+        <div class="ic-body">
+          <div class="contact-methods">
+            <a class="cm-item" href="mailto:dailyspark@contact.in">
+              <div class="cm-icon orange">📧</div>
+              <div>
+                <div class="cm-label">Email</div>
+                <div class="cm-value">dailyspark@contact.in</div>
+                <div class="cm-note">Best for detailed queries</div>
+              </div>
+            </a>
+            <div class="cm-item" style="cursor:default;">
+              <div class="cm-icon gold">🌐</div>
+              <div>
+                <div class="cm-label">Website</div>
+                <div class="cm-value">dailyspark.github.io</div>
+                <div class="cm-note">Browse all our content</div>
+              </div>
+            </div>
+            <div class="cm-item" style="cursor:default;">
+              <div class="cm-icon green">🇮🇳</div>
+              <div>
+                <div class="cm-label">Languages</div>
+                <div class="cm-value">Hindi &amp; English</div>
+                <div class="cm-note">हम हिंदी में भी जवाब देते हैं</div>
+              </div>
+            </div>
+            <div class="cm-item" style="cursor:default;">
+              <div class="cm-icon blue">⏰</div>
+              <div>
+                <div class="cm-label">Working Hours</div>
+                <div class="cm-value">Mon – Sat, 9 AM – 7 PM</div>
+                <div class="cm-note">IST (India Standard Time)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Response Times -->
+      <div class="info-card">
+        <div class="ic-header">
+          <span class="ic-header-icon">⚡</span>
+          <span class="ic-header-title">Response Times</span>
+        </div>
+        <div class="ic-body">
+          <div class="resp-grid">
+            <div class="resp-item">
+              <div class="resp-time">&lt;24h</div>
+              <div class="resp-label">General Queries</div>
+            </div>
+            <div class="resp-item">
+              <div class="resp-time">&lt;48h</div>
+              <div class="resp-label">Advertise / Partner</div>
+            </div>
+            <div class="resp-item">
+              <div class="resp-time">&lt;72h</div>
+              <div class="resp-label">Content Requests</div>
+            </div>
+            <div class="resp-item">
+              <div class="resp-time">&lt;30d</div>
+              <div class="resp-label">Privacy Requests</div>
+            </div>
+          </div>
+          <div class="hindi-note">
+            <strong>नोट:</strong> हम आपके हर संदेश को गंभीरता से लेते हैं और जल्द से जल्द जवाब देने की कोशिश करते हैं।
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="info-card">
+        <div class="ic-header">
+          <span class="ic-header-icon">❓</span>
+          <span class="ic-header-title">Common Questions</span>
+        </div>
+        <div class="ic-body">
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Can I advertise on Daily Spark?
+                <span class="faq-arrow">▾</span>
+              </button>
+              <div class="faq-a">Yes! We welcome advertising partnerships. Select "Advertise" above or email us with your requirements — audience size, format, and budget — and we'll get back to you within 48 hours.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Can I submit an article or content?
+                <span class="faq-arrow">▾</span>
+              </button>
+              <div class="faq-a">We accept content contributions from subject experts — especially for Education, Health, and Government Jobs topics. Please use the "Collaborate" tab and share your background and topic idea.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                I found a mistake in an article. How do I report it?
+                <span class="faq-arrow">▾</span>
+              </button>
+              <div class="faq-a">Thank you for helping us improve! Select "Correction" in the subject tabs above, mention the article URL and what needs to be corrected. We take accuracy very seriously and will review it promptly.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                क्या मैं हिंदी में संपर्क कर सकता हूँ?
+                <span class="faq-arrow">▾</span>
+              </button>
+              <div class="faq-a">बिल्कुल! आप हमें हिंदी में मैसेज कर सकते हैं। हमारी टीम हिंदी और अंग्रेज़ी दोनों भाषाओं में जवाब देती है।</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                How is my data used when I contact you?
+                <span class="faq-arrow">▾</span>
+              </button>
+              <div class="faq-a">Your contact details are used only to respond to your enquiry. We do not share, sell, or market to you without consent. See our <a href="privacy-policy.html" style="color:var(--spark);">Privacy Policy</a> for full details.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="info-card">
+        <div class="ic-header">
+          <span class="ic-header-icon">🔗</span>
+          <span class="ic-header-title">Useful Links</span>
+        </div>
+        <div class="ic-body">
+          <div class="contact-methods">
+            <a class="cm-item" href="about.html">
+              <div class="cm-icon orange">ℹ️</div>
+              <div>
+                <div class="cm-label">Learn more</div>
+                <div class="cm-value">About Daily Spark</div>
+              </div>
+            </a>
+            <a class="cm-item" href="privacy-policy.html">
+              <div class="cm-icon blue">🔒</div>
+              <div>
+                <div class="cm-label">Legal</div>
+                <div class="cm-value">Privacy Policy</div>
+              </div>
+            </a>
+            <a class="cm-item" href="gjobs.html">
+              <div class="cm-icon gold">💼</div>
+              <div>
+                <div class="cm-label">Explore</div>
+                <div class="cm-value">Government Jobs</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>© 2026 Daily Spark. All rights reserved. Made with ❤️ for India.</div>
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </nav>
+  </footer>
+
+  <script>
+    // ── Subject tab selector ──
+    function selectTab(btn, value) {
+      document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('subject').value = value;
+    }
+
+    // ── Character counter ──
+    function updateCharCount(textarea) {
+      const len = textarea.value.length;
+      const el  = document.getElementById('charCount');
+      el.textContent = `${len} / 1000 characters`;
+      el.className = 'char-count' + (len > 900 ? ' over' : len > 750 ? ' warn' : '');
+    }
+
+    // ── FAQ accordion ──
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-q').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        btn.classList.add('open');
+        answer.classList.add('open');
+      }
+    }
+
+    // ── Form validation & submission ──
+    const form = document.getElementById('contactForm');
+
+    function showError(id, show) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('show', show);
+    }
+    function markField(id, valid) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('invalid', !valid);
+      el.classList.toggle('valid', valid);
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Hide toasts
+      document.getElementById('successToast').classList.remove('show');
+      document.getElementById('errorToast').classList.remove('show');
+
+      const fname   = document.getElementById('fname').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const topic   = document.getElementById('topic').value;
+      const message = document.getElementById('message').value.trim();
+      const privacy = document.getElementById('privacy').checked;
+
+      let valid = true;
+
+      // Validate first name
+      const fnameOk = fname.length >= 2;
+      showError('fname-err', !fnameOk);
+      markField('fname', fnameOk);
+      if (!fnameOk) valid = false;
+
+      // Validate email
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      showError('email-err', !emailOk);
+      markField('email', emailOk);
+      if (!emailOk) valid = false;
+
+      // Validate topic
+      const topicOk = topic !== '';
+      showError('topic-err', !topicOk);
+      markField('topic', topicOk);
+      if (!topicOk) valid = false;
+
+      // Validate message
+      const msgOk = message.length >= 20;
+      showError('msg-err', !msgOk);
+      markField('message', msgOk);
+      if (!msgOk) valid = false;
+
+      // Validate privacy
+      showError('privacy-err', !privacy);
+      if (!privacy) valid = false;
+
+      if (!valid) return;
+
+      // Simulate submission (replace with actual endpoint / EmailJS / Formspree)
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnArrow = document.getElementById('btnArrow');
+
+      btn.disabled = true;
+      btnText.textContent = 'Sending…';
+      btnArrow.textContent = '⏳';
+
+      try {
+        // ── REPLACE THIS BLOCK with your real form submission ──
+        // e.g. Formspree:
+        // const res = await fetch('https://formspree.io/f/YOUR_ID', {
+        //   method: 'POST',
+        //   headers: {'Content-Type': 'application/json'},
+        //   body: JSON.stringify({ fname, email, topic, message })
+        // });
+        // if (!res.ok) throw new Error('Failed');
+
+        // Demo: simulate a 1.5s delay
+        await new Promise(r => setTimeout(r, 1500));
+
+        // Show success
+        document.getElementById('successToast').classList.add('show');
+        form.reset();
+        document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+        document.querySelector('.stab').classList.add('active');
+        document.getElementById('charCount').textContent = '0 / 1000 characters';
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+          el.classList.remove('valid','invalid');
+        });
+        // Scroll to toast
+        document.getElementById('successToast').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      } catch(err) {
+        document.getElementById('errorToast').classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnArrow.textContent = '→';
+        btnArrow.className = 'btn-arrow';
+      }
+    });
+
+    // Live validation on blur
+    document.getElementById('fname').addEventListener('blur', function() {
+      const ok = this.value.trim().length >= 2;
+      showError('fname-err', !ok); markField('fname', ok);
+    });
+    document.getElementById('email').addEventListener('blur', function() {
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim());
+      showError('email-err', !ok); markField('email', ok);
+    });
+    document.getElementById('topic').addEventListener('change', function() {
+      const ok = this.value !== '';
+      showError('topic-err', !ok); markField('topic', ok);
+    });
+    document.getElementById('message').addEventListener('blur', function() {
+      const ok = this.value.trim().length >= 20;
+      showError('msg-err', !ok); markField('message', ok);
+    });
+  </script>
+</body>
+</html>
