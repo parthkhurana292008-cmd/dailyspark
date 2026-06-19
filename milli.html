@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Wants to Be a Maths Millionaire?</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c87800;--gold-light:#f5a623;--gold-dim:#a06000;
+  --navy:#f0f4ff;--navy-2:#e4eaf8;--navy-3:#d6dffa;
+  --text:#1a2340;--text-dim:#6b7a9e;--white:#fff;
+  --safe:#e07000;--lv1:#0288d1;--lv2:#7b1fa2;--lv3:#e64a19;
+}
+html,body{width:100%;min-height:100vh;background:var(--navy);font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;}
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 20% 50%,rgba(180,200,255,0.5) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(200,180,255,0.3) 0%,transparent 50%),#e8eeff;}
+#spotlight{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse at 50% 80%,rgba(200,140,0,0.13) 0%,transparent 70%);transition:background 1s;}
+.bg-ring{position:absolute;border-radius:50%;border:1px solid rgba(180,140,0,0.15);top:50%;left:50%;transform:translate(-50%,-50%);}
+@keyframes img-glow{0%,100%{box-shadow:0 0 18px rgba(245,197,24,0.25);}50%{box-shadow:0 0 38px rgba(245,197,24,0.5);}}
+#shell{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;}
+#hdr{text-align:center;padding:14px 70px 12px;border-bottom:1px solid rgba(180,140,0,0.25);flex-shrink:0;background:linear-gradient(180deg,rgba(200,140,0,0.08) 0%,transparent 100%);position:relative;}
+#show-logo{font-family:'Cinzel',serif;font-size:clamp(13px,2vw,21px);font-weight:900;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;text-shadow:0 0 40px rgba(245,197,24,0.6);}
+#show-sub{font-size:9px;letter-spacing:.2em;color:var(--text-dim);margin-top:4px;text-transform:uppercase;}
+#mute-btn{position:absolute;top:50%;right:14px;transform:translateY(-50%);background:rgba(200,140,0,0.1);border:1px solid rgba(200,140,0,0.3);border-radius:8px;color:var(--gold);font-size:16px;width:34px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+#mute-btn:hover{background:rgba(200,140,0,0.2);}
+/* MAIN: flex row */
+#main{flex:1;display:flex;flex-direction:row;align-items:stretch;min-height:0;}
+/* SIDE PANELS */
+.side-panel{width:102px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 6px;}
+#player-left{border-right:1px solid rgba(180,140,0,0.18);}
+#player-right{border-left:1px solid rgba(180,140,0,0.18);}
+#chair-img,#parth-img{width:80px;height:100px;object-fit:cover;object-position:top center;border-radius:10px;border:2px solid rgba(245,197,24,0.55);animation:img-glow 3s ease-in-out infinite;}
+#player-name-left{text-align:center;background:linear-gradient(135deg,rgba(245,197,24,0.13),rgba(245,197,24,0.04));border:1px solid rgba(245,197,24,0.35);border-radius:10px;padding:7px 5px 8px;width:84px;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.pnl-seat-label{font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);font-weight:600;line-height:1.3;}
+.pnl-player-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.06em;line-height:1.3;text-shadow:0 0 12px rgba(245,197,24,0.5);word-break:break-word;}
+#chair-name-plate{background:linear-gradient(135deg,rgba(245,197,24,0.1),rgba(245,197,24,0.04));border:1px solid rgba(245,197,24,0.3);border-radius:8px;padding:5px 4px;text-align:center;width:84px;}
+.cnp-title{font-size:7.5px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase;margin-bottom:3px;}
+.cnp-name{font-family:'Cinzel',serif;font-size:10px;font-weight:700;color:var(--gold);line-height:1.3;}
+/* LIFELINES */
+#ll-panel{width:102px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px 6px;border-left:1px solid rgba(180,140,0,0.18);}
+.ll-btn{width:82px;background:linear-gradient(180deg,rgba(220,228,255,0.95),rgba(200,215,250,0.95));border:1.5px solid rgba(80,110,220,0.35);border-radius:10px;padding:10px 4px;color:#1a2340;cursor:pointer;text-align:center;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 3px 12px rgba(0,0,0,0.3);}
+.ll-btn:hover:not(.used){background:linear-gradient(180deg,rgba(100,140,255,0.5),rgba(70,110,220,0.5));border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,0.2);}
+.ll-icon{font-size:18px;line-height:1.3;}
+.ll-nm{font-size:8.5px;letter-spacing:.02em;font-weight:500;line-height:1.3;}
+.ll-btn.used{opacity:.18;cursor:not-allowed;filter:grayscale(1);}
+.ll-sep{width:45px;height:1px;background:rgba(245,197,24,0.08);}
+/* CENTER */
+#center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 18px;gap:11px;position:relative;min-width:0;}
+#hot-seat-floor{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:480px;height:220px;border-radius:50%;background:radial-gradient(ellipse at 50% 100%,rgba(245,197,24,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;}
+#lv-badge{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 16px;border-radius:20px;border:1px solid;transition:all .4s;z-index:1;}
+#lv-badge.lv1{color:var(--lv1);border-color:rgba(79,195,247,0.4);background:rgba(79,195,247,0.07);}
+#lv-badge.lv2{color:var(--lv2);border-color:rgba(171,71,188,0.4);background:rgba(171,71,188,0.07);}
+#lv-badge.lv3{color:var(--lv3);border-color:rgba(255,112,67,0.4);background:rgba(255,112,67,0.07);}
+#q-num{font-size:9px;letter-spacing:.18em;color:var(--text-dim);text-transform:uppercase;z-index:1;}
+#q-box{width:100%;max-width:640px;position:relative;z-index:1;background:linear-gradient(135deg,rgba(240,244,255,0.99),rgba(232,238,255,0.99));border:2px solid rgba(180,130,0,0.3);border-radius:16px;padding:20px 26px;text-align:center;box-shadow:0 0 40px rgba(245,197,24,0.07),0 8px 32px rgba(0,0,0,0.5);}
+#q-box::before,#q-box::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+#q-box::before{top:0;border-radius:0 0 4px 4px;}
+#q-box::after{bottom:0;border-radius:4px 4px 0 0;}
+#q-text{font-size:clamp(14px,1.6vw,17px);line-height:1.7;color:#0d1a40;font-weight:500;}
+#opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;max-width:640px;z-index:1;}
+.opt{background:linear-gradient(135deg,rgba(220,228,255,0.97),rgba(210,220,255,0.97));border:1.5px solid rgba(80,110,210,0.35);border-radius:11px;padding:11px 14px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:all .18s;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3);}
+.opt:hover:not(.locked):not(.grayed):not(.hidden){background:linear-gradient(135deg,rgba(100,140,255,0.85),rgba(80,120,240,0.85));border-color:rgba(245,197,24,0.55);color:#fff;transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,0.12);}
+.opt-ltr{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,rgba(245,197,24,0.15),rgba(245,197,24,0.05));border:1.5px solid rgba(245,197,24,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);}
+.opt.sel{background:rgba(200,150,0,0.25);border-color:#c87800;color:#1a2340;}
+.opt.correct{background:linear-gradient(135deg,rgba(0,140,60,0.7),rgba(0,180,80,0.5))!important;border-color:#00e676!important;color:#b8ffd0!important;box-shadow:0 0 28px rgba(0,230,118,0.3)!important;}
+.opt.wrong{background:linear-gradient(135deg,rgba(180,0,20,0.7),rgba(220,0,40,0.5))!important;border-color:#ff1744!important;color:#ffb3b3!important;box-shadow:0 0 28px rgba(255,23,68,0.3)!important;}
+.opt.hidden{opacity:.1;pointer-events:none;}
+.opt.locked{cursor:default;}
+.opt.grayed{opacity:.28;pointer-events:none;}
+#confirm-row{display:none;flex-direction:column;align-items:center;gap:8px;width:100%;max-width:640px;z-index:1;}
+#confirm-banner{background:rgba(200,150,0,0.1);border:1px solid rgba(245,197,24,0.25);border-radius:8px;padding:8px 16px;font-size:12px;color:var(--gold);text-align:center;width:100%;}
+#confirm-acts{display:flex;gap:8px;}
+#btn-final{background:rgba(180,120,0,0.12);border:1.5px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:12px;font-weight:700;padding:8px 22px;border-radius:8px;cursor:pointer;letter-spacing:.05em;transition:all .2s;}
+#btn-final:hover{background:rgba(180,120,0,0.25);color:#1a2340;}
+#btn-change{background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.15);color:rgba(30,40,80,0.55);font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;}
+#btn-change:hover{background:rgba(0,0,0,0.08);color:#1a2340;}
+#act-bar{display:flex;align-items:center;gap:8px;justify-content:center;z-index:1;}
+#btn-walk{background:transparent;border:1px solid rgba(30,50,120,0.2);color:rgba(30,50,120,0.45);font-size:11px;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .2s;}
+#btn-walk:hover:not(:disabled){border-color:rgba(30,50,120,0.45);color:rgba(30,50,120,0.8);}
+#btn-walk:disabled{opacity:.16;cursor:default;}
+#host-msg{display:none;background:rgba(200,160,0,0.07);border-left:3px solid rgba(180,140,0,0.4);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:rgba(100,80,20,0.85);width:100%;max-width:640px;line-height:1.6;z-index:1;}
+.poll-wrap{width:100%;}
+.poll-row{display:flex;align-items:center;gap:6px;margin:3px 0;}
+.poll-lbl{font-size:11px;color:var(--text-dim);width:12px;flex-shrink:0;}
+.poll-track{flex:1;height:13px;background:rgba(0,0,0,0.08);border-radius:4px;overflow:hidden;}
+.poll-fill{height:100%;border-radius:4px;transition:width .8s ease;}
+.poll-pct{font-size:10px;color:var(--text-dim);width:28px;text-align:right;flex-shrink:0;}
+#chair-wrap{position:relative;z-index:1;width:100%;max-width:640px;display:flex;justify-content:center;}
+#chair-svg{width:180px;opacity:.45;}
+#level-picker{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.lv-card{width:150px;border-radius:14px;padding:16px 12px;cursor:pointer;transition:all .25s;text-align:center;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:9px;}
+.lv-card:hover{transform:translateY(-4px);}
+.lv-card.lv1{background:rgba(2,136,209,0.07);border-color:rgba(2,136,209,0.3);}
+.lv-card.lv1:hover,.lv-card.lv1.sel-lv{background:rgba(2,136,209,0.15);border-color:var(--lv1);}
+.lv-card.lv2{background:rgba(123,31,162,0.07);border-color:rgba(123,31,162,0.3);}
+.lv-card.lv2:hover,.lv-card.lv2.sel-lv{background:rgba(123,31,162,0.15);border-color:var(--lv2);}
+.lv-card.lv3{background:rgba(230,74,25,0.07);border-color:rgba(230,74,25,0.3);}
+.lv-card.lv3:hover,.lv-card.lv3.sel-lv{background:rgba(230,74,25,0.15);border-color:var(--lv3);}
+.lv-icon{font-size:30px;}
+.lv-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;}
+.lv-card.lv1 .lv-title{color:var(--lv1);}
+.lv-card.lv2 .lv-title{color:var(--lv2);}
+.lv-card.lv3 .lv-title{color:var(--lv3);}
+.lv-age{font-size:10px;color:var(--text-dim);}
+.lv-prize{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);}
+#overlay{position:fixed;inset:0;z-index:200;background:rgba(230,236,255,0.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px 20px;overflow-y:auto;}
+.ov-eyebrow{font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;}
+.ov-title{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,38px);font-weight:900;color:var(--gold);text-align:center;line-height:1.1;text-shadow:0 0 60px rgba(245,197,24,0.3);}
+.ov-sub{font-size:13px;color:var(--text-dim);text-align:center;line-height:1.85;max-width:440px;}
+.ov-prize{font-family:'Cinzel',serif;font-size:clamp(18px,3vw,26px);font-weight:700;color:var(--gold);}
+.ov-prize-lbl{font-size:9px;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;margin-bottom:-7px;}
+#name-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
+#name-label{font-size:10px;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;}
+#name-inp{background:rgba(8,13,46,0.9);border:1.5px solid rgba(180,130,0,0.4);border-radius:10px;color:var(--white);font-family:'Cinzel',serif;font-size:16px;font-weight:700;text-align:center;padding:10px 20px;width:240px;letter-spacing:.06em;outline:none;transition:border-color .2s;}
+#name-inp:focus{border-color:var(--gold);}
+#name-inp::placeholder{color:rgba(245,197,24,0.3);font-weight:400;font-size:13px;}
+#ov-btn{margin-top:4px;background:linear-gradient(135deg,#f5c518,#e8a000);border:none;border-radius:12px;color:#1a2340;font-family:'Cinzel',serif;font-size:14px;font-weight:900;letter-spacing:.1em;padding:13px 44px;cursor:pointer;transition:all .25s;text-transform:uppercase;box-shadow:0 4px 24px rgba(180,130,0,0.35);}
+#ov-btn:hover{background:linear-gradient(135deg,#ffe066,#f5c518);transform:translateY(-2px) scale(1.04);box-shadow:0 8px 32px rgba(180,130,0,0.45);}
+@keyframes fG{0%,100%{background:var(--navy)}50%{background:#d4f5e2}}
+@keyframes fR{0%,100%{background:var(--navy)}50%{background:#ffe0e0}}
+body.fc{animation:fG .55s ease;}
+body.fr{animation:fR .55s ease;}
+@keyframes pricePop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+.prize-pop{animation:pricePop .5s ease;}
+.prize-flip-wrap{perspective:600px;display:inline-block;}
+.prize-flip-card{width:130px;height:52px;position:relative;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.4,0,.2,1);}
+.prize-flip-card.flipped{transform:rotateY(360deg);}
+.prize-flip-front,.prize-flip-back{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px;}
+.prize-flip-front{background:rgba(180,130,0,0.12);border:1.5px solid rgba(245,197,24,0.3);}
+.prize-flip-back{background:linear-gradient(135deg,#f5c518,#e8a000);border:2px solid #f5c518;transform:rotateY(180deg);}
+.prize-flip-label{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.04em;}
+.prize-flip-front .prize-flip-label{color:var(--gold);}
+.big-flip-card{width:300px;height:110px;position:relative;transform-style:preserve-3d;transition:transform 0.85s cubic-bezier(.4,0,.2,1);}
+.big-flip-card.flipped{transform:rotateY(180deg);}
+.big-flip-front,.big-flip-back{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:18px;}
+.big-flip-front{background:rgba(230,236,255,0.97);border:2px solid rgba(180,130,0,0.35);box-shadow:0 0 40px rgba(245,197,24,0.15);}
+.big-flip-back{background:linear-gradient(135deg,#ffe066,#f5c518 40%,#e8a000);border:3px solid rgba(255,255,255,0.8);transform:rotateY(180deg);box-shadow:0 0 80px rgba(245,197,24,0.8);}
+.big-flip-amt{font-family:'Cinzel',serif;font-size:30px;font-weight:700;color:var(--navy);letter-spacing:.06em;}
+#sparkle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
+
+/* ══ PRIZE AMOUNT POPUP ANIMATION ══ */
+#prize-popup{
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-60%) scale(0.6);
+  z-index:1000;
+  pointer-events:none;
+  opacity:0;
+  transition:none;
+  text-align:center;
+}
+#prize-popup.show{
+  animation:prizePopIn 2.8s cubic-bezier(.17,.89,.32,1.28) forwards;
+}
+@keyframes prizePopIn{
+  0%  {opacity:0;transform:translate(-50%,-80%) scale(0.4);}
+  18% {opacity:1;transform:translate(-50%,-50%) scale(1.15);}
+  30% {opacity:1;transform:translate(-50%,-50%) scale(1);}
+  70% {opacity:1;transform:translate(-50%,-50%) scale(1);}
+  88% {opacity:1;transform:translate(-50%,-50%) scale(1.05);}
+  100%{opacity:0;transform:translate(-50%,-35%) scale(0.85);}
+}
+.pp-inner{
+  background:linear-gradient(135deg,#ffe066,#f5c518 40%,#e8a000);
+  border:3px solid rgba(255,255,255,0.85);
+  border-radius:22px;
+  padding:18px 44px;
+  box-shadow:0 0 80px rgba(245,197,24,0.9), 0 12px 48px rgba(0,0,0,0.5);
+  display:inline-block;
+}
+.pp-label{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(40,50,100,0.75);font-weight:700;margin-bottom:4px;
+  font-family:'Inter',sans-serif;
+}
+.pp-amount{
+  font-family:'Cinzel',serif;
+  font-size:clamp(28px,5vw,52px);
+  font-weight:900;
+  color:#1a2340;
+  letter-spacing:.04em;
+  line-height:1.1;
+  text-shadow:0 2px 8px rgba(0,0,0,0.18);
+}
+.pp-tick{
+  font-size:clamp(18px,3vw,28px);
+  margin-bottom:4px;
+  display:block;
+}
+/* Ripple ring behind popup */
+.pp-ring{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  width:220px;height:220px;
+  border-radius:50%;
+  border:3px solid rgba(245,197,24,0.6);
+  animation:ppRing 2.8s ease forwards;
+  pointer-events:none;
+}
+@keyframes ppRing{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:0.8;}
+  50% {transform:translate(-50%,-50%) scale(2.5);opacity:0.3;}
+  100%{transform:translate(-50%,-50%) scale(4);opacity:0;}
+}
+#mob-ll{display:none;gap:7px;justify-content:center;flex-wrap:wrap;padding:8px 12px;border-top:1px solid rgba(180,140,0,0.18);}
+.mob-ll-btn{background:rgba(210,220,255,0.7);border:1.5px solid rgba(40,60,200,0.3);border-radius:7px;padding:6px 10px;color:var(--text);font-size:11px;cursor:pointer;transition:all .2s;}
+.mob-ll-btn:hover:not(.used){border-color:var(--gold);color:var(--gold);}
+.mob-ll-btn.used{opacity:.18;cursor:not-allowed;filter:grayscale(1);}
+@media(max-width:860px){
+  #player-left,#player-right,#ll-panel{display:none;}
+  #main{flex-direction:column;}
+  #center{padding:12px 10px;gap:10px;}
+  #mob-ll{display:flex;}
+  #q-box{padding:16px 14px;}
+  #opts-grid{gap:7px;}
+}
+@media(max-width:560px){
+  #opts-grid{grid-template-columns:1fr;}
+  #q-text{font-size:14px;}
+  .ov-title{font-size:20px;}
+  .lv-card{width:120px;padding:12px 8px;}
+}
+@media(max-width:380px){
+  #q-text{font-size:13px;}
+  .opt{font-size:12px;padding:9px 10px;}
+  #show-logo{font-size:11px;}
+}
+</style>
+</head>
+<body>
+<div id="bg">
+  <div id="spotlight"></div>
+  <div class="bg-ring" style="width:950px;height:950px;"></div>
+  <div class="bg-ring" style="width:720px;height:720px;border-color:rgba(245,197,24,0.04)"></div>
+  <div class="bg-ring" style="width:500px;height:500px;border-color:rgba(245,197,24,0.07)"></div>
+  <div class="bg-ring" style="width:300px;height:300px;border-color:rgba(245,197,24,0.1)"></div>
+  <div class="bg-ring" style="width:140px;height:140px;border-color:rgba(245,197,24,0.14)"></div>
+</div>
+
+<div id="shell">
+  <header id="hdr">
+    <div id="show-logo">Who Wants to Be a Maths Millionaire?</div>
+    <div id="show-sub">India's Greatest Quiz Show &mdash; ₹1,000 to ₹1 Crore</div>
+    <button id="mute-btn" title="Toggle sound">🔊</button>
+  </header>
+
+  <div id="main">
+
+    <!-- LEFT: Player Photo -->
+    <div id="player-left" class="side-panel">
+
+<img id="chair-img" src="chair.png" alt="Chair">
+
+  <div id="player-name-left">
+    <div class="pnl-seat-label">🎤 On the Hot Seat</div>
+    <div class="pnl-player-name" id="pnl-name-text">PARTH</div>
+  </div>
+    </div>
+
+    <!-- Prize Ladder -->
+    
+
+    <!-- Hot Seat Center -->
+    <main id="center">
+      <div id="hot-seat-floor"></div>
+      <div id="lv-badge" class="lv1">KIDS &middot; LEVEL 1</div>
+      <div id="q-num">Question 1 of 15</div>
+      <div id="q-box"><div id="q-text">Ready to play?</div></div>
+      <div id="opts-grid"></div>
+      <div id="confirm-row">
+        <div id="confirm-banner">Is that your <strong>final answer</strong>?</div>
+        <div id="confirm-acts">
+          <button id="btn-final">Final Answer</button>
+          <button id="btn-change">Change</button>
+        </div>
+      </div>
+      <div id="act-bar"><button id="btn-walk" disabled>Walk Away</button></div>
+      <div id="host-msg"></div>
+      <div id="chair-wrap">
+        <svg id="chair-svg" viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="110" cy="118" rx="95" ry="12" fill="rgba(180,130,0,0.12)"/>
+          <rect x="42" y="75" width="8" height="50" rx="4" fill="#c8d4f8"/>
+          <rect x="170" y="75" width="8" height="50" rx="4" fill="#c8d4f8"/>
+          <rect x="55" y="92" width="6" height="33" rx="3" fill="#b8c8f5"/>
+          <rect x="159" y="92" width="6" height="33" rx="3" fill="#b8c8f5"/>
+          <rect x="30" y="68" width="160" height="18" rx="7" fill="#ccd8fa"/>
+          <rect x="34" y="70" width="152" height="10" rx="5" fill="#bcc8f0"/>
+          <rect x="88" y="20" width="14" height="52" rx="5" fill="#c8d4f8"/>
+          <rect x="118" y="20" width="14" height="52" rx="5" fill="#c8d4f8"/>
+          <rect x="22" y="10" width="176" height="55" rx="10" fill="#ccd8fa"/>
+          <rect x="26" y="14" width="168" height="45" rx="8" fill="#bcc8f0"/>
+          <rect x="22" y="10" width="176" height="8" rx="10" fill="rgba(180,130,0,0.5)"/>
+          <rect x="22" y="57" width="176" height="6" rx="3" fill="rgba(180,130,0,0.3)"/>
+          <rect x="30" y="68" width="160" height="5" rx="3" fill="rgba(180,130,0,0.35)"/>
+          <rect x="12" y="48" width="28" height="10" rx="5" fill="#c0ccf2"/>
+          <rect x="180" y="48" width="28" height="10" rx="5" fill="#c0ccf2"/>
+          <rect x="12" y="48" width="28" height="4" rx="3" fill="rgba(180,130,0,0.35)"/>
+          <rect x="180" y="48" width="28" height="4" rx="3" fill="rgba(180,130,0,0.35)"/>
+          <text x="110" y="42" text-anchor="middle" font-family="serif" font-size="11" fill="rgba(180,130,0,0.6)" font-weight="bold">&#8377;1 CRORE</text>
+        </svg>
+      </div>
+    </main>
+
+    <!-- Lifelines -->
+    <aside id="ll-panel">
+      <button class="ll-btn" id="ll-5050" onclick="use5050()">
+        <span class="ll-icon" style="font-size:13px;font-weight:700;font-family:'Cinzel',serif;line-height:1.3">50<br>50</span>
+        <span class="ll-nm">50 : 50</span>
+      </button>
+      <div class="ll-sep"></div>
+      <button class="ll-btn" id="ll-phone" onclick="usePhone()">
+        <span class="ll-icon">&#128222;</span>
+        <span class="ll-nm">Phone<br>Friend</span>
+      </button>
+      <div class="ll-sep"></div>
+      <button class="ll-btn" id="ll-poll" onclick="useAudiencePoll()">
+        <span class="ll-icon">&#128101;</span>
+        <span class="ll-nm">Audience<br>Poll</span>
+      </button>
+      <div class="ll-sep"></div>
+      <button class="ll-btn" id="ll-expert" onclick="useExpert()">
+        <span class="ll-icon">&#127891;</span>
+        <span class="ll-nm">Expert<br>Advice</span>
+      </button>
+    </aside>
+
+    <!-- RIGHT: Chair Nameplate -->
+    <div id="player-right" class="side-panel">
+      <img id="parth-img" src="parth.png" alt="Parth">
+
+    <div id="chair-name-plate">
+        <div class="cnp-title">PARTH</div>
+       
+      </div>
+    </div>
+
+  </div><!-- #main -->
+
+  <!-- Mobile Lifelines -->
+  <div id="mob-ll">
+    <button class="mob-ll-btn" id="mll-5050" onclick="use5050()">50:50</button>
+    <button class="mob-ll-btn" id="mll-phone" onclick="usePhone()">&#128222; Phone</button>
+    <button class="mob-ll-btn" id="mll-poll" onclick="useAudiencePoll()">&#128101; Poll</button>
+    <button class="mob-ll-btn" id="mll-expert" onclick="useExpert()">&#127891; Expert</button>
+  </div>
+
+  
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay">
+  <div class="ov-eyebrow" id="ov-eyebrow">India's Greatest Quiz Show</div>
+  <div class="ov-title" id="ov-title">Who Wants to Be a<br>Maths Millionaire?</div>
+  <div class="ov-sub" id="ov-sub">Choose your level and take the hot seat.<br>Answer 15 questions. Win up to <strong style="color:var(--gold)">&#8377;1 Crore</strong>.</div>
+  <div id="name-wrap">
+    <div id="name-label">Your Name</div>
+    <input id="name-inp" type="text" maxlength="20" placeholder="Enter your name..." spellcheck="false" value="     ">
+  </div>
+  <div id="level-picker">
+    <div class="lv-card lv1 sel-lv" onclick="pickLevel(1,this)">
+      <div class="lv-icon">&#127775;</div>
+      <div class="lv-title">Kids</div>
+      <div class="lv-age">Age 8 &ndash; 12</div>
+      <div class="lv-prize">Up to &#8377;1 Crore</div>
+    </div>
+    <div class="lv-card lv2" onclick="pickLevel(2,this)">
+      <div class="lv-icon">&#128293;</div>
+      <div class="lv-title">Teen</div>
+      <div class="lv-age">Age 13 &ndash; 17</div>
+      <div class="lv-prize">Up to &#8377;1 Crore</div>
+    </div>
+    <div class="lv-card lv3" onclick="pickLevel(3,this)">
+      <div class="lv-icon">&#128142;</div>
+      <div class="lv-title">Expert</div>
+      <div class="lv-age">Age 18+</div>
+      <div class="lv-prize">Up to &#8377;1 Crore</div>
+    </div>
+  </div>
+  <div id="ov-prize-wrap" style="display:none;text-align:center">
+    <div class="ov-prize-lbl" id="ov-prize-lbl">You take home</div>
+    <div class="ov-prize" id="ov-prize-val">&#8377;0</div>
+  </div>
+  <button id="ov-btn">Take the Hot Seat</button>
+</div>
+
+<script>
+// ══ SOUND ENGINE ══
+var AC=null,isMuted=false,bgTid=null,bgDrone=null,bgShim=null,bgGain=null;
+function getAC(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC;}
+document.getElementById('mute-btn').addEventListener('click',function(){
+  isMuted=!isMuted;this.textContent=isMuted?'🔇':'🔊';
+  if(bgGain)bgGain.gain.setTargetAtTime(isMuted?0:0.14,getAC().currentTime,0.3);
+  if(isMuted&&window.speechSynthesis)window.speechSynthesis.cancel();
+});
+function pt(f,d,v,t,dl){if(isMuted)return;v=v||0.14;t=t||'sine';dl=dl||0;try{var ac=getAC(),o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=t;o.frequency.setValueAtTime(f,ac.currentTime+dl);g.gain.setValueAtTime(0.001,ac.currentTime+dl);g.gain.linearRampToValueAtTime(v,ac.currentTime+dl+0.02);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dl+d);o.start(ac.currentTime+dl);o.stop(ac.currentTime+dl+d+0.05);}catch(e){}}
+function pn(d,v){if(isMuted)return;try{var ac=getAC(),sr=ac.sampleRate,buf=ac.createBuffer(1,sr*d,sr),dd=buf.getChannelData(0);for(var i=0;i<dd.length;i++)dd[i]=Math.random()*2-1;var src=ac.createBufferSource(),g=ac.createGain(),f=ac.createBiquadFilter();f.type='lowpass';f.frequency.value=280;src.buffer=buf;src.connect(f);f.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(v||0.06,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);src.start();src.stop(ac.currentTime+d+0.05);}catch(e){}}
+function stopBg(){if(bgTid){clearInterval(bgTid);bgTid=null;}try{if(bgDrone){bgDrone.stop();bgDrone=null;}}catch(e){}try{if(bgShim){bgShim.stop();bgShim=null;}}catch(e){}try{if(bgGain){bgGain.disconnect();bgGain=null;}}catch(e){}}
+function startBg(){stopBg();if(isMuted)return;try{var ac=getAC();bgGain=ac.createGain();bgGain.gain.value=0.14;bgGain.connect(ac.destination);bgDrone=ac.createOscillator();bgDrone.type='sawtooth';bgDrone.frequency.value=55;var dg=ac.createGain();dg.gain.value=0.028;var df=ac.createBiquadFilter();df.type='lowpass';df.frequency.value=100;bgDrone.connect(df);df.connect(dg);dg.connect(bgGain);bgDrone.start();bgShim=ac.createOscillator();bgShim.type='sine';bgShim.frequency.value=880;var sg=ac.createGain();sg.gain.value=0.01;bgShim.connect(sg);sg.connect(bgGain);bgShim.start();var beat=0,seq=[55,55,55,55,55,55,55,49];bgTid=setInterval(function(){if(isMuted||!bgGain)return;try{var ac2=getAC(),o=ac2.createOscillator(),g=ac2.createGain();o.type='triangle';o.frequency.value=seq[beat%seq.length];o.connect(g);g.connect(bgGain);g.gain.setValueAtTime(0.26,ac2.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac2.currentTime+0.18);o.start();o.stop(ac2.currentTime+0.22);beat++;}catch(e){}},545);}catch(e){}}
+function sndClick(){pt(660,0.07,0.09);}
+function sndSel(){pt(440,0.06,0.11);pt(550,0.08,0.08,'sine',0.06);}
+function sndFinal(){pt(220,0.14,0.09,'sawtooth');pt(330,0.11,0.08,'sawtooth',0.14);pt(440,0.1,0.09,'sawtooth',0.25);pt(550,0.09,0.08,'sawtooth',0.34);pt(660,0.22,0.11,'sine',0.43);pn(0.07,0.03);}
+function sndCorrect(){stopBg();pt(523,0.2,0.14,'sine',0);pt(659,0.2,0.13,'sine',0.12);pt(784,0.2,0.13,'sine',0.24);pt(1047,0.2,0.15,'sine',0.36);pt(523,0.5,0.11,'sine',0.6);pt(659,0.5,0.11,'sine',0.6);pt(784,0.5,0.11,'sine',0.6);pt(1047,0.6,0.13,'sine',0.6);}
+function sndWin(){stopBg();var f=[523,587,659,698,784,880,988,1047];for(var i=0;i<f.length;i++)pt(f[i],0.18,0.12,'sine',i*0.1);pt(523,1.2,0.14,'sine',0.9);pt(659,1.2,0.14,'sine',0.9);pt(784,1.2,0.14,'sine',0.9);pt(1047,1.2,0.16,'sine',0.9);}
+function sndWrong(){stopBg();pt(330,0.2,0.13,'sawtooth');pt(277,0.2,0.11,'sawtooth',0.19);pt(220,0.38,0.12,'sawtooth',0.38);pn(0.28,0.055);}
+function sndLifeline(){var n=[440,550,660,550,440];for(var i=0;i<n.length;i++)pt(n[i],0.1,0.1,'sine',i*0.09);}
+function sndWalk(){pt(392,0.22,0.11);pt(494,0.22,0.1);pt(587,0.22,0.1);pt(784,0.45,0.11,'sine',0.26);}
+
+// ══ PRIZE POPUP ANIMATION ══
+function showPrizePopup(amt){
+  var el=document.getElementById('prize-popup');
+  var amtEl=document.getElementById('pp-amt');
+  // Format amount
+  var txt;
+  if(amt>=10000000)txt='₹1 Crore';
+  else if(amt>=100000){var l=amt/100000;txt='₹'+(l%1===0?l:l.toFixed(2))+' Lakh';}
+  else txt='₹'+amt.toLocaleString('en-IN');
+  amtEl.textContent=txt;
+  // Reset animation
+  el.classList.remove('show');
+  // Re-clone ring for repeat animation
+  var oldRing=el.querySelector('.pp-ring');
+  if(oldRing){var newRing=oldRing.cloneNode(true);oldRing.parentNode.replaceChild(newRing,oldRing);}
+  void el.offsetWidth; // reflow
+  el.classList.add('show');
+  // Auto-remove class after animation
+  setTimeout(function(){el.classList.remove('show');},2900);
+}
+
+// ══ TTS ══
+var ttsVoice=null;
+function initTTS(){if(!window.speechSynthesis)return;function lv(){var vs=window.speechSynthesis.getVoices(),pref=['en-IN','en-GB','en-US'];for(var p=0;p<pref.length;p++)for(var v=0;v<vs.length;v++)if(vs[v].lang&&vs[v].lang.indexOf(pref[p])===0&&vs[v].name.match(/female|zira|samantha|veena|raveena/i)){ttsVoice=vs[v];return;}for(var v=0;v<vs.length;v++)if(vs[v].lang&&vs[v].lang.indexOf('en')===0){ttsVoice=vs[v];return;}if(vs.length)ttsVoice=vs[0];}lv();if(window.speechSynthesis.onvoiceschanged!==undefined)window.speechSynthesis.onvoiceschanged=lv;}
+function ttsSpeak(text,rate,pitch){if(isMuted||!window.speechSynthesis)return;window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);if(ttsVoice)u.voice=ttsVoice;u.lang='en-IN';u.rate=rate||0.95;u.pitch=pitch||1.05;u.volume=1.0;var rid=setInterval(function(){window.speechSynthesis.resume();},10000);u.onend=u.onerror=function(){clearInterval(rid);};window.speechSynthesis.speak(u);}
+function prizeToSpeech(amt){if(amt===0)return'zero';if(amt>=10000000)return'One Crore Rupees';if(amt>=100000){var l=amt/100000;return(l%1===0?l:l.toFixed(2))+' Lakh Rupees';}if(amt>=1000)return(amt/1000)+'Thousand Rupees';return amt+' Rupees';}
+initTTS();
+
+// ══ PLAYER NAME ══
+var playerName='  ';
+function updateNameDisplays(n){playerName=n;var pnl=document.getElementById('pnl-name-text');if(pnl)pnl.textContent=n;var cnt=document.getElementById('chair-name-text');if(cnt)cnt.textContent=n;}
+document.getElementById('name-inp').addEventListener('input',function(){var v=this.value.trim().toUpperCase();if(v)updateNameDisplays(v);});
+
+// ══ PRIZES ══
+var PRIZES=[
+  {label:"&#8377;1,000",     amt:1000,     safe:false},
+  {label:"&#8377;2,000",     amt:2000,     safe:false},
+  {label:"&#8377;3,000",     amt:3000,     safe:false},
+  {label:"&#8377;5,000",     amt:5000,     safe:false},
+  {label:"&#8377;10,000",    amt:10000,    safe:true},
+  {label:"&#8377;20,000",    amt:20000,    safe:false},
+  {label:"&#8377;40,000",    amt:40000,    safe:false},
+  {label:"&#8377;80,000",    amt:80000,    safe:false},
+  {label:"&#8377;1,60,000",  amt:160000,   safe:false},
+  {label:"&#8377;3,20,000",  amt:320000,   safe:true},
+  {label:"&#8377;6,40,000",  amt:640000,   safe:false},
+  {label:"&#8377;12,50,000", amt:1250000,  safe:false},
+  {label:"&#8377;25,00,000", amt:2500000,  safe:false},
+  {label:"&#8377;50,00,000", amt:5000000,  safe:false},
+  {label:"&#8377;1 Crore",   amt:10000000, safe:false}
+];
+
+// ══ QUESTION BANK ══  opts[0] = correct
+var QB={
+  lv1:[
+    {q:"What is 7 x 8?",opts:["56","48","54","63"]},
+    {q:"What is 144 / 12?",opts:["12","11","13","14"]},
+    {q:"What is 25% of 200?",opts:["50","40","60","25"]},
+    {q:"How many sides does a pentagon have?",opts:["5","4","6","7"]},
+    {q:"What is 15 + 38 - 12?",opts:["41","39","43","40"]},
+    {q:"What is the square root of 81?",opts:["9","7","8","6"]},
+    {q:"What is 3 x 3 x 3?",opts:["27","18","24","30"]},
+    {q:"A triangle has how many angles?",opts:["3","2","4","6"]},
+    {q:"What is 50% of 90?",opts:["45","40","50","35"]},
+    {q:"What is 12 squared?",opts:["144","124","132","148"]},
+    {q:"If 1 dozen = 12, how many is 3 dozen?",opts:["36","24","48","30"]},
+    {q:"What is the next prime number after 7?",opts:["11","9","10","13"]},
+    {q:"A rectangle has length 8 and width 5. What is its area?",opts:["40","35","45","26"]},
+    {q:"What is 1000 - 375?",opts:["625","635","615","605"]},
+    {q:"How many minutes are in 2.5 hours?",opts:["150","120","160","140"]},
+    {q:"What is 75% of 80?",opts:["60","65","55","70"]},
+    {q:"What is the perimeter of a square with side 9?",opts:["36","27","45","18"]},
+    {q:"What is 8 x 9 + 6?",opts:["78","72","84","80"]},
+    {q:"How many centimetres are in 2.5 metres?",opts:["250","200","300","25"]},
+    {q:"What is the smallest 3-digit prime number?",opts:["101","103","107","111"]}
+  ],
+  lv2:[
+    {q:"If 4x - 3 = 17, what is x?",opts:["5","4","6","7"]},
+    {q:"What is 2 to the power 10?",opts:["1024","512","1000","2048"]},
+    {q:"A train at 90 km/h travels 2 hours 20 min. Distance?",opts:["210 km","180 km","195 km","225 km"]},
+    {q:"Sum of interior angles of a hexagon?",opts:["720 degrees","540 degrees","640 degrees","800 degrees"]},
+    {q:"If log base 10 of 1000 equals x, find x.",opts:["3","2","4","10"]},
+    {q:"What is 17% of 2500?",opts:["425","400","450","475"]},
+    {q:"Area of a circle with radius 7 cm, using pi equals 22 over 7?",opts:["154 sq cm","144 sq cm","164 sq cm","176 sq cm"]},
+    {q:"Rs 5000 at 8% simple interest per year. Interest after 3 years?",opts:["Rs 1200","Rs 1000","Rs 1500","Rs 1800"]},
+    {q:"Solve: 3x + 5 = 2x - 1. What is x?",opts:["-6","6","-4","4"]},
+    {q:"How many prime numbers are there between 50 and 100?",opts:["10","8","12","14"]},
+    {q:"If sin theta = 3 over 5, what is cos theta in the first quadrant?",opts:["4 over 5","3 over 4","4 over 3","5 over 3"]},
+    {q:"What is the median of: 3, 7, 9, 1, 5?",opts:["5","3","7","6"]},
+    {q:"A bag has 5 red and 3 blue balls. What is the probability of picking red?",opts:["5 over 8","3 over 8","5 over 3","1 over 2"]},
+    {q:"What is 18 squared minus 17 squared?",opts:["35","36","34","37"]},
+    {q:"The ratio 3:4 equals what to 24?",opts:["18","16","20","12"]},
+    {q:"What is the HCF of 48 and 72?",opts:["24","12","36","48"]},
+    {q:"What is the LCM of 12 and 18?",opts:["36","24","72","48"]},
+    {q:"What is the slope of the line 2y = 6x + 4?",opts:["3","2","4","6"]},
+    {q:"What is the square root of 196?",opts:["14","13","15","12"]},
+    {q:"Circumference of a circle with diameter 14 cm, using pi = 22 over 7?",opts:["44 cm","42 cm","46 cm","48 cm"]}
+  ],
+  lv3:[
+    {q:"What is the derivative of x cubed minus 4x?",opts:["3x squared minus 4","x cubed minus 4","3x squared","x squared minus 4"]},
+    {q:"Compound interest on Rs 10000 at 10% per annum for 2 years?",opts:["Rs 2100","Rs 1900","Rs 2000","Rs 2200"]},
+    {q:"A sum triples in 12 years at simple interest. What is the annual rate?",opts:["16.67 percent","14 percent","18 percent","20 percent"]},
+    {q:"What is 75 C 2, that is 75 choose 2?",opts:["2775","2700","5550","3600"]},
+    {q:"Geometric series: first term 2, ratio 3. Sum of first 6 terms?",opts:["728","726","730","732"]},
+    {q:"If 2 to the power x equals 128, find x.",opts:["7","6","8","9"]},
+    {q:"How many trailing zeros does 100 factorial have?",opts:["24","20","22","25"]},
+    {q:"What is the integral of 2x plus 3 with respect to x?",opts:["x squared plus 3x plus C","2x squared plus 3x plus C","x squared plus C","2x plus 3 plus C"]},
+    {q:"What are the roots of x squared minus 5x plus 6 equals 0?",opts:["2 and 3","1 and 6","-2 and -3","3 and 4"]},
+    {q:"What is the determinant of the matrix with rows 2,3 and 1,4?",opts:["5","8","-5","11"]},
+    {q:"P of A union B, if P of A = 0.4, P of B = 0.5, P of A intersection B = 0.2?",opts:["0.7","0.9","0.6","0.8"]},
+    {q:"Sum of an infinite GP with first term 1 and ratio one half?",opts:["2","1","3","4"]},
+    {q:"If f of x equals x squared minus 4, what is f of negative 3?",opts:["5","-13","13","-5"]},
+    {q:"How many 3-digit numbers are divisible by 7?",opts:["128","127","129","130"]},
+    {q:"What is sin 30 degrees times cos 60 degrees plus cos 30 degrees times sin 60 degrees?",opts:["1","0.5","root 3 over 2","0"]},
+    {q:"What is i to the power 4, where i equals square root of negative 1?",opts:["1","-1","i","-i"]},
+    {q:"How many permutations of 5 items taken 3 at a time?",opts:["60","30","20","120"]},
+    {q:"If log base 2 of 32 equals x, find x.",opts:["5","4","6","3"]},
+    {q:"Area of a right triangle with sides 3, 4, and 5?",opts:["6","7.5","5","8"]},
+    {q:"Arithmetic mean of the first 20 natural numbers?",opts:["10.5","10","11","9.5"]}
+  ]
+};
+
+// ══ STATE ══
+var questions=[],currentQ=0,selectedOpt=null,pendingConfirm=false,hiddenOpts=[],gameActive=false;
+var lifelines={f5050:false,phone:false,poll:false,expert:false};
+var currentLevel=1;
+
+// ══ UTILS ══
+function shuffleArr(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=b[i];b[i]=b[j];b[j]=t;}return b;}
+function fmtPrize(amt){if(amt===0)return"&#8377;0";if(amt>=10000000)return"&#8377;1 Crore";if(amt>=100000){var l=amt/100000;return"&#8377;"+(l%1===0?l:l.toFixed(2))+" Lakh";}return"&#8377;"+amt.toLocaleString('en-IN');}
+function getSafe(){for(var i=currentQ-1;i>=0;i--)if(PRIZES[i].safe)return PRIZES[i].amt;return 0;}
+
+// ══ LEVEL PICK ══
+function pickLevel(lv,el){
+  currentLevel=lv;
+  document.querySelectorAll('.lv-card').forEach(function(c){c.classList.remove('sel-lv');});
+  el.classList.add('sel-lv');
+}
+
+// ══ BUILD QUESTIONS ══
+function buildQuestions(){
+  var bank=QB['lv'+currentLevel];
+  var pool=shuffleArr(bank).slice(0,15);
+  return pool.map(function(raw){
+    var pos=shuffleArr([0,1,2,3]);
+    var d=["","","",""];
+    pos.forEach(function(dest,src){d[dest]=raw.opts[src];});
+    return{q:raw.q,displayOpts:d,correctIdx:pos[0]};
+  });
+}
+
+
+// ══ RENDER QUESTION ══
+function renderQuestion(){
+  var qd=questions[currentQ];
+  var lvNames=['','KIDS','TEEN','EXPERT'];
+  document.getElementById('lv-badge').className='lv-badge lv'+currentLevel;
+  document.getElementById('lv-badge').textContent=lvNames[currentLevel]+' \u00b7 LEVEL '+currentLevel;
+  document.getElementById('q-num').textContent='Question '+(currentQ+1)+' of 15';
+  document.getElementById('q-text').textContent=qd.q;
+  selectedOpt=null;pendingConfirm=false;hiddenOpts=[];
+  document.getElementById('confirm-row').style.display='none';
+  document.getElementById('btn-walk').disabled=(currentQ===0);
+  hideHostMsg();
+  var grid=document.getElementById('opts-grid');grid.innerHTML='';
+  var labels=['A','B','C','D'];
+  qd.displayOpts.forEach(function(opt,i){
+    var btn=document.createElement('button');
+    btn.className='opt';btn.id='opt-'+i;
+    btn.innerHTML='<span class="opt-ltr">'+labels[i]+'</span><span>'+opt+'</span>';
+    btn.addEventListener('click',function(){selectOpt(i);});
+    grid.appendChild(btn);
+  });
+  // TTS: announce prize + question
+  setTimeout(function(){
+    ttsSpeak('For '+prizeToSpeech(PRIZES[currentQ].amt)+', here is your question for '+playerName+'. '+qd.q, 0.9, 1.05);
+  },420);
+}
+
+// ══ SELECT ══
+function selectOpt(i){
+  if(!gameActive||pendingConfirm)return;
+  var el=document.getElementById('opt-'+i);
+  if(!el||el.classList.contains('hidden')||el.classList.contains('locked')||el.classList.contains('grayed'))return;
+  sndSel();
+  document.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');selectedOpt=i;pendingConfirm=true;
+  document.getElementById('confirm-row').style.display='flex';
+  showHostMsg('Is that your final answer? You can still change your mind.');
+}
+document.getElementById('btn-change').addEventListener('click',function(){
+  sndClick();
+  document.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel');});
+  selectedOpt=null;pendingConfirm=false;
+  document.getElementById('confirm-row').style.display='none';hideHostMsg();
+});
+document.getElementById('btn-final').addEventListener('click',function(){
+  if(selectedOpt===null||!gameActive)return;
+  sndFinal();lockAndReveal(selectedOpt);
+});
+document.getElementById('btn-walk').addEventListener('click',function(){
+  if(!gameActive||currentQ===0)return;
+  sndWalk();gameActive=false;
+  var earned=PRIZES[currentQ-1].amt;
+  ttsSpeak('You have decided to walk away with '+prizeToSpeech(earned)+'. A very wise choice!',0.9,1.0);
+  showOverlay('You Walked Away!','A wise choice. You leave the hot seat safely.',fmtPrize(earned),'You walk away with');
+});
+
+// ══ REVEAL ══
+function lockAndReveal(picked){
+  gameActive=false;pendingConfirm=false;
+  document.getElementById('confirm-row').style.display='none';
+  document.querySelectorAll('.opt').forEach(function(b){b.classList.add('locked');});
+  var correct=questions[currentQ].correctIdx;
+  setTimeout(function(){
+    if(picked===correct){
+      document.getElementById('opt-'+picked).classList.remove('sel');
+      document.getElementById('opt-'+picked).classList.add('correct');
+      document.body.classList.add('fc');
+      setTimeout(function(){document.body.classList.remove('fc');},560);
+      if(currentQ===PRIZES.length-1){
+        sndWin();launchSparkles();showPrizePopup(10000000);
+        ttsSpeak('Congratulations '+playerName+'! You have won One Crore Rupees! You are a true Maths Millionaire!',0.88,1.1);
+        setTimeout(function(){showOverlay('Congratulations!',playerName+', you answered all 15 questions correctly!','&#8377;1 Crore','You have won');},1700);
+      } else {
+        sndCorrect();
+        launchSparkles();
+        showPrizePopup(PRIZES[currentQ].amt);
+        // Flip current prize item
+        (function(){
+          var pi=document.getElementById('pi-'+(currentQ));
+          if(pi){
+            var orig=pi.innerHTML;
+            var lbl=PRIZES[currentQ].label;
+            pi.innerHTML='<span class="prize-flip-wrap"><span class="prize-flip-card" id="pfc-'+currentQ+'"><span class="prize-flip-front prize-flip-label">'+lbl+'</span><span class="prize-flip-back prize-flip-label">'+lbl+'</span></span></span>';
+            setTimeout(function(){var pfc=document.getElementById('pfc-'+currentQ);if(pfc)pfc.classList.add('flipped');},100);
+          }
+        })();
+        ttsSpeak('Correct! Well done '+playerName+'! Moving on.',0.92,1.05);
+        setTimeout(function(){currentQ++;gameActive=true;renderQuestion();},1900);
+      }
+    } else {
+      document.getElementById('opt-'+picked).classList.remove('sel');
+      document.getElementById('opt-'+picked).classList.add('wrong');
+      document.getElementById('opt-'+correct).classList.add('correct');
+      document.body.classList.add('fr');
+      setTimeout(function(){document.body.classList.remove('fr');},560);
+      sndWrong();
+      var safe=getSafe();
+      ttsSpeak('Oh no '+playerName+', that is the wrong answer! You go home with '+prizeToSpeech(safe)+'.',0.88,0.95);
+      setTimeout(function(){showOverlay('Wrong Answer!','Unlucky! The correct answer has been revealed.',fmtPrize(safe),'You go home with');},2000);
+    }
+  },360);
+}
+
+// ══ LIFELINES ══
+function markLL(id){document.getElementById('ll-'+id).classList.add('used');var m=document.getElementById('mll-'+id);if(m)m.classList.add('used');}
+function use5050(){if(lifelines.f5050||!gameActive||pendingConfirm)return;lifelines.f5050=true;markLL('5050');sndLifeline();var correct=questions[currentQ].correctIdx;var wrong=shuffleArr([0,1,2,3].filter(function(i){return i!==correct;}));wrong.slice(0,2).forEach(function(i){hiddenOpts.push(i);var el=document.getElementById('opt-'+i);if(el)el.classList.add('hidden');});showHostMsg('50:50 used — two wrong answers removed. Choose wisely!');}
+function usePhone(){if(lifelines.phone||!gameActive)return;lifelines.phone=true;markLL('phone');sndLifeline();var correct=questions[currentQ].correctIdx;var knows=Math.random()<0.80;var pick=knows?correct:shuffleArr([0,1,2,3].filter(function(i){return i!==correct;}))[0];var L=['A','B','C','D'];var c=knows?["I'm quite sure it's","I'm confident the answer is","I believe it's"][Math.floor(Math.random()*3)]:["I'm not 100% sure, maybe","I'd guess","Could be"][Math.floor(Math.random()*3)];showHostMsg('Phone: "'+c+' option '+L[pick]+'. Good luck '+playerName+'!"');}
+function useAudiencePoll(){if(lifelines.poll||!gameActive)return;lifelines.poll=true;markLL('poll');sndLifeline();var correct=questions[currentQ].correctIdx;var visible=[0,1,2,3].filter(function(i){return hiddenOpts.indexOf(i)===-1;});var pcts=[0,0,0,0];var cP=50+Math.floor(Math.random()*28);pcts[correct]=cP;var rem=100-cP;var others=visible.filter(function(i){return i!==correct;});others.forEach(function(idx,ii){if(ii===others.length-1){pcts[idx]=Math.max(0,rem);}else{var v=Math.max(0,Math.floor(Math.random()*rem*0.55));pcts[idx]=v;rem-=v;}});var cols=['#a89cff','#7dd3fc','#86efac','#fda4af'];var html='<div class="poll-wrap"><div style="font-size:10px;color:var(--text-dim);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase;">Audience Poll</div>';['A','B','C','D'].forEach(function(lbl,i){html+='<div class="poll-row"><span class="poll-lbl">'+lbl+'</span><div class="poll-track"><div class="poll-fill" style="width:'+pcts[i]+'%;background:'+cols[i]+'"></div></div><span class="poll-pct">'+pcts[i]+'%</span></div>';});html+='</div>';var msg=document.getElementById('host-msg');msg.style.display='block';msg.style.fontStyle='normal';msg.innerHTML=html;}
+function useExpert(){if(lifelines.expert||!gameActive)return;lifelines.expert=true;markLL('expert');sndLifeline();var correct=questions[currentQ].correctIdx;var L=['A','B','C','D'];var phrases=['Based on my analysis, the answer is option '+L[correct]+'. I am quite certain.','I have worked through it carefully. It is option '+L[correct]+'.','My expert opinion: go with '+L[correct]+'. That is the right answer.'];showHostMsg('Expert: "'+phrases[Math.floor(Math.random()*phrases.length)]+'"');}
+
+// ══ HOST MSG ══
+function showHostMsg(msg){var el=document.getElementById('host-msg');el.style.display='block';el.style.fontStyle='italic';el.textContent=msg;}
+function hideHostMsg(){var el=document.getElementById('host-msg');el.style.display='none';el.textContent='';}
+
+// ══ OVERLAY ══
+function showOverlay(title,sub,prize,prizeLabel){
+  document.getElementById('ov-eyebrow').textContent=prize?'Game Result':"India's Greatest Quiz Show";
+  document.getElementById('ov-title').innerHTML=title;
+  document.getElementById('ov-sub').innerHTML=sub;
+  var pw=document.getElementById('ov-prize-wrap');
+  if(prize){pw.style.display='block';document.getElementById('ov-prize-lbl').textContent=prizeLabel||'You take home';document.getElementById('ov-prize-val').innerHTML=prize;document.getElementById('level-picker').style.display='none';document.getElementById('name-wrap').style.display='none';}
+  else{pw.style.display='none';document.getElementById('level-picker').style.display='flex';document.getElementById('name-wrap').style.display='flex';}
+  document.getElementById('ov-btn').textContent=prize?'Play Again':'Take the Hot Seat';
+  document.getElementById('overlay').style.display='flex';
+}
+
+// ══ START ══
+function startGame(){
+  var inp=document.getElementById('name-inp').value.trim().toUpperCase();
+  if(inp)updateNameDisplays(inp);
+  questions=buildQuestions();
+  currentQ=0;selectedOpt=null;pendingConfirm=false;hiddenOpts=[];
+  lifelines={f5050:false,phone:false,poll:false,expert:false};
+  ['5050','phone','poll','expert'].forEach(function(id){
+    document.getElementById('ll-'+id).classList.remove('used');
+    var m=document.getElementById('mll-'+id);if(m)m.classList.remove('used');
+  });
+  gameActive=true;
+  renderQuestion();
+  setTimeout(startBg,300);
+}
+
+document.getElementById('ov-btn').addEventListener('click',function(){
+  getAC();
+  document.getElementById('overlay').style.display='none';
+  startGame();
+});
+
+// init
+</script>
+<!-- PRIZE AMOUNT POPUP -->
+<div id="prize-popup">
+  <div class="pp-ring"></div>
+  <div class="pp-inner">
+    <span class="pp-tick">✅</span>
+    <div class="pp-label">You've Won</div>
+    <div class="pp-amount" id="pp-amt">₹1,000</div>
+  </div>
+</div>
+
+<canvas id="sparkle-canvas"></canvas>
+
+<script>
+// SPARKLE RAIN
+var sc=document.getElementById('sparkle-canvas');
+var ctx2=sc.getContext('2d');
+var sparks=[];
+var sparkActive=false;
+function resizeSC(){sc.width=window.innerWidth;sc.height=window.innerHeight;}
+resizeSC();window.addEventListener('resize',resizeSC);
+function launchSparkles(){
+  sparkActive=true;sparks=[];
+  for(var i=0;i<120;i++){
+    sparks.push({
+      x:Math.random()*sc.width,
+      y:-20-Math.random()*200,
+      r:2+Math.random()*4,
+      vx:(Math.random()-0.5)*3,
+      vy:2+Math.random()*5,
+      color:['#f5c518','#ffe066','#fff','#ffd700','#ff9f43','#00e676'][Math.floor(Math.random()*6)],
+      life:1,decay:0.008+Math.random()*0.012,
+      rotate:Math.random()*Math.PI*2,
+      rspeed:(Math.random()-0.5)*0.2
+    });
+  }
+  animSparkles();
+  setTimeout(function(){sparkActive=false;},3500);
+}
+function animSparkles(){
+  ctx2.clearRect(0,0,sc.width,sc.height);
+  if(!sparkActive&&sparks.length===0)return;
+  sparks=sparks.filter(function(s){return s.life>0;});
+  sparks.forEach(function(s){
+    ctx2.save();
+    ctx2.globalAlpha=s.life;
+    ctx2.translate(s.x,s.y);
+    ctx2.rotate(s.rotate);
+    // Star shape
+    ctx2.beginPath();
+    for(var pt=0;pt<5;pt++){
+      var ang=pt*Math.PI*2/5-Math.PI/2;
+      var ang2=(pt+0.5)*Math.PI*2/5-Math.PI/2;
+      if(pt===0)ctx2.moveTo(Math.cos(ang)*s.r,Math.sin(ang)*s.r);
+      ctx2.lineTo(Math.cos(ang)*s.r,Math.sin(ang)*s.r);
+      ctx2.lineTo(Math.cos(ang2)*s.r*0.4,Math.sin(ang2)*s.r*0.4);
+    }
+    ctx2.closePath();
+    ctx2.fillStyle=s.color;
+    ctx2.fill();
+    ctx2.restore();
+    s.x+=s.vx;s.y+=s.vy;s.life-=s.decay;s.vy+=0.05;s.rotate+=s.rspeed;
+  });
+  requestAnimationFrame(animSparkles);
+}
+</script>
+</body>
+</html>

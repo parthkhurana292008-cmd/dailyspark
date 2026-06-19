@@ -4,25 +4,30 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Daily Spark — Where Knowledge Sparks Success</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<meta name="description" content="Daily Spark — India's trusted knowledge platform for Education, Government Jobs, Health, Cooking and Daily News."/>
+<meta name="robots" content="index, follow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet"/>
 
 <style>
 /* ===== TOKENS ===== */
 :root {
-  --navy:    #0D1B2A;
-  --navy-mid:#16283C;
-  --saffron: #FF6B00;
-  --saffron-light: #FF8C33;
-  --white:   #FFFFFF;
-  --offwhite:#F7F9FC;
-  --slate:   #8899AA;
-  --text:    #1A2B3C;
-  --text-light:#4A5C6E;
-  --border:  #DDE4ED;
-  --card-bg: #FFFFFF;
-  --radius:  6px;
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --navy:         #0D1B2A;
+  --navy-mid:     #16283C;
+  --saffron:      #FF6B00;
+  --saffron-light:#FF8C33;
+  --white:        #FFFFFF;
+  --offwhite:     #F7F9FC;
+  --slate:        #8899AA;
+  --text:         #1A2B3C;
+  --text-light:   #4A5C6E;
+  --border:       #DDE4ED;
+  --card-bg:      #FFFFFF;
+  --radius:       6px;
+  --font-sans:    'Inter', sans-serif;
+  --font-serif:   'Playfair Display', Georgia, serif;
+  --font-hindi:   'Noto Sans Devanagari', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,9 +57,14 @@ a { text-decoration: none; color: inherit; }
 .notif-bar a { color: var(--white); }
 .notif-bar span { display: flex; align-items: center; gap: 8px; }
 .notif-close {
-  background: none; border: none; color: var(--white);
-  cursor: pointer; font-size: 18px; line-height: 1;
-  opacity: 0.8; transition: opacity 0.2s;
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
   padding: 0 4px;
 }
 .notif-close:hover { opacity: 1; }
@@ -89,7 +99,6 @@ a { text-decoration: none; color: inherit; }
   padding: 5px 0;
   border-radius: 4px;
   border-left: 3px solid var(--saffron);
-  position: relative;
 }
 .ticker {
   color: #CBD6E2;
@@ -114,6 +123,79 @@ a { text-decoration: none; color: inherit; }
 }
 .topbar-links a:hover { color: var(--saffron); }
 
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.lang-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+}
+.lang-btn:hover { background: rgba(255,255,255,0.18); }
+.lang-btn .flag { font-size: 14px; line-height: 1; }
+.lang-btn .chevron { font-size: 8px; opacity: 0.7; transition: transform 0.2s; }
+.lang-switcher.open .lang-btn .chevron { transform: rotate(180deg); }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  overflow: hidden;
+  min-width: 190px;
+  z-index: 999;
+}
+@keyframes dropFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lang-switcher.open .lang-dropdown { display: block; animation: dropFade 0.15s ease; }
+.lang-dropdown-head {
+  padding: 10px 14px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--slate);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.lang-option:last-child { border-bottom: none; }
+.lang-option:hover { background: var(--offwhite); }
+.lang-option.active { background: #FFF5EE; }
+.lang-option .lo-flag { font-size: 22px; line-height: 1; }
+.lang-option .lo-info { flex: 1; }
+.lang-option .lo-name { font-size: 14px; font-weight: 700; color: var(--text); }
+.lang-option .lo-sub  { font-size: 11px; color: var(--slate); margin-top: 1px; }
+.lang-option .lo-check { color: var(--saffron); font-size: 16px; font-weight: 700; opacity: 0; }
+.lang-option.active .lo-check { opacity: 1; }
+
 /* ===== MASTHEAD / NAVBAR ===== */
 .masthead {
   background: var(--white);
@@ -132,15 +214,12 @@ a { text-decoration: none; color: inherit; }
   justify-content: space-between;
   gap: 24px;
 }
-.logo-block {
-  padding: 14px 0;
-  flex-shrink: 0;
-}
+.logo-block { padding: 14px 0; flex-shrink: 0; }
 .logo-name {
   font-family: var(--font-serif);
   font-size: 26px;
   font-weight: 700;
-  color: black;
+  color: var(--navy);
   letter-spacing: -0.5px;
   line-height: 1;
 }
@@ -152,11 +231,7 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
   margin-top: 2px;
 }
-.nav-links {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-}
+.nav-links { display: flex; gap: 2px; align-items: center; }
 .nav-links a {
   padding: 8px 14px;
   font-size: 13px;
@@ -221,25 +296,7 @@ a { text-decoration: none; color: inherit; }
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(13,27,42,0.97) 0%, rgba(13,27,42,0.5) 50%, transparent 100%);
 }
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 28px 32px;
-}
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--saffron);
-  color: var(--white);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 3px;
-  margin-bottom: 14px;
-}
+.hero-content { position: relative; z-index: 2; padding: 28px 32px; }
 .hero-title {
   font-family: var(--font-serif);
   font-size: 26px;
@@ -249,20 +306,10 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 14px;
   max-width: 640px;
 }
-.hero-meta {
-  display: flex;
-  gap: 20px;
-  color: #8899AA;
-  font-size: 12.5px;
-}
-.hero-meta span { display: flex; align-items: center; gap: 5px; }
 
 /* Hero Sidebar Cards */
-.hero-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.hero-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.card-link { display: block; }
 .hs-card {
   background: var(--white);
   border-radius: 8px;
@@ -273,7 +320,6 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--border);
   align-items: flex-start;
   transition: box-shadow 0.2s, transform 0.2s;
-  cursor: pointer;
 }
 .hs-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.10); transform: translateY(-2px); }
 .hs-icon {
@@ -305,11 +351,6 @@ a { text-decoration: none; color: inherit; }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.hs-time {
-  font-size: 11px;
-  color: var(--slate);
-  margin-top: 5px;
-}
 
 /* ===== CATEGORY STRIP ===== */
 .cat-strip-wrap {
@@ -329,15 +370,12 @@ a { text-decoration: none; color: inherit; }
   color: var(--slate);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.cat-strip-head-line {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
+.cat-strip-head-line { flex: 1; height: 1px; background: var(--border); }
 .cat-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 .cat-item {
@@ -346,30 +384,20 @@ a { text-decoration: none; color: inherit; }
   border-radius: 8px;
   padding: 16px 12px;
   text-align: center;
-  cursor: pointer;
   transition: all 0.2s;
   border-top: 3px solid transparent;
 }
-.cat-item:hover {
-  border-top-color: var(--saffron);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
-}
-.cat-item:nth-child(1):hover { border-top-color: #4CAF50; }
-.cat-item:nth-child(2):hover { border-top-color: #FF9800; }
-.cat-item:nth-child(3):hover { border-top-color: #2196F3; }
-.cat-item:nth-child(4):hover { border-top-color: #9C27B0; }
-.cat-item:nth-child(5):hover { border-top-color: #00BCD4; }
-.cat-item:nth-child(6):hover { border-top-color: #FF5722; }
+.cat-item:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.cat-grid a:nth-child(1) .cat-item:hover { border-top-color: #4CAF50; }
+.cat-grid a:nth-child(2) .cat-item:hover { border-top-color: #FF9800; }
+.cat-grid a:nth-child(3) .cat-item:hover { border-top-color: #2196F3; }
+.cat-grid a:nth-child(4) .cat-item:hover { border-top-color: #9C27B0; }
+.cat-grid a:nth-child(5) .cat-item:hover { border-top-color: #00BCD4; }
+.cat-grid a:nth-child(6) .cat-item:hover { border-top-color: #FF5722; }
 .cat-emoji { font-size: 28px; margin-bottom: 8px; }
-.cat-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.01em;
-}
+.cat-label { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: 0.01em; }
 .cat-sub {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--slate);
   margin-top: 3px;
   line-height: 1.3;
@@ -388,32 +416,10 @@ a { text-decoration: none; color: inherit; }
   grid-template-columns: 1fr 300px;
   gap: 28px;
 }
-
-/* Section heading */
-.sec-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-.sec-head h2 {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--navy);
-}
-.sec-head-accent {
-  width: 4px;
-  height: 24px;
-  background: var(--saffron);
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-.sec-head-line {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
+.sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.sec-head h2 { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--navy); }
+.sec-head-accent { width: 4px; height: 24px; background: var(--saffron); border-radius: 2px; flex-shrink: 0; }
+.sec-head-line { flex: 1; height: 1px; background: var(--border); }
 .sec-head-tag {
   background: var(--offwhite);
   border: 1px solid var(--border);
@@ -427,10 +433,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* News Cards */
-.news-grid {
-  display: grid;
-  gap: 18px;
-}
+.news-grid { display: grid; gap: 18px; }
 .news-card {
   background: var(--white);
   border-radius: 8px;
@@ -440,11 +443,9 @@ a { text-decoration: none; color: inherit; }
   transition: box-shadow 0.2s;
 }
 .news-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.09); }
-
-/* Signature element: bold saffron left-border on breaking news */
-.news-card.breaking {
-  border-left: 4px solid var(--saffron);
-}
+.news-card.breaking { border-left: 4px solid var(--saffron); }
+a.news-card-link { display: block; }
+a.news-card-link .news-card { height: 100%; }
 .nc-thumb {
   width: 110px;
   flex-shrink: 0;
@@ -453,11 +454,12 @@ a { text-decoration: none; color: inherit; }
   justify-content: center;
   font-size: 38px;
   position: relative;
-  background: var(--offwhite);
+  overflow: hidden;
 }
 .nc-thumb.nc1 { background: linear-gradient(135deg, #FFF8F0, #FFE8CC); }
 .nc-thumb.nc2 { background: linear-gradient(135deg, #F0F8FF, #CCE5FF); }
 .nc-thumb.nc3 { background: linear-gradient(135deg, #F0FFF0, #CCF0CC); }
+.nc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .nc-badge {
   position: absolute;
   top: 8px; left: 50%;
@@ -486,14 +488,7 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.nc-title {
-  font-family: var(--font-serif);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.4;
-  margin-bottom: 7px;
-}
+.nc-title { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 7px; }
 .nc-desc {
   font-size: 13px;
   color: var(--text-light);
@@ -504,30 +499,15 @@ a { text-decoration: none; color: inherit; }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.nc-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.nc-author {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-light);
-  font-weight: 500;
-}
+.nc-meta { display: flex; justify-content: space-between; align-items: center; }
+.nc-author { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-light); font-weight: 500; }
 .author-dot {
   width: 26px; height: 26px;
   background: var(--navy);
   color: var(--white);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
 }
 .nc-read {
   font-size: 12px;
@@ -541,33 +521,9 @@ a { text-decoration: none; color: inherit; }
 }
 .nc-read:hover { background: var(--saffron); color: var(--white); }
 
-/* Ad Strip */
-.ad-strip {
-  margin-top: 20px;
-  background: var(--white);
-  border: 1px dashed var(--border);
-  border-radius: 6px;
-  padding: 18px;
-  text-align: center;
-  color: var(--slate);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 /* ===== SIDEBAR ===== */
-.sidebar-col {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.sidebar-widget {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-}
+.sidebar-col { display: flex; flex-direction: column; gap: 20px; }
+.sidebar-widget { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 .sw-head {
   background: var(--navy);
   color: var(--white);
@@ -580,241 +536,154 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 8px;
 }
-.sw-head::before {
-  content: '';
-  width: 3px; height: 14px;
-  background: var(--saffron);
-  border-radius: 2px;
-}
+.sw-head::before { content: ''; width: 3px; height: 14px; background: var(--saffron); border-radius: 2px; flex-shrink: 0; }
 .sw-body { padding: 14px 16px; }
-.trending-item {
+a.trending-item {
   display: flex;
   gap: 12px;
   align-items: flex-start;
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
+  color: inherit;
+  transition: color 0.15s;
 }
-.trending-item:last-child { border-bottom: none; }
-.trending-num {
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--border);
-  line-height: 1;
-  min-width: 24px;
-  font-family: var(--font-sans);
-}
-.trending-text {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.4;
-}
-.trending-cat {
-  font-size: 10.5px;
-  color: var(--saffron);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
-/* Weather widget */
-.weather-widget {
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3a55 100%);
-  border-radius: 8px;
-  padding: 18px;
-  color: var(--white);
-}
-.weather-city {
-  font-size: 11px;
-  color: var(--slate);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.weather-temp {
-  font-size: 44px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.weather-desc {
-  font-size: 13px;
-  color: #CBD6E2;
-}
-.weather-row {
-  display: flex;
-  gap: 16px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 12px;
-  color: var(--slate);
-}
+a.trending-item:last-child { border-bottom: none; }
+a.trending-item:hover .trending-text { color: var(--saffron); }
+.trending-num { font-size: 20px; font-weight: 900; color: var(--border); line-height: 1; min-width: 24px; }
+.trending-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; transition: color 0.15s; }
+.trending-cat { font-size: 10.5px; color: var(--saffron); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
 
 /* ===== FOOTER ===== */
-.footer {
-  background: var(--navy);
-  color: var(--white);
-  margin-top: 48px;
-  padding: 40px 20px 20px;
-}
-.footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 32px;
-}
-.footer-brand .logo-name { font-size: 22px; }
-.footer-brand .logo-tag { color: #556677; }
-.footer-desc {
-  font-size: 13px;
-  color: var(--slate);
-  line-height: 1.6;
-  margin-top: 12px;
-}
-.footer-col h4 {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--slate);
-  margin-bottom: 14px;
-}
-.footer-col a {
-  display: block;
-  font-size: 13px;
-  color: #8899AA;
-  margin-bottom: 9px;
-  transition: color 0.2s;
-}
-.footer-col a:hover { color: var(--saffron); }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding-top: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #55667788;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.footer-bottom a { color: #55667788; }
-.footer-bottom a:hover { color: var(--saffron); }
-
-/* ===== LANGUAGE SWITCHER ===== */
-.lang-switcher {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-.lang-btn {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--white);
-  padding: 8px 20px 4px 16px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  letter-spacing: 0.04em;
-  transition: background 0.2s;
+.ds-footer {
+  --f-ink:    #0D1B2A;
+  --f-spark:  #FF6B00;
+  --f-sparkt: #FF8C33;
+  --f-white:  #FFFFFF;
+  --f-muted:  rgba(255,255,255,0.42);
+  --f-dimmed: rgba(255,255,255,0.10);
+  --f-rule:   rgba(255,255,255,0.08);
   font-family: var(--font-sans);
-  white-space: nowrap;
-min-width: 220px
-justify-content: space-between
+  background: var(--f-ink);
+  color: var(--f-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-top: 48px;
 }
-.lang-btn:hover { background: rgba(255,255,255,0.18); }
-.lang-btn .flag { font-size: 14px; line-height: 1; }
-.lang-btn .chevron {
-  font-size: 8px;
-  opacity: 0.7;
-  transition: transform 0.2s;
-}
-.lang-switcher.open .lang-btn .chevron { transform: rotate(180deg); }
-
-.lang-dropdown {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+.ds-footer__nl {
+  background: linear-gradient(135deg, #FF6B00 0%, #c84a00 100%);
+  padding: 2.6rem 2rem;
+  position: relative;
   overflow: hidden;
-  min-width: 200px;
-  z-index: 999;
-  animation: dropFade 0.15s ease;
 }
-@keyframes dropFade {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+.ds-footer__nl::before {
+  content: '⚡';
+  position: absolute; right: 3%; top: 50%; transform: translateY(-50%);
+  font-size: 9rem; opacity: 0.07; pointer-events: none; user-select: none; line-height: 1;
 }
-.lang-switcher.open .lang-dropdown { display: block; }
+.ds-footer__nl-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.ds-footer__nl-eyebrow { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.65); font-weight: 700; margin-bottom: 0.25rem; }
+.ds-footer__nl-title { font-family: var(--font-serif); font-size: clamp(1.15rem, 2.2vw, 1.55rem); font-weight: 700; color: var(--f-white); line-height: 1.2; margin-bottom: 0.2rem; }
+.ds-footer__nl-sub { font-size: 0.8rem; color: rgba(255,255,255,0.62); }
+.ds-footer__nl-form { display: flex; flex-direction: column; gap: 0.4rem; flex-shrink: 0; }
+.ds-footer__nl-input-row { display: flex; }
+.ds-footer__nl-form input {
+  font-family: var(--font-sans); font-size: 0.86rem;
+  padding: 0.65rem 1.05rem; border: none; outline: none;
+  border-radius: 5px 0 0 5px; width: 210px; max-width: 100%;
+  background: rgba(255,255,255,0.16); color: var(--f-white); transition: background 0.18s;
+  -webkit-appearance: none; appearance: none;
+}
+.ds-footer__nl-form input::placeholder { color: rgba(255,255,255,0.5); }
+.ds-footer__nl-form input:focus { background: rgba(255,255,255,0.24); }
+.ds-footer__nl-form button {
+  font-family: var(--font-sans); font-size: 0.83rem; font-weight: 700;
+  padding: 0.65rem 1.1rem; background: #25D366; color: #fff;
+  border: none; border-radius: 0 5px 5px 0; cursor: pointer; white-space: nowrap;
+  transition: background 0.18s; display: flex; align-items: center; gap: 5px;
+}
+.ds-footer__nl-form button:hover { background: #1ebe5d; }
+.ds-footer__nl-feedback {
+  font-size: 0.76rem; border-radius: 4px; padding: 5px 10px;
+  display: none; line-height: 1.4;
+}
+.ds-footer__nl-feedback.show { display: block; }
+.ds-footer__nl-feedback.ok  { background: rgba(37,211,102,0.2); color: #a7f3d0; }
+.ds-footer__nl-feedback.err { background: rgba(220,38,38,0.2);  color: #fca5a5; }
+.ds-footer__body {
+  max-width: 1280px; margin: 0 auto;
+  padding: 3.2rem 2rem 2.2rem;
+  display: grid; grid-template-columns: 260px 1fr; gap: 3rem;
+}
+.ds-footer__logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 1rem; }
+.ds-footer__logo-icon {
+  width: 42px; height: 42px; background: var(--f-spark); border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 4px 14px rgba(255,107,0,0.32);
+}
+.ds-footer__logo-name { font-family: var(--font-serif); font-size: 1.18rem; font-weight: 700; color: var(--f-white); line-height: 1.1; display: block; }
+.ds-footer__logo-tag { font-size: 0.58rem; color: var(--f-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.ds-footer__tagline { font-size: 0.82rem; color: var(--f-muted); line-height: 1.75; margin-bottom: 1.2rem; max-width: 230px; }
+.ds-footer__hindi { font-family: var(--font-hindi); font-size: 0.78rem; color: rgba(255,255,255,0.26); border-left: 2px solid var(--f-spark); padding-left: 0.75rem; line-height: 1.9; margin-bottom: 1.3rem; }
+.ds-footer__badges { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.ds-footer__badge { display: inline-flex; align-items: center; gap: 0.28rem; background: var(--f-dimmed); border: 1px solid var(--f-rule); border-radius: 20px; padding: 0.2rem 0.65rem; font-size: 0.66rem; color: rgba(255,255,255,0.45); }
+.ds-footer__badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: ds-pulse 2.2s ease-in-out infinite; }
+@keyframes ds-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+.ds-footer__nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.ds-footer__col-head {
+  font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+  color: var(--f-white); margin-bottom: 0.9rem; padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--f-rule); display: flex; align-items: center; gap: 0.35rem;
+}
+.ds-footer__col-head::before { content: ''; display: inline-block; width: 9px; height: 2px; background: var(--f-spark); border-radius: 2px; flex-shrink: 0; }
+.ds-footer__links { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.ds-footer__links a { color: var(--f-muted); text-decoration: none; font-size: 0.82rem; transition: color 0.15s; display: flex; align-items: center; gap: 0.38rem; }
+.ds-footer__links a:hover { color: var(--f-sparkt); }
+.ds-footer__links .lk-icon { font-size: 0.88rem; opacity: 0.65; flex-shrink: 0; }
+.ds-footer__badge-new { font-size: 0.56rem; font-weight: 700; background: var(--f-spark); color: white; border-radius: 3px; padding: 0.07rem 0.28rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.ds-footer__social-head { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--f-white); margin: 1.4rem 0 0.9rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--f-rule); display: flex; align-items: center; gap: 0.35rem; }
+.ds-footer__social-head::before { content: ''; display: inline-block; width: 9px; height: 2px; background: var(--f-spark); border-radius: 2px; flex-shrink: 0; }
+.ds-footer__divider { max-width: 1280px; margin: 0 auto; border: none; border-top: 1px solid var(--f-rule); }
+.ds-footer__bottom { max-width: 1280px; margin: 0 auto; padding: 1.3rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
+.ds-footer__copyright { font-size: 0.73rem; color: rgba(255,255,255,0.26); display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+.ds-footer__copyright .heart { color: var(--f-spark); }
+.ds-footer__copyright .sep  { color: rgba(255,255,255,0.12); }
+.ds-footer__legal-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.ds-footer__legal-links a { font-size: 0.72rem; color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.15s; }
+.ds-footer__legal-links a:hover { color: var(--f-sparkt); }
 
-.lang-dropdown-head {
-  padding: 10px 14px 8px;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--slate);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--border);
-}
-.lang-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  cursor: pointer;
-  transition: background 0.15s;
-  border-bottom: 1px solid var(--border);
-}
-.lang-option:last-child { border-bottom: none; }
-.lang-option:hover { background: var(--offwhite); }
-.lang-option.active { background: #FFF5EE; }
-.lang-option .lo-flag { font-size: 22px; line-height: 1; }
-.lang-option .lo-info { flex: 1; }
-.lang-option .lo-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-}
-.lang-option .lo-sub {
-  font-size: 11px;
-  color: var(--slate);
-  margin-top: 1px;
-}
-.lang-option .lo-check {
-  color: var(--saffron);
-  font-size: 16px;
-  font-weight: 700;
-  opacity: 0;
-}
-.lang-option.active .lo-check { opacity: 1; }
 
-/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .ds-footer__body { grid-template-columns: 1fr; gap: 2rem; }
+  .ds-footer__nav  { grid-template-columns: 1fr 1fr; }
+  .ds-footer__tagline { max-width: 100%; }
+}
 @media (max-width: 900px) {
   .hero-wrap { grid-template-columns: 1fr; }
-  .cat-grid { grid-template-columns: repeat(3, 1fr); }
+   .cat-grid  { grid-template-columns: repeat(2, 1fr); }
   .main-wrap { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
 }
-@media (max-width: 580px) {
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
   .topbar-links { display: none; }
   .hero-title { font-size: 20px; }
+  .ds-footer__nl { padding: 1.8rem 1.2rem; }
+  .ds-footer__nl-inner { flex-direction: column; align-items: flex-start; }
+  .ds-footer__nl-form { width: 100%; }
+  .ds-footer__nl-input-row { width: 100%; }
+  .ds-footer__nl-form input { flex: 1; width: auto; }
+  .ds-footer__body { padding: 2.2rem 1.2rem 1.8rem; }
+  .ds-footer__nav  { grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+  .ds-footer__bottom { flex-direction: column; align-items: flex-start; padding: 1.1rem 1.2rem; }
+}
+@media (max-width: 380px) { .ds-footer__nav { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
@@ -822,55 +691,20 @@ justify-content: space-between
 
 <!-- Notification Bar -->
 <div class="notif-bar" id="notif">
-  <a href="ns.html" target="_blank">
+  <a href="ns.html" target="_blank" rel="noopener">
     <span>🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</span>
   </a>
-  <button class="notif-close" onclick="document.getElementById('notif').remove()" aria-label="Close">✕</button>
+  <button class="notif-close" onclick="document.getElementById('notif').remove()" aria-label="Close notification">✕</button>
 </div>
 
 <!-- Top Bar -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-date" id="topbar-date">Breaking News:</div>
-    <div class="ticker-wrap">
-      <span class="ticker">Jossa Round 2 result on Tuesday, 30 June, 2026 17:00 &nbsp;|&nbsp; Jac Delhi Round 2 result on Wednesday Ist July 2026 (After 05:00 PM) &nbsp;|&nbsp;</span>
+    <div class="ticker-wrap" aria-live="polite">
+      <span class="ticker">Jossa Round 2 result on Tuesday, 30 June, 2026 17:00 &nbsp;|&nbsp; Jac Delhi Round 2 result on Wednesday 1st July 2026 (After 05:00 PM) &nbsp;|&nbsp;</span>
     </div>
-    <div class="topbar-links">
-      <a href="#">e-Paper</a>
-      <a href="#">Live TV</a>
-      <a href="#">Podcast</a>
-    </div>
-
-    <!-- Language Switcher -->
-    <div class="lang-switcher" id="langSwitcher">
-      
-
-<button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-  <span class="flag" id="currentFlag">🇮🇳</span>
-  <span id="currentLangLabel">EN</span>
-  <span class="chevron">▼</span>
-</button>
-      <div class="lang-dropdown" id="langDropdown">
-  <div class="lang-dropdown-head">Choose Language</div>
-        <div class="lang-option" id="opt-hi" onclick="setLang('hi')">
-          <span class="lo-flag">🇮🇳</span>
-          <div class="lo-info">
-            <div class="lo-name">Hindi</div>
-            <div class="lo-sub">Hindi</div>
-          </div>
-          <span class="lo-check">✓</span>
-        </div>
-        <div class="lang-option active" id="opt-en" onclick="setLang('en')">
-          <span class="lo-flag">🇬🇧</span>
-          <div class="lo-info">
-            <div class="lo-name">English</div>
-            <div class="lo-sub">English</div>
-          </div>
-          <span class="lo-check">✓</span>
-        </div>
-      </div>
-    </div>
-  </div>
+   </div>
 </div>
 
 <!-- Masthead + Navbar -->
@@ -880,578 +714,379 @@ justify-content: space-between
       <div class="logo-name">Daily <span>Spark</span></div>
       <div class="logo-tag">Where Knowledge Sparks Success</div>
     </div>
-    <nav class="nav-links">
-      <a href="#" class="active">Home</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html" class="active">Home</a>
       <a href="parent.html">Parenting</a>
       <a href="math.html">Math Playground</a>
       <a href="gjobs.html">Govt. Jobs</a>
       <a href="weather.html">Weather</a>
+      <a href="gold.html">Gold Rate</a>
       <a href="contact.html">Contact Us</a>
     </nav>
-    <div class="nav-search">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" placeholder="Search news..."/>
-    </div>
+    
   </div>
 </div>
 
 <!-- Hero -->
 <div class="hero-wrap">
   <div class="hero-main-card">
-    <div class="hero-bg">🏛️</div>
-    <div class="hero-gradient"></div>
+    <div class="hero-bg" aria-hidden="true">🏛️</div>
+    <div class="hero-gradient" aria-hidden="true"></div>
     <div class="hero-content">
       <div class="hero-title">Focus is the Key to Success — Build habits that spark daily achievement</div>
-      <div class="hero-meta">
-       
-      </div>
     </div>
   </div>
 
   <div class="hero-sidebar">
-    <a href="jac_josaa.pdf" class="card-link">
+    <a href="plant.html" class="card-link">
       <div class="hs-card">
-        <div class="hs-icon ic1">🎓</div>
+        <div class="hs-icon ic1">🌾</div>
         <div class="hs-body">
-          <div class="hs-cat">Education</div>
-          <div class="hs-title">JoSAA & JAC Delhi Counselling Schedule — B.Tech 2026</div>
-         
+          <div class="hs-cat">Plants</div>
+          <div class="hs-title">Bring positive energy home</div>
         </div>
       </div>
     </a>
-    <a href="jac_cutoff.html" class="card-link">
+    <a href="cook.html" class="card-link">
       <div class="hs-card">
-        <div class="hs-icon ic2">📊</div>
+        <div class="hs-icon ic2">👨‍🍳</div>
         <div class="hs-body">
-          <div class="hs-cat">Education</div>
-          <div class="hs-title">JAC Delhi Cut-off Ranks — B.Tech Branch-wise Analysis</div>
-         
+          <div class="hs-cat">Cooking</div>
+          <div class="hs-title">Tiffin recipe of the week</div>
         </div>
       </div>
     </a>
-    
-<a href="jac26.html" class="card-link">
+    <a href="gjobs.html" class="card-link">
       <div class="hs-card">
         <div class="hs-icon ic3">💼</div>
         <div class="hs-body">
-          <div class="hs-cat">B.Tech</div>
-          <div class="hs-title">JAC Delhi Cut-off Ranks — B.Tech Branch-wise 2026</div>
-          
+          <div class="hs-cat">Govt. Jobs</div>
+          <div class="hs-title">Latest all over India Govt. Jobs</div>
         </div>
       </div>
     </a>
-
-<a href="https://josaa.admissions.nic.in/Applicant/SeatAllotmentResult/currentorcr.aspx" class="card-link">
+    <a href="ait.html" class="card-link">
       <div class="hs-card">
         <div class="hs-icon ic3">🎓</div>
         <div class="hs-body">
-          <div class="hs-cat">Josaa Cutoff 2026</div>
-          <div class="hs-title">IITs, IISc, NITs, IIEST, IIITs and Other-GFTIs for the Academic Year 2026-27</div>
-          
+          <div class="hs-cat">Best Free AI Tools</div>
+          <div class="hs-title">AI Tools for Students in 2026</div>
         </div>
       </div>
     </a>
-
   </div>
 </div>
 
+  
 <!-- Category Strip -->
 <div class="cat-strip-wrap">
   <div class="cat-strip-head">
-    <h3>Explore Topics</h3>
+    <h3>B.Tech Explore Topics</h3>
     <div class="cat-strip-head-line"></div>
   </div>
   <div class="cat-grid">
-    <a href="plant.html">
+    <a href="jac_josaa.html">
       <div class="cat-item">
-        <div class="cat-emoji">🌾</div>
-        <div class="cat-label">Plants</div>
-        <div class="cat-sub">Bring positive energy home</div>
+        <div class="cat-emoji">📅</div>
+        <div class="cat-label">JoSAA &amp; JAC Delhi</div>
+        <div class="cat-sub">Counselling Schedule — B.Tech 2026</div>
       </div>
     </a>
-    
-<a href="cook.html" onclick="redirectByLanguage()">
-  <div class="cat-item">
-    <div class="cat-emoji">👨‍🍳</div>
-    <div class="cat-label">Cooking</div>
-    <div class="cat-sub">A new recipe every day</div>
-  </div>
-</a>
-
-   <a href="gjobs.html">
+    <a href="jac_cutoff.html">
       <div class="cat-item">
-        <div class="cat-emoji">💼</div>
-        <div class="cat-label">Govt. Jobs</div>
-        <div class="cat-sub">Latest all over India Govt. Jobs</div>
+        <div class="cat-emoji">📊</div>
+        <div class="cat-label">JAC Delhi 2025</div>
+        <div class="cat-sub">B.Tech Cut-off Branch-wise Analysis</div>
       </div>
     </a>
-
-    <a href="jokes.html">
+    <a href="jac26.html">
       <div class="cat-item">
-        <div class="cat-emoji">🎬</div>
-        <div class="cat-label">Entertainment</div>
-        <div class="cat-sub">latest Jokes</div>
+        <div class="cat-emoji">🏛️</div>
+        <div class="cat-label">JAC Delhi Analysis 2026</div>
+        <div class="cat-sub">B.Tech Cut-off Branch-wise Analysis</div>
       </div>
     </a>
-    <a href="weather.html">
+    <a href="josaa26.html">
       <div class="cat-item">
-        <div class="cat-emoji">🌧️</div>
-        <div class="cat-label">Weather</div>
-        <div class="cat-sub">98 latest stories</div>
-      </div>
-    </a>
-    <a href="gold.html">
-      <div class="cat-item">
-        <div class="cat-emoji">💹</div>
-        <div class="cat-label">Gold Rate</div>
-        <div class="cat-sub">Live market updates</div>
+        <div class="cat-emoji">📈</div>
+        <div class="cat-label">JOSAA Analysis 2026</div>
+        <div class="cat-sub">B.Tech Cut-off Branch-wise Analysis</div>
       </div>
     </a>
   </div>
 </div>
+
+
+
 
 <!-- Main Content + Sidebar -->
 <div class="main-wrap">
 
+  <!-- News Column -->
   <div class="content-col">
     <div class="sec-head">
       <div class="sec-head-accent"></div>
-      <h2>Latest News</h2>
+      <h2>Latest Updates</h2>
       <div class="sec-head-line"></div>
       <div class="sec-head-tag">Fresh</div>
     </div>
 
-    <div class="news-grid">
-      <div class="news-card breaking">
-        <div class="nc-thumb nc1">
-          <span>🗳️</span>
-          <div class="nc-badge">Breaking</div>
-        </div>
-        <div class="nc-body">
-          <div class="nc-cat">Politics</div>
-          <div class="nc-title">Election dates announced for five major states</div>
-          <div class="nc-desc">The Election Commission announced assembly election dates for five major states. Preparations have already begun across the country.</div>
-          <div class="nc-meta">
-            <div class="nc-author"><div class="author-dot">R</div> Rajesh Sharma</div>
-            <a href="#" class="nc-read">Read →</a>
-          </div>
-        </div>
-      </div>
+     
 
-      <div class="news-card">
-        <div class="nc-thumb nc2"><span>🌧️</span></div>
-        <div class="nc-body">
-          <div class="nc-cat">Weather</div>
-          <div class="nc-title">Monsoon arrives soon — reached the Kerala coast</div>
-          <div class="nc-desc">According to the Meteorological Department, the southwest monsoon is expected to reach Kerala's coast within the next 48 hours.</div>
-          <div class="nc-meta">
-             <a href="#" class="nc-read">Read →</a>
+      <!-- Card 1: Freelancing -->
+      <a href="freelancing.html" class="news-card-link">
+        <div class="news-card breaking">
+          <div class="nc-thumb nc1">
+            <span>💻</span>
+            <div class="nc-badge">Featured</div>
+          </div>
+          <div class="nc-body">
+            <div class="nc-cat">Career</div>
+            <div class="nc-title">Freelancing from India</div>
+            <div class="nc-desc">Earning on your own terms, without a fixed employer — complete 2026 guide for Indian freelancers.</div>
+            <div class="nc-meta">
+              <span class="nc-read">Read →</span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <a href="health.html">
-      <div class="news-card">
-        <div class="nc-thumb nc3">
-          <span style="display: inline-block; width: 100px; height: 150px; background-image: url('health.png'); background-size: cover; background-repeat: no-repeat; object-fit: contain;"></span>
-          <div class="nc-badge" style="background:#2196F3;">Health</div>
-        </div>
-        <div class="nc-body">
-          <div class="nc-cat">Health</div>
-          <div class="nc-title">Do not ignore changes in your voice:</div>
-          <div class="nc-desc">These could be serious signs related to brain, lung and mental health conditions that need prompt attention.</div>
-          <div class="nc-meta">
-           
-            <a href="health.html" class="nc-read">Read →</a>
+      <!-- Card 2: Weather -->
+      <a href="weather.html" class="news-card-link">
+        <div class="news-card">
+          <div class="nc-thumb nc2"><span>🌧️</span><div class="nc-badge">Health</div></div>
+          <div class="nc-body">
+            <div class="nc-cat">Weather</div>
+            <div class="nc-title">Monsoon arrives soon — reached the Kerala coast</div>
+            <div class="nc-desc">According to the Meteorological Department, the southwest monsoon is expected to reach Kerala's coast within the next 48 hours.</div>
+            <div class="nc-meta">
+              <span class="nc-read">Read →</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-	</a>
-    <div class="ad-strip">📢 Advertisement Space</div>
-  </div>
+      </a>
+
+      <!-- Card 3: Health -->
+      <a href="health.html" class="news-card-link">
+        <div class="news-card">
+          <div class="nc-thumb nc2"><span>🌧️</span><div class="nc-badge">Health</div></div>
+           <div class="nc-body">
+            <div class="nc-cat">Health</div>
+            <div class="nc-title">Do not ignore changes in your voice</div>
+            <div class="nc-desc">These could be serious signs related to brain, lung and mental health conditions that need prompt attention.</div>
+            <div class="nc-meta">
+              <span class="nc-read">Read →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      </div><!-- /content-col -->
 
   <!-- Sidebar -->
   <div class="sidebar-col">
-    <!-- Trending -->
     <div class="sidebar-widget">
       <div class="sw-head">Play with Maths</div>
       <div class="sw-body">
-        
-<a href="magic.html">
-<div class="trending-item">
+        <a href="magic.html" class="trending-item">
           <div class="trending-num">01</div>
           <div>
             <div class="trending-text">Mind Reader</div>
             <div class="trending-cat">Magic Cards</div>
           </div>
-        </div>
-</a>
-
-
-<a href="snakes.html">
-        <div class="trending-item">
+        </a>
+        <a href="snakes.html" class="trending-item">
           <div class="trending-num">02</div>
           <div>
             <div class="trending-text">Math Adventure Game</div>
-            <div class="trending-cat">Snakes & Ladders</div>
+            <div class="trending-cat">Snakes &amp; Ladders</div>
           </div>
-        </div>
-</a>
-
-
-<a href="ludo.html">
-        <div class="trending-item">
+        </a>
+        <a href="ludo.html" class="trending-item">
           <div class="trending-num">03</div>
           <div>
-            <div class="trending-text">Math Example bar</div>
+            <div class="trending-text">Math Example Board</div>
             <div class="trending-cat">Ludo</div>
           </div>
-        </div>
-</a>
-
-<a href="a.html">
-        <div class="trending-item">
-          <div class="trending-num">04</div>
-          <div>
-            <div class="trending-text">Delhi temperature crosses 42°C</div>
-            <div class="trending-cat">Weather</div>
-          </div>
-        </div>
+        </a>
+        
       </div>
     </div>
-</a>
 
-    <!-- Newsletter -->
-    <iframe src="ns.html" width="100%" height="420px" frameborder="0" scrolling="no" style="display: block; overflow: hidden; border: none; border-radius: 8px;"></iframe>
-</div>
-</div>
+     </div><!-- /sidebar-col -->
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-name">Daily <span>Spark</span></div>
-        <div class="logo-tag">Where Knowledge Sparks Success</div>
-        <div class="footer-desc">India's trusted knowledge platform — Education, Jobs, Career guidance and everything that matters, all in one place.</div>
+</div><!-- /main-wrap -->
+
+<!-- ===== FOOTER ===== -->
+<footer class="ds-footer" role="contentinfo">
+
+  <!-- WhatsApp Join Band -->
+  <div class="ds-footer__nl">
+    <div class="ds-footer__nl-inner">
+      <div>
+        <div class="ds-footer__nl-eyebrow">💬 WhatsApp Updates</div>
+        <div class="ds-footer__nl-title">Join Daily Spark on WhatsApp</div>
+        <div class="ds-footer__nl-sub">Daily news, jobs &amp; tips — straight to your WhatsApp. Free, anytime exit.</div>
       </div>
-      <div class="footer-col">
-        <h4>Sections</h4>
-        <a href="#">National</a>
-        <a href="#">International</a>
-        <a href="#">Sports</a>
-        <a href="#">Entertainment</a>
-        <a href="#">Science</a>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="#">Education Hub</a>
-        <a href="#">Job Board</a>
-        <a href="#">e-Paper</a>
-        <a href="#">Podcast</a>
-        <a href="#">Live TV</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-        <a href="#">Advertise</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 Daily Spark. All rights reserved.</span>
-      <span>Made with ❤️ for India</span>
+      <form class="ds-footer__nl-form" onsubmit="dsFnlSubmit(event)" novalidate>
+        <div class="ds-footer__nl-input-row">
+          <input
+            type="tel"
+            id="ds-nl-phone"
+            placeholder="10 digit whatsapp number"
+            autocomplete="tel"
+            inputmode="numeric"
+            maxlength="15"
+            aria-label="WhatsApp number"
+          />
+          <button type="submit">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+            Join WhatsApp
+          </button>
+        </div>
+        <div class="ds-footer__nl-feedback" id="ds-nl-feedback"></div>
+      </form>
     </div>
   </div>
+
+  <!-- Main body -->
+  <div class="ds-footer__body">
+    <div>
+      <a class="ds-footer__logo" href="index.html" aria-label="Daily Spark Home">
+        <div class="ds-footer__logo-icon">⚡</div>
+        <div>
+          <span class="ds-footer__logo-name">Daily Spark</span>
+          <span class="ds-footer__logo-tag">Where Knowledge Sparks Success</span>
+        </div>
+      </a>
+      <p class="ds-footer__tagline">India's trusted knowledge platform — Education, Jobs, Health, and daily inspiration. Free for every reader, forever.</p>
+      <p class="ds-footer__hindi">ज्ञान की रोशनी हर घर तक — रोज़, मुफ़्त, आपकी भाषा में।</p>
+      <div class="ds-footer__badges">
+        <span class="ds-footer__badge"><span class="ds-footer__badge-dot"></span> Updated Daily</span>
+        <span class="ds-footer__badge">🇮🇳 Made in India</span>
+        <span class="ds-footer__badge">🆓 Always Free</span>
+      </div>
+    </div>
+
+    <nav class="ds-footer__nav" aria-label="Footer navigation">
+      <div>
+        <div class="ds-footer__col-head">Explore</div>
+        <ul class="ds-footer__links">
+          <li><a href="index.html"><span class="lk-icon">🏠</span> Home</a></li>
+          <li><a href="gjobs.html"><span class="lk-icon">💼</span> Govt. Jobs <span class="ds-footer__badge-new">New</span></a></li>
+          <li><a href="health.html"><span class="lk-icon">🏥</span> Health</a></li>
+          <li><a href="cook.html"><span class="lk-icon">👨‍🍳</span> Cooking</a></li>
+          <li><a href="plant.html"><span class="lk-icon">🌿</span> Plants</a></li>
+          <li><a href="weather.html"><span class="lk-icon">🌦️</span> Weather</a></li>
+          <li><a href="gold.html"><span class="lk-icon">💹</span> Gold Rate</a></li>
+          <li><a href="jokes.html"><span class="lk-icon">🎬</span> Entertainment</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ds-footer__col-head">Education</div>
+        <ul class="ds-footer__links">
+          <li><a href="jac_cutoff.html"><span class="lk-icon">🎓</span> JAC Cutoffs</a></li>
+          <li><a href="jac26.html"><span class="lk-icon">📊</span> JAC 2026</a></li>
+          <li><a href="jac_josaa.pdf"><span class="lk-icon">📄</span> JoSAA Schedule</a></li>
+          <li><a href="math.html"><span class="lk-icon">🧮</span> Math Playground</a></li>
+          <li><a href="parent.html"><span class="lk-icon">👨‍👩‍👧</span> Parenting</a></li>
+          <li><a href="ns.html"><span class="lk-icon">🔔</span> News Alerts</a></li>
+        </ul>
+      </div>
+      <div>
+       
+        <div class="ds-footer__col-head">Follow Us</div>
+        <ul class="ds-footer__links">
+          <li><a href="#"><span class="lk-icon">💬</span> WhatsApp</a></li>
+          <li><a href="#"><span class="lk-icon">📸</span> Instagram</a></li>
+          <li><a href="#"><span class="lk-icon">▶️</span> YouTube</a></li>
+          <li><a href="#"><span class="lk-icon">✈️</span> Telegram</a></li>
+        </ul>
+        
+    </nav>
+  </div>
+
+  <hr class="ds-footer__divider"/>
+
+  <div class="ds-footer__bottom">
+    <div class="ds-footer__copyright">
+      <span>© 2026 Daily Spark.</span>
+      <span class="sep">|</span>
+      <span>All rights reserved.</span>
+      <span class="sep">|</span>
+      <span>Made with <span class="heart">❤️</span> for India</span>
+    </div>
+    <nav class="ds-footer__legal-links" aria-label="Legal links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
 </footer>
 
 <script>
-// ===== TRANSLATIONS =====
-const T = {
-  hi: {
-    // topbar
-    notif: '🔔 <strong>Trending News at Your Fingertips</strong> — रोज़ की ताज़ा खबरें पाएं',
-    ticker: 'PM addresses National Conference &nbsp;|&nbsp; Stock Market surges — Sensex climbs 500 points &nbsp;|&nbsp; IPL Final preparations begin &nbsp;|&nbsp; Monsoon to arrive soon &nbsp;|&nbsp; Delhi temperature crosses 42°C',
-    epaper: 'e-पेपर', livetv: 'लाइव TV', podcast: 'पॉडकास्ट',
-    // navbar
-    home: 'होम', national: 'राष्ट्रीय', intl: 'अंतर्राष्ट्रीय', sports: 'खेल',
-    ent: 'मनोरंजन', edu: 'शिक्षा', jobs: 'नौकरी', science: 'विज्ञान',
-    searchph: 'खबर खोजें...',
-    // hero
-    heroEyebrow: '🔴 Live Update &nbsp; राष्ट्रीय',
-    heroTitle: 'संसद के मानसून सत्र में बड़े विधेयक पारित होने की उम्मीद — सरकार ने तैयारी तेज़ की',
-    heroMeta1: '✍️ विशेष संवाददाता', heroMeta2: '🕐 2 घंटे पहले', heroMeta3: '👁️ 12 लाख पाठक',
-    // sidebar cards
-    hs1cat: 'शिक्षा', hs1title: 'JoSAA और JAC दिल्ली काउंसलिंग शेड्यूल — B.Tech 2025', hs1time: '⏱ 3 घंटे पहले',
-    hs2cat: 'शिक्षा', hs2title: 'JAC दिल्ली कट-ऑफ रैंक — B.Tech शाखावार विश्लेषण', hs2time: '⏱ 3 घंटे पहले',
-    hs3cat: 'नौकरी', hs3title: 'सरकारी नौकरियां — नवीनतम रिक्तियां और परीक्षा तिथियां', hs3time: '⏱ 5 घंटे पहले',
-    // cat strip
-    catHead: 'विषय खोजें',
-    cat1n: 'पौधे', cat1s: 'घर में लाएं सकारात्मक ऊर्जा',
-    cat2n: 'खाना', cat2s: 'रोज़ नई रेसिपी, रोज़ नया स्वाद',
-    cat3n: 'खेल', cat3s: '310 खबरें',
-    cat4n: 'मनोरंजन', cat4s: '189 खबरें',
-    cat5n: 'विज्ञान', cat5s: '98 खबरें',
-    cat6n: 'सोने का भाव', cat6s: 'लाइव बाज़ार अपडेट',
-    // news section
-    sectionHead: 'ताज़ा खबरें', sectionTag: 'नवीनतम',
-    n1cat: 'राजनीति', n1title: 'पाँच राज्यों में चुनाव की तारीखों का हुआ ऐलान', n1desc: 'चुनाव आयोग ने पाँच प्रमुख राज्यों में विधानसभा चुनाव की तिथियों की घोषणा की। तैयारियाँ शुरू हो गई हैं।', n1author: 'राजेश शर्मा', n1read: 'पढ़ें →',
-    n2cat: 'मौसम', n2title: 'मानसून जल्द दस्तक देगा — केरल तट पर पहुँचा', n2desc: 'मौसम विभाग के अनुसार दक्षिण-पश्चिम मानसून अगले 48 घंटों में केरल तट पर दस्तक दे सकता है।', n2author: 'प्रिया वर्मा', n2read: 'पढ़ें →',
-    n3cat: 'स्वास्थ्य', n3title: 'नई स्वास्थ्य नीति — सरकारी अस्पतालों में मुफ़्त दवाएं', n3desc: 'केंद्र सरकार ने नई राष्ट्रीय स्वास्थ्य नीति लागू की जिसमें सरकारी अस्पतालों में 300 दवाएं निशुल्क दी जाएंगी।', n3author: 'अनीता जोशी', n3read: 'पढ़ें →',
-    // sidebar
-    swTrending: 'Trending Now', tr1: 'सेंसेक्स 500 अंक उछला, निवेशकों में उत्साह', tr1cat: 'बाज़ार',
-    tr2: 'IPL 2025 फाइनल टिकट बिक्री शुरू', tr2cat: 'खेल',
-    tr3: 'JoSAA Round 1 सीट आवंटन कल', tr3cat: 'शिक्षा',
-    tr4: 'दिल्ली में तापमान 42°C पार', tr4cat: 'मौसम',
-    weatherCity: '📍 नई दिल्ली', weatherDesc: '☀️ धूप — गर्म और उमस भरा दिन',
-    weatherH: '💧 आर्द्रता: 38%', weatherW: '💨 हवा: 14 km/h',
-    swNewsletter: 'Daily Newsletter',
-    nlDesc: 'रोज़ सुबह ताज़ा खबरें सीधे आपके inbox में पाएं।',
-    nlPh: 'आपका email address', nlBtn: 'Subscribe करें →',
-    // footer
-    footerDesc: 'India's trusted knowledge platform — Education, Jobs, Career guidance and everything that matters, all in one place.',
-    fh1: 'Sections', fl1: 'राष्ट्रीय', fl2: 'अंतर्राष्ट्रीय', fl3: 'खेल', fl4: 'मनोरंजन', fl5: 'विज्ञान',
-    fh2: 'सेवाएं', fh3: 'कंपनी',
-    fa1: 'हमारे बारे में', fa2: 'संपर्क', fa3: 'विज्ञापन', fa4: 'गोपनीयता नीति', fa5: 'उपयोग की शर्तें',
-    footerCopy: '© 2025 Daily Spark. सर्वाधिकार सुरक्षित।', footerMade: 'भारत के लिए ❤️ के साथ बनाया',
-    adText: '📢 विज्ञापन स्थान',
-  },
-  en: {
-    notif: '🔔 <strong>Trending News at Your Fingertips</strong> — Get the latest updates daily',
-    ticker: 'PM addresses National Conference &nbsp;|&nbsp; Stock Market surges — Sensex climbs 500 points &nbsp;|&nbsp; IPL Final preparations begin &nbsp;|&nbsp; Monsoon to arrive soon',
-    epaper: 'e-Paper', livetv: 'Live TV', podcast: 'Podcast',
-    home: 'Home', national: 'National', intl: 'International', sports: 'Sports',
-    ent: 'Entertainment', edu: 'Education', jobs: 'Jobs', science: 'Science',
-    searchph: 'Search news...',
-    heroEyebrow: '🔴 Live Update &nbsp; National',
-    heroTitle: 'Major bills expected to pass in Parliament\'s Monsoon Session — Government accelerates preparations',
-    heroMeta1: '✍️ Special Correspondent', heroMeta2: '🕐 2 hours ago', heroMeta3: '👁️ 1.2M readers',
-    hs1cat: 'Education', hs1title: 'JoSAA & JAC Delhi Counselling Schedule — B.Tech 2025', hs1time: '⏱ 3 hours ago',
-    hs2cat: 'Education', hs2title: 'JAC Delhi Cut-off Ranks — B.Tech Branch-wise Analysis', hs2time: '⏱ 3 hours ago',
-    hs3cat: 'Jobs', hs3title: 'Government Jobs — Latest Vacancies & Exam Dates', hs3time: '⏱ 5 hours ago',
-    catHead: 'Explore Topics',
-    cat1n: 'Plants', cat1s: 'Bring positivity home',
-    cat2n: 'Cooking', cat2s: 'New recipe every day',
-    cat3n: 'Sports', cat3s: '310 stories',
-    cat4n: 'Entertainment', cat4s: '189 stories',
-    cat5n: 'Science', cat5s: '98 stories',
-    cat6n: 'Gold Rate', cat6s: 'Live market updates',
-    sectionHead: 'Latest News', sectionTag: 'Fresh',
-    n1cat: 'Politics', n1title: 'Election dates announced for five states', n1desc: 'The Election Commission announced assembly election dates for five major states. Preparations have begun across the country.', n1author: 'Rajesh Sharma', n1read: 'Read →',
-    n2cat: 'Weather', n2title: 'Monsoon to arrive soon — reached Kerala coast', n2desc: 'According to the Meteorological Department, the southwest monsoon may reach Kerala\'s coast within the next 48 hours.', n2author: 'Priya Verma', n2read: 'Read →',
-    n3cat: 'Health', n3title: 'Do not ignore changes in voice', n3desc: 'These could be serious signs related to brain, lungs and mental health.', n3author: 'Health Desk', n3read: 'Read →',
-    swTrending: 'Trending Now', tr1: 'Sensex jumps 500 points, investors excited', tr1cat: 'Market',
-    tr2: 'IPL 2025 Final ticket sales begin', tr2cat: 'Sports',
-    tr3: 'JoSAA Round 1 seat allotment tomorrow', tr3cat: 'Education',
-    tr4: 'Delhi temperature crosses 42°C', tr4cat: 'Weather',
-    weatherCity: '📍 New Delhi', weatherDesc: '☀️ Sunny — Hot and humid day',
-    weatherH: '💧 Humidity: 38%', weatherW: '💨 Wind: 14 km/h',
-    swNewsletter: 'Daily Newsletter',
-    nlDesc: 'Get fresh news in your inbox every morning.',
-    nlPh: 'Your email address', nlBtn: 'Subscribe →',
-    footerDesc: 'India\'s trusted news platform — Education, Jobs, Politics and everything that matters, all in one place.',
-    fh1: 'Sections', fl1: 'National', fl2: 'International', fl3: 'Sports', fl4: 'Entertainment', fl5: 'Science',
-    fh2: 'Services', fh3: 'Company',
-    fa1: 'About Us', fa2: 'Contact', fa3: 'Advertise', fa4: 'Privacy Policy', fa5: 'Terms of Use',
-    footerCopy: '© 2025 Daily Spark. All rights reserved.', footerMade: 'Made with ❤️ for India',
-    adText: '📢 Advertisement Space',
+/* ===== LIVE DATE ===== */
+(function() {
+  var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d  = new Date();
+  var el = document.getElementById('topbar-date');
+  if (el) el.textContent = days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+})();
+
+
+/* ===== WHATSAPP JOIN ===== */
+function dsFnlSubmit(e) {
+  e.preventDefault();
+
+  var OWNER_WA = '917982126049'; // ← Replace with your WhatsApp number (country code + number, no + or spaces)
+  var WA_MESSAGE = encodeURIComponent('Welcome to Daily Spark! https://parthkhurana292008-cmd.github.io/dailyspark/index.html Thank You to join our WhatsApp updates group for daily news, jobs and tips. 🙏');
+
+  var input    = document.getElementById('ds-nl-phone');
+  var btn      = e.target.querySelector('button');
+  var feedback = document.getElementById('ds-nl-feedback');
+
+  var raw = input.value.replace(/\D/g, ''); // strip non-digits
+
+  /* ── Validation ── */
+  if (raw.length < 7) {
+    feedback.textContent = '⚠️ Please enter a valid WhatsApp number.';
+    feedback.className   = 'ds-footer__nl-feedback show err';
+    input.focus();
+    return;
   }
-};
 
-let currentLang = 'en';
+  /* ── Build wa.me link ── */
+  var waLink = 'https://wa.me/' + OWNER_WA + '?text=' + WA_MESSAGE;
 
-function applyLang(lang) {
-  const t = T[lang];
-  // html lang
-  document.documentElement.lang = lang;
+  /* ── UI feedback ── */
+  btn.disabled       = true;
+  btn.textContent    = 'Opening WhatsApp…';
+  feedback.textContent = '';
+  feedback.className   = 'ds-footer__nl-feedback';
 
-  // Notif
-  const notifSpan = document.querySelector('#notif a span');
-  if (notifSpan) notifSpan.innerHTML = t.notif;
+  /* ── Open WhatsApp ── */
+  window.open(waLink, '_blank', 'noopener,noreferrer');
 
-  // Ticker
-  const ticker = document.querySelector('.ticker');
-  if (ticker) ticker.innerHTML = t.ticker;
+  /* ── Success state ── */
+  setTimeout(function() {
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Sent!';
+    btn.style.background = '#16A34A';
+    feedback.textContent = '✅ WhatsApp opened! Send us a message to join.';
+    feedback.className   = 'ds-footer__nl-feedback show ok';
+    input.value          = '';
+  }, 600);
 
-  // Topbar links
-  const tbLinks = document.querySelectorAll('.topbar-links a');
-  if (tbLinks[0]) tbLinks[0].textContent = t.epaper;
-  if (tbLinks[1]) tbLinks[1].textContent = t.livetv;
-  if (tbLinks[2]) tbLinks[2].textContent = t.podcast;
-
-  // Lang button label
-  document.getElementById('currentLangLabel').textContent = lang === 'hi' ? 'हिं' : 'EN';
-
-  // Navbar links
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const navKeys = ['home','national','intl','sports','ent','edu','jobs','science'];
-  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
-
-  // Search placeholder
-  const searchInput = document.querySelector('.nav-search input');
-  if (searchInput) searchInput.placeholder = t.searchph;
-
-  // Hero
-  const heroEye = document.querySelector('.hero-eyebrow');
-  if (heroEye) heroEye.innerHTML = t.heroEyebrow;
-  const heroTitle = document.querySelector('.hero-title');
-  if (heroTitle) heroTitle.textContent = t.heroTitle;
-  const heroMeta = document.querySelectorAll('.hero-meta span');
-  if (heroMeta[0]) heroMeta[0].textContent = t.heroMeta1;
-  if (heroMeta[1]) heroMeta[1].textContent = t.heroMeta2;
-  if (heroMeta[2]) heroMeta[2].textContent = t.heroMeta3;
-
-  // Hero sidebar cards
-  const hsCats = document.querySelectorAll('.hs-cat');
-  const hsTitles = document.querySelectorAll('.hs-title');
-  const hsTimes = document.querySelectorAll('.hs-time');
-  ['hs1','hs2','hs3'].forEach((k, i) => {
-    if (hsCats[i]) hsCats[i].textContent = t[k+'cat'];
-    if (hsTitles[i]) hsTitles[i].textContent = t[k+'title'];
-    if (hsTimes[i]) hsTimes[i].textContent = t[k+'time'];
-  });
-
-  // Category strip head
-  const catHead = document.querySelector('.cat-strip-head h3');
-  if (catHead) catHead.textContent = t.catHead;
-
-  // Category items
-  const catLabels = document.querySelectorAll('.cat-label');
-  const catSubs = document.querySelectorAll('.cat-sub');
-  ['cat1','cat2','cat3','cat4','cat5','cat6'].forEach((k, i) => {
-    if (catLabels[i]) catLabels[i].textContent = t[k+'n'];
-    if (catSubs[i]) catSubs[i].textContent = t[k+'s'];
-  });
-
-  // News section head
-  const secHead = document.querySelector('.sec-head h2');
-  if (secHead) secHead.textContent = t.sectionHead;
-  const secTag = document.querySelector('.sec-head-tag');
-  if (secTag) secTag.textContent = t.sectionTag;
-
-  // News cards
-  const ncCats = document.querySelectorAll('.nc-cat');
-  const ncTitles = document.querySelectorAll('.nc-title');
-  const ncDescs = document.querySelectorAll('.nc-desc');
-  const ncAuthors = document.querySelectorAll('.nc-author');
-  const ncReads = document.querySelectorAll('.nc-read');
-  ['n1','n2','n3'].forEach((k, i) => {
-    if (ncCats[i]) ncCats[i].textContent = t[k+'cat'];
-    if (ncTitles[i]) ncTitles[i].textContent = t[k+'title'];
-    if (ncDescs[i]) ncDescs[i].textContent = t[k+'desc'];
-    if (ncAuthors[i]) {
-      const dot = ncAuthors[i].querySelector('.author-dot');
-      const dotChar = dot ? dot.textContent : '';
-      ncAuthors[i].innerHTML = `<div class="author-dot">${dotChar}</div> ${t[k+'author']}`;
-    }
-    if (ncReads[i]) ncReads[i].textContent = t[k+'read'];
-  });
-
-  // Ad strip
-  const adStrip = document.querySelector('.ad-strip');
-  if (adStrip) adStrip.textContent = t.adText;
-
-  // Sidebar trending
-  const swHeads = document.querySelectorAll('.sw-head');
-  if (swHeads[0]) swHeads[0].textContent = t.swTrending;
-
-  const trTexts = document.querySelectorAll('.trending-text');
-  const trCats = document.querySelectorAll('.trending-cat');
-  ['tr1','tr2','tr3','tr4'].forEach((k, i) => {
-    if (trTexts[i]) trTexts[i].textContent = t[k];
-    if (trCats[i]) trCats[i].textContent = t[k+'cat'];
-  });
-
-  // Weather
-  const wCity = document.querySelector('.weather-city');
-  if (wCity) wCity.textContent = t.weatherCity;
-  const wDesc = document.querySelector('.weather-desc');
-  if (wDesc) wDesc.textContent = t.weatherDesc;
-  const wRow = document.querySelectorAll('.weather-row span');
-  if (wRow[0]) wRow[0].textContent = t.weatherH;
-  if (wRow[1]) wRow[1].textContent = t.weatherW;
-
-  // Newsletter widget
-  if (swHeads[1]) swHeads[1].textContent = t.swNewsletter;
-  const nlDesc = document.querySelector('.sw-body p');
-  if (nlDesc) nlDesc.textContent = t.nlDesc;
-  const nlInput = document.querySelector('.sw-body input[type="email"]');
-  if (nlInput) nlInput.placeholder = t.nlPh;
-  const nlBtn = document.querySelector('.sw-body button');
-  if (nlBtn) nlBtn.textContent = t.nlBtn;
-
-  // Footer
-  const footerDesc = document.querySelector('.footer-desc');
-  if (footerDesc) footerDesc.textContent = t.footerDesc;
-
-  const fColHeads = document.querySelectorAll('.footer-col h4');
-  if (fColHeads[0]) fColHeads[0].textContent = t.fh1;
-  if (fColHeads[1]) fColHeads[1].textContent = t.fh2;
-  if (fColHeads[2]) fColHeads[2].textContent = t.fh3;
-
-  const fCol1Links = document.querySelectorAll('.footer-col:nth-child(2) a');
-  ['fl1','fl2','fl3','fl4','fl5'].forEach((k,i) => { if(fCol1Links[i]) fCol1Links[i].textContent = t[k]; });
-
-  const fCol3Links = document.querySelectorAll('.footer-col:nth-child(4) a');
-  ['fa1','fa2','fa3','fa4','fa5'].forEach((k,i) => { if(fCol3Links[i]) fCol3Links[i].textContent = t[k]; });
-
-  const footerBottom = document.querySelectorAll('.footer-bottom span');
-  if (footerBottom[0]) footerBottom[0].textContent = t.footerCopy;
-  if (footerBottom[1]) footerBottom[1].textContent = t.footerMade;
-
-  // Active state in dropdown
-  document.getElementById('opt-hi').classList.toggle('active', lang === 'hi');
-  document.getElementById('opt-en').classList.toggle('active', lang === 'en');
+  setTimeout(function() {
+    btn.disabled         = false;
+    btn.innerHTML        = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> Join WhatsApp';
+    btn.style.background = '';
+    feedback.className   = 'ds-footer__nl-feedback';
+  }, 5000);
 }
-
-
-
-function setLang(lang) {
-    /* lang saved in memory */ currentLang = lang;
-
-    applyLang(lang);
-
-    document.getElementById("langSwitcher").classList.remove("open");
-}
-
-function toggleLangMenu() {
-  document.getElementById('langSwitcher').classList.toggle('open');
-}
-function closeLangMenu() {
-  document.getElementById('langSwitcher').classList.remove('open');
-}
-
-// Close on outside click
-document.addEventListener('click', function(e) {
-  if (!document.getElementById('langSwitcher').contains(e.target)) closeLangMenu();
-});
-
-// Live date
-function setEnglishDate() {
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const d = new Date();
-  const el = document.getElementById('topbar-date');
-  if (el) el.textContent = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-}
-
-
-window.addEventListener("DOMContentLoaded", () => {
-    const savedLang = currentLang || "en";
-    applyLang(savedLang);
-});
-
-// Animate poll bars (legacy)
-window.addEventListener('load', () => {
-  document.querySelectorAll('.poll-bar-fill').forEach(bar => {
-    const w = bar.style.width;
-    bar.style.width = '0';
-    setTimeout(() => { bar.style.width = w; }, 100);
-  });
-});
+</script>
 
 </body>
 </html>
