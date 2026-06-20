@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parenting — Daily Spark</title>
+</head>
+
+<!--
+  data-page="parenting"  ← yahi batata hai ki nav ka kaun sa link active hoga
+  Valid values:  home | parenting | math | gjobs | weather | gold | contact
+-->
+<body data-page="parenting">
+
+  <!-- STEP 1: Yahan header inject hoga -->
+  <div id="ds-header-root"></div>
+
+  <!-- STEP 2: Script call karo — sirf yeh ek line chahiye -->
+  <script src="ds-header.js"></script>
+
+  <!-- Baaki page ka content yahan likhein -->
+  <main style="max-width:1280px; margin:32px auto; padding:0 20px;">
+    <h1 style="font-family:Georgia,serif; color:#0D1B2A;">Parenting Page Content</h1>
+    <p style="color:#4A5C6E; margin-top:12px;">
+      Header upar automatically aa gaya — bina ek bhi CSS ya HTML copy kiye.
+    </p>
+  </main>
+
+</body>
+</html>
