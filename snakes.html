@@ -1,10 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 Snake & Ladder Math Adventure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght=400;600;700&family=Baloo+2:wght=400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>🐍 Snake & Ladder Math Adventure | Kids Math Game 2026 | Daily Spark</title>
+
+  <!-- SEO Primary -->
+  <meta name="description" content="Play Snake & Ladder Math Adventure — fun educational math game for kids! Solve multiplication, division & addition, climb ladders, dodge snakes, beat the AI. Free online kids game 2026.">
+  <meta name="keywords" content="snake and ladder math game, kids math game online, educational snake ladder, math adventure for children, multiplication game kids, division game, snake ladder board game online, free kids math game 2026, daily spark games">
+  <meta name="author" content="Daily Spark">
+  <meta name="publisher" content="Daily Spark">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="rating" content="safe for kids">
+  <meta name="category" content="Kids Games, Educational, Math">
+  <meta name="revisit-after" content="7 days">
+  <link rel="canonical" href="https://www.dailyspark.in/snakes.html">
+
+  <!-- PWA / Mobile App -->
+  <meta name="theme-color" content="#2D1B69">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Snake Math">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-TileColor" content="#2D1B69">
+
+  <!-- Open Graph (WhatsApp / Facebook) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Daily Spark">
+  <meta property="og:title" content="🐍 Snake & Ladder Math Adventure | Fun Kids Math Game">
+  <meta property="og:description" content="Educational math game for kids! Solve math questions, climb ladders, dodge snakes. Play vs friend or AI. Free!">
+  <meta property="og:image" content="https://www.dailyspark.in/assets/snake-ladder-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Snake and Ladder Math Adventure Game for Kids">
+  <meta property="og:url" content="https://www.dailyspark.in/snakes.html">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DailySparkIN">
+  <meta name="twitter:creator" content="@DailySparkIN">
+  <meta name="twitter:title" content="🐍 Snake & Ladder Math Adventure | Kids Game">
+  <meta name="twitter:description" content="Fun educational math game! Solve math, climb ladders, dodge snakes. Free online!">
+  <meta name="twitter:image" content="https://www.dailyspark.in/assets/snake-ladder-og.jpg">
+  <meta name="twitter:image:alt" content="Snake Ladder Math Game">
+
+  <!-- Geo -->
+  <meta name="geo.region" content="IN">
+  <meta name="geo.country" content="India">
+
+  <!-- Schema: Game -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"Game",
+    "name":"Snake & Ladder Math Adventure",
+    "description":"An educational math game for kids combining Snake & Ladder with multiplication, division and addition questions.",
+    "url":"https://www.dailyspark.in/snakes.html",
+    "image":"https://www.dailyspark.in/assets/snake-ladder-og.jpg",
+    "genre":["Educational","Math","Board Game"],
+    "educationalUse":"practice",
+    "learningResourceType":"game",
+    "typicalAgeRange":"5-14",
+    "inLanguage":"en",
+    "publisher":{"@type":"Organization","name":"Daily Spark","url":"https://www.dailyspark.in"},
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"INR","availability":"https://schema.org/InStock"}
+  }
+  </script>
+
+  <!-- Schema: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.dailyspark.in"},
+      {"@type":"ListItem","position":2,"name":"Games","item":"https://www.dailyspark.in/games.html"},
+      {"@type":"ListItem","position":3,"name":"Snake & Ladder Math Adventure","item":"https://www.dailyspark.in/snakes.html"}
+    ]
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght=400;600;700&family=Baloo+2:wght=400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #FFD700;
@@ -16,13 +95,119 @@
             --primary-dark: #2D1B69;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ── LIGHT BACKGROUND ── */
         body {
             font-family: 'Baloo 2', 'Fredoka', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             min-height: 100vh;
             color: #333;
             overflow-x: hidden;
+            background: #f0f4ff;
         }
+
+        /* Soft light animated gradient background */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0;
+            background:
+                radial-gradient(ellipse at 15% 15%, rgba(138,43,226,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 10%, rgba(255,107,53,0.10) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 85%, rgba(0,198,255,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 50%, rgba(255,45,120,0.08) 0%, transparent 45%),
+                linear-gradient(135deg, #fef9ff 0%, #eef3ff 35%, #f5f0ff 65%, #fff5f8 100%);
+            animation: bgShift 12s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes bgShift {
+            0%   { background-position: 0% 0%; }
+            50%  { background-position: 100% 100%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        /* Animated floating bubbles */
+        #anim-bg {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .anim-bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: bubbleFloat linear infinite;
+        }
+        @keyframes bubbleFloat {
+            0%   { opacity: 0;    transform: translateY(0)   scale(0.8) rotate(0deg); }
+            10%  { opacity: 0.55; }
+            90%  { opacity: 0.4;  }
+            100% { opacity: 0;    transform: translateY(-110vh) scale(1.2) rotate(360deg); }
+        }
+
+        /* Animated confetti dots */
+        .anim-dot {
+            position: absolute;
+            width: 8px; height: 8px;
+            border-radius: 2px;
+            animation: dotDrift ease-in-out infinite;
+            opacity: 0.35;
+        }
+        @keyframes dotDrift {
+            0%,100% { transform: translateY(0) rotate(0deg);   opacity: 0.25; }
+            50%      { transform: translateY(-30px) rotate(180deg); opacity: 0.55; }
+        }
+
+        /* Animated math symbols */
+        .anim-math {
+            position: absolute;
+            font-size: clamp(18px, 3vw, 30px);
+            font-weight: 900;
+            animation: mathFloat ease-in-out infinite;
+            opacity: 0.18;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes mathFloat {
+            0%,100% { transform: translateY(0)    rotate(-5deg)  scale(1);    opacity: 0.15; }
+            33%      { transform: translateY(-25px) rotate(8deg)   scale(1.1);  opacity: 0.28; }
+            66%      { transform: translateY(-10px) rotate(-3deg)  scale(0.95); opacity: 0.20; }
+        }
+
+        /* 3D floating geometric shapes */
+        .shape3d {
+            position: fixed; pointer-events: none; z-index: 0;
+            border-radius: 8px;
+            animation: float3d linear infinite;
+            opacity: 0.12;
+        }
+        @keyframes float3d {
+            0%   { transform: translateY(0px)   rotateX(0deg)   rotateY(0deg)   rotateZ(0deg); }
+            25%  { transform: translateY(-30px) rotateX(90deg)  rotateY(45deg)  rotateZ(15deg); }
+            50%  { transform: translateY(-15px) rotateX(180deg) rotateY(90deg)  rotateZ(30deg); }
+            75%  { transform: translateY(-40px) rotateX(270deg) rotateY(135deg) rotateZ(20deg); }
+            100% { transform: translateY(0px)   rotateX(360deg) rotateY(180deg) rotateZ(0deg); }
+        }
+        @keyframes drift {
+            0%,100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            33%     { transform: translateX(40px) translateY(-60px) rotate(120deg); }
+            66%     { transform: translateX(-30px) translateY(-30px) rotate(240deg); }
+        }
+
+        /* Grid floor — removed for light theme */
+        body::after { display: none; }
+
+        /* Confirm + mode screen get readable bg */
+        #confirm-screen, #mode-screen {
+            background: rgba(15,5,50,0.55) !important;
+            backdrop-filter: blur(16px);
+        }
+        .cs-title { -webkit-text-fill-color: transparent !important; }
+        .cs-sub { color: #bbb !important; }
+        .cs-question { color: #e0d4ff !important; }
+        .cs-card { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.18) !important; color: #fff !important; backdrop-filter: blur(8px); }
+        .cs-card-desc { color: #ccc !important; }
+        .cs-card.selected-vs  { background: rgba(255,107,53,0.2) !important; border-color: #FF6B35 !important; }
+        .cs-card.selected-cpu { background: rgba(0,198,255,0.15) !important; border-color: #00C6FF !important; }
+        #cs-summary { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.25) !important; }
+        #cs-summary .sum-label { color: #aaa !important; }
+        #cs-summary .sum-val   { color: #e0d4ff !important; }
 
         /* ========== FLOATING BG EFFECTS ========== */
         #bg-canvas {
@@ -43,7 +228,7 @@
             display: flex; flex-direction: column;
             align-items: center; justify-content: flex-start;
             min-height: 100vh; padding: 60px 24px;
-            background: radial-gradient(ellipse at 50% 30%, #ffffff 0%, #e4ecf7 70%);
+            background: transparent;
             position: relative; z-index: 1;
         }
 
@@ -190,14 +375,614 @@
         }
         .start-btn:hover { transform: scale(1.06); box-shadow: 0 12px 40px rgba(255,45,120,0.4); }
 
+
+        /* ========== PLAYER CONFIRM SCREEN ========== */
+
+        /* ════════════════════════════════════════════
+           KIDS-ATTRACTIVE FIRST SCREEN
+        ════════════════════════════════════════════ */
+
+        #confirm-screen {
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; padding: 0 16px 24px;
+            background: linear-gradient(160deg, #fff0fb 0%, #e8f4ff 35%, #fff8e1 65%, #f0fff4 100%);
+            position: relative; z-index: 1; overflow: hidden; gap: 0;
+        }
+
+        /* Animated rainbow border at very top */
+        #confirm-screen::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:6px;
+            background: linear-gradient(90deg,#FF2D78,#FF6B35,#FFD700,#00FF88,#00C6FF,#9400d3,#FF2D78);
+            background-size: 300% 100%;
+            animation: rainbowShift 3s linear infinite;
+        }
+        @keyframes rainbowShift { 0%{background-position:0% 0%} 100%{background-position:300% 0%} }
+
+        /* Emoji rain container */
+        #emoji-rain { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+        .rain-emoji { position:absolute; font-size:22px; animation:emojiDrop linear infinite; opacity:0; }
+        @keyframes emojiDrop {
+            0%   { transform:translateY(-60px) rotate(0deg);   opacity:0; }
+            10%  { opacity:.6; }
+            90%  { opacity:.4; }
+            100% { transform:translateY(110vh) rotate(360deg); opacity:0; }
+        }
+
+        /* ── HERO SECTION ── */
+        .fs-hero {
+            width:100%; max-width:700px;
+            background: linear-gradient(135deg, #2D1B69 0%, #1a0a3e 40%, #3d0d5a 70%, #0d1b4e 100%);
+            border-radius: 0 0 28px 28px;
+            padding: 16px 20px 20px;
+            text-align: center; position: relative; overflow: hidden;
+            box-shadow: 0 8px 36px rgba(45,27,105,0.3);
+            margin-bottom: 14px;
+        }
+        .fs-hero::before {
+            content:''; position:absolute; inset:0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,45,120,0.22) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(0,198,255,0.18) 0%, transparent 55%);
+            pointer-events:none;
+        }
+        .fs-snake-left,.fs-snake-right {
+            position:absolute; top:10px; font-size:clamp(18px,4vw,28px);
+            animation: sideWiggle 2s ease-in-out infinite; z-index:1;
+        }
+        .fs-snake-left { left:10px; animation-delay:0s; }
+        .fs-snake-right{ right:10px; animation-delay:.6s; transform-origin:center; }
+        @keyframes sideWiggle {
+            0%,100% { transform:translateY(0) rotate(-10deg) scale(1); }
+            50%      { transform:translateY(-8px) rotate(10deg) scale(1.15); }
+        }
+
+        /* Logo with ring */
+        .fs-logo-wrap { position:relative; display:inline-block; margin-bottom:6px; }
+        .fs-logo-ring {
+            position:absolute; inset:-10px; border-radius:50%;
+            border: 3px solid rgba(255,215,0,0.6);
+            animation: logoRingSpin 4s linear infinite;
+        }
+        @keyframes logoRingSpin { 0%{transform:rotate(0) scale(1);opacity:.5} 50%{transform:rotate(180deg) scale(1.1);opacity:1} 100%{transform:rotate(360deg) scale(1);opacity:.5} }
+        .fs-logo {
+            font-size: clamp(32px,7vw,52px); display:block; line-height:1;
+            animation: logoBounce 1.8s ease-in-out infinite;
+            filter: drop-shadow(0 6px 20px rgba(255,215,0,0.6));
+            position:relative; z-index:1;
+        }
+        @keyframes logoBounce { 0%,100%{transform:translateY(0) rotate(-8deg) scale(1)} 50%{transform:translateY(-10px) rotate(8deg) scale(1.1)} }
+
+        /* Title */
+        .fs-title-wrap { position:relative; z-index:1; }
+        .fs-title-line1 {
+            font-size:clamp(18px,5vw,34px); font-weight:900; line-height:1;
+            color:#FF2D78; text-shadow: 0 2px 0 rgba(0,0,0,0.3), 0 0 14px rgba(255,45,120,0.5);
+            letter-spacing:.04em;
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+        @keyframes titlePulse { 0%,100%{text-shadow:0 2px 0 rgba(0,0,0,0.3),0 0 14px rgba(255,45,120,0.5)} 50%{text-shadow:0 2px 0 rgba(0,0,0,0.3),0 0 26px rgba(255,45,120,0.85)} }
+        .fs-title-amp {
+            font-size:clamp(13px,3vw,22px); font-weight:900; color:#FFD700;
+            text-shadow: 0 2px 0 rgba(0,0,0,0.3); line-height:1.2;
+        }
+        .fs-title-line2 {
+            font-size:clamp(18px,5vw,34px); font-weight:900; line-height:1;
+            color:#00C6FF; text-shadow: 0 2px 0 rgba(0,0,0,0.3), 0 0 14px rgba(0,198,255,0.5);
+            letter-spacing:.04em;
+        }
+        .fs-title-sub {
+            font-size:clamp(9px,2vw,13px); color:#FFD700; font-weight:800;
+            letter-spacing:.10em; margin-top:4px;
+            text-shadow: 0 2px 6px rgba(255,215,0,0.5);
+        }
+
+        .fs-char {
+            position:absolute; font-size:clamp(16px,3.5vw,26px);
+            animation:charBounce 1.6s ease-in-out infinite; z-index:1;
+            bottom:6px; filter:drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+        }
+        .fs-char-small { font-size:clamp(12px,2.2vw,18px); bottom:auto; }
+        @keyframes charBounce { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-10px) scale(1.15)} }
+
+        /* ── TAGLINE ── */
+        .fs-tagline-row {
+            display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+            justify-content:center; margin-bottom:10px;
+        }
+        .fs-tag-pill {
+            background:linear-gradient(90deg,#FF6B35,#FF2D78); color:#fff;
+            font-size:clamp(10px,2vw,12px); font-weight:800;
+            padding:4px 12px; border-radius:24px;
+            box-shadow:0 3px 10px rgba(255,107,53,0.3);
+            animation:pillPop 2s ease-in-out infinite;
+        }
+        .fs-tag-pill:nth-child(3) { animation-delay:.3s; }
+        .fs-tag-pill:nth-child(5) { animation-delay:.6s; }
+        @keyframes pillPop { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        .fs-tag-dot { font-size:16px; font-weight:900; color:#2D1B69; }
+
+        /* ── CHOOSE LABEL ── */
+        .fs-choose-label {
+            font-size:clamp(11px,2vw,14px); font-weight:800; color:#2D1B69;
+            margin-bottom:10px; text-align:center; letter-spacing:.02em;
+        }
+        .fs-arrow { display:inline-block; animation:arrowBounce 1s ease-in-out infinite; color:#FF6B35; }
+        .fs-arrow:last-child { animation-delay:.2s; }
+        @keyframes arrowBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+        /* ── MODE CARDS ── */
+        .fs-cards { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
+
+        .fs-card {
+            width:clamp(130px,36vw,160px);
+            border-radius:18px; padding:14px 12px 12px;
+            text-align:center; cursor:pointer; position:relative; overflow:hidden;
+            transition:transform .25s cubic-bezier(.175,.885,.32,1.275), box-shadow .25s;
+            display:flex; flex-direction:column; align-items:center; gap:5px;
+            border:3px solid transparent;
+        }
+        .fs-card:hover { transform:translateY(-8px) scale(1.05); }
+        .fs-card:active { transform:scale(.97); }
+
+        .fs-card-vs {
+            background:linear-gradient(145deg,#fff5f0,#fff0e8,#ffe8d6);
+            border-color:rgba(255,107,53,.35);
+            box-shadow:0 8px 28px rgba(255,107,53,.22), inset 0 1px 0 rgba(255,255,255,.8);
+        }
+        .fs-card-cpu {
+            background:linear-gradient(145deg,#f0f9ff,#e8f4ff,#ddeeff);
+            border-color:rgba(0,198,255,.35);
+            box-shadow:0 8px 28px rgba(0,198,255,.22), inset 0 1px 0 rgba(255,255,255,.8);
+        }
+        .fs-card.selected-vs  { border-color:#FF6B35; box-shadow:0 0 0 4px rgba(255,107,53,.25),0 16px 45px rgba(255,107,53,.3); transform:translateY(-10px) scale(1.06); }
+        .fs-card.selected-cpu { border-color:#00C6FF; box-shadow:0 0 0 4px rgba(0,198,255,.25),0 16px 45px rgba(0,198,255,.3); transform:translateY(-10px) scale(1.06); }
+
+        /* Shine sweep */
+        .fs-card-shine {
+            position:absolute; top:0; left:-80%; width:60%; height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+            transform:skewX(-18deg);
+            animation:cardShine 3s ease-in-out infinite;
+        }
+        .fs-card-cpu .fs-card-shine { animation-delay:1.5s; }
+        @keyframes cardShine { 0%,70%{left:-80%} 85%{left:130%} 100%{left:130%} }
+
+        .fs-best-badge {
+            position:absolute; top:-1px; right:-1px;
+            background:linear-gradient(90deg,#FF6B35,#FFD700);
+            color:#fff; font-size:9px; font-weight:900;
+            padding:4px 10px; border-radius:0 22px 0 14px;
+            letter-spacing:.04em; box-shadow:0 2px 10px rgba(255,107,53,.4);
+        }
+
+        .fs-card-icon-wrap {
+            width:52px; height:52px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:26px; margin-bottom:1px;
+            animation:iconWiggle 2s ease-in-out infinite;
+        }
+        .fs-card-cpu .fs-card-icon-wrap { animation-delay:.4s; }
+        .vs-wrap  { background:linear-gradient(135deg,#FF6B35,#FF2D78); box-shadow:0 4px 14px rgba(255,107,53,.4); }
+        .cpu-wrap { background:linear-gradient(135deg,#00C6FF,#9400d3);  box-shadow:0 4px 14px rgba(0,198,255,.4); }
+        @keyframes iconWiggle { 0%,100%{transform:rotate(-6deg) scale(1)} 50%{transform:rotate(6deg) scale(1.12)} }
+
+        .fs-card-title { font-size:clamp(13px,2.8vw,16px); font-weight:900; color:#1a1a2e; }
+        .fs-card-desc  { font-size:clamp(10px,1.6vw,11px); color:#555; line-height:1.4; }
+        .fs-card-fun   { font-size:clamp(9px,1.4vw,10px); font-weight:800; color:#888; }
+
+        .fs-card-btn {
+            margin-top:3px; padding:5px 14px; border-radius:16px;
+            font-size:10px; font-weight:900; letter-spacing:.05em; border:none; cursor:pointer;
+            font-family:'Baloo 2',sans-serif;
+            animation:btnGlow 2s ease-in-out infinite;
+        }
+        .vs-btn  { background:linear-gradient(90deg,#FF6B35,#FF2D78); color:#fff; box-shadow:0 4px 14px rgba(255,107,53,.4); }
+        .cpu-btn { background:linear-gradient(90deg,#00C6FF,#9400d3);  color:#fff; box-shadow:0 4px 14px rgba(0,198,255,.4); }
+        @keyframes btnGlow { 0%,100%{box-shadow:0 4px 14px rgba(255,107,53,.4)} 50%{box-shadow:0 6px 22px rgba(255,107,53,.7)} }
+        .fs-card-cpu .fs-card-btn { animation-name:btnGlowCpu; }
+        @keyframes btnGlowCpu { 0%,100%{box-shadow:0 4px 14px rgba(0,198,255,.4)} 50%{box-shadow:0 6px 22px rgba(0,198,255,.7)} }
+
+        /* ── DIFFICULTY ── */
+        #cs-diff-row { display:none; flex-direction:column; align-items:center; gap:10px; margin-bottom:14px; animation:fadeIn .4s ease; }
+        .fs-diff-title { font-size:clamp(13px,2.5vw,16px); font-weight:800; color:#2D1B69; text-align:center; }
+        .cs-diff-btns  { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+        .cs-diff-btn   { padding:10px 18px; border-radius:16px; border:3px solid transparent; font-size:13px; font-weight:800; cursor:pointer; font-family:'Baloo 2',sans-serif; transition:all .2s; opacity:.55; line-height:1.5; text-align:center; }
+        .cs-diff-btn.picked { opacity:1; transform:scale(1.1); border-color:#2D1B69; box-shadow:0 6px 20px rgba(0,0,0,.15); }
+        .cs-diff-easy   { background:linear-gradient(90deg,#11998e,#38ef7d); color:#fff; }
+        .cs-diff-medium { background:linear-gradient(90deg,#f7971e,#ffd200); color:#1a0a3e; }
+        .cs-diff-hard   { background:linear-gradient(90deg,#FF2D78,#c0392b); color:#fff; }
+        .cs-diff-btn:hover { opacity:1; transform:scale(1.06); }
+
+        /* ── START BUTTON ── */
+        .cs-confirm-btn {
+            display:none; padding:16px 60px;
+            background:linear-gradient(90deg,#FF2D78,#FF6B35,#FFD700);
+            background-size:200% 100%;
+            color:#fff; font-size:clamp(17px,3.5vw,22px); font-weight:900;
+            border:none; border-radius:50px; cursor:pointer;
+            font-family:'Baloo 2',sans-serif;
+            box-shadow:0 10px 36px rgba(255,45,120,.45);
+            animation:startBtnGlow 1.5s ease-in-out infinite, gradientShift 3s linear infinite;
+            letter-spacing:.04em; margin-bottom:14px;
+        }
+        @keyframes startBtnGlow { 0%,100%{transform:scale(1);box-shadow:0 10px 36px rgba(255,45,120,.45)} 50%{transform:scale(1.04);box-shadow:0 16px 50px rgba(255,45,120,.65)} }
+        @keyframes gradientShift { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+        .cs-confirm-btn.visible { display:inline-block; animation:startBtnGlow 1.5s ease-in-out infinite, gradientShift 3s linear infinite; }
+        .cs-confirm-btn:hover { transform:scale(1.07); }
+
+        /* ── FEATURES ROW ── */
+        .fs-features {
+            display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+            padding:10px 16px; max-width:500px;
+        }
+        .fs-feat {
+            display:flex; flex-direction:column; align-items:center; gap:2px;
+            background:rgba(255,255,255,.75); backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,.9); border-radius:14px;
+            padding:8px 12px; font-size:10px; font-weight:800; color:#444;
+            box-shadow:0 2px 10px rgba(0,0,0,.06);
+            transition:transform .2s;
+        }
+        .fs-feat:hover { transform:translateY(-3px); }
+        .fs-feat-icon { font-size:20px; }
+
+        /* Hide old cs- classes */
+        .cs-logo,.cs-title,.cs-sub,.cs-question,.cs-options { display:none!important; }
+        #cs-summary { display:none!important; }
+
+
         /* ========== GAME SCREEN ========== */
         #game-screen { display: none; position: relative; z-index: 1; }
+
+        /* 3-COLUMN GAME LAYOUT */
+        #game-main-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            min-height: calc(100vh - 50px);
+            padding: 0;
+        }
+
+        /* LEFT SIDEBAR */
+        #game-left-panel {
+            width: 220px;
+            min-width: 180px;
+            max-width: 240px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px 8px;
+            background: rgba(15, 5, 50, 0.45);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            min-height: calc(100vh - 50px);
+        }
+
+        /* RIGHT SIDEBAR */
+        #game-right-panel {
+            width: 220px;
+            min-width: 180px;
+            max-width: 240px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px 8px;
+            background: rgba(15, 5, 50, 0.45);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255,255,255,0.08);
+            min-height: calc(100vh - 50px);
+        }
+
+        /* CENTER BOARD AREA */
+        #game-center-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 4px;
+            overflow: hidden;
+        }
+
+        /* PANEL SECTION CARDS */
+        .side-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            padding: 10px;
+            width: 100%;
+        }
+        .side-card-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 7px;
+        }
+
+        /* Score cards in sidebar */
+        .score-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            max-width: unset;
+        }
+        .score-card {
+            border-radius: 12px; padding: 10px;
+            text-align: center; border: 2px solid transparent;
+            background: rgba(255,255,255,0.9); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        /* Powers in sidebar */
+        #powers-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-wrap: nowrap;
+            padding: 0;
+            width: 100%;
+        }
+        .power-btn {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        /* Turn banner in right panel */
+        #turn-banner {
+            margin: 0;
+            max-width: 100%;
+            font-size: clamp(11px, 1.8vw, 14px);
+            padding: 8px 12px;
+            border-radius: 12px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Feedback bar in right panel */
+        #feedback-bar {
+            text-align: center; font-weight: 800;
+            font-size: clamp(11px, 1.6vw, 13px); padding: 8px 10px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.9); color: #333;
+            margin: 0;
+            max-width: 100%;
+            min-height: 36px; display: flex; align-items: center; justify-content: center;
+            width: 100%;
+            line-height: 1.4;
+        }
+
+        /* Streak banner in right panel */
+        #streak-banner {
+            background: linear-gradient(135deg, #2D1B69, #4a32a8);
+            color: white; text-align: center;
+            font-weight: 800; font-size: 10px; padding: 8px;
+            border-radius: 12px;
+            line-height: 1.5;
+        }
+
+        /* Timer bar in right panel */
+        #timer-bar {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 10px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            border-radius: 12px;
+            width: 100%;
+        }
+        #timer-progress {
+            flex: 1; height: 8px;
+            background: rgba(0,0,0,0.2); border-radius: 4px; overflow: hidden;
+            max-width: unset;
+        }
+        #timer-display {
+            font-size: 20px; font-weight: 800; color: #FFD700;
+            font-variant-numeric: tabular-nums; transition: color 0.3s;
+            min-width: 36px; text-align: center;
+        }
+
+        /* Legend in sidebar */
+        .legend-panel {
+            display: flex; flex-direction: column; gap: 5px;
+            flex-wrap: nowrap; padding: 0; font-size: 11px; font-weight: 700; color: #fff;
+            justify-content: flex-start;
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; color: #fff; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+        /* Board wrapper stays centered */
+        .board-wrapper {
+            max-width: 580px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 8px;
+            position: relative;
+        }
+
+        /* SL legend below board */
+        .sl-legend {
+            display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+            padding: 6px 12px;
+            font-size: 11px; font-weight: 700;
+        }
+
+        /* Score-grid inside board-wrapper (move out) */
+        .score-grid-inline {
+            display: none;
+        }
+
+        /* Restart btn */
+        #restart-btn {
+            display: none; margin: 10px auto;
+            background: linear-gradient(90deg,#11998e,#38ef7d);
+            color: white; font-size: 14px; font-weight: 800;
+            padding: 10px 24px; border-radius: 30px; border: none;
+            cursor: pointer; font-family: 'Baloo 2', sans-serif;
+            width: 100%;
+        }
+
+        /* Mobile: stack layout */
+        /* ══════════════════════════════════════
+           MOBILE FRIENDLY — Full Responsive
+        ══════════════════════════════════════ */
+
+        /* ── 768px: Tablet ── */
+        @media (max-width: 768px) {
+
+          /* Game: stack panels vertically */
+          #game-main-layout { flex-direction: column; }
+
+          #game-left-panel, #game-right-panel {
+            width: 100%; max-width: 100%; min-height: unset;
+            border: none; border-bottom: 1px solid rgba(255,255,255,0.08);
+            flex-direction: row; flex-wrap: wrap; padding: 8px 10px; gap: 8px;
+          }
+          #game-center-panel { width: 100%; padding: 6px 8px; }
+
+          /* Score cards side by side */
+          .score-grid { flex-direction: row; gap: 6px; }
+          .score-card { flex: 1; min-width: 0; padding: 8px 6px; }
+
+          /* Powers in a row */
+          #powers-bar { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+          .power-btn  { width: auto; flex: 1; min-width: 90px; font-size: 11px; padding: 5px 8px; }
+
+          /* Legend horizontal */
+          .legend-panel { flex-direction: row; flex-wrap: wrap; gap: 5px; font-size: 10px; }
+
+          /* Side cards auto-width */
+          .side-card { flex: 1; min-width: 140px; }
+
+          /* Board */
+          .board-wrapper { max-width: 100%; padding: 4px; }
+          .ludo-board    { gap: 2px; padding: 6px; }
+
+          /* Navbar */
+          .navbar   { padding: 8px 12px; }
+          .navbar h1 { font-size: 12px; }
+          #turn-banner { font-size: 12px; padding: 6px 12px; }
+
+          /* First screen */
+          .fs-hero  { border-radius: 0 0 22px 22px; padding: 14px 16px 18px; }
+          .fs-cards { gap: 12px; }
+          .mode-main-content { flex-direction: column; gap: 20px; }
+          .mode-cards { gap: 10px; }
+        }
+
+        /* ── 480px: Mobile ── */
+        @media (max-width: 480px) {
+
+          /* Panels */
+          #game-left-panel, #game-right-panel { padding: 6px 8px; }
+
+          /* Score */
+          .score-card   { padding: 6px 5px; }
+          .score-label  { font-size: 11px; }
+          .score-pos    { font-size: 11px; }
+          .score-streak, .score-powers { font-size: 9px; }
+
+          /* Powers */
+          .power-btn   { font-size: 10px; padding: 4px 6px; min-width: 80px; }
+          .power-count { font-size: 9px; }
+
+          /* Timer */
+          #timer-display { font-size: 16px; min-width: 28px; }
+          #timer-bar     { padding: 5px 8px; gap: 5px; }
+
+          /* Messages */
+          #feedback-bar  { font-size: 11px; padding: 6px 8px; min-height: 30px; }
+          #turn-banner   { font-size: 11px; padding: 5px 10px; border-radius: 10px; }
+          #streak-banner { font-size: 9px;  padding: 6px; }
+
+          /* Board cells */
+          .ludo-board { gap: 1px; padding: 5px; border-width: 2px; }
+          .cell       { border-radius: 5px; }
+          .cell-num   { font-size: 6px; }
+          .cell-icon  { font-size: 7px; }
+          .cell-dest  { font-size: 5px; padding: 0 2px; }
+          .token      { width: 10px; height: 10px; }
+
+          /* Navbar */
+          .back-btn  { padding: 4px 8px; font-size: 10px; }
+          .sound-btn { padding: 4px 6px;  font-size: 11px; }
+          .mode-pill { font-size: 9px; padding: 2px 6px; }
+          .navbar h1 { font-size: 11px; }
+
+          /* Question panel */
+          .q-side-text   { font-size: 15px; }
+          .q-side-input  { font-size: 15px; }
+          .q-side-btn    { font-size: 13px; }
+          #question-panel .side-card-title { font-size: 10px; }
+
+          /* First screen — hero */
+          .fs-hero { padding: 10px 12px 14px; }
+          .fs-snake-left, .fs-snake-right { font-size: 16px; top: 8px; }
+          .fs-logo { font-size: clamp(26px,6vw,40px); }
+          .fs-title-line1, .fs-title-line2 { font-size: clamp(15px,5vw,24px); }
+          .fs-title-amp { font-size: clamp(11px,3vw,16px); }
+          .fs-title-sub { font-size: clamp(8px,2vw,11px); letter-spacing:.06em; }
+
+          /* Tagline */
+          .fs-tagline-row { gap: 4px; margin-bottom: 8px; }
+          .fs-tag-pill    { font-size: 10px; padding: 3px 10px; }
+          .fs-tag-dot     { font-size: 14px; }
+          .fs-choose-label { font-size: 11px; margin-bottom: 8px; }
+
+          /* Mode cards */
+          .fs-cards { gap: 10px; }
+          .fs-card  { width: clamp(118px, 42vw, 148px); padding: 10px 8px 9px; border-radius: 16px; gap: 4px; }
+          .fs-card-icon-wrap { width: 44px; height: 44px; font-size: 22px; }
+          .fs-card-title { font-size: 13px; }
+          .fs-card-desc  { font-size: 10px; }
+          .fs-card-fun   { display: none; }
+          .fs-card-btn   { padding: 4px 10px; font-size: 9px; }
+          .fs-best-badge { font-size: 8px; padding: 3px 7px; }
+
+          /* Difficulty */
+          .fs-diff-title { font-size: 12px; }
+          .cs-diff-btn   { padding: 7px 12px; font-size: 11px; }
+
+          /* Start button */
+          .cs-confirm-btn { padding: 12px 32px; font-size: 15px; }
+
+          /* Emoji rain smaller */
+          .rain-emoji { font-size: 15px; }
+
+          /* Win modal */
+          .modal-box    { padding: 18px 14px; max-width: 280px; }
+          .modal-box h2 { font-size: 20px; }
+          .modal-box p  { font-size: 12px; }
+          .modal-btn    { font-size: 13px; padding: 8px 16px; }
+        }
+
+        /* ── 360px: Very small phones ── */
+        @media (max-width: 360px) {
+          .fs-card  { width: clamp(108px, 44vw, 134px); padding: 9px 7px; }
+          .fs-card-icon-wrap { width: 38px; height: 38px; font-size: 18px; }
+          .score-grid { flex-direction: column; }
+          .ludo-board { gap: 1px; padding: 3px; }
+          .cell-num   { font-size: 5px; }
+          .cell-icon  { font-size: 6px; }
+          .navbar h1  { font-size: 10px; }
+        }
+
+        /* ── Touch devices: disable hover effects ── */
+        @media (hover: none) and (pointer: coarse) {
+          .fs-card:hover       { transform: none; box-shadow: inherit; }
+          .mode-card:hover     { transform: none; box-shadow: none; border-color: inherit; }
+          .power-btn:hover     { transform: none; }
+          .cs-diff-btn:hover   { transform: none; opacity: inherit; }
+          .cs-confirm-btn:hover { transform: none; }
+        }
 
         .navbar {
             background: linear-gradient(90deg, #2D1B69, #1a0a3e);
             padding: 10px 20px; display: flex; align-items: center;
             justify-content: space-between; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 200;
         }
         .navbar h1 {
             font-size: clamp(12px, 2.2vw, 18px); font-weight: 800;
@@ -289,56 +1074,206 @@
 
         .legend-panel {
             display: flex; justify-content: center; gap: 12px;
-            flex-wrap: wrap; padding: 5px 12px; font-size: 11px; font-weight: 700; color: #444;
+            flex-wrap: wrap; padding: 5px 12px; font-size: 11px; font-weight: 700; color: #fff;
         }
-        .legend-item { display: flex; align-items: center; gap: 4px; }
+        .legend-item { display: flex; align-items: center; gap: 4px; color: #fff; }
         .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
 
-        .board-wrapper { max-width: 640px; margin: 0 auto; padding: 8px; }
-        .ludo-board {
-            display: grid; grid-template-columns: repeat(10, 1fr);
-            gap: 2px; background: #e4ecf7; padding: 8px;
-            border-radius: 16px; border: 3px solid #2D1B69;
-            box-shadow: 0 10px 30px rgba(45,27,105,0.1);
+        .board-wrapper {
+            max-width: 640px; margin: 0 auto; padding: 8px;
             position: relative;
         }
+        /* Board outer 3D frame */
+        .board-wrapper::before {
+            content: '';
+            position: absolute; inset: -6px;
+            border-radius: 22px;
+            background: linear-gradient(145deg, #FFD700, #FF6B35, #FF2D78, #9400d3, #00C6FF, #FFD700);
+            background-size: 300% 300%;
+            animation: borderSpin 4s linear infinite;
+            z-index: -1;
+        }
+        @keyframes borderSpin { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+
+        .ludo-board {
+            display: grid; grid-template-columns: repeat(10, 1fr);
+            gap: 3px;
+            background: linear-gradient(135deg, #1a0a3e, #2D1B69);
+            padding: 10px;
+            border-radius: 18px;
+            border: 4px solid #FFD700;
+            box-shadow:
+                0 0 0 6px rgba(45,27,105,0.6),
+                0 20px 60px rgba(0,0,0,0.5),
+                inset 0 2px 4px rgba(255,255,255,0.1);
+            position: relative;
+        }
+
         .cell {
-            aspect-ratio: 1; border-radius: 6px;
+            aspect-ratio: 1; border-radius: 8px;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             font-weight: 800; position: relative;
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.15s, box-shadow 0.15s;
         }
-        .cell-a { background: #ffffff; color: #2D1B69; }
-        .cell-b { background: #f0f4f8; color: #1e88e5; }
-        .cell-c { background: #eafaf1; color: #2e7d32; }
-        .cell-d { background: #fff9e6; color: #e65100; }
-        .cell-start { background: #e0e0e0 !important; color: #333 !important; }
-        .cell-end { background: linear-gradient(135deg,#ffb800,#ff9100) !important; color: #fff !important; border: 2px solid var(--gold) !important; box-shadow: 0 0 15px rgba(255,184,0,0.6); }
-        .cell-snake-head { background: linear-gradient(135deg,#ffebee,#ffcdd2) !important; color: #c62828 !important; border: 1.5px dashed #c62828 !important;}
-        .cell-ladder-base { background: linear-gradient(135deg,#e8f5e9,#c8e6c9) !important; color: #2e7d32 !important; border: 1.5px dashed #2e7d32 !important;}
+        /* alternating checkerboard cells */
+        .cell-a { background: linear-gradient(135deg, #f8f0ff, #ede0ff); color: #4a0080; }
+        .cell-b { background: linear-gradient(135deg, #e8f4ff, #d0e8ff); color: #003d80; }
+        .cell-c { background: linear-gradient(135deg, #e8fff4, #c8f0de); color: #005030; }
+        .cell-d { background: linear-gradient(135deg, #fff8e8, #ffe8c0); color: #7a3800; }
+        .cell-start { background: linear-gradient(135deg,#636363,#888) !important; color: #fff !important; }
+        .cell-end {
+            background: linear-gradient(135deg,#FFD700,#ff9100) !important;
+            color: #fff !important;
+            border: 2px solid #FFD700 !important;
+            box-shadow: 0 0 20px rgba(255,200,0,0.8), inset 0 0 10px rgba(255,255,255,0.3) !important;
+            animation: endPulse 1.2s ease-in-out infinite;
+        }
+        @keyframes endPulse { 0%,100%{box-shadow:0 0 15px rgba(255,200,0,0.6);} 50%{box-shadow:0 0 35px rgba(255,200,0,1);} }
+        .cell-snake-head {
+            background: linear-gradient(135deg,#ff1744,#b71c1c) !important;
+            color: #fff !important;
+            border: 2px solid #ff4444 !important;
+            box-shadow: 0 0 12px rgba(255,50,50,0.6) !important;
+            animation: snakePulse 1s ease-in-out infinite;
+        }
+        @keyframes snakePulse { 0%,100%{box-shadow:0 0 8px rgba(255,50,50,0.4);} 50%{box-shadow:0 0 20px rgba(255,50,50,0.9);} }
+        .cell-ladder-base {
+            background: linear-gradient(135deg,#00c853,#1b5e20) !important;
+            color: #fff !important;
+            border: 2px solid #69f0ae !important;
+            box-shadow: 0 0 12px rgba(0,200,80,0.6) !important;
+            animation: ladderPulse 1s ease-in-out infinite;
+        }
+        @keyframes ladderPulse { 0%,100%{box-shadow:0 0 8px rgba(0,200,80,0.4);} 50%{box-shadow:0 0 20px rgba(0,200,80,0.9);} }
+
+        /* Destination cells */
+        .cell-snake-tail {
+            background: linear-gradient(135deg,#ff6d00,#bf360c) !important;
+            color: #fff !important;
+            border: 2px dashed #ff9100 !important;
+            box-shadow: 0 0 10px rgba(255,109,0,0.5) !important;
+        }
+        .cell-ladder-top {
+            background: linear-gradient(135deg,#b9f6ca,#1b5e20) !important;
+            color: #fff !important;
+            border: 2px dashed #00e676 !important;
+            box-shadow: 0 0 10px rgba(0,230,118,0.5) !important;
+        }
+
+        /* Destination number label inside cell */
+        .cell-dest {
+            display: block;
+            font-size: clamp(7px, 1.1vw, 10px);
+            font-weight: 900;
+            line-height: 1;
+            border-radius: 4px;
+            padding: 1px 3px;
+            margin-top: 1px;
+        }
+        .cell-dest-snake  { background: rgba(0,0,0,0.35); color: #ffcdd2; }
+        .cell-dest-ladder { background: rgba(0,0,0,0.35); color: #ccff90; }
+
+        /* SVG connector overlay */
+        #board-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: visible;
+        }
+        /* SVG drawn dynamically via JS */
+
+        /* Legend */
+        .sl-legend {
+            display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+            padding: 6px 12px;
+            font-size: 12px; font-weight: 700;
+        }
+        .sl-legend-item { display: flex; align-items: center; gap: 5px; color: #fff; }
+        .sl-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
         .cell-bonus { background: linear-gradient(135deg,#f3e5f5,#e1bee7) !important; color: #6a1b9a !important; }
         .cell-portal { background: linear-gradient(135deg,#e1f5fe,#b3e5fc) !important; color: #0277bd !important; animation: portalPulse 1.5s ease-in-out infinite; }
         @keyframes portalPulse { 0%,100%{box-shadow:0 0 4px rgba(2,119,189,0.2);} 50%{box-shadow:0 0 12px rgba(2,119,189,0.5);} }
         .cell-charmed { background: linear-gradient(135deg,#fff8e1,#ffecb3) !important; color: #f57f17 !important; }
         .cell-num { font-size: clamp(8px,1.3vw,13px); line-height: 1; z-index: 1; font-weight: 700; }
-        .cell-icon { font-size: clamp(9px,1.6vw,15px); line-height: 1; margin-top: 2px;}
+        .cell-icon { font-size: clamp(7px,1.1vw,11px); line-height: 1; margin-top: 1px;}
         .token-layer {
             position: absolute; inset: 0;
             display: flex; align-items: center; justify-content: center; gap: 1px;
             z-index: 10; pointer-events: none;
         }
         .token {
-            width: clamp(12px,2vw,20px); height: clamp(12px,2vw,20px);
-            border-radius: 50%; border: 2px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            animation: tokenBounce 0.5s ease-in-out infinite alternate;
+            width: clamp(14px,2.2vw,22px); height: clamp(14px,2.2vw,22px);
+            border-radius: 50%; border: 2.5px solid rgba(255,255,255,0.9);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.5), inset 0 -2px 4px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+            animation: tokenBounce 0.6s ease-in-out infinite alternate;
+            position: relative;
         }
-        .token-1 { background: radial-gradient(circle at 35% 35%,#ff6b6b,#c0392b); }
-        .token-2 { background: radial-gradient(circle at 35% 35%,#b388ff,#7b1fa2); }
-        .token-2-human { background: radial-gradient(circle at 35% 35%,#74b9ff,#1565C0); }
-        @keyframes tokenBounce { from{transform:translateY(0) scale(1);} to{transform:translateY(-3px) scale(1.05);} }
-        .active-cell { box-shadow: 0 0 0 3px #2D1B69, 0 0 10px rgba(45,27,105,0.3) !important; z-index: 20; }
+        .token-1 {
+            background: radial-gradient(circle at 35% 30%, #ff9999, #e53935, #7f0000);
+            box-shadow: 0 0 12px rgba(229,57,53,0.7), 0 3px 8px rgba(0,0,0,0.4);
+        }
+        .token-2 {
+            background: radial-gradient(circle at 35% 30%, #ce93d8, #8e24aa, #4a0072);
+            box-shadow: 0 0 12px rgba(142,36,170,0.7), 0 3px 8px rgba(0,0,0,0.4);
+        }
+        .token-2-human {
+            background: radial-gradient(circle at 35% 30%, #81d4fa, #1e88e5, #0d47a1);
+            box-shadow: 0 0 12px rgba(30,136,229,0.7), 0 3px 8px rgba(0,0,0,0.4);
+        }
+        @keyframes tokenBounce { from{transform:translateY(0) scale(1);} to{transform:translateY(-4px) scale(1.1);} }
+
+        /* Step highlight when token passes through */
+        /* Floating path token — rides ladder / snake */
+        #path-token {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.95);
+            box-shadow: 0 0 18px 4px rgba(255,215,0,0.9), 0 4px 12px rgba(0,0,0,0.5);
+            pointer-events: none;
+            z-index: 50;
+            display: none;
+            transform: translate(-50%, -50%);
+            transition: none;
+        }
+        #path-token.p1 {
+            background: radial-gradient(circle at 35% 30%, #ff9999, #e53935, #7f0000);
+        }
+        #path-token.p2 {
+            background: radial-gradient(circle at 35% 30%, #ce93d8, #8e24aa, #4a0072);
+        }
+        #path-token.p2h {
+            background: radial-gradient(circle at 35% 30%, #81d4fa, #1e88e5, #0d47a1);
+        }
+        @keyframes tokenSpin {
+            0%   { box-shadow: 0 0 14px 4px rgba(255,215,0,0.9), 0 0 0 0 rgba(255,215,0,0); }
+            50%  { box-shadow: 0 0 28px 8px rgba(255,215,0,1.0), 0 0 40px 10px rgba(255,100,0,0.4); }
+            100% { box-shadow: 0 0 14px 4px rgba(255,215,0,0.9), 0 0 0 0 rgba(255,215,0,0); }
+        }
+        #path-token.riding { animation: tokenSpin 0.4s ease-in-out infinite; }
+
+        .cell.step-highlight {
+            transform: scale(1.12);
+            box-shadow: 0 0 0 3px #FFD700, 0 0 18px rgba(255,215,0,0.8) !important;
+            z-index: 30;
+        }
+        .cell.snake-step {
+            box-shadow: 0 0 0 3px #ff1744, 0 0 18px rgba(255,23,68,0.9) !important;
+            transform: scale(1.08);
+            z-index: 30;
+        }
+        .cell.ladder-step {
+            box-shadow: 0 0 0 3px #00e676, 0 0 18px rgba(0,230,118,0.9) !important;
+            transform: scale(1.08);
+            z-index: 30;
+        }
+        .active-cell {
+            box-shadow: 0 0 0 3px #FFD700, 0 0 16px rgba(255,215,0,0.6) !important;
+            z-index: 20;
+        }
 
         .flap-holder {
             position: absolute; bottom: 105%; left: 50%;
@@ -380,15 +1315,58 @@
             font-family: 'Baloo 2', sans-serif;
         }
 
-        .cpu-thinking {
-            background: #ffffff;
-            border: 2px solid #9400d3; border-radius: 12px; padding: 12px;
-            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* Question panel in right sidebar */
+        #question-panel {
+            display: none;
         }
-        .cpu-thinking .cpu-icon { font-size: 28px; animation: spin 1s linear infinite; display: block; margin-bottom: 6px; }
-        .cpu-thinking p { font-size: 13px; font-weight: 700; color: #9400d3; }
+        #question-panel.active {
+            display: block;
+        }
+        .q-side-card {
+            background: rgba(255,255,255,0.95);
+            border: 2px solid #2D1B69;
+            border-radius: 14px;
+            padding: 12px;
+            color: #333;
+        }
+        .q-side-label {
+            font-size: 10px; color: #666; font-weight: 700;
+            text-align: center; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .06em;
+        }
+        .q-side-text {
+            background: linear-gradient(90deg,#2D1B69,#4a32a8);
+            border-radius: 8px; padding: 8px 10px;
+            font-size: clamp(14px,2.5vw,18px); font-weight: 800; color: white;
+            text-align: center; margin-bottom: 8px;
+        }
+        .q-side-input {
+            width: 100%; background: #f0f4f8;
+            border: 1.5px solid #2D1B69; border-radius: 8px;
+            color: #333; font-size: 16px; font-weight: 800;
+            text-align: center; padding: 6px 8px;
+            font-family: 'Baloo 2', sans-serif; outline: none;
+            margin-bottom: 6px; display: block;
+        }
+        .q-side-input:focus { border-color: #FF6B35; background: white; }
+        .q-side-btn {
+            width: 100%; background: linear-gradient(90deg,#FF6B35,#FF2D78);
+            border: none; border-radius: 8px; color: white;
+            font-size: 14px; font-weight: 800; padding: 8px;
+            cursor: pointer; font-family: 'Baloo 2', sans-serif;
+        }
+        /* cpu thinking in right panel */
+        .cpu-side-think {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(148,0,211,0.5);
+            border-radius: 12px; padding: 14px;
+            text-align: center; color: #fff;
+        }
         .thinking-dots::after { content: '...'; animation: dots 1.2s steps(4,end) infinite; }
         @keyframes dots { 0%{content:'';} 33%{content:'.';} 66%{content:'..';} 100%{content:'...';} }
+        @keyframes spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+
+        /* hide flap holders - questions now in sidebar */
+        .flap-holder { display: none !important; }
 
         #feedback-bar {
             text-align: center; font-weight: 800;
@@ -396,15 +1374,6 @@
             border-radius: 20px; background: #ffffff; color: #333;
             margin: 6px auto; max-width: 600px; border: 1px solid rgba(0,0,0,0.05);
             min-height: 36px; display: flex; align-items: center; justify-content: center;
-        }
-        .score-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-            max-width: 640px; margin: 6px auto; padding: 0 8px;
-        }
-        .score-card {
-            border-radius: 12px; padding: 10px;
-            text-align: center; border: 2px solid transparent;
-            background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
         .score-p1 { border-color: rgba(231,76,60,0.2); }
         .score-p2 { border-color: rgba(148,0,211,0.2); }
@@ -475,7 +1444,18 @@
 </head>
 <body>
 
-<div id="bg-canvas"></div>
+<div id="anim-bg"></div>
+<div id="bg-canvas">
+  <!-- 3D floating cubes/shapes -->
+  <div class="shape3d" style="width:60px;height:60px;background:linear-gradient(135deg,#9400d3,#FF2D78);top:8%;left:6%;animation-duration:9s;animation-name:float3d;"></div>
+  <div class="shape3d" style="width:40px;height:40px;background:linear-gradient(135deg,#FFD700,#FF6B35);top:20%;right:8%;border-radius:50%;animation-duration:7s;animation-name:drift;"></div>
+  <div class="shape3d" style="width:80px;height:80px;background:linear-gradient(135deg,#00C6FF,#0072ff);top:55%;left:3%;border-radius:50% 20%;animation-duration:11s;animation-name:float3d;opacity:0.1;"></div>
+  <div class="shape3d" style="width:50px;height:50px;background:linear-gradient(135deg,#FF6B35,#FFD700);bottom:25%;right:5%;animation-duration:8s;animation-name:drift;"></div>
+  <div class="shape3d" style="width:30px;height:30px;background:linear-gradient(135deg,#00FF88,#00C6FF);top:70%;left:12%;border-radius:50%;animation-duration:6s;animation-name:float3d;opacity:0.15;"></div>
+  <div class="shape3d" style="width:70px;height:70px;background:linear-gradient(135deg,#FF2D78,#9400d3);bottom:10%;left:40%;border-radius:14px;animation-duration:13s;animation-name:drift;opacity:0.08;"></div>
+  <div class="shape3d" style="width:25px;height:25px;background:#FFD700;top:40%;right:12%;border-radius:50%;animation-duration:5s;animation-name:float3d;opacity:0.2;"></div>
+  <div class="shape3d" style="width:55px;height:55px;background:linear-gradient(135deg,#38ef7d,#11998e);top:5%;left:50%;border-radius:10px;animation-duration:10s;animation-name:drift;opacity:0.09;"></div>
+</div>
 
 <!-- Special Effect Overlay -->
 <div class="effect-overlay" id="effect-overlay">
@@ -486,8 +1466,111 @@
     </div>
 </div>
 
-<!-- ========== MODE SELECT SCREEN ========== -->
-<div id="mode-screen">
+<!-- ========== FIRST SCREEN ========== -->
+<div id="confirm-screen">
+
+  <!-- Animated rain of emojis (JS injected) -->
+  <div id="emoji-rain"></div>
+
+  <!-- Animated stars burst (JS injected) -->
+  <div id="star-burst"></div>
+
+  <!-- TOP HERO BANNER -->
+  <div class="fs-hero">
+    <div class="fs-snake-left">🐍</div>
+    <div class="fs-snake-right">🪜</div>
+
+    <div class="fs-logo-wrap">
+      <div class="fs-logo-ring"></div>
+      <div class="fs-logo">🎲</div>
+    </div>
+
+    <div class="fs-title-wrap">
+      <div class="fs-title-line1">🐍 SNAKE</div>
+      <div class="fs-title-amp">&amp;</div>
+      <div class="fs-title-line2">LADDER 🪜</div>
+      <div class="fs-title-sub">✨ MATH ADVENTURE ✨</div>
+    </div>
+
+    <!-- Bouncing characters -->
+    <div class="fs-char" style="left:2%;animation-delay:0s">🧒</div>
+    <div class="fs-char" style="right:2%;animation-delay:.5s">👧</div>
+    <div class="fs-char fs-char-small" style="left:12%;top:30%;animation-delay:1s">⭐</div>
+    <div class="fs-char fs-char-small" style="right:12%;top:30%;animation-delay:1.3s">🏆</div>
+    <div class="fs-char fs-char-small" style="left:22%;top:70%;animation-delay:.7s">🎯</div>
+    <div class="fs-char fs-char-small" style="right:22%;top:70%;animation-delay:.3s">🎲</div>
+  </div>
+
+  <!-- TAGLINE -->
+  <div class="fs-tagline-row">
+    <span class="fs-tag-pill">🧮 Math</span>
+    <span class="fs-tag-dot">+</span>
+    <span class="fs-tag-pill" style="background:linear-gradient(90deg,#FF2D78,#c0392b)">🎮 Fun</span>
+    <span class="fs-tag-dot">+</span>
+    <span class="fs-tag-pill" style="background:linear-gradient(90deg,#11998e,#38ef7d);color:#1a3a1a">🏆 Win</span>
+  </div>
+
+  <!-- CHOOSE MODE LABEL -->
+  <div class="fs-choose-label">
+    <span class="fs-arrow">▼</span> Choose Your Game Mode <span class="fs-arrow">▼</span>
+  </div>
+
+  <!-- MODE CARDS -->
+  <div class="fs-cards">
+
+    <!-- 2 Players Card -->
+    <div class="fs-card fs-card-vs" id="cs-card-vs" onclick="csSelectMode('vs')">
+      <div class="fs-card-shine"></div>
+      <div class="fs-card-icon-wrap vs-wrap">
+        <span>👥</span>
+      </div>
+      <div class="fs-card-title">2 Players</div>
+      <div class="fs-card-desc">Play with your<br>friend or sibling!</div>
+      <div class="fs-card-fun">👫 Challenge each other!</div>
+      <div class="fs-card-btn vs-btn">SELECT ▶</div>
+    </div>
+
+    <!-- VS Computer Card -->
+    <div class="fs-card fs-card-cpu" id="cs-card-cpu" onclick="csSelectMode('cpu')">
+      <div class="fs-card-shine"></div>
+      <div class="fs-best-badge">⭐ Most Popular</div>
+      <div class="fs-card-icon-wrap cpu-wrap">
+        <span>🤖</span>
+      </div>
+      <div class="fs-card-title">vs Computer</div>
+      <div class="fs-card-desc">Can you beat<br>the smart AI?</div>
+      <div class="fs-card-fun">🧠 Beat the Robot!</div>
+      <div class="fs-card-btn cpu-btn">SELECT ▶</div>
+    </div>
+
+  </div>
+
+  <!-- DIFFICULTY -->
+  <div id="cs-diff-row">
+    <div class="fs-diff-title">🎯 How hard should the Computer be?</div>
+    <div class="cs-diff-btns">
+      <button class="cs-diff-btn cs-diff-easy"   onclick="csSetDiff('easy')"  >😊 Easy<br><span style="font-size:9px;font-weight:600">Perfect for beginners</span></button>
+      <button class="cs-diff-btn cs-diff-medium" onclick="csSetDiff('medium')">😤 Medium<br><span style="font-size:9px;font-weight:600">A good challenge</span></button>
+      <button class="cs-diff-btn cs-diff-hard"   onclick="csSetDiff('hard')"  >🔥 Hard<br><span style="font-size:9px;font-weight:600">For math champions!</span></button>
+    </div>
+  </div>
+
+  <!-- HIDDEN SUMMARY (JS compat) -->
+  <div id="cs-summary" style="display:none!important">
+    <div class="sum-label">Your Selection</div>
+    <div class="sum-val" id="cs-sum-val">—</div>
+    <div class="sum-diff" id="cs-sum-diff"></div>
+  </div>
+
+  <!-- START BUTTON -->
+  <button class="cs-confirm-btn" id="cs-confirm-btn" onclick="csConfirm()">
+    🚀 LET'S PLAY!
+  </button>
+
+
+</div>
+
+<div id="mode-screen" style="display:none;">
     <div class="mode-logo">🎲</div>
     <div class="mode-title">Snake & Ladder<br>Math Adventure</div>
     <div class="mode-subtitle">Solve math questions and move forward! 🚀</div>
@@ -598,66 +1681,120 @@
         </div>
     </nav>
 
-    <div id="timer-bar">
-        <span style="font-size:13px;font-weight:800;color:#333">⏱️</span>
-        <div id="timer-progress"><div id="timer-fill"></div></div>
-        <div id="timer-display">15</div>
-        <span style="font-size:11px;font-weight:700;color:#666">sec</span>
-    </div>
+    <!-- 3-COLUMN LAYOUT -->
+    <div id="game-main-layout">
 
-    <div id="streak-banner">
-        ⚡ <span id="p1-streak-top">P1: 0🔥</span> &nbsp;|&nbsp;
-        <span id="p2-streak-top">P2: 0🔥</span> &nbsp;|&nbsp;
-        🎯 3x Streak = Unlock Safe Shield 🛡️ (Max 1)
-    </div>
+        <!-- ===== LEFT PANEL: Players & Powers ===== -->
+        <div id="game-left-panel">
 
-    <div id="turn-banner" class="turn-p1">🔴 Player 1's Turn — Answer!</div>
-
-    <!-- Powers Bar -->
-    <div id="powers-bar">
-        <button class="power-btn shield-btn" id="shield-p1-btn" onclick="useShield(1)" title="Safe Shield — protects from snake once!">
-            🛡️ P1 Shield <span class="power-count" id="shield-p1-count">0</span>
-        </button>
-        <button class="power-btn charmer-btn" id="charmer-p1-btn" onclick="useSnakeCharmer(1)" title="Turn a snake into a ladder temporarily!">
-            🪄 P1 Charmer <span class="power-count" id="charmer-p1-count">1</span>
-        </button>
-        <button class="power-btn shield-btn" id="shield-p2-btn" onclick="useShield(2)" title="Safe Shield — protects from snake once!">
-            🛡️ P2 Shield <span class="power-count" id="shield-p2-count">0</span>
-        </button>
-        <button class="power-btn charmer-btn" id="charmer-p2-btn" onclick="useSnakeCharmer(2)" title="Turn a snake into a ladder temporarily!">
-            🪄 P2 Charmer <span class="power-count" id="charmer-p2-count">1</span>
-        </button>
-    </div>
-
-    <div class="legend-panel">
-        <div class="legend-item"><div class="legend-dot" style="background:#ffcdd2; border: 1px dashed #c62828"></div>🐍 Snake</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#c8e6c9; border: 1px dashed #2e7d32"></div>🪜 Ladder</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#e1bee7"></div>⭐ Bonus</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#b3e5fc"></div>🌀 Portal</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>🏆 Home</div>
-    </div>
-
-    <div class="board-wrapper">
-        <div id="board" class="ludo-board"></div>
-        <div id="feedback-bar">🎮 Game started! Give 3 correct answers to get a Shield! 🚀</div>
-        <div class="score-grid">
-            <div id="card-p1" class="score-card score-p1 score-active-1">
-                <div class="score-label" id="p1-label">🔴 Player 1</div>
-                <div class="score-pos" id="p1-pos">1 / 100</div>
-                <div class="score-streak" id="p1-streak-card">🔥 0 streak</div>
-                <div class="score-powers" id="p1-powers-status">🛡️ No Shield | 🪄 Charmer Ready</div>
+            <!-- Score Cards -->
+            <div class="side-card">
+                <div class="side-card-title">📊 Players</div>
+                <div class="score-grid">
+                    <div id="card-p1" class="score-card score-p1 score-active-1">
+                        <div class="score-label" id="p1-label">🔴 Player 1</div>
+                        <div class="score-pos" id="p1-pos">1 / 100</div>
+                        <div class="score-streak" id="p1-streak-card">🔥 0 streak</div>
+                        <div class="score-powers" id="p1-powers-status">🛡️ No Shield | 🪄 Charmer Ready</div>
+                    </div>
+                    <div id="card-p2" class="score-card score-p2">
+                        <div class="score-label" id="p2-label">🤖 Computer</div>
+                        <div class="score-pos" id="p2-pos">1 / 100</div>
+                        <div class="score-streak" id="p2-streak-card">🔥 0 streak</div>
+                        <div class="score-powers" id="p2-powers-status">🛡️ No Shield | 🪄 Charmer Ready</div>
+                    </div>
+                </div>
             </div>
-            <div id="card-p2" class="score-card score-p2">
-                <div class="score-label" id="p2-label">🤖 Computer</div>
-                <div class="score-pos" id="p2-pos">1 / 100</div>
-                <div class="score-streak" id="p2-streak-card">🔥 0 streak</div>
-                <div class="score-powers" id="p2-powers-status">🛡️ No Shield | 🪄 Charmer Ready</div>
+
+            <!-- Powers Bar -->
+            <div class="side-card">
+                <div class="side-card-title">⚡ Powers</div>
+                <div id="powers-bar">
+                    <button class="power-btn shield-btn" id="shield-p1-btn" onclick="useShield(1)" title="Safe Shield — protects from snake once!">
+                        🛡️ P1 Shield <span class="power-count" id="shield-p1-count">0</span>
+                    </button>
+                    <button class="power-btn charmer-btn" id="charmer-p1-btn" onclick="useSnakeCharmer(1)" title="Turn a snake into a ladder temporarily!">
+                        🪄 P1 Charmer <span class="power-count" id="charmer-p1-count">1</span>
+                    </button>
+                    <button class="power-btn shield-btn" id="shield-p2-btn" onclick="useShield(2)" title="Safe Shield — protects from snake once!">
+                        🛡️ P2 Shield <span class="power-count" id="shield-p2-count">0</span>
+                    </button>
+                    <button class="power-btn charmer-btn" id="charmer-p2-btn" onclick="useSnakeCharmer(2)" title="Turn a snake into a ladder temporarily!">
+                        🪄 P2 Charmer <span class="power-count" id="charmer-p2-count">1</span>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div style="text-align:center">
+
+            <!-- Legend -->
+            <div class="side-card">
+                <div class="side-card-title">🗺️ Legend</div>
+                <div class="legend-panel">
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#ff1744,#b71c1c);border:2px solid #ff4444;"></div>🐍 Snake head</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#ff6d00,#bf360c);border:1px dashed #ff9100;"></div>🐍 Snake tail</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#00c853,#1b5e20);border:2px solid #69f0ae;"></div>🪜 Ladder start</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#b9f6ca,#1b5e20);border:1px dashed #00e676;"></div>🪜 Ladder top</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);border:1px solid #9c27b0;"></div>⭐ Bonus</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#e1f5fe,#b3e5fc);border:1px solid #0277bd;"></div>🌀 Portal</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#FFD700,#ff9100);border:1px solid #FFD700;"></div>🏆 Home</div>
+                </div>
+            </div>
+
+            <!-- Restart -->
             <button id="restart-btn" onclick="restartGame()">🔄 Play Again</button>
         </div>
-    </div>
+
+        <!-- ===== CENTER PANEL: Board ===== -->
+        <div id="game-center-panel">
+            <div class="board-wrapper" id="board-wrapper" style="position:relative;">
+                <div id="path-token"></div>
+                <div id="board" class="ludo-board"></div>
+                <div class="sl-legend">
+                    <div class="sl-legend-item"><div class="sl-dot" style="background:linear-gradient(135deg,#00c853,#1b5e20);"></div>Ladder start</div>
+                    <div class="sl-legend-item"><div class="sl-dot" style="background:linear-gradient(135deg,#b9f6ca,#1b5e20);border:1px dashed #00e676;"></div>Ladder top</div>
+                    <div class="sl-legend-item"><div class="sl-dot" style="background:linear-gradient(135deg,#ff1744,#b71c1c);"></div>Snake head</div>
+                    <div class="sl-legend-item"><div class="sl-dot" style="background:linear-gradient(135deg,#ff6d00,#bf360c);border:1px dashed #ff9100;"></div>Snake tail</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RIGHT PANEL: Game Messages ===== -->
+        <div id="game-right-panel">
+
+            <!-- Timer -->
+            <div class="side-card">
+                <div class="side-card-title">⏱️ Time Left</div>
+                <div id="timer-bar">
+                    <div id="timer-progress"><div id="timer-fill"></div></div>
+                    <div id="timer-display">15</div>
+                    <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6)">sec</span>
+                </div>
+            </div>
+
+            <!-- Turn Banner -->
+            <div id="turn-banner" class="turn-p1">🔴 Player 1's Turn — Answer!</div>
+
+            <!-- Feedback -->
+            <div class="side-card">
+                <div class="side-card-title">💬 Messages</div>
+                <div id="feedback-bar">🎮 Game started! Give 3 correct answers to get a Shield! 🚀</div>
+            </div>
+
+            <!-- Streak Banner -->
+            <div id="streak-banner">
+                ⚡ <span id="p1-streak-top">P1: 0🔥</span><br>
+                <span id="p2-streak-top">P2: 0🔥</span><br>
+                🎯 3x Streak = Shield 🛡️
+            </div>
+
+            <!-- Question Panel (replaces on-board popup) -->
+            <div class="side-card" id="question-panel">
+                <div class="side-card-title">❓ Question</div>
+                <div id="question-content"></div>
+            </div>
+
+        </div>
+
+    </div><!-- end #game-main-layout -->
 </div>
 
 <div class="sl-info" id="sl-info"></div>
@@ -702,10 +1839,24 @@ function playTimeUp() { playTone(300, 0.4, 'sawtooth', 0.3); setTimeout(() => pl
 function playMove() { playTone(440, 0.05, 'sine', 0.15); }
 
 function stopEventPropagation(e) { if(e && e.stopPropagation) e.stopPropagation(); }
+window.addEventListener('resize', function(){ setTimeout(drawConnectors, 100); });
+
 function toggleSoundGame() { soundOn = !soundOn; updateSoundGameBtn(); }
 function updateSoundGameBtn() { const btn = document.getElementById('sound-btn-game'); btn.textContent = soundOn ? '🔊' : '🔇'; btn.className = soundOn ? 'sound-btn' : 'sound-btn muted'; }
 
-// ========== FLOATING STARS ==========
+// ========== EMOJI RAIN (first screen) ==========
+(function initEmojiRain() {
+    const rain = document.getElementById('emoji-rain');
+    if (!rain) return;
+    const emojis = ['🐍','🪜','⭐','🎲','🏆','🎯','➕','✖️','❓','🌟','💫','🎉'];
+    for (let i = 0; i < 20; i++) {
+        const e = document.createElement('div');
+        e.className = 'rain-emoji';
+        e.textContent = emojis[i % emojis.length];
+        e.style.cssText = `left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*10}s;font-size:${Math.random()*14+14}px;`;
+        rain.appendChild(e);
+    }
+})();
 function initBgEffects() {
     const canvas = document.getElementById('bg-canvas'); canvas.innerHTML = '';
     for (let i=0; i<40; i++) {
@@ -715,6 +1866,68 @@ function initBgEffects() {
     }
 }
 initBgEffects();
+
+// ========== LIGHT ANIMATED BACKGROUND ==========
+(function initAnimBg() {
+    const bg = document.getElementById('anim-bg');
+    if (!bg) return;
+
+    // Bubbles
+    const bubbleColors = [
+        'rgba(138,43,226,0.18)','rgba(255,107,53,0.15)','rgba(0,198,255,0.15)',
+        'rgba(255,45,120,0.13)','rgba(45,27,105,0.14)','rgba(16,185,129,0.14)'
+    ];
+    for (let i = 0; i < 18; i++) {
+        const b = document.createElement('div');
+        b.className = 'anim-bubble';
+        const size = Math.random() * 80 + 20;
+        b.style.cssText = `
+            width:${size}px; height:${size}px;
+            left:${Math.random()*100}%;
+            top:${Math.random()*100}%;
+            background:${bubbleColors[i % bubbleColors.length]};
+            animation-duration:${Math.random()*12+8}s;
+            animation-delay:${Math.random()*10}s;
+        `;
+        bg.appendChild(b);
+    }
+
+    // Confetti dots
+    const dotColors = ['#FF6B35','#2D1B69','#00C6FF','#FF2D78','#FFD700','#10B981'];
+    for (let i = 0; i < 22; i++) {
+        const d = document.createElement('div');
+        d.className = 'anim-dot';
+        d.style.cssText = `
+            left:${Math.random()*100}%;
+            top:${Math.random()*100}%;
+            background:${dotColors[i % dotColors.length]};
+            width:${Math.random()*8+4}px;
+            height:${Math.random()*8+4}px;
+            border-radius:${Math.random()>0.5?'50%':'3px'};
+            animation-duration:${Math.random()*5+3}s;
+            animation-delay:${Math.random()*6}s;
+        `;
+        bg.appendChild(d);
+    }
+
+    // Floating math symbols
+    const syms = ['×','÷','+','−','=','?','1','2','3','🎯','🐍','🪜','⭐','🏆','🎲'];
+    const symColors = ['#2D1B69','#FF6B35','#00C6FF','#FF2D78','#10B981'];
+    for (let i = 0; i < 15; i++) {
+        const m = document.createElement('div');
+        m.className = 'anim-math';
+        m.textContent = syms[i % syms.length];
+        m.style.cssText = `
+            left:${Math.random()*95}%;
+            top:${Math.random()*95}%;
+            color:${symColors[i % symColors.length]};
+            animation-duration:${Math.random()*7+5}s;
+            animation-delay:${Math.random()*8}s;
+            font-size:${Math.random()*20+16}px;
+        `;
+        bg.appendChild(m);
+    }
+})();
 
 // ========== CONSTANTS ==========
 const SNAKES  = {17:7, 54:34, 62:19, 64:60, 87:24, 93:73, 95:75, 99:78};
@@ -740,6 +1953,70 @@ let charmedSnake = null;
 
 // Timer
 const TIMER_MAX = 15; let timerInterval = null; let timerLeft = TIMER_MAX;
+
+
+// ========== CONFIRM SCREEN LOGIC ==========
+let csMode = ''; let csDiff = 'medium'; let csDiffPicked = false;
+
+function csSelectMode(m) {
+    csMode = m;
+    // highlight new fs-cards
+    document.getElementById('cs-card-vs').classList.remove('selected-vs','selected-cpu');
+    document.getElementById('cs-card-cpu').classList.remove('selected-vs','selected-cpu');
+    document.getElementById('cs-card-' + m).classList.add('selected-' + m);
+
+    var diffRow = document.getElementById('cs-diff-row');
+    if (m === 'cpu') {
+        diffRow.style.display = 'flex';
+        csDiffPicked = false;
+        updateCsSummary();
+    } else {
+        diffRow.style.display = 'none';
+        csDiffPicked = true;
+        updateCsSummary();
+    }
+}
+
+function csSetDiff(d) {
+    csDiff = d; csDiffPicked = true;
+    document.querySelectorAll('.cs-diff-btn').forEach(function(b){ b.classList.remove('picked'); });
+    var map = { easy: 'cs-diff-easy', medium: 'cs-diff-medium', hard: 'cs-diff-hard' };
+    document.querySelector('.' + map[d]).classList.add('picked');
+    updateCsSummary();
+}
+
+function updateCsSummary() {
+    var summary = document.getElementById('cs-summary');
+    var sumVal  = document.getElementById('cs-sum-val');
+    var sumDiff = document.getElementById('cs-sum-diff');
+    var btn     = document.getElementById('cs-confirm-btn');
+
+    if (!csMode) return;
+
+    summary.style.display = 'block';
+    if (csMode === 'vs') {
+        sumVal.textContent  = '👥 2 Players';
+        sumDiff.textContent = 'Player 1 vs Player 2 — take turns!';
+    } else {
+        sumVal.textContent  = '🤖 1 Player vs Computer';
+        sumDiff.textContent = csDiffPicked ? ('Difficulty: ' + csDiff.charAt(0).toUpperCase() + csDiff.slice(1)) : 'Please choose a difficulty ↑';
+    }
+
+    if (csMode === 'vs' || (csMode === 'cpu' && csDiffPicked)) {
+        btn.classList.add('visible');
+    } else {
+        btn.classList.remove('visible');
+    }
+}
+
+function csConfirm() {
+    if (!csMode || (csMode === 'cpu' && !csDiffPicked)) return;
+    // hide confirm screen, trigger existing selectMode + setDiff + startGame
+    document.getElementById('confirm-screen').style.display = 'none';
+    selectMode(csMode);
+    if (csMode === 'cpu') { setDiff(csDiff); }
+    startGame();
+}
 
 // ========== MODE SCREEN ==========
 function selectMode(m) {
@@ -794,16 +2071,237 @@ function initGame() {
 }
 
 // ========== BOARD BUILD ==========
+const SNAKE_TAILS = new Set(Object.values(SNAKES));
+const LADDER_TOPS  = new Set(Object.values(LADDERS));
+
 function getCellClass(n) {
     if (n === 1) return 'cell-start'; if (n === 100) return 'cell-end';
-    if (charmedSnake === n) return 'cell-charmed'; if (SNAKES[n]) return 'cell-snake-head';
-    if (LADDERS[n]) return 'cell-ladder-base'; if (PORTALS[n]) return 'cell-portal';
-    if (BONUS_CELLS.has(n)) return 'cell-bonus'; return ['cell-a','cell-b','cell-c','cell-d'][n % 4];
+    if (charmedSnake === n) return 'cell-charmed';
+    if (SNAKES[n])  return 'cell-snake-head';
+    if (LADDERS[n]) return 'cell-ladder-base';
+    if (SNAKE_TAILS.has(n))  return 'cell-snake-tail';
+    if (LADDER_TOPS.has(n))  return 'cell-ladder-top';
+    if (PORTALS[n]) return 'cell-portal';
+    if (BONUS_CELLS.has(n)) return 'cell-bonus';
+    return ['cell-a','cell-b','cell-c','cell-d'][n % 4];
 }
 function getCellIcon(n) {
-    if (n === 100) return '🏆'; if (charmedSnake === n) return '✨'; if (SNAKES[n]) return '🐍';
-    if (LADDERS[n]) return '🪜'; if (PORTALS[n]) return '🌀'; if (BONUS_CELLS.has(n)) return '⭐'; return '';
+    if (n === 100) return '🏆';
+    if (charmedSnake === n) return '✨';
+    if (SNAKES[n])  return '🐍<br><span class="cell-dest cell-dest-snake">↓'+SNAKES[n]+'</span>';
+    if (LADDERS[n]) return '🪜<br><span class="cell-dest cell-dest-ladder">↑'+LADDERS[n]+'</span>';
+    if (PORTALS[n]) return '🌀';
+    if (BONUS_CELLS.has(n)) return '⭐';
+    return '';
 }
+function getCellCenter(n) {
+    const el = document.getElementById('sq-' + n);
+    const board = document.getElementById('board');
+    if (!el || !board) return null;
+    const br = board.getBoundingClientRect();
+    const er = el.getBoundingClientRect();
+    return {
+        x: er.left - br.left + er.width  / 2,
+        y: er.top  - br.top  + er.height / 2
+    };
+}
+
+function drawConnectors() {
+    var old = document.getElementById('board-svg');
+    if (old) old.remove();
+    var board = document.getElementById('board');
+    if (!board) return;
+
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(NS,'svg');
+    svg.id = 'board-svg';
+    svg.setAttribute('width','100%');
+    svg.setAttribute('height','100%');
+    svg.style.position = 'absolute';
+    svg.style.inset = '0';
+    svg.style.pointerEvents = 'none';
+    svg.style.zIndex = '5';
+    svg.style.overflow = 'visible';
+
+    function cc(n) {
+        var el = document.getElementById('sq-'+n);
+        if (!el) return null;
+        var br = board.getBoundingClientRect();
+        var er = el.getBoundingClientRect();
+        return { x: er.left - br.left + er.width/2, y: er.top - br.top + er.height/2, w: er.width };
+    }
+
+    function mk(tag, attrs) {
+        var el = document.createElementNS(NS, tag);
+        Object.entries(attrs).forEach(function(kv){ el.setAttribute(kv[0], kv[1]); });
+        return el;
+    }
+
+    // ════════════════════════════════════════
+    // REAL LADDER — 2 rails + rungs
+    // ════════════════════════════════════════
+    function drawLadder(from, to) {
+        var a = cc(from), b = cc(to);
+        if (!a || !b) return;
+
+        var dx = b.x - a.x, dy = b.y - a.y;
+        var len = Math.sqrt(dx*dx + dy*dy);
+        var ux = dx/len, uy = dy/len;      // unit along ladder
+        var px = -uy, py = ux;             // perpendicular
+
+        var half = Math.min(a.w * 0.28, 9);   // rail half-width
+        var numRungs = Math.max(4, Math.round(len / 22));
+
+        // Rail coordinates
+        var r1x1 = a.x + px*half, r1y1 = a.y + py*half;
+        var r1x2 = b.x + px*half, r1y2 = b.y + py*half;
+        var r2x1 = a.x - px*half, r2y1 = a.y - py*half;
+        var r2x2 = b.x - px*half, r2y2 = b.y - py*half;
+
+        // Shadow / depth
+        var g = document.createElementNS(NS,'g');
+
+        // Glow behind rails
+        g.appendChild(mk('line',{x1:r1x1,y1:r1y1,x2:r1x2,y2:r1y2, stroke:'rgba(0,255,120,0.18)', 'stroke-width':12, 'stroke-linecap':'round'}));
+        g.appendChild(mk('line',{x1:r2x1,y1:r2y1,x2:r2x2,y2:r2y2, stroke:'rgba(0,255,120,0.18)', 'stroke-width':12, 'stroke-linecap':'round'}));
+
+        // Rail shadows (dark offset)
+        g.appendChild(mk('line',{x1:r1x1+1.5,y1:r1y1+1.5,x2:r1x2+1.5,y2:r1y2+1.5, stroke:'rgba(0,0,0,0.4)', 'stroke-width':4, 'stroke-linecap':'round'}));
+        g.appendChild(mk('line',{x1:r2x1+1.5,y1:r2y1+1.5,x2:r2x2+1.5,y2:r2y2+1.5, stroke:'rgba(0,0,0,0.4)', 'stroke-width':4, 'stroke-linecap':'round'}));
+
+        // Left rail (gradient gold/green)
+        var grad1 = document.createElementNS(NS,'linearGradient');
+        var id1 = 'lg'+from+'a';
+        grad1.setAttribute('id',id1); grad1.setAttribute('gradientUnits','userSpaceOnUse');
+        grad1.setAttribute('x1',r1x1); grad1.setAttribute('y1',r1y1); grad1.setAttribute('x2',r1x2); grad1.setAttribute('y2',r1y2);
+        [['0%','#ffd700'],['50%','#00e676'],['100%','#ffd700']].forEach(function(s){ var st=document.createElementNS(NS,'stop'); st.setAttribute('offset',s[0]); st.setAttribute('stop-color',s[1]); grad1.appendChild(st); });
+        svg.appendChild(grad1);
+
+        var grad2 = document.createElementNS(NS,'linearGradient');
+        var id2 = 'lg'+from+'b';
+        grad2.setAttribute('id',id2); grad2.setAttribute('gradientUnits','userSpaceOnUse');
+        grad2.setAttribute('x1',r2x1); grad2.setAttribute('y1',r2y1); grad2.setAttribute('x2',r2x2); grad2.setAttribute('y2',r2y2);
+        [['0%','#ffd700'],['50%','#00e676'],['100%','#ffd700']].forEach(function(s){ var st=document.createElementNS(NS,'stop'); st.setAttribute('offset',s[0]); st.setAttribute('stop-color',s[1]); grad2.appendChild(st); });
+        svg.appendChild(grad2);
+
+        g.appendChild(mk('line',{x1:r1x1,y1:r1y1,x2:r1x2,y2:r1y2, stroke:'url(#'+id1+')', 'stroke-width':3.5, 'stroke-linecap':'round'}));
+        g.appendChild(mk('line',{x1:r2x1,y1:r2y1,x2:r2x2,y2:r2y2, stroke:'url(#'+id2+')', 'stroke-width':3.5, 'stroke-linecap':'round'}));
+
+        // Rungs
+        for (var i = 1; i < numRungs; i++) {
+            var t = i / numRungs;
+            var cx1 = r1x1 + (r1x2-r1x1)*t, cy1 = r1y1 + (r1y2-r1y1)*t;
+            var cx2 = r2x1 + (r2x2-r2x1)*t, cy2 = r2y1 + (r2y2-r2y1)*t;
+            // shadow
+            g.appendChild(mk('line',{x1:cx1+1,y1:cy1+1,x2:cx2+1,y2:cy2+1, stroke:'rgba(0,0,0,0.35)', 'stroke-width':2.5, 'stroke-linecap':'round'}));
+            // rung
+            g.appendChild(mk('line',{x1:cx1,y1:cy1,x2:cx2,y2:cy2, stroke:'#ffffff', 'stroke-width':2.5, 'stroke-linecap':'round', 'stroke-opacity':'0.9'}));
+        }
+
+        // End caps (circles at top and bottom)
+        g.appendChild(mk('circle',{cx:b.x,cy:b.y,r:4.5, fill:'#00e676', stroke:'#fff', 'stroke-width':1.5}));
+        g.appendChild(mk('circle',{cx:a.x,cy:a.y,r:4.5, fill:'#ffd700', stroke:'#fff', 'stroke-width':1.5}));
+
+        svg.appendChild(g);
+    }
+
+    // ════════════════════════════════════════
+    // REAL SNAKE — sinuous curved body + head + tongue
+    // ════════════════════════════════════════
+    function drawSnake(from, to) {
+        var a = cc(from), b = cc(to);
+        if (!a || !b) return;
+
+        var dx = b.x - a.x, dy = b.y - a.y;
+        var len = Math.sqrt(dx*dx + dy*dy);
+        var ux = dx/len, uy = dy/len;
+        var px = -uy, py = ux;
+
+        // Build a sinuous path using cubic bezier segments
+        var waves = Math.max(3, Math.round(len / 30));
+        var amp   = Math.min(a.w * 0.55, 16);
+        var pts   = [];
+        for (var i = 0; i <= waves*2; i++) {
+            var t  = i / (waves*2);
+            var bx = a.x + dx*t;
+            var by = a.y + dy*t;
+            var side = (i % 2 === 0) ? 1 : -1;
+            var fade = Math.sin(t * Math.PI);   // fade amplitude at ends
+            pts.push({ x: bx + px*side*amp*fade, y: by + py*side*amp*fade });
+        }
+
+        // Build SVG path string through points using smooth curves
+        var d = 'M '+a.x+' '+a.y;
+        for (var j = 0; j < pts.length - 1; j++) {
+            var p0 = j === 0 ? {x:a.x,y:a.y} : pts[j-1];
+            var p1 = pts[j];
+            var p2 = pts[j+1];
+            var cp1x = p1.x + (p2.x-p0.x)*0.25;
+            var cp1y = p1.y + (p2.y-p0.y)*0.25;
+            d += ' Q '+cp1x+' '+cp1y+' '+p2.x+' '+p2.y;
+        }
+        d += ' L '+b.x+' '+b.y;
+
+        var g = document.createElementNS(NS,'g');
+
+        // Glow
+        g.appendChild(mk('path',{d:d, stroke:'rgba(255,20,60,0.2)', 'stroke-width':14, fill:'none', 'stroke-linecap':'round', 'stroke-linejoin':'round'}));
+
+        // Body gradient
+        var sgID = 'sg'+from;
+        var sg = document.createElementNS(NS,'linearGradient');
+        sg.setAttribute('id',sgID); sg.setAttribute('gradientUnits','userSpaceOnUse');
+        sg.setAttribute('x1',a.x); sg.setAttribute('y1',a.y); sg.setAttribute('x2',b.x); sg.setAttribute('y2',b.y);
+        [['0%','#ff1744'],['35%','#c62828'],['70%','#7b2d00'],['100%','#4a1000']].forEach(function(s){
+            var st=document.createElementNS(NS,'stop'); st.setAttribute('offset',s[0]); st.setAttribute('stop-color',s[1]); sg.appendChild(st);
+        });
+        svg.appendChild(sg);
+
+        // Dark outline (shadow)
+        g.appendChild(mk('path',{d:d, stroke:'rgba(0,0,0,0.5)', 'stroke-width':9, fill:'none', 'stroke-linecap':'round', 'stroke-linejoin':'round'}));
+        // Body
+        g.appendChild(mk('path',{d:d, stroke:'url(#'+sgID+')', 'stroke-width':7, fill:'none', 'stroke-linecap':'round', 'stroke-linejoin':'round'}));
+        // Highlight stripe
+        g.appendChild(mk('path',{d:d, stroke:'rgba(255,160,160,0.35)', 'stroke-width':2.5, fill:'none', 'stroke-linecap':'round', 'stroke-linejoin':'round', 'stroke-dasharray':'4 6'}));
+
+        // ── SNAKE HEAD at 'from' (top) ──
+        var hx = a.x, hy = a.y;
+        // angle from head toward first body point
+        var hAngle = Math.atan2(b.y - a.y, b.x - a.x) + Math.PI; // pointing away from body
+        var hs = a.w * 0.22;
+
+        // Head circle
+        g.appendChild(mk('ellipse',{cx:hx,cy:hy,rx:hs*1.3,ry:hs, fill:'#ff1744', stroke:'#7b0000','stroke-width':1.5,
+            transform:'rotate('+( hAngle*180/Math.PI)+' '+hx+' '+hy+')'}));
+        // Eye
+        var ex = hx + Math.cos(hAngle-0.5)*hs*0.7;
+        var ey = hy + Math.sin(hAngle-0.5)*hs*0.7;
+        g.appendChild(mk('circle',{cx:ex,cy:ey,r:hs*0.28, fill:'#fff'}));
+        g.appendChild(mk('circle',{cx:ex,cy:ey,r:hs*0.14, fill:'#111'}));
+        // Tongue (forked)
+        var tx1 = hx + Math.cos(hAngle)*hs*2;
+        var ty1 = hy + Math.sin(hAngle)*hs*2;
+        var tx2a = tx1 + Math.cos(hAngle-0.4)*hs*0.9;
+        var ty2a = ty1 + Math.sin(hAngle-0.4)*hs*0.9;
+        var tx2b = tx1 + Math.cos(hAngle+0.4)*hs*0.9;
+        var ty2b = ty1 + Math.sin(hAngle+0.4)*hs*0.9;
+        g.appendChild(mk('line',{x1:hx+Math.cos(hAngle)*hs,y1:hy+Math.sin(hAngle)*hs, x2:tx1,y2:ty1, stroke:'#ff6b6b','stroke-width':1.5,'stroke-linecap':'round'}));
+        g.appendChild(mk('line',{x1:tx1,y1:ty1,x2:tx2a,y2:ty2a, stroke:'#ff6b6b','stroke-width':1.2,'stroke-linecap':'round'}));
+        g.appendChild(mk('line',{x1:tx1,y1:ty1,x2:tx2b,y2:ty2b, stroke:'#ff6b6b','stroke-width':1.2,'stroke-linecap':'round'}));
+
+        // ── Tail tip at 'to' (bottom) ──
+        g.appendChild(mk('circle',{cx:b.x,cy:b.y,r:2.5, fill:'#4a1000', stroke:'#ff6b6b','stroke-width':1}));
+
+        svg.appendChild(g);
+    }
+
+    // Draw all ladders then snakes (snakes on top)
+    Object.entries(LADDERS).forEach(function(e){ drawLadder(Number(e[0]), Number(e[1])); });
+    Object.entries(SNAKES).forEach(function(e){  drawSnake(Number(e[0]),  Number(e[1])); });
+
+    board.appendChild(svg);
+}
+
 function buildBoard() {
     const board = document.getElementById('board'); board.innerHTML = '';
     for (let row = 10; row >= 1; row--) {
@@ -820,6 +2318,7 @@ function buildBoard() {
             board.appendChild(cell);
         }
     }
+    setTimeout(drawConnectors, 80);
     renderTokens(); nextQuestion();
 }
 function renderTokens() {
@@ -866,47 +2365,51 @@ function handleTimeUp() {
 // ========== QUESTION GENERATION ==========
 function nextQuestion() {
     if (pos[1] >= 100 || pos[2] >= 100) return;
+    // Hide all flap holders (legacy, kept for safety)
     for (let i = 1; i <= 100; i++) { const fh = document.getElementById(`fh-${i}`); if (fh) { fh.style.display='none'; fh.innerHTML=''; } }
     if (gameMode === 'cpu' && activePlayer === 2) { showCPUThinking(); return; }
-    const curPos = pos[activePlayer]; const fh = document.getElementById(`fh-${curPos}`); if (!fh) return;
+    const curPos = pos[activePlayer];
     let maxMove = curPos > 90 ? 3 : curPos > 75 ? 4 : 6; targetAnswer = Math.floor(Math.random() * maxMove) + 1;
     const qType = Math.floor(Math.random() * 3); let qText = '';
     if (qType === 0) { const a = Math.floor(Math.random()*9)+2; qText = `${a} × ? = ${a * targetAnswer}`; }
     else if (qType === 1) { const d = Math.floor(Math.random()*9)+2; qText = `${d * targetAnswer} ÷ ${d} = ?`; }
     else { const add = Math.floor(Math.random()*10)+1; qText = `? + ${add} = ${targetAnswer + add}`; }
-    fh.style.display = 'block';
-    fh.innerHTML = `
-        <div class="flap-card" id="flap-card">
-            <div class="q-label">🎯 Player ${activePlayer} • Square ${curPos}</div>
-            <div class="q-text">${qText}</div>
-            <input type="number" id="ans-input" min="1" max="6" placeholder="Answer (1-6)" autocomplete="off">
-            <button onclick="checkAnswer()">✅ Submit!</button>
-        </div>
-    `;
-    setTimeout(() => {
-        const card = document.getElementById('flap-card');
-        if (card) {
-            card.classList.add('open'); const inp = document.getElementById('ans-input');
+
+    // Show question in right sidebar panel
+    const qPanel = document.getElementById('question-panel');
+    const qContent = document.getElementById('question-content');
+    if (qPanel && qContent) {
+        qPanel.style.display = 'block';
+        qContent.innerHTML = `
+            <div class="q-side-card">
+                <div class="q-side-label">🎯 Player ${activePlayer} · Square ${curPos}</div>
+                <div class="q-side-text">${qText}</div>
+                <input type="number" id="ans-input" class="q-side-input" min="1" max="6" placeholder="Answer (1-6)" autocomplete="off">
+                <button class="q-side-btn" onclick="checkAnswer()">✅ Submit!</button>
+            </div>`;
+        setTimeout(() => {
+            const inp = document.getElementById('ans-input');
             if (inp) { inp.focus(); inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkAnswer(); }); }
-        }
-    }, 60);
+        }, 60);
+    }
     startTimer();
 }
 
 // ========== SHIELD STREAK LOGIC CORE ==========
 function handleCorrectStreakShield(player) {
     if (streaks[player] > 0 && streaks[player] % 3 === 0) {
-        if (shields[player] < 1) { // Maximum strict 1 shield check
+        if (shields[player] < 1) {
             shields[player] = 1;
             shieldActive[player] = true;
             updatePowersUI();
             playShield();
+            // Show in feedback bar only (no blocking popup)
             setTimeout(() => {
-                showEffect('🛡️', 'Shield Unlocked!', `3x Streak! Player ${player} gets a Safe Shield! (Max 1 allowed)`, '#1e88e5', 2500);
+                setFeedback(`🛡️ Shield Unlocked! Player ${player} gets a Safe Shield! (3x Streak)`, '#1e88e5');
             }, 600);
         } else {
             setTimeout(() => {
-                setFeedback('🛡️ Already have 1 Shield! Extra shields are not allowed.', '#1e88e5');
+                setFeedback('🛡️ Already have 1 Shield! Extra shields not allowed.', '#1e88e5');
             }, 600);
         }
     }
@@ -934,10 +2437,17 @@ function checkAnswer() {
 
 // ========== CPU LOGIC ==========
 function showCPUThinking() {
-    const curPos = pos[2]; const fh = document.getElementById(`fh-${curPos}`); if (!fh) return;
+    const curPos = pos[2];
     let maxMove = curPos > 90 ? 3 : curPos > 75 ? 4 : 6; targetAnswer = Math.floor(Math.random() * maxMove) + 1;
-    fh.style.display = 'block';
-    fh.innerHTML = `<div class="cpu-thinking" id="cpu-think-box"><span class="cpu-icon">🤖</span><p>Computer is thinking<span class="thinking-dots"></span></p></div>`;
+
+    // Show in right sidebar panel
+    const qPanel = document.getElementById('question-panel');
+    const qContent = document.getElementById('question-content');
+    if (qPanel && qContent) {
+        qPanel.style.display = 'block';
+        qContent.innerHTML = `<div class="cpu-side-think"><span class="cpu-icon">🤖</span><p>Computer is thinking<span class="thinking-dots"></span></p></div>`;
+    }
+
     const delay = cpuDiff === 'easy' ? 2000 : cpuDiff === 'medium' ? 1400 : 700;
     setTimeout(() => {
         const acc = cpuDiff === 'easy' ? 0.55 : cpuDiff === 'medium' ? 0.75 : 0.90; const correct = Math.random() < acc;
@@ -948,7 +2458,7 @@ function showCPUThinking() {
             setTimeout(() => moveToken(targetAnswer), 700);
         } else {
             playWrong(); streaks[2] = 0; updateStreakUI();
-            charmerLocked[2] = true; // CPU charmer also locks if wrong
+            charmerLocked[2] = true;
             setFeedback('🤖 Computer wrong! 🪄 Charmer Locked! Your turn!', '#2e7d32');
             updatePowersUI();
             setTimeout(() => { isMoving = false; switchPlayer(); nextQuestion(); }, 1200);
@@ -957,17 +2467,34 @@ function showCPUThinking() {
 }
 
 // ========== MOVE TOKEN ENGINE ==========
+function highlightCell(n, cls) {
+    var el = document.getElementById('sq-' + n);
+    if (!el) return;
+    el.classList.add(cls);
+    setTimeout(function(){ el.classList.remove(cls); }, 280);
+}
+
 function moveToken(steps) {
-    isMoving = true; const start = pos[activePlayer]; const end = start + steps;
+    isMoving = true; var start = pos[activePlayer]; var end = start + steps;
     if (end > 100) {
         setFeedback('⚠️ Too far! Need exact square.', '#f7971e');
-        setTimeout(() => { isMoving = false; switchPlayer(); nextQuestion(); }, 1500); return;
+        setTimeout(function() { isMoving = false; switchPlayer(); nextQuestion(); }, 1500); return;
     }
-    let current = start;
-    const mv = setInterval(() => {
-        current++; pos[activePlayer] = current; playMove(); updateScoreUI(); renderTokens();
-        if (current === end) { clearInterval(mv); handleLanding(current); }
-    }, 220);
+    var current = start; var stepDelay = 220;
+    function doStep() {
+        current++;
+        pos[activePlayer] = current;
+        playMove();
+        updateScoreUI();
+        renderTokens();
+        highlightCell(current, 'step-highlight');
+        if (current < end) {
+            setTimeout(doStep, stepDelay);
+        } else {
+            setTimeout(function(){ handleLanding(current); }, 300);
+        }
+    }
+    setTimeout(doStep, 80);
 }
 
 function handleLanding(cell) {
@@ -1030,9 +2557,142 @@ function handleLanding(cell) {
     else { isMoving = false; switchPlayer(); nextQuestion(); }
 }
 
+// ── PATH ANIMATION HELPERS ──────────────────────────
+function getBoardRect() {
+    return document.getElementById('board').getBoundingClientRect();
+}
+function getWrapperRect() {
+    return document.getElementById('board-wrapper').getBoundingClientRect();
+}
+function cellXY(n) {
+    var el = document.getElementById('sq-'+n);
+    if (!el) return null;
+    var wr = getWrapperRect();
+    var er = el.getBoundingClientRect();
+    return {
+        x: er.left - wr.left + er.width/2,
+        y: er.top  - wr.top  + er.height/2,
+        w: er.width
+    };
+}
+
+// Build smooth waypoints along ladder (follows rail path)
+function ladderWaypoints(from, to, steps) {
+    var a = cellXY(from), b = cellXY(to);
+    if (!a || !b) return [];
+    var pts = [];
+    for (var i = 0; i <= steps; i++) {
+        var t = i / steps;
+        // slight wobble left-right as if on rail
+        var wobble = Math.sin(t * Math.PI * 4) * (a.w * 0.18);
+        var dx = b.x - a.x, dy = b.y - a.y;
+        var len = Math.sqrt(dx*dx+dy*dy);
+        var px = -dy/len, py = dx/len;
+        pts.push({
+            x: a.x + dx*t + px*wobble,
+            y: a.y + dy*t + py*wobble
+        });
+    }
+    return pts;
+}
+
+// Build smooth waypoints along snake body (sinuous, like the drawn snake)
+function snakeWaypoints(from, to, steps) {
+    var a = cellXY(from), b = cellXY(to);
+    if (!a || !b) return [];
+    var dx = b.x - a.x, dy = b.y - a.y;
+    var len = Math.sqrt(dx*dx + dy*dy);
+    var ux = dx/len, uy = dy/len;
+    var px = -uy, py = ux;
+    var waves = Math.max(3, Math.round(len / 30));
+    var amp   = Math.min(a.w * 0.55, 16);
+
+    // Recreate same bezier control points as drawSnake
+    var ctrlPts = [];
+    for (var i = 0; i <= waves*2; i++) {
+        var t  = i / (waves*2);
+        var bx = a.x + dx*t;
+        var by = a.y + dy*t;
+        var side = (i % 2 === 0) ? 1 : -1;
+        var fade = Math.sin(t * Math.PI);
+        ctrlPts.push({ x: bx + px*side*amp*fade, y: by + py*side*amp*fade });
+    }
+
+    // Sample points along the quadratic bezier segments
+    var pts = [{x:a.x, y:a.y}];
+    var segs = ctrlPts.length - 1;
+    var samplesPerSeg = Math.max(2, Math.round(steps / segs));
+    for (var j = 0; j < segs; j++) {
+        var p0 = j === 0 ? {x:a.x,y:a.y} : ctrlPts[j-1];
+        var p1 = ctrlPts[j];
+        var p2 = ctrlPts[j+1];
+        var cp1x = p1.x + (p2.x-p0.x)*0.25;
+        var cp1y = p1.y + (p2.y-p0.y)*0.25;
+        for (var k = 1; k <= samplesPerSeg; k++) {
+            var u = k / samplesPerSeg;
+            // Quadratic bezier: B(u) = (1-u)^2 * P0 + 2(1-u)u * CP + u^2 * P2
+            var qu = 1-u;
+            pts.push({
+                x: qu*qu*p1.x + 2*qu*u*cp1x + u*u*p2.x,
+                y: qu*qu*p1.y + 2*qu*u*cp1y + u*u*p2.y
+            });
+        }
+    }
+    pts.push({x:b.x, y:b.y});
+    return pts;
+}
+
+// Animate token along waypoint list
+function animateAlongPath(waypoints, tokenSize, msPerStep, onDone) {
+    var pt  = document.getElementById('path-token');
+    var cls = activePlayer === 1 ? 'p1' : (gameMode === 'cpu' ? 'p2' : 'p2h');
+    pt.className = cls + ' riding';
+    pt.style.width  = tokenSize + 'px';
+    pt.style.height = tokenSize + 'px';
+    pt.style.display = 'block';
+
+    var idx = 0;
+    function tick() {
+        if (idx >= waypoints.length) {
+            pt.style.display = 'none';
+            pt.className = '';
+            onDone();
+            return;
+        }
+        pt.style.left = waypoints[idx].x + 'px';
+        pt.style.top  = waypoints[idx].y + 'px';
+        idx++;
+        setTimeout(tick, msPerStep);
+    }
+    tick();
+}
+
 function animateSlide(from, to, cb) {
-    let cur = from; const dir = to > from ? 1 : -1;
-    const iv = setInterval(() => { cur += dir; pos[activePlayer] = cur; renderTokens(); if (cur === to) { clearInterval(iv); cb(); } }, 100);
+    var isSnake  = to < from;
+    var isLadder = to > from;
+    var fromC = cellXY(from);
+    var tokenSz = fromC ? Math.max(16, fromC.w * 0.55) : 22;
+
+    // Hide the real board token during path animation
+    renderTokens();
+    var tl = document.getElementById('tl-'+from);
+    if (tl) tl.innerHTML = '';   // hide at start cell
+
+    var waypoints, msPerStep;
+
+    if (isLadder) {
+        waypoints = ladderWaypoints(from, to, 60);
+        msPerStep = 18;   // fast climb — feels like running up ladder
+    } else {
+        waypoints = snakeWaypoints(from, to, 80);
+        msPerStep = 22;   // slightly slower — sliding down snake body
+    }
+
+    animateAlongPath(waypoints, tokenSz, msPerStep, function() {
+        pos[activePlayer] = to;
+        renderTokens();
+        cb();
+    });
 }
 
 // ========== POWERS MANUAL MANAGEMENT ==========
@@ -1092,6 +2752,9 @@ function showEffect(icon, title, desc, color, duration=2000) {
 
 function switchPlayer() {
     activePlayer = activePlayer === 1 ? 2 : 1;
+    // Hide question panel between turns
+    const qp = document.getElementById('question-panel');
+    if (qp) { qp.style.display = 'none'; const qc = document.getElementById('question-content'); if(qc) qc.innerHTML=''; }
     document.getElementById('card-p1').className = `score-card score-p1${activePlayer===1?' score-active-1':''}`;
     const p2Act = gameMode === 'cpu' ? 'score-active-2' : 'score-active-2h';
     document.getElementById('card-p2').className = `score-card ${gameMode==='cpu'?'score-p2':'score-p2-human'}${activePlayer===2?' '+p2Act:''}`;
