@@ -6,10 +6,10 @@
     <title>बच्चों का कोना - पैरेंटिंग, शिक्षा और स्वास्थ्य की संपूर्ण गाइड</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind removed: conflicts with custom CSS reset -->
     <link rel="stylesheet" href="style.css">
-   
+    <!-- NOTE: style.css and navbar.js must exist in the same folder as parent.html -->
 
     <style>
         :root {
@@ -441,11 +441,13 @@
         }
     </style>
 </head>
-<body>
+<body data-page="parenting">
 
-<div id="navbar"></div>
-    <script src="./navbar.js"></script>
-    <!-- HERO -->
+<!-- Daily Spark Shared Header -->
+<div id="ds-header-root"></div>
+<script src="ds-header.js"></script>
+
+<!-- HERO -->
     <section class="hero1">
         <div class="hero1-inner">
             <span class="hero1-badge">🇮🇳 भारत का #1 Parenting Platform</span>
@@ -469,7 +471,7 @@
                 <a href="c1.html" class="card-link">
                     <div class="card">
                         <div class="card-img">
-                            <img src="c1.png" alt="बच्चों का स्क्रीन टाइम">
+                            <img src="c1.png" alt="बच्चों का स्क्रीन टाइम — सुरक्षित गाइड">
                         </div>
                         <div class="card-body">
                             <span class="badge lifestyle">डिजिटल लाइफ</span>
@@ -628,6 +630,19 @@
         </div>
     </section>
 
-    
+    <!-- FOOTER -->
+    <footer style="background: var(--dark); color: rgba(255,255,255,0.65); text-align: center; padding: 28px 24px; font-size: 13px; margin-top: 8px;">
+        <p style="margin-bottom: 6px;">
+            <a href="index.html" style="color: var(--primary-light); text-decoration: none; font-weight: 600;">बच्चों का कोना</a>
+            &nbsp;·&nbsp;
+            <a href="about.html" style="color: rgba(255,255,255,0.55); text-decoration: none;">हमारे बारे में</a>
+            &nbsp;·&nbsp;
+            <a href="contact.html" style="color: rgba(255,255,255,0.55); text-decoration: none;">संपर्क करें</a>
+            &nbsp;·&nbsp;
+            <a href="privacy.html" style="color: rgba(255,255,255,0.55); text-decoration: none;">गोपनीयता नीति</a>
+        </p>
+        <p>© 2026 बच्चों का कोना · सभी अधिकार सुरक्षित · भारत का #1 Parenting Platform 🇮🇳</p>
+    </footer>
+
 </body>
 </html>
