@@ -3,7 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== PRIMARY SEO ===== -->
+<title>Maths Pattern Quiz for Kids | Number & Shape Patterns Game — Daily Spark</title>
+<meta name="description" content="Free maths pattern quiz for kids aged 5–14. Practice number sequences, shape patterns, Fibonacci, skip counting & more. Play Pattern Quest now on Daily Spark!">
+<meta name="keywords" content="maths pattern quiz, number patterns for kids, shape patterns game, maths quiz online, pattern recognition, skip counting game, Fibonacci for kids, maths adventure game, free maths game India, Daily Spark maths">
+<meta name="author" content="Daily Spark">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://parthkhurana292008-cmd.github.io/dailyspark/pattern.html">
+
+<!-- ===== OPEN GRAPH (Facebook / WhatsApp) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Maths Pattern Quiz for Kids — Pattern Quest | Daily Spark">
+<meta property="og:description" content="Can you spot the pattern? Free interactive maths game for kids aged 5–14. Number sequences, shapes, Fibonacci & more!">
+<meta property="og:url" content="https://parthkhurana292008-cmd.github.io/dailyspark/pattern.html">
+<meta property="og:site_name" content="Daily Spark">
+<meta property="og:image" content="https://parthkhurana292008-cmd.github.io/dailyspark/og-pattern.png">
+<meta property="og:locale" content="en_IN">
+
+<!-- ===== TWITTER CARD ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maths Pattern Quiz for Kids — Pattern Quest | Daily Spark">
+<meta name="twitter:description" content="Free maths pattern game for kids! Number sequences, shapes, Fibonacci & more. Play now on Daily Spark.">
+<meta name="twitter:image" content="https://parthkhurana292008-cmd.github.io/dailyspark/og-pattern.png">
+
+<!-- ===== STRUCTURED DATA (Google Rich Results) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": "Pattern Quest — Maths Pattern Adventure",
+  "description": "Free interactive maths pattern quiz for kids aged 5–14. Practice number sequences, shape patterns, skip counting, Fibonacci and more.",
+  "url": "https://parthkhurana292008-cmd.github.io/dailyspark/pattern.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Daily Spark",
+    "url": "https://parthkhurana292008-cmd.github.io/dailyspark/"
+  },
+  "educationalLevel": ["Preschool", "Primary Education", "Middle School"],
+  "learningResourceType": "Game",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student",
+    "suggestedMinAge": 5,
+    "suggestedMaxAge": 14
+  },
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "genre": "Educational Game"
+}
+</script>
+
+<!-- ===== BREADCRUMB STRUCTURED DATA ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://parthkhurana292008-cmd.github.io/dailyspark/" },
+    { "@type": "ListItem", "position": 2, "name": "Math Playground", "item": "https://parthkhurana292008-cmd.github.io/dailyspark/math.html" },
+    { "@type": "ListItem", "position": 3, "name": "Pattern Quest", "item": "https://parthkhurana292008-cmd.github.io/dailyspark/pattern.html" }
+  ]
+}
+</script>
+
 <title>🔢 Maths Pattern Adventure</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -36,9 +101,9 @@ body{
 
 /* Starfield bg */
 #stars-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-#sparkle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;pointer-events:none;}
+#sparkle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;}
 
-.page{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.page{position:relative;z-index:2;min-height:60vh;display:flex;align-items:center;justify-content:center;padding:20px 20px 40px;}
 .page.hidden{display:none;}
 
 /* ── Age Select Screen ── */
@@ -277,9 +342,59 @@ body{
 }
 .submit-btn:hover{background:#6A4AE8;transform:translateY(-2px);}
 .submit-btn:disabled{background:var(--border);cursor:default;transform:none;}
+/* ===== DAILY SPARK HEADER ===== */
+.ds-notif-bar{background:#FF6B00;color:#fff;padding:9px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;position:relative;z-index:300;font-family:"Nunito",sans-serif;}
+.ds-notif-bar a{color:#fff;text-decoration:none;}
+.ds-notif-close{background:none;border:none;color:#fff;cursor:pointer;font-size:18px;opacity:0.8;padding:0 4px;}
+.ds-topbar{background:#0D1B2A;color:#fff;padding:10px 20px;font-size:12.5px;position:relative;z-index:300;font-family:"Nunito",sans-serif;}
+.ds-topbar-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.ds-topbar-date{color:#8899AA;white-space:nowrap;font-weight:500;}
+.ds-ticker-wrap{flex:1;overflow:hidden;white-space:nowrap;background:rgba(255,255,255,0.06);padding:5px 0;border-radius:4px;border-left:3px solid #FF6B00;}
+.ds-ticker{color:#CBD6E2;display:inline-block;padding-left:100%;animation:ds-tick 28s linear infinite;white-space:nowrap;}
+@keyframes ds-tick{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.ds-masthead{background:#fff;border-bottom:3px solid #FF6B00;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:300;font-family:"Nunito",sans-serif;}
+.ds-masthead-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.ds-logo-block{padding:14px 0;flex-shrink:0;text-decoration:none;display:block;}
+.ds-logo-name{font-size:24px;font-weight:800;color:#0D1B2A;line-height:1;}
+.ds-logo-name span{color:#FF6B00;}
+.ds-logo-tag{font-size:10px;color:#8899AA;letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.ds-nav-links{display:flex;gap:2px;align-items:center;}
+.ds-nav-links a{padding:8px 14px;font-size:13px;font-weight:600;color:#1A2B3C;border-radius:4px;transition:background 0.15s,color 0.15s;white-space:nowrap;text-decoration:none;}
+.ds-nav-links a:hover{background:#F7F9FC;color:#FF6B00;}
+.ds-nav-links a.active{color:#FF6B00;}
+@media(max-width:900px){.ds-nav-links{display:none;}}
 </style>
 </head>
 <body>
+<!-- ===== DAILY SPARK HEADER ===== -->
+<div class="ds-notif-bar" id="ds-notif">
+  <a href="ns.html" target="_blank" rel="noopener">🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</a>
+  <button class="ds-notif-close" onclick="document.getElementById('ds-notif').remove()">✕</button>
+</div>
+<div class="ds-topbar">
+  <div class="ds-topbar-inner">
+    <div class="ds-topbar-date" id="ds-topbar-date">Breaking News:</div>
+    <div class="ds-ticker-wrap"><span class="ds-ticker">Jossa Round 2 result on Tuesday, 30 June, 2026 17:00 &nbsp;|&nbsp; Jac Delhi Round 2 result on Wednesday 1st July 2026 (After 05:00 PM) &nbsp;|&nbsp;</span></div>
+  </div>
+</div>
+<div class="ds-masthead">
+  <div class="ds-masthead-inner">
+    <a href="index.html" class="ds-logo-block">
+      <div class="ds-logo-name">Daily <span>Spark</span></div>
+      <div class="ds-logo-tag">Where Knowledge Sparks Success</div>
+    </a>
+    <nav class="ds-nav-links">
+      <a href="index.html">Home</a>
+      <a href="parent.html">Parenting</a>
+      <a href="math.html">Math Playground</a>
+      <a href="gjobs.html">Govt. Jobs</a>
+      <a href="ait.html">Best AI Tools</a>
+      <a href="weather.html">Weather</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</div>
+<!-- ===== END HEADER ===== -->
 
 <canvas id="stars-canvas"></canvas>
 <canvas id="sparkle-canvas"></canvas>
@@ -293,7 +408,7 @@ body{
 <div class="page" id="age-screen">
   <div class="age-screen">
     <div class="logo float-anim">🔢 <span>Pattern</span> Quest</div>
-    <p class="tagline">Maths patterns seekho — apni age chunko aur adventure shuru karo!</p>
+    <p class="tagline">Learn maths patterns — choose your age and start the adventure!</p>
     <div class="age-cards">
       <div class="age-card c1" onclick="startGame(1)">
         <span class="age-emoji">🐣</span>
@@ -361,6 +476,10 @@ body{
 </div>
 
 <script>
+
+// ── Header Live Date ──
+(function(){var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];var months=['January','February','March','April','May','June','July','August','September','October','November','December'];var d=new Date();var el=document.getElementById('ds-topbar-date');if(el)el.textContent=days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+
 // ── Starfield ──────────────────────────────────────
 const sc=document.getElementById('stars-canvas'),sctx=sc.getContext('2d');
 let stars=[];
@@ -461,12 +580,12 @@ function genL1() {
   if (t === 'add2') {
     const s = Math.floor(Math.random()*3)*2;
     const arr=[]; for(let i=0;i<7;i++) arr.push(s+i*2);
-    return makeNumQ(arr, 6, 'Har bar +2 add karo');
+    return makeNumQ(arr, 6, 'Add +2 each time');
   }
   if (t === 'add5') {
     const s = Math.floor(Math.random()*3)*5;
     const arr=[]; for(let i=0;i<7;i++) arr.push(s+i*5);
-    return makeNumQ(arr, 6, 'Har bar +5 add karo');
+    return makeNumQ(arr, 6, 'Add +5 each time');
   }
   if (t === 'even') {
     const arr=[]; for(let i=1;i<=7;i++) arr.push(i*2);
@@ -510,8 +629,8 @@ function genL2() {
   if (t === 'skip3')  { const s=Math.floor(Math.random()*4)*3; const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*3); return makeNumQ(arr,7,'+3 skip counting'); }
   if (t === 'skip4')  { const s=Math.floor(Math.random()*4)*4; const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*4); return makeNumQ(arr,7,'+4 skip counting'); }
   if (t === 'skip10') { const s=Math.floor(Math.random()*5)*10; const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*10); return makeNumQ(arr,7,'+10 pattern'); }
-  if (t === 'double') { const arr=[1]; for(let i=0;i<7;i++) arr.push(arr[arr.length-1]*2); return makeNumQ(arr,7,'Har number ×2 hota hai'); }
-  if (t === 'halve')  { const starts=[512,256,128]; const s=starts[Math.floor(Math.random()*starts.length)]; const arr=[s]; for(let i=0;i<6;i++) arr.push(arr[arr.length-1]/2); return makeNumQ(arr,6,'Har number ÷2 hota hai'); }
+  if (t === 'double') { const arr=[1]; for(let i=0;i<7;i++) arr.push(arr[arr.length-1]*2); return makeNumQ(arr,7,'Each number is ×2'); }
+  if (t === 'halve')  { const starts=[512,256,128]; const s=starts[Math.floor(Math.random()*starts.length)]; const arr=[s]; for(let i=0;i<6;i++) arr.push(arr[arr.length-1]/2); return makeNumQ(arr,6,'Each number is ÷2'); }
   if (t === 'rule6')  { const s=Math.floor(Math.random()*5); const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*6); return makeNumQ(arr,7,'+6 rule'); }
   if (t === 'rule7')  { const s=Math.floor(Math.random()*5); const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*7); return makeNumQ(arr,7,'+7 rule'); }
   if (t === 'rule8')  { const s=Math.floor(Math.random()*5); const arr=[]; for(let i=0;i<8;i++) arr.push(s+i*8); return makeNumQ(arr,7,'+8 rule'); }
@@ -544,7 +663,7 @@ const SHAPE_SETS_L3 = [
 function genL3() {
   const types = ['fibonacci','square','cube','triangular','prime','geo2','geo3','arith_diff','shape_abcd','shape_aabc'];
   const t = types[Math.floor(Math.random()*types.length)];
-  if (t==='fibonacci') { const f=[1,1,2,3,5,8,13,21,34,55,89]; return makeNumQ(f,8,'Fibonacci: do numbers ka sum'); }
+  if (t==='fibonacci') { const f=[1,1,2,3,5,8,13,21,34,55,89]; return makeNumQ(f,8,'Fibonacci: sum of the two previous numbers'); }
   if (t==='square')    { const a=[]; for(let i=1;i<=10;i++) a.push(i*i); return makeNumQ(a,8,'Square numbers: n²'); }
   if (t==='cube')      { const a=[]; for(let i=1;i<=7;i++) a.push(i*i*i); return makeNumQ(a,7,'Cube numbers: n³'); }
   if (t==='triangular'){ const a=[]; for(let i=1;i<=10;i++) a.push(i*(i+1)/2); return makeNumQ(a,8,'Triangular numbers'); }
@@ -585,7 +704,7 @@ function renderQ() {
     <span class="q-label">${qnum+1}/${TOTAL_Q}</span>
   </div>`;
 
-  html += `<div class="pattern-title">🔍 Agla ${q.isShape ? 'Shape' : 'Number'} Kya Hoga?</div>`;
+  html += `<div class="pattern-title">🔍 What Comes Next? ${q.isShape ? '(Shape)' : '(Number)'}</div>`;
 
   // Pattern display row
   html += `<div class="pattern-row" id="pat-row">`;
@@ -605,7 +724,7 @@ function renderQ() {
   });
   html += `</div>`;
 
-  html += `<div class="feedback-row"><span class="fb-msg hint" id="fb">Sahi jawab chunkar pattern complete karo! 🎯</span></div>`;
+  html += `<div class="feedback-row"><span class="fb-msg hint" id="fb">Pick the correct answer to complete the pattern! 🎯</span></div>`;
   html += `<div class="pattern-explain" id="pe"></div>`;
 
   card.innerHTML = html;
@@ -644,7 +763,7 @@ function timeUp() {
     b.disabled = true;
     if (String(currentQ.opts[parseInt(b.dataset.idx)]) === String(currentQ.answer)) b.classList.add('reveal');
   });
-  setFb('⏰ Time up! -5 points. Sahi tha: ' + currentQ.answer, 'wrong');
+  setFb('⏰ Time up! -5 points. Correct answer was: ' + currentQ.answer, 'wrong');
   document.getElementById('pe').textContent = '💡 ' + currentQ.explain;
   updateStats();
   qnum++;
@@ -670,7 +789,7 @@ function checkAns(btn) {
     if (streak > bestStreak) bestStreak = streak;
     correctCount++;
     const sm = streak >= 3 ? ' 🔥 ' + streak + ' streak!' : '';
-    setFb('✅ Sahi! +10 points' + sm, 'correct');
+    setFb('✅ Correct! +10 points' + sm, 'correct');
     document.getElementById('pe').textContent = '💡 ' + currentQ.explain;
     document.getElementById('game-card').classList.add('flash-correct');
     burst(streak >= 3 ? 75 : 45, pc.width / 2, pc.height * 0.4);
@@ -683,7 +802,7 @@ function checkAns(btn) {
     });
     score = Math.max(0, score - 5);
     streak = 0;
-    setFb('❌ Galat! -5 points. Sahi tha: ' + currentQ.answer, 'wrong');
+    setFb('❌ Wrong! -5 points. Correct answer was: ' + currentQ.answer, 'wrong');
     document.getElementById('pe').textContent = '💡 ' + currentQ.explain;
     document.getElementById('game-card').classList.add('flash-wrong');
     document.getElementById('game-card').classList.add('shake');
@@ -706,7 +825,7 @@ function updateStats() {
 }
 
 function showStreakPopup(n) {
-  const msgs = {3:['🔥','3x Streak! Zabardast!'],5:['⚡','5x Streak! Wow!'],7:['🌟','7x Streak! Legend!']};
+  const msgs = {3:['🔥','3x Streak! Incredible!'],5:['⚡','5x Streak! Wow!'],7:['🌟','7x Streak! Legend!']};
   const [em, tx] = msgs[n] || ['🔥', n + 'x Streak!'];
   document.getElementById('streak-emoji').textContent = em;
   document.getElementById('streak-text').textContent = tx;
@@ -753,14 +872,14 @@ function showEnd() {
   const avgTime = timesArr.length ? Math.round(timesArr.reduce((a,b)=>a+b,0)/timesArr.length) : 0;
   let trophy, title, stars;
   if (pct>=90){trophy='🏆';title='Pattern Master!';stars='⭐⭐⭐⭐⭐';}
-  else if(pct>=75){trophy='🥇';title='Bahut Accha!';stars='⭐⭐⭐⭐';}
-  else if(pct>=55){trophy='🥈';title='Theek Hai!';stars='⭐⭐⭐';}
-  else if(pct>=35){trophy='🥉';title='Koshish Achi!';stars='⭐⭐';}
-  else{trophy='🍕';title='Practice Karo!';stars='⭐';}
+  else if(pct>=75){trophy='🥇';title='Great Job!';stars='⭐⭐⭐⭐';}
+  else if(pct>=55){trophy='🥈';title='Not Bad!';stars='⭐⭐⭐';}
+  else if(pct>=35){trophy='🥉';title='Good Effort!';stars='⭐⭐';}
+  else{trophy='🍕';title='Keep Practising!';stars='⭐';}
   document.getElementById('end-trophy').textContent = trophy;
   document.getElementById('end-title').textContent = title;
   document.getElementById('end-score').textContent = score;
-  document.getElementById('end-sub').textContent = 'Points — ' + LEVEL_NAMES[ageLevel];
+  document.getElementById('end-sub').textContent = 'Points — ' + LEVEL_NAMES[ageLevel].replace('Explorer 🐣','Explorer 🐣').replace('Adventurer 🚀','Adventurer 🚀').replace('Champion 🧠','Champion 🧠');
   document.getElementById('end-stars').textContent = stars;
   document.getElementById('es-correct').textContent = correctCount + '/' + TOTAL_Q;
   document.getElementById('es-accuracy').textContent = pct + '%';

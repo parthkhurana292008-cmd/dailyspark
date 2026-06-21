@@ -2,8 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mind Reader - Math Magic | Mind Reader Magic Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <title>🧙‍♂️ Mind Reader Math Magic | Guess Your Number Game | Daily Spark</title>
+
+    <!-- SEO Primary -->
+    <meta name="description" content="Can a webpage read your mind? Think of any number 1–63 and this magical math trick will guess it! Fun binary math game for kids and students. Free online mind reader 2026.">
+    <meta name="keywords" content="mind reader game, math magic trick, guess my number game, binary number trick, math magic for kids, number guessing game online, mind reading math, fun math tricks, daily spark math game 2026, number magic trick 1 to 63">
+    <meta name="author" content="Daily Spark">
+    <meta name="publisher" content="Daily Spark">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="rating" content="safe for kids">
+    <meta name="category" content="Math Games, Magic Tricks, Educational">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://www.dailyspark.in/magic.html">
+
+    <!-- PWA / Mobile -->
+    <meta name="theme-color" content="#512da8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mind Reader">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Daily Spark">
+    <meta property="og:title" content="🧙‍♂️ Mind Reader: Math Magic | Can We Guess Your Number?">
+    <meta property="og:description" content="Think of any number 1–63 — this magical math trick will read your mind! Free fun number game for kids.">
+    <meta property="og:image" content="https://www.dailyspark.in/assets/magic-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Mind Reader Math Magic Game — Daily Spark">
+    <meta property="og:url" content="https://www.dailyspark.in/magic.html">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DailySparkIN">
+    <meta name="twitter:creator" content="@DailySparkIN">
+    <meta name="twitter:title" content="🧙‍♂️ Mind Reader Math Magic | Guess Your Number!">
+    <meta name="twitter:description" content="Think of a number 1–63 and we'll read your mind using math magic!">
+    <meta name="twitter:image" content="https://www.dailyspark.in/assets/magic-og.jpg">
+    <meta name="twitter:image:alt" content="Mind Reader Math Magic — Daily Spark">
+
+    <!-- Geo -->
+    <meta name="geo.region" content="IN">
+    <meta name="geo.country" content="India">
+    <meta name="DC.language" content="en">
+
+    <!-- Schema: Game -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Game","name":"Mind Reader: Math Magic","description":"A magical binary math trick that reads your mind — think of any number 1 to 63 and the game guesses it using 6 binary cards.","url":"https://www.dailyspark.in/magic.html","image":"https://www.dailyspark.in/assets/magic-og.jpg","genre":["Educational","Math","Magic","Puzzle"],"educationalUse":"practice","learningResourceType":"game","typicalAgeRange":"8-18","teaches":"Binary Numbers","inLanguage":"en","publisher":{"@type":"Organization","name":"Daily Spark","url":"https://www.dailyspark.in"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR","availability":"https://schema.org/InStock"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dailyspark.in"},{"@type":"ListItem","position":2,"name":"Math Games","item":"https://www.dailyspark.in/math.html"},{"@type":"ListItem","position":3,"name":"Mind Reader Math Magic","item":"https://www.dailyspark.in/magic.html"}]}
+    </script>
     <style>
         :root {
             --primary: #512da8;
@@ -32,6 +88,102 @@
             padding: 20px;
             overflow-x: hidden;
         }
+
+        /* ── ANIMATED BACKGROUND ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 15% 20%, rgba(124,77,255,0.28) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 15%, rgba(0,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 85%, rgba(255,87,34,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 55%, rgba(255,235,59,0.12) 0%, transparent 45%),
+                linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 35%, #16213e 70%, #0d0d2e 100%);
+            animation: bgShift 9s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes bgShift {
+            0%   { filter: hue-rotate(0deg) brightness(1); }
+            100% { filter: hue-rotate(25deg) brightness(1.1); }
+        }
+
+        /* Twinkling stars */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+                radial-gradient(circle, rgba(0,255,255,0.55) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,235,59,0.6) 1px, transparent 1px);
+            background-size: 80px 80px, 55px 55px, 120px 120px;
+            background-position: 0 0, 22px 22px, 45px 10px;
+            opacity: 0.2;
+            animation: starsTwinkle 3.5s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes starsTwinkle {
+            0%   { opacity: 0.10; }
+            100% { opacity: 0.28; }
+        }
+
+        /* Floating magic orbs */
+        #bg-anim {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: orbFloat linear infinite;
+            filter: blur(1px);
+        }
+        @keyframes orbFloat {
+            0%   { transform: translateY(110vh) scale(0.6); opacity: 0; }
+            8%   { opacity: 0.55; }
+            90%  { opacity: 0.35; }
+            100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+        }
+
+        /* Floating magic symbols */
+        .bg-sym {
+            position: absolute;
+            font-size: clamp(16px,3vw,26px);
+            opacity: 0;
+            animation: symDrift ease-in-out infinite;
+            pointer-events: none;
+            user-select: none;
+        }
+        @keyframes symDrift {
+            0%,100% { transform: translateY(0)    rotate(-10deg) scale(1);    opacity: 0.22; }
+            50%      { transform: translateY(-28px) rotate(10deg)  scale(1.15); opacity: 0.42; }
+        }
+
+        /* Pulsing rings */
+        .bg-ring {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ringPulse 8s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%,100% { opacity: 0.25; transform: translate(-50%,-50%) scale(1); }
+            50%      { opacity: 0.6;  transform: translate(-50%,-50%) scale(1.05); }
+        }
+
+        /* Ensure content stays above bg */
+        .container   { position: relative; z-index: 10; }
+        #flower-canvas { z-index: 999; }
 
         #flower-canvas {
             position: fixed;
@@ -226,9 +378,88 @@
             cursor: pointer;
             margin-top: 20px;
         }
-    </style>
+
+        /* ══ MOBILE FRIENDLY ══ */
+
+        /* Tablet: 768px */
+        @media (max-width: 768px) {
+            body { padding: 14px; }
+            header h1 { font-size: 2rem; }
+            header p  { font-size: 1rem; }
+            .instruction-box { font-size: 1rem; padding: 14px; }
+            .cards-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+            .magic-card { padding: 16px; }
+            .magic-card h3 { font-size: 1.2rem; }
+            .numbers-list { font-size: 1rem; gap: 6px; }
+            .num-span { padding: 2px 6px; min-width: 28px; }
+            .btn-primary { font-size: 1.1rem; padding: 13px 30px; }
+            .result-number { font-size: 4rem; }
+            .result-section { padding: 28px 20px; }
+        }
+
+        /* Mobile: 520px */
+        @media (max-width: 520px) {
+            body { padding: 10px; }
+            header h1 { font-size: 1.6rem; }
+            header p  { font-size: 0.9rem; }
+            .instruction-box { font-size: 0.9rem; padding: 12px; margin-bottom: 20px; }
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+            .magic-card { padding: 12px 10px; border-radius: 12px; }
+            .magic-card h3 { font-size: 1rem; margin-bottom: 10px; }
+            .numbers-list { font-size: 0.78rem; gap: 4px; margin-bottom: 10px; }
+            .num-span { padding: 2px 5px; min-width: 24px; border-radius: 4px; }
+            .btn-action { padding: 7px 14px; font-size: 0.85rem; }
+            .btn-primary { font-size: 1rem; padding: 12px 24px; border-radius: 24px; }
+            .control-panel { margin-top: 20px; }
+            .result-number { font-size: 3.2rem; }
+            .result-section { padding: 24px 14px; margin-top: 20px; }
+            .result-section h2 { font-size: 1.2rem; }
+            .result-section p  { font-size: 0.9rem; }
+            .btn-reset { font-size: 1rem; padding: 9px 20px; }
+            .bg-sym { font-size: clamp(14px, 2.5vw, 20px); }
+        }
+
+        /* Very small: 380px */
+        @media (max-width: 380px) {
+            header h1 { font-size: 1.3rem; }
+            .cards-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .magic-card { padding: 10px 8px; }
+            .magic-card h3 { font-size: 0.9rem; }
+            .numbers-list { font-size: 0.72rem; gap: 3px; }
+            .num-span { padding: 1px 4px; min-width: 20px; }
+            .btn-action { padding: 6px 10px; font-size: 0.8rem; }
+            .result-number { font-size: 2.8rem; }
+        }
+
+        /* Touch: disable hover effects */
+        @media (hover: none) and (pointer: coarse) {
+            .magic-card:hover { transform: none; }
+            .btn-primary:hover { transform: none; box-shadow: 0 5px 15px rgba(124,77,255,0.4); }
+            .btn-yes:hover, .btn-no:hover { transform: none; opacity: 1; }
+        }
+</style>
 </head>
 <body>
+
+<!-- Background Animation -->
+<div id="bg-anim"></div>
+<div class="bg-ring" style="width:750px;height:750px;border:1px solid rgba(124,77,255,0.15);"></div>
+<div class="bg-ring" style="width:520px;height:520px;border:1px solid rgba(0,255,255,0.12);animation-delay:2.5s;"></div>
+<div class="bg-ring" style="width:300px;height:300px;border:1px solid rgba(255,235,59,0.12);animation-delay:5s;"></div>
+
+<!-- Floating magic symbols (corners) -->
+<div class="bg-sym" style="left:2%;top:10%;animation-duration:6s;animation-delay:0s;color:rgba(0,255,255,0.5);">🔮</div>
+<div class="bg-sym" style="right:2%;top:8%;animation-duration:7s;animation-delay:1s;color:rgba(255,235,59,0.5);">✨</div>
+<div class="bg-sym" style="left:3%;top:50%;animation-duration:8s;animation-delay:2s;color:rgba(124,77,255,0.55);">⭐</div>
+<div class="bg-sym" style="right:3%;top:55%;animation-duration:6.5s;animation-delay:.7s;color:rgba(0,255,255,0.45);">🌟</div>
+<div class="bg-sym" style="left:5%;bottom:12%;animation-duration:9s;animation-delay:3s;color:rgba(255,87,34,0.5);">🧿</div>
+<div class="bg-sym" style="right:5%;bottom:15%;animation-duration:7.5s;animation-delay:1.5s;color:rgba(255,235,59,0.45);">💫</div>
+<div class="bg-sym" style="left:45%;top:5%;animation-duration:8s;animation-delay:4s;color:rgba(124,77,255,0.4);">🎩</div>
+<div class="bg-sym" style="left:48%;bottom:8%;animation-duration:7s;animation-delay:2s;color:rgba(0,255,255,0.4);">🃏</div>
 
 <canvas id="flower-canvas"></canvas>
 
@@ -427,6 +658,46 @@
             animationId = requestAnimationFrame(animateFlowers);
         }
     }
+    // ── BACKGROUND ORBS ──────────────────────────────────────
+    (function initBgOrbs() {
+        const bg = document.getElementById('bg-anim');
+        const colors = [
+            'rgba(124,77,255,0.5)', 'rgba(0,255,255,0.4)',
+            'rgba(255,235,59,0.4)', 'rgba(255,87,34,0.35)',
+            'rgba(0,230,118,0.35)', 'rgba(255,100,180,0.35)'
+        ];
+        const numSymbols = ['1','2','4','8','16','32','?','∑','∞'];
+        for (let i = 0; i < 22; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'bg-orb';
+            const size = Math.random() * 18 + 8;
+            const isMath = Math.random() > 0.55;
+            if (isMath) {
+                orb.style.cssText = `
+                    left:${Math.random()*100}%; bottom:-40px;
+                    width:${size*1.5}px; height:${size*1.5}px;
+                    background:transparent;
+                    display:flex; align-items:center; justify-content:center;
+                    font-size:${size}px; font-weight:900;
+                    color:${colors[Math.floor(Math.random()*colors.length)]};
+                    animation-duration:${Math.random()*12+8}s;
+                    animation-delay:${Math.random()*14}s;
+                    filter:none;
+                `;
+                orb.textContent = numSymbols[Math.floor(Math.random()*numSymbols.length)];
+            } else {
+                orb.style.cssText = `
+                    left:${Math.random()*100}%; bottom:-40px;
+                    width:${size}px; height:${size}px;
+                    background:${colors[Math.floor(Math.random()*colors.length)]};
+                    box-shadow:0 0 ${size*2}px ${colors[Math.floor(Math.random()*colors.length)]};
+                    animation-duration:${Math.random()*12+8}s;
+                    animation-delay:${Math.random()*14}s;
+                `;
+            }
+            bg.appendChild(orb);
+        }
+    })();
 </script>
 </body>
 </html>

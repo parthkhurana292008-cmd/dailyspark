@@ -223,11 +223,65 @@ body.dark .ptip-item:hover{background:#2d3f58}
   *{animation:none!important;transition:none!important}
 }
 </style>
+
+<style>
+/* ===== DAILY SPARK HEADER ===== */
+.ds-notif-bar{background:#FF6B00;color:#fff;padding:9px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;position:relative;z-index:9999;font-family:'Inter',sans-serif;}
+.ds-notif-bar a{color:#fff;text-decoration:none;}
+.ds-notif-close{background:none;border:none;color:#fff;cursor:pointer;font-size:18px;opacity:0.8;padding:0 4px;}
+.ds-notif-close:hover{opacity:1;}
+.ds-topbar{background:#0D1B2A;color:#fff;padding:10px 20px;font-size:12.5px;position:relative;z-index:9999;font-family:'Inter',sans-serif;}
+.ds-topbar-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.ds-topbar-date{color:#8899AA;white-space:nowrap;font-weight:500;}
+.ds-ticker-wrap{flex:1;overflow:hidden;white-space:nowrap;background:rgba(255,255,255,0.06);padding:5px 0;border-radius:4px;border-left:3px solid #FF6B00;}
+.ds-ticker{color:#CBD6E2;display:inline-block;padding-left:100%;animation:ds-tick 28s linear infinite;white-space:nowrap;}
+.ds-ticker:hover{animation-play-state:paused;}
+@keyframes ds-tick{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.ds-masthead{background:#fff;border-bottom:3px solid #FF6B00;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:9999;font-family:'Inter',sans-serif;}
+.ds-masthead-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.ds-logo-block{padding:14px 0;flex-shrink:0;text-decoration:none;display:block;}
+.ds-logo-name{font-size:24px;font-weight:800;color:#0D1B2A;line-height:1;}
+.ds-logo-name span{color:#FF6B00;}
+.ds-logo-tag{font-size:10px;color:#8899AA;letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.ds-nav-links{display:flex;gap:2px;align-items:center;}
+.ds-nav-links a{padding:8px 14px;font-size:13px;font-weight:600;color:#1A2B3C;border-radius:4px;transition:background 0.15s,color 0.15s;white-space:nowrap;text-decoration:none;}
+.ds-nav-links a:hover{background:#F7F9FC;color:#FF6B00;}
+.ds-nav-links a.active{color:#FF6B00;}
+@media(max-width:900px){.ds-nav-links{display:none;}}
+</style>
 </head>
 
 <body data-page="parenting">
+<!-- ===== DAILY SPARK SHARED HEADER ===== -->
+<div class="ds-notif-bar" id="ds-notif">
+  <a href="ns.html" target="_blank" rel="noopener">🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</a>
+  <button class="ds-notif-close" onclick="document.getElementById('ds-notif').remove()">✕</button>
+</div>
+<div class="ds-topbar">
+  <div class="ds-topbar-inner">
+    <div class="ds-topbar-date" id="ds-topbar-date">Breaking News:</div>
+    <div class="ds-ticker-wrap"><span class="ds-ticker">Jossa Round 2 result on Tuesday, 30 June, 2026 17:00 &nbsp;|&nbsp; Jac Delhi Round 2 result on Wednesday 1st July 2026 (After 05:00 PM) &nbsp;|&nbsp;</span></div>
+  </div>
+</div>
+<div class="ds-masthead">
+  <div class="ds-masthead-inner">
+    <a href="index.html" class="ds-logo-block">
+      <div class="ds-logo-name">Daily <span>Spark</span></div>
+      <div class="ds-logo-tag">Where Knowledge Sparks Success</div>
+    </a>
+    <nav class="ds-nav-links">
+      <a href="index.html">Home</a>
+      <a href="parent.html">Parenting</a>
+      <a href="math.html">Math Playground</a>
+      <a href="gjobs.html">Govt. Jobs</a>
+      <a href="ait.html">Best AI Tools</a>
+      <a href="weather.html">Weather</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</div>
+<!-- ===== END SHARED HEADER ===== -->
 
-<!-- ── Floating 3D Background Images ── -->
 <img class="bg-float-img" src="./room/1.jfif"  alt="" style="width:260px;height:190px;top:8%;left:-40px;--rot:-6deg;--dur:8s;--delay:0s;--op:0.13;--op-dark:0.07">
 <img class="bg-float-img" src="./room/3.jfif"  alt="" style="width:220px;height:160px;top:5%;right:-30px;--rot:5deg;--dur:9s;--delay:1s;--op:0.12;--op-dark:0.06">
 <img class="bg-float-img" src="./room/5.jfif"  alt="" style="width:200px;height:150px;top:28%;left:-35px;--rot:-4deg;--dur:10s;--delay:2s;--op:0.11;--op-dark:0.06">
@@ -239,10 +293,6 @@ body.dark .ptip-item:hover{background:#2d3f58}
 
 <!-- ensure content is above bg images -->
 <div style="position:relative;z-index:1">
-
-<!-- Daily Spark Shared Header -->
-<div id="ds-header-root"></div>
-<script src="ds-header.js"></script>
 
 <audio id="bgMusic" loop>
   <source src="./room/lakdi.mp3" type="audio/mpeg">
@@ -321,7 +371,7 @@ body.dark .ptip-item:hover{background:#2d3f58}
         <div class="tip-item">
           <span class="tip-icon">🎨</span>
           <div class="tip-text">
-            <strong>1. रंग-बिरंगी दीवारें और आकर्षक थीम</strong>
+            <strong>रंग-बिरंगी दीवारें और आकर्षक थीम</strong>
             <span>बच्चों के मानसिक विकास में रंगों का बहुत बड़ा हाथ होता है।<br>
             • <b>ब्राइट और पॉजिटिव कलर्स:</b> स्काई ब्लू, लाइट ग्रीन, बेबी पिंक या लेमन येलो चुनें।<br>
             • <b>थीम बेस्ड डेकोर:</b> कार्टून, स्पेस, जंगल या सुपरहीरो थीम — वॉलपेपर स्टिकर्स से और मजेदार बनाएं।</span>
@@ -331,7 +381,7 @@ body.dark .ptip-item:hover{background:#2d3f58}
         <div class="tip-item">
           <span class="tip-icon">🛋️</span>
           <div class="tip-text">
-            <strong>2. सुरक्षित और आरामदायक फर्नीचर</strong>
+            <strong>सुरक्षित और आरामदायक फर्नीचर</strong>
             <span>बच्चों के कमरे में सुरक्षा सबसे महत्वपूर्ण पहलू है।<br>
             • <b>राउंड कॉर्नर्स:</b> फर्नीचर के कोने नुकीले न हों, ताकि खेलते समय चोट न लगे।<br>
             • <b>हाइट फ्रेंडली:</b> अलमारी, बेड की ऊंचाई ऐसी हो जहां बच्चे आसानी से खुद पहुंच सकें।</span>
@@ -341,7 +391,7 @@ body.dark .ptip-item:hover{background:#2d3f58}
         <div class="tip-item">
           <span class="tip-icon">📚</span>
           <div class="tip-text">
-            <strong>3. पढ़ाई और खेलने के लिए अलग जगह (Zoning)</strong>
+            <strong>पढ़ाई और खेलने के लिए अलग जगह (Zoning)</strong>
             <span>कमरे को इस तरह बांटें कि बच्चे को पता हो कहां पढ़ना है और कहां खेलना है।<br>
             • <b>स्टडी कॉर्नर:</b> शांत कोने में छोटी स्टडी टेबल, अच्छी रोशनी (Task Lighting)।<br>
             • <b>प्ले एरिया:</b> सॉफ्ट मैट या कारपेट बिछाकर खेलने की जगह बनाएं।</span>
@@ -351,7 +401,7 @@ body.dark .ptip-item:hover{background:#2d3f58}
         <div class="tip-item">
           <span class="tip-icon">🧸</span>
           <div class="tip-text">
-            <strong>4. स्टोरेज स्पेस का सही उपयोग</strong>
+            <strong>स्टोरेज स्पेस का सही उपयोग</strong>
             <span>खिलौने और किताबों की वजह से अक्सर बिखराव रहता है। स्मार्ट स्टोरेज ज़रूरी है।<br>
             • <b>लो-लेवल बास्केट्स:</b> रंग-बिरंगे बास्केट्स — बच्चे खुद खिलौने समेट सकें।<br>
             • <b>मल्टी-पर्पज बेड:</b> नीचे स्टोरेज ड्रायर्स वाला बेड चुनें।</span>
@@ -361,7 +411,7 @@ body.dark .ptip-item:hover{background:#2d3f58}
         <div class="tip-item">
           <span class="tip-icon">☀️</span>
           <div class="tip-text">
-            <strong>5. भरपूर रोशनी और वेंटिलेशन</strong>
+            <strong>भरपूर रोशनी और वेंटिलेशन</strong>
             <span>• पर्याप्त प्राकृतिक रोशनी और हवा से कमरे में सकारात्मक ऊर्जा बनी रहती है।<br>
             • रात के लिए नाइट लाइट या ग्लो-इन-द-डार्क स्टार्स लगाएं — रात में डर न लगे।</span>
           </div>
@@ -485,6 +535,9 @@ body.dark .ptip-item:hover{background:#2d3f58}
 </footer>
 
 <script>
+// ── DS Header Live Date ──
+(function(){var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];var months=['January','February','March','April','May','June','July','August','September','October','November','December'];var d=new Date();var el=document.getElementById('ds-topbar-date');if(el)el.textContent=days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+
 // Swiper
 new Swiper(".mySwiper", {
   loop:true,

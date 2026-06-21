@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Complete Guide — English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+     --good: #16A34A;
+      --bad: #DC2626;
+  --navy:    #0D1B2A;
+  --saffron: #FF6B00;
+  --saff2:   #FF8C33;
+  --white:   #FFFFFF;
+  --off:     #F7F9FC;
+  --slate:   #8899AA;
+  --text:    #1A2B3C;
+  --textl:   #4A5C6E;
+  --border:  #DDE4ED;
+  --c1: #7C3AED; --c1l: #EDE9FE;
+  --c2: #0891B2; --c2l: #CFFAFE;
+  --c3: #16A34A; --c3l: #DCFCE7;
+  --c4: #DC2626; --c4l: #FEE2E2;
+  --c5: #D97706; --c5l: #FEF3C7;
+  --c6: #DB2777; --c6l: #FCE7F3;
+  --c7: #059669; --c7l: #D1FAE5;
+  --c8: #7C3AED; --c8l: #EDE9FE;
+  --sans: 'Inter', sans-serif;
+  --play: 'Nunito', 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--off); color: var(--text); line-height: 1.8; overflow-x: hidden; font-weight: 600; min-height: 100vh; }
+
+
+
+
+a { text-decoration: none; color: inherit; }
+
+/* TOPBAR */
+.topbar {
+  background: #0D1B2A; border-bottom: 5px solid #FF6B00;
+  padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 200;
+}
+.brand { font-family: var(--play); font-size: 22px; color: var(--white); font-weight: 900; }
+.brand span { color: var(--saffron); }
+.topbar-back { font-size: 13px; color: var(--slate); font-weight: 800; transition: color .2s; }
+.topbar-back:hover { color: var(--saffron); }
+
+/* HERO */
+.hero {
+  background: var(--navy); padding: 48px 24px 40px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.orb { position: absolute; opacity: .1; font-size: 80px; animation: fl 9s ease-in-out infinite; }
+.orb:nth-child(1) { top: 8%;  left: 4%;  animation-delay: 0s; }
+.orb:nth-child(2) { top: 55%; left: 2%;  animation-delay: 2s; font-size: 65px; }
+.orb:nth-child(3) { top: 10%; right: 3%; animation-delay: 3.5s; font-size: 90px; }
+.orb:nth-child(4) { top: 60%; right: 4%; animation-delay: 1.5s; font-size: 68px; }
+@keyframes fl { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,107,0,.18); border: 2px solid rgba(255,107,0,.5);
+  color: var(--saff2); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--play); font-size: clamp(26px, 6vw, 48px); font-weight: 900;
+  color: var(--white); line-height: 1.15; letter-spacing: -1px; margin-bottom: 12px;
+}
+.hero h1 em { color: var(--saffron); font-style: normal; }
+.hero-sub { color: #8899AA; font-size: 14.5px; max-width: 480px; margin: 0 auto 24px; }
+.hero-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.hero-pill {
+  background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.18);
+  color: #E2E8F0; font-size: 13px; font-weight: 800; padding: 7px 18px; border-radius: 20px;
+}
+
+/* WRAP */
+.wrap { max-width: 1000px; margin: 0 auto; padding: 44px 20px 64px; }
+
+/* SECTION HEADER */
+.sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; margin-top: 48px; }
+.sec-head:first-of-type { margin-top: 0; }
+.sec-accent { width: 5px; height: 28px; background: var(--saffron); border-radius: 3px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--play); font-size: 22px; font-weight: 900; color: var(--navy); }
+.sec-line { flex: 1; height: 2px; background: var(--border); }
+.sec-badge {
+  background: var(--off); border: 2px solid var(--border); color: var(--slate);
+  font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 12px; border-radius: 20px; white-space: nowrap;
+}
+
+/* IMP CARD */
+.imp-card {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 18px; padding: 24px 22px; margin-bottom: 16px;
+}
+.imp-card-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.imp-icon-wrap {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.imp-title { font-family: var(--play); font-size: 18px; font-weight: 900; color: var(--navy); }
+
+/* colour per card */
+.card-edu  { border-top: 5px solid var(--c1); } .card-edu  .imp-icon-wrap { background: var(--c1l); }
+.card-career{ border-top: 5px solid var(--c2); } .card-career .imp-icon-wrap { background: var(--c2l); }
+.card-creative{ border-top: 5px solid var(--c6); } .card-creative .imp-icon-wrap { background: var(--c6l); }
+.card-daily { border-top: 5px solid var(--c3); } .card-daily .imp-icon-wrap { background: var(--c3l); }
+.card-prod  { border-top: 5px solid var(--c5); } .card-prod  .imp-icon-wrap { background: var(--c5l); }
+.card-biz   { border-top: 5px solid var(--c4); } .card-biz   .imp-icon-wrap { background: var(--c4l); }
+.card-health{ border-top: 5px solid var(--c7); } .card-health .imp-icon-wrap { background: var(--c7l); }
+.card-legal { border-top: 5px solid var(--c2); } .card-legal  .imp-icon-wrap { background: var(--c2l); }
+.card-india { border-top: 5px solid var(--saffron); } .card-india .imp-icon-wrap { background: #FFF0E0; }
+.card-time  { border-top: 5px solid var(--c3); } .card-time  .imp-icon-wrap { background: var(--c3l); }
+
+/* BULLET LIST */
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.bullet-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--textl); line-height: 1.6;
+}
+.bullet-list li::before {
+  content: '▸'; color: var(--saffron); font-size: 12px;
+  margin-top: 3px; flex-shrink: 0; font-weight: 900;
+}
+.bullet-list li strong { color: var(--text); }
+
+/* SUB-SECTION inside card */
+.sub-title {
+  font-family: var(--play); font-size: 13px; font-weight: 900;
+  color: var(--slate); text-transform: uppercase; letter-spacing: .08em;
+  margin: 16px 0 8px; display: flex; align-items: center; gap: 6px;
+}
+.sub-title::before { content: ''; flex: none; width: 3px; height: 14px; background: var(--saffron); border-radius: 2px; }
+
+/* PROMPT EXAMPLE CHIPS */
+.prompt-chips { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.prompt-chip {
+  background: var(--off); border: 2px solid var(--border); border-radius: 10px;
+  padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.5;
+}
+.prompt-chip .qlabel {
+  font-size: 11px; font-weight: 800; color: var(--saffron);
+  text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 3px;
+}
+
+/* PRODUCTIVITY CHECKS */
+.prod-list { display: flex; flex-direction: column; gap: 9px; }
+.prod-item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--off); border: 2px solid var(--border);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 14px; color: var(--text);
+}
+.prod-check {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--c3);
+  color: #fff; font-size: 13px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.prod-time {
+  margin-left: auto; font-size: 12px; font-weight: 800;
+  color: var(--c3); background: var(--c3l);
+  padding: 2px 10px; border-radius: 20px; white-space: nowrap;
+}
+
+/* GRID for 2-col cards */
+.cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+   
+
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--navy);
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--textl); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--saffron); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,107,0,.18);
+      border: 2px solid rgba(255,107,0,.45);
+      color: var(--saff2);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+      padding: 0.3rem 1rem; border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700; line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      color: var(--navy);
+    }
+    .hero p {
+      font-size: 1.1rem; color: #8899AA;
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 700; color: var(--saffron); }
+    .stat-label { font-size: 0.8rem; color: var(--slate); }
+
+    /* Sections */
+    section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--saffron); margin-bottom: 0.75rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .section-header p { color: var(--textl); max-width: 550px; margin: 0 auto; }
+
+    /* Divider */
+    .divider { border: none; border-top: 2px solid var(--border); margin: 0; }
+
+    /* Definition Card */
+    .definition-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 16px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .definition-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--c1));
+    }
+    .definition-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .definition-card p { color: var(--textl); margin-bottom: 1rem; }
+    .full-name {
+      display: inline-block;
+      background: var(--c1l); border: 2px solid #C4B5FD;
+      color: var(--c1); padding: 0.4rem 1rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .def-highlights {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .def-highlight {
+      background: var(--off);
+      border-radius: 10px; padding: 1rem;
+      border: 2px solid var(--border);
+    }
+    .def-highlight .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .def-highlight h4 { font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .def-highlight p { font-size: 0.82rem; color: var(--textl); margin: 0; }
+
+    /* Feature Grid */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .feature-card:hover {
+      border-color: var(--saffron);
+      transform: translateY(-3px);
+    }
+    .feature-num {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--slate); margin-bottom: 0.75rem;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.85rem; color: var(--textl); }
+    .feature-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.75rem; }
+    .tag {
+      font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+      background: var(--c3l); color: var(--c3);
+      border: 1.5px solid #86EFAC;
+    }
+    .tag.nila {
+      background: var(--c2l); color: var(--c2);
+      border-color: #67E8F9;
+    }
+    .tag.peela {
+      background: var(--c5l); color: var(--c5);
+      border-color: #FCD34D;
+    }
+
+    /* How It Works */
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .step {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 2rem 0; position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute; left: 1.5rem; top: 4.5rem; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--saffron), transparent);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 3rem; height: 3rem;
+      background: var(--saffron);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: #fff;
+      position: relative; z-index: 1;
+    }
+    .step-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .step-content p { color: var(--textl); font-size: 0.9rem; }
+    .step-code {
+      background: var(--off);
+      border: 2px solid var(--border);
+      border-radius: 8px; padding: 0.75rem 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.88rem; color: var(--c1);
+    }
+
+    /* Why It Matters Grid */
+    .importance-grid {
+      display: block;
+    }
+    .imp-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 18px; padding: 24px 22px; margin-bottom: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .imp-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+    .imp-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .imp-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .imp-card ul { list-style: none; padding: 0; }
+    .imp-card li {
+      font-size: 0.83rem; color: var(--textl);
+      padding: 0.3rem 0; border-bottom: 2px solid var(--border);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .imp-card li:last-child { border-bottom: none; }
+    .imp-card li::before { content: '→'; color: var(--saffron); flex-shrink: 0; }
+
+    /* Prompts */
+    .prompt-section { display: flex; flex-direction: column; gap: 2.5rem; }
+    .prompt-pair {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .prompt-box {
+      border-radius: 12px; padding: 1.5rem;
+      border: 1px solid transparent;
+    }
+    .prompt-bad {
+      background: #FFF5F5;
+      border-color: #FECACA;
+    }
+    .prompt-good {
+      background: #F0FFF4;
+      border-color: #86EFAC;
+    }
+    .prompt-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .prompt-bad .prompt-label { color: var(--bad); }
+    .prompt-good .prompt-label { color: var(--good); }
+    .prompt-box .topic {
+      font-size: 0.75rem; color: var(--slate); margin-bottom: 0.5rem;
+    }
+    .prompt-text {
+      font-size: 0.88rem;
+      color: var(--text); line-height: 1.7;
+      background: var(--white); border: 2px solid var(--border); border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .prompt-note {
+      font-size: 0.78rem; color: var(--textl);
+      margin-top: 0.75rem; font-style: italic;
+    }
+
+    /* Formula */
+    .formula-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 16px; padding: 2rem; text-align: center;
+      margin-bottom: 2rem;
+    }
+    .formula-card h3 { margin-bottom: 1.5rem; }
+    .formula-parts {
+      display: flex; justify-content: center; align-items: center;
+      gap: 0.75rem; flex-wrap: wrap;
+    }
+    .formula-part {
+      background: var(--off); border: 2px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.25rem; text-align: center;
+    }
+    .formula-part .ficon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .formula-part .flabel { font-size: 0.7rem; color: var(--slate); }
+    .formula-part .fname { font-size: 0.9rem; font-weight: 600; }
+    .formula-plus { font-size: 1.5rem; color: var(--slate); }
+    .formula-eq { font-size: 1.5rem; color: var(--saffron); font-weight: 700; }
+
+    /* Best Uses Table */
+    .best-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; }
+    .best-table th {
+      background: var(--navy); padding: 0.9rem 1.2rem; color: #E2E8F0;
+      text-align: left; font-size: 0.82rem; font-weight: 600;
+      color: var(--textl); border-bottom: 2px solid var(--border);
+    }
+    .best-table td {
+      padding: 0.9rem 1.2rem; font-size: 0.85rem;
+      border-bottom: 2px solid var(--border); vertical-align: top;
+    }
+    .best-table tr:last-child td { border-bottom: none; }
+    .best-table tr:hover td { background: var(--off); }
+    .rank { font-weight: 700; }
+
+    /* Limitations */
+    .limits-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;
+    }
+    .limit-card {
+      background: #FFF5F5; border: 2px solid #FECACA;
+      border-radius: 12px; padding: 1.25rem;
+    }
+    .limit-card h4 { color: var(--bad); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .limit-card p { font-size: 0.82rem; color: var(--textl); }
+
+    /* Warning Box */
+    .warning-box {
+      background: #FFFBEB; border: 2px solid #FCD34D;
+      border-radius: 12px; padding: 1.5rem; margin-top: 2rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .warning-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .warning-box p { color: var(--textl); font-size: 0.9rem; }
+    .warning-box strong { color: var(--text); }
+
+    /* Golden Rule */
+    .golden {
+      background: linear-gradient(135deg, #FFFBEB, #F0FFF4);
+      border: 2px solid #FCD34D;
+      border-radius: 16px; padding: 2.5rem; text-align: center;
+      margin-top: 3rem;
+    }
+    .golden h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+    .golden p { color: var(--textl); max-width: 600px; margin: 0 auto; }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 3rem 2rem;
+      background: var(--navy); border-top: 5px solid var(--saffron);
+      color: var(--slate); font-size: 13px; font-weight: 700;
+    }
+    footer span { color: var(--saffron);
+    }
+    footer a { color: var(--saffron); }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .prompt-pair { grid-template-columns: 1fr; }
+      .step { gap: 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+    }
+
+    /* Scroll Reveal */
+    [data-reveal] {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    [data-reveal].visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ── TRAINING FLOW ── */
+    .training-flow {
+      background: var(--navy); border-radius: 18px;
+      padding: 28px 22px; margin-bottom: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .flow-box {
+      background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 14px 18px; text-align: center; min-width: 130px;
+    }
+    .flow-box .icon { font-size: 28px; margin-bottom: 6px; }
+    .flow-box .label { font-family: var(--play); font-size: 13px; font-weight: 800; color: #E2E8F0; line-height: 1.4; }
+    .flow-box .sublabel { font-size: 11px; color: #8899AA; margin-top: 4px; }
+    .flow-box.highlight { background: var(--saffron); border-color: var(--saffron); }
+    .flow-box.highlight .label { color: #fff; }
+    .flow-box.highlight .sublabel { color: rgba(255,255,255,.75); }
+    .flow-arrow { font-size: 22px; color: var(--saffron); font-weight: 900; }
+
+    /* ── STEP CARDS (Training steps) ── */
+    .steps-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .step-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 16px; overflow: hidden; display: flex;
+    }
+    .step-num-col {
+      width: 68px; flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 5px; padding: 18px 0;
+    }
+    .step-card:nth-child(1) .step-num-col { background: var(--c1l); }
+    .step-card:nth-child(2) .step-num-col { background: var(--c2l); }
+    .step-card:nth-child(3) .step-num-col { background: var(--c3l); }
+    .step-num-col .n { font-family: var(--play); font-size: 26px; font-weight: 900; }
+    .step-card:nth-child(1) .step-num-col .n { color: var(--c1); }
+    .step-card:nth-child(2) .step-num-col .n { color: var(--c2); }
+    .step-card:nth-child(3) .step-num-col .n { color: var(--c3); }
+    .step-num-col .emoji { font-size: 20px; }
+    .step-body { padding: 18px 20px; flex: 1; }
+    .step-title { font-family: var(--play); font-size: 16px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .step-points { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .step-points li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--textl); line-height: 1.55; }
+    .step-points li::before { content: '▸'; color: var(--saffron); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+    /* ── TECH TABLE ── */
+    .tech-table-wrap { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+    .tech-table { width: 100%; border-collapse: collapse; }
+    .tech-table th { background: var(--navy); color: #E2E8F0; padding: 13px 20px; text-align: left; font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .tech-table td { padding: 13px 20px; border-bottom: 2px solid var(--border); font-size: 14px; vertical-align: middle; }
+    .tech-table tr:last-child td { border-bottom: none; }
+    .tech-table tr:hover td { background: var(--off); }
+    .tt-key { font-family: var(--play); font-weight: 900; color: var(--navy); }
+    .tt-val { color: var(--textl); }
+
+    /* ── TRANSFORMER CARD ── */
+    .transformer-card {
+      background: linear-gradient(135deg, #0D1B2A 0%, #1E3A5F 100%);
+      border-radius: 18px; padding: 26px; margin-bottom: 36px; position: relative; overflow: hidden;
+    }
+    .transformer-card::before { content: '🤖'; position: absolute; right: 20px; bottom: -10px; font-size: 100px; opacity: .07; }
+    .transformer-title { font-family: var(--play); font-size: 19px; font-weight: 900; color: var(--white); margin-bottom: 14px; }
+    .transformer-title span { color: var(--saffron); }
+    .transformer-points { display: flex; flex-direction: column; gap: 10px; }
+    .t-point { display: flex; align-items: flex-start; gap: 12px; }
+    .t-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--saffron); margin-top: 6px; flex-shrink: 0; }
+    .t-text { font-size: 14px; color: #C8D8E8; line-height: 1.6; }
+    .t-text strong { color: var(--saff2); }
+    .example-box {
+      background: rgba(255,107,0,.12); border: 2px solid rgba(255,107,0,.3);
+      border-radius: 12px; padding: 14px 16px; margin-top: 16px;
+      font-size: 13.5px; color: #C8D8E8; line-height: 1.7;
+    }
+    .example-box strong { color: var(--saff2); }
+
+    /* ── EXAMPLE FLOW ── */
+    .example-flow { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+    .ef-header { background: var(--off); border-bottom: 2px solid var(--border); padding: 13px 22px; font-family: var(--play); font-size: 14px; font-weight: 900; color: var(--navy); }
+    .ef-question { background: #FEF9EC; border-bottom: 2px solid var(--border); padding: 15px 22px; font-family: var(--play); font-size: 16px; font-weight: 900; color: #92400E; display: flex; align-items: center; gap: 10px; }
+    .ef-steps { padding: 6px 0; }
+    .ef-step { display: flex; align-items: flex-start; gap: 14px; padding: 11px 22px; border-bottom: 1px solid var(--border); }
+    .ef-step:last-child { border-bottom: none; }
+    .ef-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--saffron); color: #fff; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .ef-step-text { font-size: 14px; color: var(--textl); line-height: 1.6; }
+    .ef-step-text strong { color: var(--navy); }
+    .ef-answer { background: #DCFCE7; padding: 14px 22px; font-family: var(--play); font-size: 16px; font-weight: 900; color: #14532D; display: flex; align-items: center; gap: 10px; }
+
+    /* ── PROMPT TYPES GRID ── */
+    .prompt-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .prompt-card { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; }
+    .prompt-num-col {
+      width: 60px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--play); font-size: 26px; font-weight: 900;
+    }
+    .prompt-card:nth-child(1) .prompt-num-col { background: var(--c1l); color: var(--c1); }
+    .prompt-card:nth-child(2) .prompt-num-col { background: var(--c2l); color: var(--c2); }
+    .prompt-card:nth-child(3) .prompt-num-col { background: var(--c3l); color: var(--c3); }
+    .prompt-card:nth-child(4) .prompt-num-col { background: var(--c4l); color: var(--c4); }
+    .prompt-card:nth-child(5) .prompt-num-col { background: var(--c5l); color: var(--c5); }
+    .prompt-body { padding: 16px 18px; flex: 1; }
+    .prompt-type { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 3px; }
+    .prompt-card:nth-child(1) .prompt-type { color: var(--c1); }
+    .prompt-card:nth-child(2) .prompt-type { color: var(--c2); }
+    .prompt-card:nth-child(3) .prompt-type { color: var(--c3); }
+    .prompt-card:nth-child(4) .prompt-type { color: var(--c4); }
+    .prompt-card:nth-child(5) .prompt-type { color: var(--c5); }
+    .prompt-title { font-family: var(--play); font-size: 16px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+    .prompt-example { background: var(--off); border: 2px solid var(--border); border-radius: 9px; padding: 9px 13px; font-size: 13.5px; color: var(--text); line-height: 1.55; }
+    .prompt-example .q { color: var(--saffron); font-weight: 800; }
+
+    /* ── CHAIN PROMPT ── */
+    .chain-wrap { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 36px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .chain-header { background: var(--navy); padding: 13px 22px; font-family: var(--play); font-size: 15px; font-weight: 900; color: var(--white); display: flex; align-items: center; gap: 10px; }
+    .chain-steps { padding: 6px 0; }
+    .chain-step { display: flex; align-items: center; gap: 14px; padding: 11px 22px; border-bottom: 1px solid var(--border); }
+    .chain-step:last-child { border-bottom: none; }
+    .chain-step-num { width: 32px; height: 32px; border-radius: 50%; font-family: var(--play); font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .chain-step:nth-child(1) .chain-step-num { background: var(--c1l); color: var(--c1); }
+    .chain-step:nth-child(2) .chain-step-num { background: var(--c2l); color: var(--c2); }
+    .chain-step:nth-child(3) .chain-step-num { background: var(--c3l); color: var(--c3); }
+    .chain-step-label { font-size: 11px; font-weight: 800; color: var(--slate); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .chain-step-text { font-size: 14px; color: var(--navy); font-weight: 700; }
+
+    /* ── MOBILE EXTRA ── */
+    @media (max-width: 680px) {
+      .training-flow { flex-direction: column; align-items: stretch; }
+      .flow-arrow { transform: rotate(90deg); text-align: center; }
+      .flow-box { min-width: unset; }
+      .tech-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .tech-table { min-width: 380px; }
+      .step-num-col { width: 54px; }
+      .step-num-col .n { font-size: 20px; }
+      .prompt-num-col { width: 50px; font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">ChatGPT Guide 🤖</div>
+  <ul class="nav-links">
+    <li><a href="#paribhasha">Definition</a></li>
+    <li><a href="#visheshata">Features</a></li>
+    <li><a href="#kaise">How It Works</a></li>
+    <li><a href="#mahatva">Why It Matters</a></li>
+    <li><a href="#prompt">Prompts</a></li>
+    <li><a href="#upyog">Best Uses</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">Complete English Guide · 2026</div>
+  <h1>Understand ChatGPT<br /><span>Completely, in English</span></h1>
+  <p>From features to prompts — everything you need to know about ChatGPT, explained in simple English.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Languages</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Available</div></div>
+    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">Free Plan</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Topics Covered</div></div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- Definition -->
+<section id="paribhasha">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">01 — Definition</div>
+    <h2>What is ChatGPT?</h2>
+    <p>The world's most widely used AI chatbot, built by OpenAI</p>
+  </div>
+  <div class="definition-card" data-reveal>
+    <div class="full-name">Generative Pre-trained Transformer (GPT)</div>
+    <p>ChatGPT is an <strong>Artificial Intelligence (AI)</strong>-based chatbot built by <strong>OpenAI</strong>. It has learned from hundreds of millions of books, websites and research papers to converse like a human and answer any question.</p>
+    <p style="margin-bottom:0">Simply put — it is a <strong>Smart Virtual Assistant</strong> that understands your language and creates information or content as per your needs. You can even speak to ChatGPT through the mobile app, making it a hands-free virtual assistant experience.</p>
+    <div class="def-highlights">
+      <div class="def-highlight">
+        <div class="icon">🧠</div>
+        <h4>Large Language Model</h4>
+        <p>AI trained on billions of parameters</p>
+      </div>
+      <div class="def-highlight">
+        <div class="icon">🌐</div>
+        <h4>50+ Languages</h4>
+        <p>Supports English, Hindi and 50+ languages</p>
+      </div>
+      <div class="def-highlight">
+        <div class="icon">⚡</div>
+        <h4>Transformer Architecture</h4>
+        <p>Ability to generate responses word by word</p>
+      </div>
+      <div class="def-highlight">
+        <div class="icon">🔄</div>
+        <h4>Learned from Human Feedback</h4>
+        <p>Trained using human feedback (RLHF)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- Features -->
+<section id="visheshata">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">02 — Features</div>
+    <h2>Key Features of ChatGPT</h2>
+    <p>Everything ChatGPT can do</p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Core / 01</div>
+      <div class="feature-icon">💬</div>
+      <h3>Natural Language Understanding</h3>
+      <p>Converses like a human. Understands and responds in English, Hindi and 50+ languages. You can also speak to ChatGPT via the mobile app for a hands-free assistant experience.</p>
+      <div class="feature-tags"><span class="tag">Hindi</span><span class="tag">English</span><span class="tag">50+ Languages</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Core / 02</div>
+      <div class="feature-icon">✍️</div>
+      <h3>Content Creation</h3>
+      <p>Writes essays, stories, emails and reports. Creates content on any topic instantly.</p>
+      <div class="feature-tags"><span class="tag">Essays</span><span class="tag">Email</span><span class="tag">Reports</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Core / 03</div>
+      <div class="feature-icon">❓</div>
+      <h3>Question & Answer</h3>
+      <p>Gives detailed answers to any question. Explains complex topics in simple language. It doesn't just answer — it teaches you how to think, step by step.</p>
+      <div class="feature-tags"><span class="tag nila">Q&amp;A</span><span class="tag nila">Explain</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Study / 04</div>
+      <div class="feature-icon">📐</div>
+      <h3>Step-by-Step Problem Solving</h3>
+      <p>Solves Maths, Physics and Chemistry problems step by step. Handles JEE and NEET level questions with ease.</p>
+      <div class="feature-tags"><span class="tag">Maths</span><span class="tag">Physics</span><span class="tag">Chemistry</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Study / 05</div>
+      <div class="feature-icon">📄</div>
+      <h3>Summarisation</h3>
+      <p>Converts long documents and articles into concise summaries. Hours of work done in minutes.</p>
+      <div class="feature-tags"><span class="tag">Summary</span><span class="tag">Notes</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Study / 06</div>
+      <div class="feature-icon">🌍</div>
+      <h3>Scheduled Tasks</h3>
+      <p>You can instruct it to automate recurring tasks such as generating reports or sending reminders.</p>
+      <div class="feature-tags"><span class="tag nila">Hindi↔English</span><span class="tag nila">50+ Languages</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Technical / 07</div>
+      <div class="feature-icon">💻</div>
+      <h3>Write & Debug Code</h3>
+      <p>Writes code in Python, Java, C++, HTML and more. Finds and fixes bugs instantly.</p>
+      <div class="feature-tags"><span class="tag peela">Python</span><span class="tag peela">Java</span><span class="tag peela">C++</span><span class="tag peela">HTML</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">Technical / 08</div>
+      <div class="feature-icon">📊</div>
+      <h3>Data Analysis</h3>
+      <p>Analyses tables and data to provide insights. Works with CSV, spreadsheets, reports and charts.</p>
+      <div class="feature-tags"><span class="tag peela">CSV</span><span class="tag peela">Analysis</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">2026 New / 09</div>
+      <div class="feature-icon">🎓</div>
+      <h3>Translation</h3>
+      <p>Translates between languages with professional quality. Knows 50+ languages.</p>
+      <div class="feature-tags"><span class="tag nila">Hindi↔English</span><span class="tag nila">50+ Languages</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">2026 New / 10</div>
+      <div class="feature-icon">🖼️</div>
+      <h3>Visual Explanations</h3>
+      <p>Creates visual diagrams for Maths and Science topics, making complex concepts easy to grasp.</p>
+      <div class="feature-tags"><span class="tag">Diagrams</span><span class="tag">Visual Content</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">2026 New / 11</div>
+      <div class="feature-icon">🧠</div>
+      <h3>Memory (Pro Plan)</h3>
+      <p>Remembers past conversations. Delivers a personalised experience every time.</p>
+      <div class="feature-tags"><span class="tag nila">Pro</span><span class="tag nila">Personalised</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">2026 New / 12</div>
+      <div class="feature-icon">🌐</div>
+      <h3>Web Search</h3>
+      <p>Can search the internet for real-time information. Answers questions about the latest events.</p>
+      <div class="feature-tags"><span class="tag">Real-time</span><span class="tag">Search</span></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- How It Works -->
+<section id="kaise">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">03 — How It Works</div>
+    <h2>ChatGPT How It Works?</h2>
+    <p>In simple terms, step by step</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;" data-reveal>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num-col">1</div>
+        <div class="step-content">
+          <h3>You Type a Question</h3>
+          <p>Your question is sent to ChatGPT in written form.</p>
+          <div class="step-code">→ This is called <strong>"Prompts (Prompt)"</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col">2</div>
+        <div class="step-content">
+          <h3>ChatGPT Understands the Question</h3>
+          <p>It breaks words into small pieces and understands the meaning of each piece.</p>
+          <div class="step-code">→ These are called <strong>"Tokens"</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col">3</div>
+        <div class="step-content">
+          <h3>The AI Thinks</h3>
+          <p>It searches through billions of parameters to find the right information and prepares the most suitable answer using statistical probability.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-col">4</div>
+        <div class="step-content">
+          <h3>The Answer Appears</h3>
+          <p>The answer is generated word by word — that is why it appears to type slowly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="definition-card" style="margin-bottom:1.25rem;">
+        <h3 style="margin-bottom:1rem;">How Was It Trained?</h3>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="def-highlight">
+            <h4>1. Pre-training</h4>
+            <p>Read hundreds of millions of articles from the internet. Learned language patterns. Learned to predict the next word.</p>
+          </div>
+          <div class="def-highlight">
+            <h4>2. Fine-tuning</h4>
+            <p>Humans labelled right and wrong answers. Good answers were rewarded, bad ones penalised.</p>
+          </div>
+          <div class="def-highlight">
+            <h4>3. Reinforcement Learning from Human Feedback (RLHF)</h4>
+            <p>Humans ranked responses. The AI improved further from this feedback.</p>
+          </div>
+        </div>
+      </div>
+      <div class="definition-card">
+        <h3 style="margin-bottom:1rem;">Technical Architecture</h3>
+        <table style="width:100%; font-size:0.83rem; border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:0.5rem 0; color:var(--textl);">Architecture</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">Transformer Neural Network</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:0.5rem 0; color:var(--textl);">Parameters</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">Billions</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:0.5rem 0; color:var(--textl);">Training Data</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">Vast portion of the internet</td>
+          </tr>
+          <tr>
+            <td style="padding:0.5rem 0; color:var(--textl);">Output</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">Generates one word at a time</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- Why It Matters -->
+<section id="mahatva">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">04 — Why It Matters</div>
+    <h2>Why is ChatGPT Important?</h2>
+    <p>ChatGPT has transformed the way the world works</p>
+  </div>
+  <div class="wrap" style="padding-top:0; padding-bottom:0;">
+
+  <!-- ── 1. शिक्षा ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🎓 In Education</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Students & Teachers</div>
+  </div>
+
+  <div class="imp-card card-edu">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🎓</div>
+      <div class="imp-title">For Students</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Explains difficult subjects in simple language</li>
+      <li>Helps with homework and assignments</li>
+      <li>Assists with exam preparation</li>
+	<li>Creating Notes and Summaries</li>
+
+      <li>24/7 available — helps with studies even at night</li>
+      <li>Works like a personal tutor — <strong>at $0</strong></li>
+      <li>Helpful for JEE, NEET, UPSC preparation</li>
+      <li>Clears doubts in any subject</li>
+      <li>Summarises NCERT chapters</li>
+      <li>Helps memorise formulas and definitions</li>
+      <li>Helps write essays, paragraphs and applications</li>
+      <li>Assists in making project reports</li>
+    </ul>
+
+    <div class="sub-title">🧮 In Maths & Science</div>
+    <ul class="bullet-list">
+      <li>Getting step-by-step solutions</li>
+      <li>Visual explanation of concepts</li>
+      <li>Generating practice questions</li>
+      <li>Understanding exam patterns</li>
+    </ul>
+
+    <div class="sub-title">🌐 Translation & Language Learning</div>
+    <ul class="bullet-list">
+      <li>Translating from Hindi to English and other languages</li>
+      <li>Improving grammar</li>
+      <li>Helping learn a new language</li>
+      <li>Checks grammar mistakes</li>
+    </ul>
+  </div>
+
+
+
+  <div class="imp-card card-edu">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">👩‍🏫</div>
+      <div class="imp-title">For Teachers</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Quickly creates lesson plans and study material</li>
+      <li>Prepares quizzes and assignments for students</li>
+      <li>Explains difficult topics in simple language</li>
+    </ul>
+  </div>
+
+  <!-- ── 2. करियर ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>💼 In Career</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Job & Growth</div>
+  </div>
+
+  <div class="imp-card card-career">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">💼</div>
+      <div class="imp-title">For Career Growth</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Helps write resumes and cover letters</li>
+      <li>Prepares you for interviews</li>
+      <li>Speeds up learning new skills</li>
+      <li>Those who know AI earn <strong>25–40% higher salaries</strong></li>
+    </ul>
+  </div>
+
+<!-- ── 3. Programming & Web Development ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>💻 Programming & Web Development</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Job & Growth</div>
+  </div>
+
+  <div class="imp-card card-career">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">💼</div>
+      <div class="imp-title">For Career Growth</div>
+    </div>
+ </div>
+  <div class="imp-card card-career">
+    <ul class="bullet-list">
+      <li>Helps write HTML, CSS and JavaScript code</li>
+      <li>Fixes errors in code</li>
+      <li>Gives website design suggestions</li>
+      <li>Generates code for new projects</li>
+    </ul>
+  </div>
+
+
+  <!-- ── 3. Creative ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🎨 In Creative Work</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Writing & Content</div>
+  </div>
+
+  <div class="imp-card card-creative">
+    <div class="imp-card-header">
+
+
+      <div class="imp-icon-wrap">🎨 </div>
+      <div class="imp-title">Try Prompts Like These</div>
+    </div>
+    <div class="prompt-chips">
+      <div class="prompt-chip">
+<li>	Write blogs, articles, stories, poems and essays</li>
+<li>	Create social media posts</li>
+<li>	Prepare speeches and scripts</li>
+<li>	Write advertising copy</li>
+<li>Create prompts for videos and images</li>
+<li>	Give logo and design ideas</li>
+
+
+        <span class="qlabel">✍️ Write a Story</span>
+        "Write a motivational story of a poor student who became an IAS officer"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">📝 Write a Poem</span>
+        "Write an emotional poem about a mother in English"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">🎬 Write a Script</span>
+        "Write a 5-minute YouTube script on the topic of AI"
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. Daily Life ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🌟 In Daily Life</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Everyday Use</div>
+  </div>
+
+  <div class="imp-card card-daily">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🌟</div>
+      <div class="imp-title">Prompts for Everyday Tasks</div>
+    </div>
+    <div class="prompt-chips">
+      <div class="prompt-chip">
+        <span class="qlabel">🍳 Recipes</span>
+        "I only have potatoes and onions at home, what can I cook?"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">✈️ Travel Planning</span>
+        "Plan a 5-day trip from Delhi to Manali on a $200 budget"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">💪 Fitness</span>
+        "Create a 30-day workout plan at home without any equipment"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">📅 Time Management</span>
+        "Create a daily timetable for both JEE/NEET and Board exams"
+      </div>
+<div class="prompt-chip">
+        <span class="qlabel">📅 Diet Chart</span>
+        "How many calories are burned by walking for 1 hour?"
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- ── 5. Productivity ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>⚡ Productivity Hacks</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Time Saver</div>
+  </div>
+
+  <div class="imp-card card-prod">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">⚡</div>
+      <div class="imp-title">Save Time with ChatGPT</div>
+    </div>
+    <div class="prod-list">
+      <div class="prod-item"><div class="prod-check">✓</div> Summarise any document <div class="prod-time">in 2 minutes</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Research any topic <div class="prod-time">in 10 minutes</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Write a professional email <div class="prod-time">in 30 seconds</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Create study notes <div class="prod-time">in 5 minutes</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Prepare a presentation outline <div class="prod-time">in 2 minutes</div></div>
+    </div>
+  </div>
+
+  <!-- ── 6. Business ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🏢 In Business</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Business</div>
+  </div>
+
+  <div class="imp-card card-biz">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🏢</div>
+      <div class="imp-title">For Business</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Quickly writes marketing content, emails and ads</li>
+      <li>Assists with customer service</li>
+      <li>Helps build business ideas and strategies</li>
+      <li>Helps small businesses work like big companies</li>
+<li>	Preparing reports and presentations</li>
+    </ul>
+    <div class="sub-title">📋 Quick Business Tasks</div>
+    <ul class="bullet-list">
+      <li><strong>📧 Emails</strong> — Professional emails in seconds</li>
+      <li><strong>📱 Social Media</strong> — Writing posts and captions</li>
+      <li><strong>📊 Reports</strong> — Preparing business reports</li>
+      <li><strong>💡 Ideas</strong> — Generating new business ideas</li>
+      <li><strong>🛍️ Marketing</strong> — Writing product descriptions</li>
+    </ul>
+  </div>
+
+  <!-- ── 7 & 8. Health & Legal — 2 col ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🏥 In Other Services</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Health & Legal</div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="imp-card card-health" style="margin-bottom:0">
+      <div class="imp-card-header">
+        <div class="imp-icon-wrap">🏥</div>
+        <div class="imp-title">In Healthcare</div>
+      </div>
+      <ul class="bullet-list">
+        <li>Explains medical terms and terminology</li>
+        <li>Provides information about symptoms</li>
+        <li>Helps with research literature review</li>
+      </ul>
+    </div>
+    <div class="imp-card card-legal" style="margin-bottom:0">
+      <div class="imp-card-header">
+        <div class="imp-icon-wrap">⚖️</div>
+        <div class="imp-title">In Legal Services</div>
+      </div>
+      <ul class="bullet-list">
+        <li>Simplifies legal language</li>
+        <li>Helps understand documents</li>
+        <li>Provides basic information about rights</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 9. India ── -->
+  <div class="sec-head" style="margin-top:32px">
+    <div class="sec-accent"></div>
+    <h2>🌍 Special for India</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">India Special</div>
+  </div>
+
+  <div class="imp-card card-india">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🇮🇳</div>
+      <div class="imp-title">For Indian Students &amp; Users</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Gives Tier-2 and Tier-3 city students access to big-city quality education</li>
+      <li>Supports Hindi and regional languages</li>
+      <li>Works easily on a 4G internet connection</li>
+      <li>A <strong>cheaper and better alternative</strong> to expensive coaching centres</li>
+    </ul>
+  </div>
+
+  <!-- ── 10. Time & Money ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>⏱️ Save Time & Money</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Save Both</div>
+  </div>
+
+  <div class="imp-card card-time">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">⏱️</div>
+      <div class="imp-title">Why Learning AI is Essential</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Hours of work gets done in minutes</li>
+      <li>Do basic tasks yourself instead of hiring expensive experts</li>
+      <li>Research that took days now takes hours</li>
+      <li>Create professional content instantly</li>
+    </ul>
+  </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- Prompts -->
+<section id="prompt">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">05 — Prompts</div>
+    <h2>Good Prompt vs Bad Prompt</h2>
+    <p>ChatGPT will give as good an answer as the prompt you give it</p>
+  </div>
+
+  <!-- सूत्र -->
+  <div class="formula-card" data-reveal>
+    <h3>🔑 The Formula for a Great Prompt</h3>
+    <div class="formula-parts">
+      <div class="formula-part">
+        <div class="ficon">👤</div>
+        <div class="fname">Role</div>
+        <div class="flabel">Tell the AI who it is</div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-part">
+        <div class="ficon">📋</div>
+        <div class="fname">Task</div>
+        <div class="flabel">What to do</div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-part">
+        <div class="ficon">📌</div>
+        <div class="fname">Context</div>
+        <div class="flabel">Background information</div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-part">
+        <div class="ficon">📐</div>
+        <div class="fname">Format</div>
+        <div class="flabel">How you want the answer</div>
+      </div>
+      <div class="formula-eq">=</div>
+      <div class="formula-part" style="border-color: var(--saffron); background: rgba(16,185,129,0.08)">
+        <div class="ficon">✅</div>
+        <div class="fname" style="color: var(--saffron)">Precise Answer</div>
+        <div class="flabel">The right answer every time</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- उदाहरण -->
+  <div class="prompt-section" data-reveal>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ Bad Prompt</div>
+          <div class="topic">📚 Study — Physics</div>
+          <div class="prompt-text">Newton ka law batao</div>
+          <div class="prompt-note">What level? Which language? JEE or Class 9?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ Good Prompt</div>
+          <div class="topic">📚 Study — Physics</div>
+          <div class="prompt-text">Explain Newton's three laws of motion in English, give one real-life example for each law, and also create 2 JEE-level questions</div>
+          <div class="prompt-note">Level, language, format and content — all clear!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ Bad Prompt</div>
+          <div class="topic">✍️ Writing — Essay</div>
+          <div class="prompt-text">Essay likho</div>
+          <div class="prompt-note">Which topic? How long? For whom?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ Good Prompt</div>
+          <div class="topic">✍️ Writing — Essay</div>
+          <div class="prompt-text">'My Dream India' — write a 500-word essay for Class 12 with Introduction, 3 paragraphs and a Conclusion</div>
+          <div class="prompt-note">Topic, length, grade and structure — all specified!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ Bad Prompt</div>
+          <div class="topic">💻 Coding — Python</div>
+          <div class="prompt-text">Code banao</div>
+          <div class="prompt-note">Which language? What to build? What level?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ Good Prompt</div>
+          <div class="topic">💻 Coding — Python</div>
+          <div class="prompt-text">Write a simple calculator in Python that can add, subtract, multiply and divide, write beginner-friendly code, and add a comment on every line in English</div>
+          <div class="prompt-note">Language, features, level and format — perfect!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ Bad Prompt</div>
+          <div class="topic">💼 Career — Resume</div>
+          <div class="prompt-text">Resume banao</div>
+          <div class="prompt-note">Whose? Which field? What skills?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ Good Prompt</div>
+          <div class="topic">💼 Career — Resume</div>
+          <div class="prompt-text">Create my professional resume — Name: Rahul Sharma, B.Tech Computer Science 2024, Skills: Python, Java, SQL, Experience: 2 internships at TCS and Wipro, in ATS-friendly format</div>
+          <div class="prompt-note">All details → the perfect resume!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ Bad Prompt</div>
+          <div class="topic">🌍 Travel</div>
+          <div class="prompt-text">Trip plan karo</div>
+          <div class="prompt-note">From where? To where? How many days? What budget?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ Good Prompt</div>
+          <div class="topic">🌍 Travel</div>
+          <div class="prompt-text">Plan a 5-day trip from Delhi to Manali on a ₹15,000 budget — include transport, hotel, must-visit places, daily itinerary and money-saving tips</div>
+          <div class="prompt-note">Destination, duration, budget, expectations — crystal clear!</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- Section 1: Training -->
+  <div id="training">
+    <div class="sec-head">
+      <div class="sec-accent"></div>
+      <h2>📚 How Was ChatGPT Trained?</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">Step 1–3</div>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="training-flow">
+      <div class="flow-box">
+        <div class="icon">🌐</div>
+        <div class="label">Internet Data</div>
+        <div class="sublabel">Wikipedia · Books · Websites · Research Papers</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box highlight">
+        <div class="icon">🤖</div>
+        <div class="label">GPT Model</div>
+        <div class="sublabel">Gets Trained</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">
+        <div class="icon">💬</div>
+        <div class="label">ChatGPT</div>
+        <div class="sublabel">Your Assistant</div>
+      </div>
+    </div>
+
+    <!-- 3 Steps -->
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num-col">
+          <span class="n">1</span>
+          <span class="emoji">📖</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Pre-training — Learning Phase</div>
+          <ul class="step-points">
+            <li>Read hundreds of millions of texts from the internet</li>
+            <li>Learned language patterns</li>
+            <li>Learned to predict the next word</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num-col">
+          <span class="n">2</span>
+          <span class="emoji">✏️</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Fine-tuning — Improvement Phase</div>
+          <ul class="step-points">
+            <li>Humans labelled right and wrong answers</li>
+            <li>Good answers were rewarded</li>
+            <li>Bad answers were penalised</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num-col">
+          <span class="n">3</span>
+          <span class="emoji">🏆</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">RLHF — Learning from Human Feedback</div>
+          <ul class="step-points">
+            <li>Humans ranked the responses</li>
+            <li>The AI learned to improve from this</li>
+            <li>Improved through Reinforcement Learning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Structure -->
+  <div id="structure">
+    <div class="sec-head">
+      <div class="sec-accent"></div>
+      <h2>🏗️ GPT Technical Structure</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">Architecture</div>
+    </div>
+
+    <div class="tech-table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tt-key">Architecture</td>
+            <td class="tt-val">🧱 Transformer Neural Network</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Parameters</td>
+            <td class="tt-val">🔢 Billions</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Training Data</td>
+            <td class="tt-val">🌐 Large portion of the internet</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Context Window</td>
+            <td class="tt-val">🧠 Remembers thousands of words at a time</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Output</td>
+            <td class="tt-val">✍️ Generates one word at a time</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Transformer Card -->
+    <div class="transformer-card">
+      <div class="transformer-title">🎯 <span>Transformer</span>?</div>
+      <div class="transformer-points">
+        <div class="t-point">
+          <div class="t-dot"></div>
+          <div class="t-text">The <strong>heart of ChatGPT is the Transformer</strong> — a special AI architecture</div>
+        </div>
+        <div class="t-point">
+          <div class="t-dot"></div>
+          <div class="t-text">It sees the <strong>entire sentence at once</strong>, not word by word</div>
+        </div>
+        <div class="t-point">
+          <div class="t-dot"></div>
+          <div class="t-text">It <strong>understands the relationship</strong> between every word</div>
+        </div>
+      </div>
+      <div class="example-box">
+        💡 <strong>Example:</strong> "I ate a mango, it was very sweet" — here <strong>"sweet"</strong> is connected to <strong>"mango"</strong>. The Transformer understands this automatically.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Example -->
+  <div id="example">
+    <div class="sec-head">
+      <div class="sec-accent"></div>
+      <h2>💡 Simple Example</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">Step by Step</div>
+    </div>
+
+    <div class="example-flow">
+      <div class="ef-header">👤 You Ask:</div>
+      <div class="ef-question">❓ "What is the capital of India?"</div>
+      <div class="ef-steps">
+        <div class="ef-step">
+          <div class="ef-step-num">1</div>
+          <div class="ef-step-text"><strong>"India"</strong> + <strong>"capital"</strong> — these tokens are identified</div>
+        </div>
+        <div class="ef-step">
+          <div class="ef-step-num">2</div>
+          <div class="ef-step-text">The training data contained <strong>"Capital of India = New Delhi"</strong> millions of times</div>
+        </div>
+        <div class="ef-step">
+          <div class="ef-step-num">3</div>
+          <div class="ef-step-text">The most likely answer was calculated → <strong>"New Delhi"</strong></div>
+        </div>
+        <div class="ef-step">
+          <div class="ef-step-num">4</div>
+          <div class="ef-step-text">The answer was generated word by word and delivered to you ✅</div>
+        </div>
+      </div>
+      <div class="ef-answer">✅ Answer: New Delhi</div>
+    </div>
+  </div>
+
+  <div class="golden" data-reveal>
+    <h3>💡 Remember the Golden Rule</h3>
+    <p>ChatGPT cannot read your mind. Write <strong>clearly what you want</strong> — only then will you get a precise answer! The more detail you provide, the better the response.</p>
+  </div>
+</section>
+
+ <!-- Section 5: Prompts -->
+  <div id="prompt">
+    <div class="sec-head" style="max-width:680px; margin-left:auto; margin-right:auto;">
+      <div class="sec-accent"></div>
+      <h2>🚀 How Many Types of Prompts Are There?</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">5 Types</div>
+    </div>
+
+    <div class="prompt-grid">
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">1</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Simple Prompt</div>
+          <div class="prompt-title">Asking a Direct Question</div>
+          <div class="prompt-example"><span class="q">👤 You:</span> "What is the water cycle?"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">2</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Instructional Prompt</div>
+          <div class="prompt-title">Giving an Instruction</div>
+          <div class="prompt-example"><span class="q">👤 You:</span> "Summarise this paragraph"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">3</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Role-based Prompt</div>
+          <div class="prompt-title">Assigning a Role to AI</div>
+          <div class="prompt-example"><span class="q">👤 You:</span> "You are a doctor, tell me about fever"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">4</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Creative Prompt</div>
+          <div class="prompt-title">Getting Creative Work Done</div>
+          <div class="prompt-example"><span class="q">👤 You:</span> "Write a poem about Diwali"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">5</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Chain Prompt</div>
+          <div class="prompt-title">Asking Questions One After Another</div>
+          <div class="prompt-example">👇 See below →</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Chain Prompt Detail -->
+    <div class="chain-wrap">
+      <div class="chain-header">🔗 Chain Prompt — How It Works?</div>
+      <div class="chain-steps">
+        <div class="chain-step">
+          <div class="chain-step-num">1</div>
+          <div>
+            <div class="chain-step-label">Ask First</div>
+            <div class="chain-step-text">"What is JEE?"</div>
+          </div>
+        </div>
+        <div class="chain-step">
+          <div class="chain-step-num">2</div>
+          <div>
+            <div class="chain-step-label">Then Ask</div>
+            <div class="chain-step-text">"Tell me the best books for it"</div>
+          </div>
+        </div>
+        <div class="chain-step">
+          <div class="chain-step-num">3</div>
+          <div>
+            <div class="chain-step-label">Finally Ask</div>
+            <div class="chain-step-text">"Now create a daily timetable for it"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+<hr class="divider" />
+
+<!-- Best Uses -->
+<section id="upyog">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">06 — Best Uses</div>
+    <h2>What is the Best Use of ChatGPT?</h2>
+    <p>Helping you learn, speeding up work, and making yourself more skilled</p>
+  </div>
+
+  <div data-reveal style="overflow-x:auto;">
+    <table class="best-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Area of Use</th>
+          <th>Examples</th>
+          <th>Benefit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">🥇 1</td>
+          <td><strong>Personal Tutor for Studies</strong></td>
+          <td>JEE Physics concepts, NCERT summaries</td>
+          <td>24/7 free guidance</td>
+        </tr>
+        <tr>
+          <td class="rank">🥈 2</td>
+          <td><strong>Coding Assistant</strong></td>
+          <td>Python calculator, HTML website, bug fixing</td>
+          <td>Hours of work in minutes</td>
+        </tr>
+        <tr>
+          <td class="rank">🥉 3</td>
+          <td><strong>Writing Assistant</strong></td>
+          <td>Essays, emails, resumes, speeches, poems</td>
+          <td>Professional content instantly</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td><strong>Career Preparation</strong></td>
+          <td>Resume, interview prep, cover letters</td>
+          <td>Job-ready</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td><strong>Business Growth</strong></td>
+          <td>Marketing emails, social media posts, ideas</td>
+          <td>Professional-grade content</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td><strong>Daily Life</strong></td>
+          <td>Recipes, travel planning, workout schedules</td>
+          <td>Smart decisions every day</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- सीमाएं -->
+  <div style="margin-top: 3rem;">
+    <div class="section-header" style="margin-bottom: 1.5rem;" data-reveal>
+      <div class="section-tag">⚠️ Limitations</div>
+      <h2 style="font-size: 1.5rem;">Keep in Mind — This is Important to Know</h2>
+    </div>
+    <div class="limits-grid" data-reveal>
+      <div class="limit-card">
+        <h4>Limited Internet Access</h4>
+        <p>Doesn't always know real-time news — fresh information is only available in web search mode.</p>
+      </div>
+      <div class="limit-card">
+        <h4>Can Give Incorrect Information</h4>
+        <p>Sometimes it may give incorrect information due to errors in training data (Hallucinations). Always verify.</p>
+      </div>
+      <div class="limit-card">
+        <h4>Knowledge Cut-off Date</h4>
+        <p>Training stopped at a certain date — information about very recent events may be incomplete.</p>
+      </div>
+      <div class="limit-card">
+        <h4>No Real Understanding</h4>
+        <p>It matches patterns — it doesn't truly think. It cannot replace a real expert.</p>
+      </div>
+    </div>
+    <div class="warning-box" data-reveal>
+      <div class="warning-icon">⚡</div>
+      <p><strong>The Right Approach:</strong> Use ChatGPT like a <strong>teacher</strong>, not like a <strong>copying machine</strong>! Understand from it, then write yourself. Instead of depending on AI, <strong>learn</strong> from it and move forward.</p>
+    </div>
+  </div>
+</section>
+
+<!-- पाद लेख -->
+<footer>
+  <p>ChatGPT Complete English Guide · 2026 · <span>Learn, Understand, Move Forward 🚀</span></p>
+  <p style="margin-top:0.5rem; color: var(--slate)">This guide has been created for educational purposes.</p>
+</footer>
+
+<script>
+  // Scroll reveal effect
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

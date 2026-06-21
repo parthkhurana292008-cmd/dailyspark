@@ -1,9 +1,65 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🍕 Pizza Fraction Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+<title>🍕 Pizza Fraction Game | Learn Fractions for Kids | Daily Spark Math Games</title>
+
+<!-- SEO Primary -->
+<meta name="description" content="Learn fractions with pizza! Interactive fraction game for kids — identify fractions and shade pizza slices. 50 questions, 3 levels: Easy, Medium, Hard. Free online math game 2026.">
+<meta name="keywords" content="fraction game for kids, pizza fraction game, learn fractions online, fraction activities kids, math fraction game, identify fractions, shade fractions, fractions for class 3 4 5, free fraction game 2026, daily spark math, interactive fraction learning">
+<meta name="author" content="Daily Spark">
+<meta name="publisher" content="Daily Spark">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="language" content="English">
+<meta name="rating" content="safe for kids">
+<meta name="category" content="Math Games, Fractions, Kids Education">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://www.dailyspark.in/fraction.html">
+
+<!-- PWA / Mobile -->
+<meta name="theme-color" content="#D94F3D">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Pizza Fractions">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daily Spark">
+<meta property="og:title" content="🍕 Pizza Fraction Game | Learn Fractions for Kids">
+<meta property="og:description" content="Learn fractions with pizza! 50 questions, identify & shade fractions. Free interactive math game for kids.">
+<meta property="og:image" content="https://www.dailyspark.in/assets/fraction-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pizza Fraction Game — Learn Fractions with Pizza">
+<meta property="og:url" content="https://www.dailyspark.in/fraction.html">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DailySparkIN">
+<meta name="twitter:creator" content="@DailySparkIN">
+<meta name="twitter:title" content="🍕 Pizza Fraction Game | Free Kids Math Game">
+<meta name="twitter:description" content="Learn fractions with pizza! 50 fun questions for kids. Free online!">
+<meta name="twitter:image" content="https://www.dailyspark.in/assets/fraction-og.jpg">
+<meta name="twitter:image:alt" content="Pizza Fraction Game — Daily Spark">
+
+<!-- Geo -->
+<meta name="geo.region" content="IN">
+<meta name="geo.country" content="India">
+<meta name="DC.language" content="en">
+
+<!-- Schema: Game -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Game","name":"Pizza Fraction Game","description":"An interactive fraction learning game for kids using pizza visuals. Identify fractions and shade pizza slices across 50 questions and 3 difficulty levels.","url":"https://www.dailyspark.in/fraction.html","image":"https://www.dailyspark.in/assets/fraction-og.jpg","genre":["Educational","Math","Fractions"],"educationalUse":"practice","learningResourceType":"game","typicalAgeRange":"6-12","teaches":"Fractions","inLanguage":"en","publisher":{"@type":"Organization","name":"Daily Spark","url":"https://www.dailyspark.in"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR","availability":"https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dailyspark.in"},{"@type":"ListItem","position":2,"name":"Math Games","item":"https://www.dailyspark.in/math.html"},{"@type":"ListItem","position":3,"name":"Pizza Fraction Game","item":"https://www.dailyspark.in/fraction.html"}]}
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
@@ -134,6 +190,31 @@
     color: var(--pizza-red);
     box-shadow: 0 2px 8px rgba(139,94,60,0.15);
   }
+
+  /* Level tabs */
+  .level-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .level-tab {
+    flex: 1;
+    padding: 9px;
+    border: 2px solid transparent;
+    background: var(--card);
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .level-tab:hover { border-color: var(--pizza-orange); color: var(--text); }
+  .level-tab.active.easy-active   { background:#E8F8EE; border-color:#27AE60; color:#155724; }
+  .level-tab.active.medium-active { background:#FFF3CD; border-color:#F5C842; color:#856404; }
+  .level-tab.active.hard-active   { background:#FDECEA; border-color:#E74C3C; color:#7B1818; }
 
   /* Game card */
   .game-card {
@@ -347,11 +428,56 @@
   }
   .pop { animation: popIn 0.3s ease; }
 
-  /* Responsive */
-  @media (max-width: 480px) {
+  /* ── MOBILE FRIENDLY ── */
+
+  /* Tablet: 600px */
+  @media (max-width: 600px) {
+    body { padding: 12px; }
     .header h1 { font-size: 26px; }
+    .header p  { font-size: 13px; }
     .game-card { padding: 16px; }
-    .opt-frac { font-size: 18px; }
+    .stat-val  { font-size: 20px; }
+    .stat-lbl  { font-size: 10px; }
+    .mode-tab  { font-size: 12px; padding: 8px 4px; }
+    .level-tab { font-size: 12px; padding: 8px 4px; }
+    .question-text { font-size: 15px; }
+    .frac-big  { font-size: 24px; }
+    .opt-frac  { font-size: 18px; }
+    .opt-btn   { padding: 12px 8px; }
+    .check-btn { font-size: 15px; padding: 12px; }
+    .feedback  { font-size: 13px; }
+    .level-badge { font-size: 11px; padding: 2px 10px; }
+    .restart-btn { font-size: 14px; padding: 12px 22px; }
+    .end-screen h2 { font-size: 20px; }
+    .big-score { font-size: 40px; }
+    .trophy    { font-size: 52px; }
+  }
+
+  /* Mobile: 400px */
+  @media (max-width: 400px) {
+    body { padding: 8px; }
+    .header h1 { font-size: 22px; }
+    .stats { gap: 6px; }
+    .stat-card { padding: 8px 4px; }
+    .stat-val  { font-size: 18px; }
+    .game-card { padding: 12px; }
+    .options-grid { gap: 7px; }
+    .opt-btn   { padding: 10px 6px; border-radius: 10px; }
+    .opt-frac  { font-size: 16px; }
+    .frac-big  { font-size: 20px; }
+    .question-text { font-size: 14px; }
+    .mode-tab  { font-size: 11px; padding: 7px 2px; }
+    .level-tab { font-size: 11px; padding: 7px 2px; }
+    .check-btn { font-size: 14px; padding: 11px; }
+    .restart-btn { font-size: 13px; padding: 10px 16px; margin: 4px; }
+    .big-score { font-size: 34px; }
+  }
+
+  /* Touch: disable hover transforms */
+  @media (hover: none) and (pointer: coarse) {
+    .opt-btn:hover:not(:disabled) { transform: none; }
+    .check-btn:hover:not(:disabled) { transform: none; }
+    .restart-btn:hover { transform: none; }
   }
 </style>
 </head>
@@ -361,7 +487,7 @@
 
   <div class="header">
     <h1>🍕 Pizza Fraction Game</h1>
-    <p>Pizza dekhkar fractions seekho!</p>
+    <p>Learn fractions by looking at pizza!</p>
   </div>
 
   <div class="stats">
@@ -384,8 +510,15 @@
   </div>
 
   <div class="mode-tabs">
-    <button class="mode-tab active" id="tab-identify" onclick="setMode('identify')">🔍 Fraction Pehchano</button>
-    <button class="mode-tab" id="tab-shade" onclick="setMode('shade')">🎨 Pizza Colour Karo</button>
+    <button class="mode-tab active" id="tab-identify" onclick="setMode('identify')">🔍 Identify Fraction</button>
+    <button class="mode-tab" id="tab-shade" onclick="setMode('shade')">🎨 Shade the Pizza</button>
+  </div>
+
+  <!-- Level Selector -->
+  <div class="level-tabs">
+    <button class="level-tab active" id="ltab-easy"   onclick="setLevel('easy')">😊 Easy</button>
+    <button class="level-tab"        id="ltab-medium" onclick="setLevel('medium')">🤔 Medium</button>
+    <button class="level-tab"        id="ltab-hard"   onclick="setLevel('hard')">💪 Hard</button>
   </div>
 
   <div class="game-card" id="game-area"></div>
@@ -393,31 +526,63 @@
 </div>
 
 <script>
-const TOTAL_Q = 50;
-let score = 0, streak = 0, qnum = 0, mode = 'identify';
+const TOTAL_Q = 15;
+let score = 0, streak = 0, qnum = 0, mode = 'identify', currentLevel = 'easy';
 let currentQ = null, answered = false, selectedSlices = [];
 
-// 50 questions pool — varied fractions with denominators 2,3,4,5,6,8,10
-const Q_POOL = [
-  {n:1,d:2},{n:1,d:3},{n:2,d:3},{n:1,d:4},{n:3,d:4},{n:1,d:6},{n:5,d:6},
-  {n:1,d:8},{n:3,d:8},{n:5,d:8},{n:7,d:8},{n:2,d:4},{n:3,d:6},{n:4,d:8},
-  {n:1,d:5},{n:2,d:5},{n:3,d:5},{n:4,d:5},{n:1,d:10},{n:3,d:10},
-  {n:7,d:10},{n:9,d:10},{n:2,d:6},{n:4,d:6},{n:2,d:8},{n:6,d:8},
-  {n:1,d:2},{n:3,d:4},{n:2,d:3},{n:1,d:4},{n:5,d:6},{n:7,d:8},
-  {n:2,d:5},{n:4,d:5},{n:3,d:10},{n:7,d:10},{n:1,d:6},{n:5,d:8},
-  {n:1,d:3},{n:3,d:8},{n:4,d:6},{n:6,d:8},{n:1,d:5},{n:9,d:10},
-  {n:3,d:4},{n:2,d:6},{n:1,d:8},{n:3,d:5},{n:5,d:10},{n:4,d:8}
+// ── LEVEL QUESTION POOLS ─────────────────────────────────
+const Q_EASY = [
+  // Denominators 2, 3, 4 only — beginner
+  {n:1,d:2},{n:1,d:3},{n:2,d:3},{n:1,d:4},{n:3,d:4},
+  {n:2,d:4},{n:1,d:2},{n:3,d:4},{n:2,d:3},{n:1,d:4},
+  {n:1,d:3},{n:3,d:4},{n:1,d:2},{n:2,d:3},{n:1,d:4},
+  {n:3,d:4},{n:1,d:3},{n:2,d:4},{n:1,d:2},{n:2,d:3}
 ];
 
-// Shuffle and pick 50
+const Q_MEDIUM = [
+  // Denominators 5, 6, 8 — intermediate
+  {n:1,d:5},{n:2,d:5},{n:3,d:5},{n:4,d:5},
+  {n:1,d:6},{n:5,d:6},{n:2,d:6},{n:4,d:6},{n:3,d:6},
+  {n:1,d:8},{n:3,d:8},{n:5,d:8},{n:7,d:8},{n:2,d:8},{n:6,d:8},
+  {n:4,d:8},{n:3,d:5},{n:2,d:5},{n:5,d:6},{n:4,d:6}
+];
+
+const Q_HARD = [
+  // Denominators 10, 12 — advanced
+  {n:1,d:10},{n:3,d:10},{n:7,d:10},{n:9,d:10},{n:5,d:10},
+  {n:2,d:10},{n:4,d:10},{n:6,d:10},{n:8,d:10},
+  {n:1,d:12},{n:5,d:12},{n:7,d:12},{n:11,d:12},{n:3,d:12},
+  {n:4,d:12},{n:9,d:12},{n:10,d:12},{n:2,d:12},
+  {n:3,d:10},{n:7,d:12}
+];
+
+// Shuffle and pick TOTAL_Q from current level pool
 let questions = [];
 function buildQuestionList() {
-  const pool = [...Q_POOL, ...Q_POOL].slice();
-  for (let i = pool.length - 1; i > 0; i--) {
+  const pool = currentLevel === 'easy'   ? Q_EASY   :
+               currentLevel === 'medium' ? Q_MEDIUM : Q_HARD;
+  const doubled = [...pool, ...pool];
+  for (let i = doubled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
+    [doubled[i], doubled[j]] = [doubled[j], doubled[i]];
   }
-  questions = pool.slice(0, TOTAL_Q);
+  questions = doubled.slice(0, TOTAL_Q);
+}
+
+function setLevel(lv) {
+  currentLevel = lv;
+  // Update tab active states
+  ['easy','medium','hard'].forEach(l => {
+    const t = document.getElementById('ltab-'+l);
+    t.classList.remove('active','easy-active','medium-active','hard-active');
+  });
+  const active = document.getElementById('ltab-'+lv);
+  active.classList.add('active', lv+'-active');
+  // Reset game
+  score=0; streak=0; qnum=0;
+  buildQuestionList();
+  updateStats();
+  nextQuestion();
 }
 
 function gcd(a,b) { return b===0 ? a : gcd(b,a%b); }
@@ -429,9 +594,9 @@ function fracEqual(n1,d1,n2,d2) {
 function shuffle(arr) { return [...arr].sort(()=>Math.random()-0.5); }
 
 function getLevel(d) {
-  if (d <= 4) return {lbl:'Aasaan 😊', cls:'level-easy'};
-  if (d <= 6) return {lbl:'Madhyam 🤔', cls:'level-medium'};
-  return {lbl:'Mushkil 💪', cls:'level-hard'};
+  if (d <= 4) return {lbl:'Easy 😊',   cls:'level-easy'};
+  if (d <= 6) return {lbl:'Medium 🤔', cls:'level-medium'};
+  return {lbl:'Hard 💪',   cls:'level-hard'};
 }
 
 function setMode(m) {
@@ -512,7 +677,7 @@ function updateShadeHint() {
   const el = document.getElementById('shade-hint');
   if (el && currentQ) {
     const s = selectedSlices.length;
-    el.innerHTML = `<b>${s}</b> slice${s!==1?'s':''} select kiye — chahiye <b>${currentQ.n}</b>`;
+    el.innerHTML = `<b>${s}</b> slice${s!==1?'s':''} selected — need <b>${currentQ.n}</b>`;
   }
 }
 
@@ -526,10 +691,14 @@ function nextQuestion() {
   else renderShade(currentQ);
 }
 
+function getCurrentPool() {
+  return currentLevel === 'easy' ? Q_EASY : currentLevel === 'medium' ? Q_MEDIUM : Q_HARD;
+}
+
 function renderIdentify(frac) {
   const level = getLevel(frac.d);
-  // Build 3 wrong options (unique)
-  const pool = Q_POOL.filter(f => !fracEqual(f.n,f.d,frac.n,frac.d));
+  // Build 3 wrong options from current level pool
+  const pool = getCurrentPool().filter(f => !fracEqual(f.n,f.d,frac.n,frac.d));
   const wrongs = shuffle(pool).slice(0,3);
   const opts = shuffle([frac, ...wrongs]);
 
@@ -537,12 +706,12 @@ function renderIdentify(frac) {
     <div style="text-align:center;margin-bottom:6px">
       <span class="level-badge ${level.cls}">${level.lbl}</span>
     </div>
-    <div class="question-text">Pizza ka kitna hissa rang gaya hai? 🎨</div>
+    <div class="question-text">What fraction of the pizza is shaded? 🎨</div>
     <div class="pizza-wrap" id="pizza-display">
       ${makePizzaSVG(frac.d, frac.n, 220, false)}
     </div>
     <div class="slice-info">
-      Pizza ke <b>${frac.d}</b> barabar hisse — <b style="color:#D94F3D">${frac.n}</b> hisse rang gaye hain
+      Pizza cut into <b>${frac.d}</b> equal slices — <b style="color:#D94F3D">${frac.n}</b> slice(s) are shaded
     </div>
     <div class="options-grid" id="opts-grid">
       ${opts.map(f => `
@@ -554,7 +723,7 @@ function renderIdentify(frac) {
         </button>
       `).join('')}
     </div>
-    <div class="feedback hint" id="feedback">Sahi fraction chunkar jawab do! 👆</div>
+    <div class="feedback hint" id="feedback">Choose the correct fraction! 👆</div>
   `;
 }
 
@@ -567,14 +736,14 @@ function renderShade(frac) {
     <div class="question-text">
       Pizza ke
       <span class="frac-big"><span class="num">${frac.n}</span><span class="den">${frac.d}</span></span>
-      hisse click karke rang do! 🖱️
+      slices — click to shade them! 🖱️
     </div>
     <div class="pizza-wrap">
       <div id="pizza-interactive">${makePizzaSVG(frac.d, 0, 220, true)}</div>
     </div>
-    <div class="shade-hint" id="shade-hint"><b>0</b> slices select kiye — chahiye <b>${frac.n}</b></div>
-    <button class="check-btn" onclick="checkShade()" id="check-btn">✓ Check Karo</button>
-    <div class="feedback hint" id="feedback">Slices pe click karo phir check karo!</div>
+    <div class="shade-hint" id="shade-hint"><b>0</b> slices selected — need <b>${frac.n}</b></div>
+    <button class="check-btn" onclick="checkShade()" id="check-btn">✓ Check Answer</button>
+    <div class="feedback hint" id="feedback">Click the slices then check your answer!</div>
   `;
 }
 
@@ -588,7 +757,7 @@ function checkIdentify(n, d, btn) {
     const bonus = streak >= 2 ? 20 : 10;
     score += bonus;
     streak++;
-    const msg = streak >= 3 ? `🔥 ${streak} streak! +${bonus} points!` : '✅ Shabash! Bilkul sahi!';
+    const msg = streak >= 3 ? `🔥 ${streak} streak! +${bonus} points!` : '✅ Correct! Well done!';
     showFeedback(msg, 'correct');
     launchBurst(streak >= 3 ? 80 : 50);
   } else {
@@ -599,7 +768,7 @@ function checkIdentify(n, d, btn) {
       if (fracEqual(bn, bd, currentQ.n, currentQ.d)) b.classList.add('correct');
     });
     streak = 0;
-    showFeedback(`❌ Galat! Sahi answer tha ${currentQ.n}/${currentQ.d}`, 'wrong');
+    showFeedback(`❌ Wrong! The correct answer was ${currentQ.n}/${currentQ.d}`, 'wrong');
   }
   qnum++;
   updateStats();
@@ -618,12 +787,12 @@ function checkShade() {
     const bonus = streak >= 2 ? 20 : 10;
     score += bonus;
     streak++;
-    const msg = streak >= 3 ? `🔥 ${streak} streak! +${bonus}!` : `✅ Sahi! ${currentQ.n}/${currentQ.d} bilkul theek!`;
+    const msg = streak >= 3 ? `🔥 ${streak} streak! +${bonus}!` : `✅ Correct! ${currentQ.n}/${currentQ.d} is right!`;
     showFeedback(msg, 'correct');
     launchBurst(streak >= 3 ? 80 : 50);
   } else {
     streak = 0;
-    showFeedback(`❌ Galat! ${sel} select kiye, chahiye the ${currentQ.n}/${currentQ.d}`, 'wrong');
+    showFeedback(`❌ Wrong! You selected ${sel}, needed ${currentQ.n}/${currentQ.d}`, 'wrong');
   }
   qnum++;
   updateStats();
@@ -637,25 +806,32 @@ function showFeedback(msg, cls) {
 
 function showEnd() {
   document.getElementById('progress').style.width = '100%';
-  document.getElementById('qnum').textContent = '50/50';
+  document.getElementById('qnum').textContent = TOTAL_Q+'/'+TOTAL_Q;
   const pct = Math.round(score / (TOTAL_Q * 20) * 100);
+  const lvlName = currentLevel === 'easy' ? '😊 Easy' : currentLevel === 'medium' ? '🤔 Medium' : '💪 Hard';
   let trophy, msg, stars;
-  if (pct >= 90) { trophy='🏆'; msg='Fraction Master! Zabardast kiya!'; stars='⭐⭐⭐⭐⭐'; }
-  else if (pct >= 75) { trophy='🥇'; msg='Bahut accha! Aur thoda practice karo!'; stars='⭐⭐⭐⭐'; }
-  else if (pct >= 55) { trophy='🥈'; msg='Theek hai! Practice karte raho!'; stars='⭐⭐⭐'; }
-  else if (pct >= 35) { trophy='🥉'; msg='Koshish achi thi, aur seekho!'; stars='⭐⭐'; }
-  else { trophy='🍕'; msg='Koi baat nahi, dobara try karo!'; stars='⭐'; }
+  if (pct >= 90) { trophy='🏆'; msg='Fraction Master! Outstanding!'; stars='⭐⭐⭐⭐⭐'; }
+  else if (pct >= 75) { trophy='🥇'; msg='Great job! Keep practising!'; stars='⭐⭐⭐⭐'; }
+  else if (pct >= 55) { trophy='🥈'; msg='Not bad! Keep going!'; stars='⭐⭐⭐'; }
+  else if (pct >= 35) { trophy='🥉'; msg='Good try, keep learning!'; stars='⭐⭐'; }
+  else { trophy='🍕'; msg='No worries, try again!'; stars='⭐'; }
 
   document.getElementById('game-area').innerHTML = `
     <div class="end-screen">
       <div class="trophy">${trophy}</div>
+      <div style="margin-bottom:8px"><span class="level-badge ${currentLevel==='easy'?'level-easy':currentLevel==='medium'?'level-medium':'level-hard'}">${lvlName} Level</span></div>
       <h2>${msg}</h2>
       <div class="big-score">${score}<span style="font-size:20px;color:#7A5C3E">/${TOTAL_Q*20}</span></div>
-      <p>${pct}% sahi jawab</p>
+      <p>${pct}% correct</p>
       <div class="stars">${stars}</div>
       <div>
-        <button class="restart-btn" onclick="restartGame()">🔄 Dobara Khelo</button>
-        <button class="restart-btn secondary" onclick="switchMode()">🔀 Mode Badlo</button>
+        <button class="restart-btn" onclick="restartGame()">🔄 Play Again</button>
+        <button class="restart-btn secondary" onclick="switchMode()">🔀 Switch Mode</button>
+      </div>
+      <div style="margin-top:10px">
+        <button class="restart-btn secondary" style="font-size:13px;padding:9px 18px" onclick="setLevel('easy')">😊 Easy</button>
+        <button class="restart-btn secondary" style="font-size:13px;padding:9px 18px" onclick="setLevel('medium')">🤔 Medium</button>
+        <button class="restart-btn secondary" style="font-size:13px;padding:9px 18px" onclick="setLevel('hard')">💪 Hard</button>
       </div>
     </div>
   `;
@@ -802,6 +978,7 @@ animateSparkles();
 // ── End Sparkle Rain ──────────────────────────────────────
 
 // Start!
+document.getElementById('ltab-easy').classList.add('easy-active');
 buildQuestionList();
 nextQuestion();
 </script>

@@ -1,0 +1,347 @@
+<!-- ===================== DAILY SPARK FOOTER ===================== -->
+<style>
+.ds-footer {
+  --f-ink:    #0D1B2A;
+  --f-spark:  #FF6B00;
+  --f-sparkt: #FF8C33;
+  --f-gold:   #F0A500;
+  --f-white:  #FFFFFF;
+  --f-muted:  rgba(255,255,255,0.42);
+  --f-dimmed: rgba(255,255,255,0.10);
+  --f-rule:   rgba(255,255,255,0.08);
+  --ff-disp:  'Playfair Display', Georgia, serif;
+  --ff-body:  'Inter', sans-serif;
+  --ff-hindi: 'Noto Sans Devanagari', sans-serif;
+  font-family: var(--ff-body);
+  background: var(--f-ink);
+  color: var(--f-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Newsletter band */
+.ds-footer__nl {
+  background: linear-gradient(135deg, #FF6B00 0%, #c84a00 100%);
+  padding: 2.6rem 2rem;
+  position: relative; overflow: hidden;
+}
+.ds-footer__nl::before {
+  content: '⚡'; position: absolute;
+  right: 3%; top: 50%; transform: translateY(-50%);
+  font-size: 9rem; opacity: 0.07;
+  pointer-events: none; user-select: none; line-height: 1;
+}
+.ds-footer__nl-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.ds-footer__nl-eyebrow {
+  font-size: 0.63rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  font-weight: 700; margin-bottom: 0.25rem;
+}
+.ds-footer__nl-title {
+  font-family: var(--ff-disp);
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 900; color: var(--f-white); line-height: 1.2; margin-bottom: 0.2rem;
+}
+.ds-footer__nl-sub { font-size: 0.8rem; color: rgba(255,255,255,0.62); }
+.ds-footer__nl-form { display: flex; flex-shrink: 0; }
+.ds-footer__nl-form input {
+  font-family: var(--ff-body); font-size: 0.86rem;
+  padding: 0.65rem 1.05rem;
+  border: none; outline: none;
+  border-radius: 5px 0 0 5px;
+  width: 230px; max-width: 100%;
+  background: rgba(255,255,255,0.16);
+  color: var(--f-white); transition: background 0.18s;
+}
+.ds-footer__nl-form input::placeholder { color: rgba(255,255,255,0.48); }
+.ds-footer__nl-form input:focus { background: rgba(255,255,255,0.24); }
+.ds-footer__nl-form button {
+  font-family: var(--ff-body); font-size: 0.83rem; font-weight: 700;
+  padding: 0.65rem 1.2rem;
+  background: var(--f-ink); color: var(--f-white);
+  border: none; border-radius: 0 5px 5px 0;
+  cursor: pointer; white-space: nowrap; transition: background 0.18s;
+}
+.ds-footer__nl-form button:hover { background: #16283C; }
+
+/* Main body */
+.ds-footer__body {
+  max-width: 1280px; margin: 0 auto;
+  padding: 3.2rem 2rem 2.2rem;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 3rem;
+}
+
+/* Brand */
+.ds-footer__logo {
+  display: flex; align-items: center;
+  gap: 0.6rem; text-decoration: none; margin-bottom: 1rem;
+}
+.ds-footer__logo-icon {
+  width: 42px; height: 42px;
+  background: var(--f-spark); border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(255,107,0,0.32);
+}
+.ds-footer__logo-name {
+  font-family: var(--ff-disp);
+  font-size: 1.18rem; font-weight: 900;
+  color: var(--f-white); line-height: 1.1; display: block;
+}
+.ds-footer__logo-tag {
+  font-size: 0.58rem; color: var(--f-muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.ds-footer__tagline {
+  font-size: 0.82rem; color: var(--f-muted);
+  line-height: 1.75; margin-bottom: 1.2rem; max-width: 230px;
+}
+.ds-footer__hindi {
+  font-family: var(--ff-hindi);
+  font-size: 0.78rem; color: rgba(255,255,255,0.26);
+  border-left: 2px solid var(--f-spark);
+  padding-left: 0.75rem; line-height: 1.9; margin-bottom: 1.3rem;
+}
+.ds-footer__badges { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.ds-footer__badge {
+  display: inline-flex; align-items: center; gap: 0.28rem;
+  background: var(--f-dimmed);
+  border: 1px solid var(--f-rule);
+  border-radius: 20px; padding: 0.2rem 0.65rem;
+  font-size: 0.66rem; color: rgba(255,255,255,0.45);
+}
+.ds-footer__badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #22C55E;
+  animation: ds-pulse 2.2s ease-in-out infinite;
+}
+@keyframes ds-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+
+/* Nav columns */
+.ds-footer__nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.ds-footer__col-head {
+  font-size: 0.64rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700;
+  color: var(--f-white); margin-bottom: 0.9rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--f-rule);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.ds-footer__col-head::before {
+  content: ''; display: inline-block;
+  width: 9px; height: 2px;
+  background: var(--f-spark); border-radius: 2px; flex-shrink: 0;
+}
+.ds-footer__links {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.45rem;
+}
+.ds-footer__links a {
+  color: var(--f-muted); text-decoration: none;
+  font-size: 0.82rem; transition: color 0.15s;
+  display: flex; align-items: center; gap: 0.38rem;
+}
+.ds-footer__links a:hover { color: var(--f-sparkt); }
+.ds-footer__links .lk-icon { font-size: 0.88rem; opacity: 0.65; flex-shrink: 0; }
+.ds-footer__badge-new {
+  font-size: 0.56rem; font-weight: 700;
+  background: var(--f-spark); color: white;
+  border-radius: 3px; padding: 0.07rem 0.28rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.ds-footer__social-head {
+  font-size: 0.64rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700;
+  color: var(--f-white); margin: 1.4rem 0 0.9rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--f-rule);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.ds-footer__social-head::before {
+  content: ''; display: inline-block;
+  width: 9px; height: 2px;
+  background: var(--f-spark); border-radius: 2px; flex-shrink: 0;
+}
+
+/* Divider */
+.ds-footer__divider {
+  max-width: 1280px; margin: 0 auto;
+  border: none; border-top: 1px solid var(--f-rule);
+}
+
+/* Bottom bar */
+.ds-footer__bottom {
+  max-width: 1280px; margin: 0 auto;
+  padding: 1.3rem 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 0.8rem;
+}
+.ds-footer__copyright {
+  font-size: 0.73rem; color: rgba(255,255,255,0.26);
+  display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
+}
+.ds-footer__copyright .heart { color: var(--f-spark); }
+.ds-footer__copyright .sep  { color: rgba(255,255,255,0.12); }
+.ds-footer__legal-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.ds-footer__legal-links a {
+  font-size: 0.72rem; color: rgba(255,255,255,0.28);
+  text-decoration: none; transition: color 0.15s;
+}
+.ds-footer__legal-links a:hover { color: var(--f-sparkt); }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .ds-footer__body { grid-template-columns: 1fr; gap: 2rem; }
+  .ds-footer__nav  { grid-template-columns: 1fr 1fr; }
+  .ds-footer__tagline { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  .ds-footer__nl { padding: 1.8rem 1.2rem; }
+  .ds-footer__nl-inner { flex-direction: column; align-items: flex-start; }
+  .ds-footer__nl-form { width: 100%; }
+  .ds-footer__nl-form input { flex: 1; width: auto; }
+  .ds-footer__body { padding: 2.2rem 1.2rem 1.8rem; }
+  .ds-footer__nav  { grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+  .ds-footer__bottom { flex-direction: column; align-items: flex-start; padding: 1.1rem 1.2rem; }
+}
+@media (max-width: 380px) {
+  .ds-footer__nav { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-footer__badge-dot { animation: none; }
+}
+</style>
+
+<footer class="ds-footer" role="contentinfo">
+
+  <!-- Newsletter band -->
+  <div class="ds-footer__nl">
+    <div class="ds-footer__nl-inner">
+      <div>
+        <div class="ds-footer__nl-eyebrow">📬 Free Newsletter</div>
+        <div class="ds-footer__nl-title">Daily Spark in your inbox</div>
+        <div class="ds-footer__nl-sub">News, jobs &amp; tips — every morning. No spam, unsubscribe anytime.</div>
+      </div>
+      <form class="ds-footer__nl-form" onsubmit="dsFnlSubmit(event)">
+        <input type="email" id="ds-nl-email" placeholder="yourname@email.com" autocomplete="email" required aria-label="Email for newsletter" />
+        <button type="submit">Subscribe →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main body -->
+  <div class="ds-footer__body">
+
+    <!-- Brand -->
+    <div>
+      <a class="ds-footer__logo" href="index.html" aria-label="Daily Spark Home">
+        <div class="ds-footer__logo-icon">⚡</div>
+        <div>
+          <span class="ds-footer__logo-name">Daily Spark</span>
+          <span class="ds-footer__logo-tag">Where Knowledge Sparks Success</span>
+        </div>
+      </a>
+      <p class="ds-footer__tagline">India's trusted knowledge platform — Education, Jobs, Health, and daily inspiration. Free for every reader, forever.</p>
+      <p class="ds-footer__hindi">ज्ञान की रोशनी हर घर तक — रोज़, मुफ़्त, आपकी भाषा में।</p>
+      <div class="ds-footer__badges">
+        <span class="ds-footer__badge"><span class="ds-footer__badge-dot"></span> Updated Daily</span>
+        <span class="ds-footer__badge">🇮🇳 Made in India</span>
+        <span class="ds-footer__badge">🆓 Always Free</span>
+      </div>
+    </div>
+
+    <!-- Nav columns -->
+    <nav class="ds-footer__nav" aria-label="Footer navigation">
+
+      <!-- Explore -->
+      <div>
+        <div class="ds-footer__col-head">Explore</div>
+        <ul class="ds-footer__links">
+          <li><a href="index.html"><span class="lk-icon">🏠</span> Home</a></li>
+          <li><a href="gjobs.html"><span class="lk-icon">💼</span> Govt. Jobs <span class="ds-footer__badge-new">New</span></a></li>
+          <li><a href="health.html"><span class="lk-icon">🏥</span> Health</a></li>
+          <li><a href="cook.html"><span class="lk-icon">👨‍🍳</span> Cooking</a></li>
+          <li><a href="plant.html"><span class="lk-icon">🌿</span> Plants</a></li>
+          <li><a href="weather.html"><span class="lk-icon">🌦️</span> Weather</a></li>
+          <li><a href="gold.html"><span class="lk-icon">💹</span> Gold Rate</a></li>
+          <li><a href="jokes.html"><span class="lk-icon">🎬</span> Entertainment</a></li>
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <div class="ds-footer__col-head">Education</div>
+        <ul class="ds-footer__links">
+          <li><a href="jac_cutoff.html"><span class="lk-icon">🎓</span> JAC Cutoffs</a></li>
+          <li><a href="jac26.html"><span class="lk-icon">📊</span> JAC 2026</a></li>
+          <li><a href="jac_josaa.pdf"><span class="lk-icon">📄</span> JoSAA Schedule</a></li>
+          <li><a href="math.html"><span class="lk-icon">🧮</span> Math Playground</a></li>
+          <li><a href="parent.html"><span class="lk-icon">👨‍👩‍👧</span> Parenting</a></li>
+          <li><a href="ns.html"><span class="lk-icon">🔔</span> News Alerts</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div class="ds-footer__col-head">Company</div>
+        <ul class="ds-footer__links">
+          <li><a href="about.html"><span class="lk-icon">ℹ️</span> About Us</a></li>
+          <li><a href="contact.html"><span class="lk-icon">✉️</span> Contact Us</a></li>
+          <li><a href="privacy-policy.html"><span class="lk-icon">🔒</span> Privacy Policy</a></li>
+          <li><a href="terms.html"><span class="lk-icon">📋</span> Terms of Use</a></li>
+        </ul>
+      </div>
+
+      <!-- Social + Legal -->
+      <div>
+        <div class="ds-footer__col-head">Follow Us</div>
+        <ul class="ds-footer__links">
+          <li><a href="#" aria-label="WhatsApp"><span class="lk-icon">💬</span> WhatsApp</a></li>
+          <li><a href="#" aria-label="Instagram"><span class="lk-icon">📸</span> Instagram</a></li>
+          <li><a href="#" aria-label="YouTube"><span class="lk-icon">▶️</span> YouTube</a></li>
+          <li><a href="#" aria-label="Telegram"><span class="lk-icon">✈️</span> Telegram</a></li>
+        </ul>
+        <div class="ds-footer__social-head">Quick Legal</div>
+        <ul class="ds-footer__links">
+          <li><a href="privacy-policy.html"><span class="lk-icon">🔒</span> Privacy Policy</a></li>
+          <li><a href="terms.html"><span class="lk-icon">📋</span> Terms of Use</a></li>
+          <li><a href="about.html"><span class="lk-icon">ℹ️</span> About Us</a></li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+
+  <hr class="ds-footer__divider" />
+
+  <!-- Bottom bar -->
+  <div class="ds-footer__bottom">
+    <div class="ds-footer__copyright">
+      <span>© 2026 Daily Spark.</span>
+      <span class="sep">|</span>
+      <span>All rights reserved.</span>
+      <span class="sep">|</span>
+      <span>Made with <span class="heart">❤️</span> for India</span>
+    </div>
+    <nav class="ds-footer__legal-links" aria-label="Legal">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+</footer>

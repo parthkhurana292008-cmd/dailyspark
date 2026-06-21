@@ -2,230 +2,567 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Who Wants to Be a Maths Millionaire?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+<title>🎯 Who Wants to Be a Maths Millionaire? | Free Kids Math Quiz Game 2026 | Daily Spark</title>
+
+<!-- SEO Primary -->
+<meta name="description" content="Play Who Wants to Be a Maths Millionaire? — 300 math questions across 3 levels for kids, teens and experts! Lifelines, prizes and KBC-style excitement. Free online math quiz game 2026.">
+<meta name="keywords" content="maths millionaire game, kids math quiz online, KBC math game, kaun banega crorepati math, KBC style quiz game, free math quiz for children, maths game for students, who wants to be a millionaire math, math quiz game india 2026, daily spark math game, interactive math quiz, multiplication quiz kids, kaun banega crorepati game online, kbc quiz for kids, kbc math questions">
+<meta name="author" content="Daily Spark">
+<meta name="publisher" content="Daily Spark">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="language" content="English">
+<meta name="rating" content="safe for kids">
+<meta name="category" content="Educational Games, Math, Kids, KBC">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://www.dailyspark.in/milli.html">
+
+<!-- PWA / Mobile -->
+<meta name="theme-color" content="#120830">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Maths Millionaire">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-TileColor" content="#120830">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daily Spark">
+<meta property="og:title" content="🎯 Kaun Banega Crorepati Math | Maths Millionaire Quiz Game | Daily Spark">
+<meta property="og:description" content="KBC style math quiz! 300 questions, 3 levels, lifelines aur prizes — kids, teens aur experts ke liye. Free online game 2026.">
+<meta property="og:image" content="https://www.dailyspark.in/assets/milli-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Who Wants to Be a Maths Millionaire — Daily Spark">
+<meta property="og:url" content="https://www.dailyspark.in/milli.html">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DailySparkIN">
+<meta name="twitter:creator" content="@DailySparkIN">
+<meta name="twitter:title" content="🎯 KBC Math Game | Kaun Banega Crorepati Maths Quiz | Daily Spark">
+<meta name="twitter:description" content="Kaun Banega Crorepati style math quiz! 300 questions, lifelines, prizes. Free online!">
+<meta name="twitter:image" content="https://www.dailyspark.in/assets/milli-og.jpg">
+<meta name="twitter:image:alt" content="Maths Millionaire Game — Daily Spark">
+
+<!-- Geo -->
+<meta name="geo.region" content="IN">
+<meta name="geo.country" content="India">
+<meta name="DC.language" content="en">
+
+<!-- Schema: Game -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Game","name":"Kaun Banega Crorepati Math — Maths Millionaire Quiz","alternateName":["KBC Math Game","Who Wants to Be a Maths Millionaire","KBC Maths Quiz"],"description":"A Kaun Banega Crorepati (KBC) style math quiz game with 300 questions across 3 levels for kids, teens and experts. Features lifelines, prize ladder and sound effects.","url":"https://www.dailyspark.in/milli.html","image":"https://www.dailyspark.in/assets/milli-og.jpg","genre":["Educational","Math","Quiz","KBC"],"educationalUse":"practice","learningResourceType":"game","typicalAgeRange":"6-18","inLanguage":"en","publisher":{"@type":"Organization","name":"Daily Spark","url":"https://www.dailyspark.in"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR","availability":"https://schema.org/InStock"}}
+</script>
+
+<!-- Schema: BreadcrumbList -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dailyspark.in"},{"@type":"ListItem","position":2,"name":"Games","item":"https://www.dailyspark.in/games.html"},{"@type":"ListItem","position":3,"name":"Maths Millionaire","item":"https://www.dailyspark.in/milli.html"}]}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ══ ROOT PALETTE — Vibrant Kids Theme ══ */
 :root{
-  --gold:#c87800;--gold-light:#f5a623;--gold-dim:#a06000;
-  --navy:#f0f4ff;--navy-2:#e4eaf8;--navy-3:#d6dffa;
-  --text:#1a2340;--text-dim:#6b7a9e;--white:#fff;
-  --safe:#e07000;--lv1:#0288d1;--lv2:#7b1fa2;--lv3:#e64a19;
+  --gold:#FFD700; --gold2:#FF8C00; --gold3:#FFE566;
+  --bg:#120830;
+  --lv1:#00E5FF; --lv2:#FF4DDE; --lv3:#FF6B35;
+  --opt:#1E0B4A; --opt-border:rgba(140,80,255,0.5);
+  --text:#fff; --text-dim:rgba(200,180,255,0.85);
 }
-html,body{width:100%;min-height:100vh;background:var(--navy);font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;}
-#bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 20% 50%,rgba(180,200,255,0.5) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(200,180,255,0.3) 0%,transparent 50%),#e8eeff;}
-#spotlight{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse at 50% 80%,rgba(200,140,0,0.13) 0%,transparent 70%);transition:background 1s;}
-.bg-ring{position:absolute;border-radius:50%;border:1px solid rgba(180,140,0,0.15);top:50%;left:50%;transform:translate(-50%,-50%);}
-@keyframes img-glow{0%,100%{box-shadow:0 0 18px rgba(245,197,24,0.25);}50%{box-shadow:0 0 38px rgba(245,197,24,0.5);}}
+
+/* ══ BODY & ANIMATED BG ══ */
+html,body{width:100%;min-height:100vh;background:var(--bg);font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;}
+
+#bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 10% 15%,  rgba(255,  0,180,0.28) 0%,transparent 45%),
+    radial-gradient(ellipse at 88% 10%,  rgba(  0,220,255,0.28) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 92%,  rgba(130,  0,255,0.32) 0%,transparent 50%),
+    radial-gradient(ellipse at 78% 60%,  rgba(255,107, 53,0.18) 0%,transparent 40%),
+    radial-gradient(ellipse at 18% 70%,  rgba(  0,255,136,0.14) 0%,transparent 40%),
+    linear-gradient(150deg,#120830 0%,#200a60 35%,#090e40 70%,#120830 100%);
+  animation:bgShift 10s ease-in-out infinite alternate;
+}
+@keyframes bgShift{
+  0%  {filter:hue-rotate(0deg)  brightness(1);}
+  100%{filter:hue-rotate(22deg) brightness(1.1);}
+}
+
+/* Twinkling stars */
+#bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,0.9) 1px,transparent 1px),
+    radial-gradient(circle,rgba(255,255,255,0.5) 1px,transparent 1px);
+  background-size:70px 70px, 45px 45px;
+  background-position:0 0, 22px 22px;
+  opacity:.18;
+  animation:starsTwinkle 3.5s ease-in-out infinite alternate;
+}
+@keyframes starsTwinkle{0%{opacity:.1}100%{opacity:.26}}
+
+/* Spotlight glow */
+#spotlight{
+  position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);
+  width:750px;height:750px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 80%,rgba(255,215,0,0.22) 0%,transparent 68%);
+}
+.bg-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(255,215,0,0.14);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:ringPulse 7s ease-in-out infinite;
+}
+@keyframes ringPulse{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes img-glow{
+  0%,100%{box-shadow:0 0 18px rgba(255,215,0,0.5);}
+  50%     {box-shadow:0 0 45px rgba(255,215,0,0.95);}
+}
+
+/* ══ SHELL / HEADER ══ */
 #shell{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;}
-#hdr{text-align:center;padding:14px 70px 12px;border-bottom:1px solid rgba(180,140,0,0.25);flex-shrink:0;background:linear-gradient(180deg,rgba(200,140,0,0.08) 0%,transparent 100%);position:relative;}
-#show-logo{font-family:'Cinzel',serif;font-size:clamp(13px,2vw,21px);font-weight:900;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;text-shadow:0 0 40px rgba(245,197,24,0.6);}
-#show-sub{font-size:9px;letter-spacing:.2em;color:var(--text-dim);margin-top:4px;text-transform:uppercase;}
-#mute-btn{position:absolute;top:50%;right:14px;transform:translateY(-50%);background:rgba(200,140,0,0.1);border:1px solid rgba(200,140,0,0.3);border-radius:8px;color:var(--gold);font-size:16px;width:34px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-#mute-btn:hover{background:rgba(200,140,0,0.2);}
-/* MAIN: flex row */
+
+#hdr{
+  text-align:center;padding:14px 70px 12px;
+  border-bottom:2px solid rgba(255,215,0,0.28);
+  flex-shrink:0;position:relative;
+  background:linear-gradient(180deg,rgba(255,215,0,0.1) 0%,transparent 100%);
+}
+
+/* Rainbow animated title */
+#show-logo{
+  font-family:'Cinzel',serif;
+  font-size:clamp(13px,2vw,21px);font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+  background:linear-gradient(90deg,#FFD700,#FF69B4,#00E5FF,#00FF88,#FF69B4,#FFD700);
+  background-size:300% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:rainbowShift 4s linear infinite;
+}
+@keyframes rainbowShift{0%{background-position:0% center}100%{background-position:300% center}}
+
+#show-sub{font-size:9px;letter-spacing:.2em;color:#fff;margin-top:4px;text-transform:uppercase;}
+#mute-btn{
+  position:absolute;top:50%;right:14px;transform:translateY(-50%);
+  background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.45);
+  border-radius:8px;color:#FFD700;font-size:16px;
+  width:34px;height:32px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+#mute-btn:hover{background:rgba(255,215,0,0.32);}
+
+/* ══ LAYOUT ══ */
 #main{flex:1;display:flex;flex-direction:row;align-items:stretch;min-height:0;}
-/* SIDE PANELS */
 .side-panel{width:102px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 6px;}
-#player-left{border-right:1px solid rgba(180,140,0,0.18);}
-#player-right{border-left:1px solid rgba(180,140,0,0.18);}
-#chair-img,#parth-img{width:80px;height:100px;object-fit:cover;object-position:top center;border-radius:10px;border:2px solid rgba(245,197,24,0.55);animation:img-glow 3s ease-in-out infinite;}
-#player-name-left{text-align:center;background:linear-gradient(135deg,rgba(245,197,24,0.13),rgba(245,197,24,0.04));border:1px solid rgba(245,197,24,0.35);border-radius:10px;padding:7px 5px 8px;width:84px;display:flex;flex-direction:column;align-items:center;gap:3px;}
-.pnl-seat-label{font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);font-weight:600;line-height:1.3;}
-.pnl-player-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.06em;line-height:1.3;text-shadow:0 0 12px rgba(245,197,24,0.5);word-break:break-word;}
-#chair-name-plate{background:linear-gradient(135deg,rgba(245,197,24,0.1),rgba(245,197,24,0.04));border:1px solid rgba(245,197,24,0.3);border-radius:8px;padding:5px 4px;text-align:center;width:84px;}
-.cnp-title{font-size:7.5px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase;margin-bottom:3px;}
-.cnp-name{font-family:'Cinzel',serif;font-size:10px;font-weight:700;color:var(--gold);line-height:1.3;}
-/* LIFELINES */
-#ll-panel{width:102px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px 6px;border-left:1px solid rgba(180,140,0,0.18);}
-.ll-btn{width:82px;background:linear-gradient(180deg,rgba(220,228,255,0.95),rgba(200,215,250,0.95));border:1.5px solid rgba(80,110,220,0.35);border-radius:10px;padding:10px 4px;color:#1a2340;cursor:pointer;text-align:center;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 3px 12px rgba(0,0,0,0.3);}
-.ll-btn:hover:not(.used){background:linear-gradient(180deg,rgba(100,140,255,0.5),rgba(70,110,220,0.5));border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,0.2);}
-.ll-icon{font-size:18px;line-height:1.3;}
-.ll-nm{font-size:8.5px;letter-spacing:.02em;font-weight:500;line-height:1.3;}
-.ll-btn.used{opacity:.18;cursor:not-allowed;filter:grayscale(1);}
-.ll-sep{width:45px;height:1px;background:rgba(245,197,24,0.08);}
-/* CENTER */
-#center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 18px;gap:11px;position:relative;min-width:0;}
-#hot-seat-floor{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:480px;height:220px;border-radius:50%;background:radial-gradient(ellipse at 50% 100%,rgba(245,197,24,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;}
-#lv-badge{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 16px;border-radius:20px;border:1px solid;transition:all .4s;z-index:1;}
-#lv-badge.lv1{color:var(--lv1);border-color:rgba(79,195,247,0.4);background:rgba(79,195,247,0.07);}
-#lv-badge.lv2{color:var(--lv2);border-color:rgba(171,71,188,0.4);background:rgba(171,71,188,0.07);}
-#lv-badge.lv3{color:var(--lv3);border-color:rgba(255,112,67,0.4);background:rgba(255,112,67,0.07);}
-#q-num{font-size:9px;letter-spacing:.18em;color:var(--text-dim);text-transform:uppercase;z-index:1;}
-#q-box{width:100%;max-width:640px;position:relative;z-index:1;background:linear-gradient(135deg,rgba(240,244,255,0.99),rgba(232,238,255,0.99));border:2px solid rgba(180,130,0,0.3);border-radius:16px;padding:20px 26px;text-align:center;box-shadow:0 0 40px rgba(245,197,24,0.07),0 8px 32px rgba(0,0,0,0.5);}
-#q-box::before,#q-box::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-#q-box::before{top:0;border-radius:0 0 4px 4px;}
-#q-box::after{bottom:0;border-radius:4px 4px 0 0;}
-#q-text{font-size:clamp(14px,1.6vw,17px);line-height:1.7;color:#0d1a40;font-weight:500;}
-#opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;max-width:640px;z-index:1;}
-.opt{background:linear-gradient(135deg,rgba(220,228,255,0.97),rgba(210,220,255,0.97));border:1.5px solid rgba(80,110,210,0.35);border-radius:11px;padding:11px 14px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:all .18s;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3);}
-.opt:hover:not(.locked):not(.grayed):not(.hidden){background:linear-gradient(135deg,rgba(100,140,255,0.85),rgba(80,120,240,0.85));border-color:rgba(245,197,24,0.55);color:#fff;transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,0.12);}
-.opt-ltr{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,rgba(245,197,24,0.15),rgba(245,197,24,0.05));border:1.5px solid rgba(245,197,24,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);}
-.opt.sel{background:rgba(200,150,0,0.25);border-color:#c87800;color:#1a2340;}
-.opt.correct{background:linear-gradient(135deg,rgba(0,140,60,0.7),rgba(0,180,80,0.5))!important;border-color:#00e676!important;color:#b8ffd0!important;box-shadow:0 0 28px rgba(0,230,118,0.3)!important;}
-.opt.wrong{background:linear-gradient(135deg,rgba(180,0,20,0.7),rgba(220,0,40,0.5))!important;border-color:#ff1744!important;color:#ffb3b3!important;box-shadow:0 0 28px rgba(255,23,68,0.3)!important;}
-.opt.hidden{opacity:.1;pointer-events:none;}
-.opt.locked{cursor:default;}
-.opt.grayed{opacity:.28;pointer-events:none;}
+#player-left{border-right:1px solid rgba(255,215,0,0.2);}
+#player-right{border-left:1px solid rgba(255,215,0,0.2);}
+#chair-img,#parth-img{
+  width:80px;height:100px;object-fit:cover;object-position:top center;
+  border-radius:10px;border:2px solid rgba(255,215,0,0.65);
+  animation:img-glow 3s ease-in-out infinite;
+}
+#player-name-left{
+  text-align:center;
+  background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,80,200,0.1));
+  border:1px solid rgba(255,215,0,0.45);border-radius:10px;
+  padding:7px 5px 8px;width:84px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+}
+.pnl-seat-label{font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:#fff;font-weight:600;line-height:1.3;}
+.pnl-player-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#FFD700;letter-spacing:.06em;line-height:1.3;text-shadow:0 0 14px rgba(255,215,0,0.8);word-break:break-word;}
+#chair-name-plate{
+  background:linear-gradient(135deg,rgba(255,215,0,0.14),rgba(255,80,200,0.08));
+  border:1px solid rgba(255,215,0,0.38);border-radius:8px;
+  padding:5px 4px;text-align:center;width:84px;
+}
+.cnp-title{font-size:7.5px;letter-spacing:.1em;color:#fff;text-transform:uppercase;margin-bottom:3px;}
+.cnp-name{font-family:'Cinzel',serif;font-size:10px;font-weight:700;color:#FFD700;line-height:1.3;}
+
+/* ══ LIFELINES ══ */
+#ll-panel{
+  width:102px;flex-shrink:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+  padding:16px 6px;border-left:1px solid rgba(255,215,0,0.2);
+}
+.ll-btn{
+  width:82px;
+  background:linear-gradient(135deg,rgba(90,0,200,0.88),rgba(50,0,140,0.95));
+  border:1.5px solid rgba(180,100,255,0.55);
+  border-radius:12px;padding:10px 4px;color:#fff;
+  cursor:pointer;text-align:center;transition:all .22s;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  box-shadow:0 4px 16px rgba(120,0,255,0.35);
+}
+.ll-btn:hover:not(.used){
+  background:linear-gradient(135deg,rgba(255,215,0,0.32),rgba(255,120,0,0.28));
+  border-color:#FFD700;color:#FFD700;
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 8px 28px rgba(255,215,0,0.45);
+}
+.ll-icon{font-size:19px;line-height:1.3;filter:drop-shadow(0 0 6px rgba(255,215,0,0.5));}
+.ll-nm{font-size:8.5px;letter-spacing:.02em;font-weight:600;line-height:1.3;}
+.ll-btn.used{opacity:.16;cursor:not-allowed;filter:grayscale(1);}
+.ll-sep{width:45px;height:1px;background:rgba(255,215,0,0.12);}
+
+/* ══ CENTER ══ */
+#center{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:16px 18px;gap:12px;position:relative;min-width:0;
+}
+#hot-seat-floor{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:500px;height:240px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 100%,rgba(255,215,0,0.22) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+/* Level badge */
+#lv-badge{
+  font-family:'Cinzel',serif;font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 20px;border-radius:20px;border:2px solid;
+  transition:all .4s;z-index:1;
+}
+#lv-badge.lv1{color:#00E5FF;border-color:rgba(0,229,255,0.6);background:rgba(0,229,255,0.14);box-shadow:0 0 24px rgba(0,229,255,0.35);}
+#lv-badge.lv2{color:#FF4DDE;border-color:rgba(255,77,222,0.6);background:rgba(255,77,222,0.14);box-shadow:0 0 24px rgba(255,77,222,0.35);}
+#lv-badge.lv3{color:#FF6B35;border-color:rgba(255,107,53,0.6);background:rgba(255,107,53,0.14);box-shadow:0 0 24px rgba(255,107,53,0.35);}
+
+#q-num{font-size:10px;letter-spacing:.18em;color:#fff;text-transform:uppercase;z-index:1;font-weight:700;}
+
+/* ══ QUESTION BOX ══ */
+#q-box{
+  width:100%;max-width:640px;position:relative;z-index:1;
+  background:linear-gradient(135deg,rgba(44,6,100,0.97),rgba(22,4,65,0.97));
+  border:2px solid rgba(255,215,0,0.5);
+  border-radius:22px;padding:22px 28px;text-align:center;
+  box-shadow:
+    0 0 60px rgba(255,215,0,0.18),
+    0 10px 44px rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+#q-box::before,#q-box::after{
+  content:'';position:absolute;left:50%;transform:translateX(-50%);
+  width:70px;height:2px;
+  background:linear-gradient(90deg,transparent,#FFD700,transparent);
+}
+#q-box::before{top:0;}
+#q-box::after{bottom:0;}
+#q-text{font-size:clamp(15px,1.8vw,18px);line-height:1.78;color:#fff;font-weight:600;letter-spacing:.01em;}
+
+/* ══ OPTIONS ══ */
+#opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;width:100%;max-width:640px;z-index:1;}
+
+.opt{
+  background:linear-gradient(135deg,rgba(55,10,130,0.96),rgba(32,5,90,0.96));
+  border:2px solid rgba(140,80,255,0.48);
+  border-radius:16px;padding:13px 16px;
+  color:#fff;font-size:13.5px;
+  font-family:'Inter',sans-serif;cursor:pointer;
+  text-align:left;display:flex;align-items:center;gap:11px;
+  transition:all .2s;position:relative;overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,0.45);
+}
+/* Shimmer sweep on each option */
+.opt::after{
+  content:'';position:absolute;
+  top:0;left:-80%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);
+  transform:skewX(-18deg);
+  animation:optShimmer 4s ease-in-out infinite;
+}
+.opt:nth-child(2)::after{animation-delay:.6s;}
+.opt:nth-child(3)::after{animation-delay:1.2s;}
+.opt:nth-child(4)::after{animation-delay:1.8s;}
+@keyframes optShimmer{0%,60%{left:-80%}75%{left:130%}100%{left:130%}}
+
+.opt:hover:not(.locked):not(.grayed):not(.hidden){
+  background:linear-gradient(135deg,rgba(130,40,255,0.92),rgba(90,20,220,0.92));
+  border-color:#FFD700;color:#fff;
+  transform:translateY(-4px) scale(1.025);
+  box-shadow:0 10px 32px rgba(255,215,0,0.32);
+}
+.opt-ltr{
+  width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(255,215,0,0.3),rgba(255,120,0,0.18));
+  border:2px solid rgba(255,215,0,0.6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:#FFD700;
+  text-shadow:0 0 10px rgba(255,215,0,0.7);
+  box-shadow:0 0 12px rgba(255,215,0,0.3);
+}
+.opt.sel{
+  background:linear-gradient(135deg,rgba(255,140,0,0.32),rgba(255,60,0,0.22));
+  border-color:#FFD700;color:#ffe8a0;
+  box-shadow:0 0 25px rgba(255,215,0,0.35);
+}
+.opt.correct{background:linear-gradient(135deg,rgba(0,220,80,0.88),rgba(0,180,60,0.72))!important;border-color:#00FF88!important;color:#ccffdd!important;box-shadow:0 0 40px rgba(0,255,136,0.55)!important;transform:scale(1.04)!important;}
+.opt.wrong  {background:linear-gradient(135deg,rgba(220,0,50,0.88),rgba(180,0,30,0.72))!important;border-color:#FF1744!important;color:#ffcccc!important;box-shadow:0 0 40px rgba(255,23,68,0.55)!important;}
+.opt.hidden {opacity:.07;pointer-events:none;}
+.opt.locked {cursor:default;}
+.opt.grayed {opacity:.22;pointer-events:none;}
+
+/* ══ CONFIRM / WALK ══ */
 #confirm-row{display:none;flex-direction:column;align-items:center;gap:8px;width:100%;max-width:640px;z-index:1;}
-#confirm-banner{background:rgba(200,150,0,0.1);border:1px solid rgba(245,197,24,0.25);border-radius:8px;padding:8px 16px;font-size:12px;color:var(--gold);text-align:center;width:100%;}
-#confirm-acts{display:flex;gap:8px;}
-#btn-final{background:rgba(180,120,0,0.12);border:1.5px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:12px;font-weight:700;padding:8px 22px;border-radius:8px;cursor:pointer;letter-spacing:.05em;transition:all .2s;}
-#btn-final:hover{background:rgba(180,120,0,0.25);color:#1a2340;}
-#btn-change{background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.15);color:rgba(30,40,80,0.55);font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;}
-#btn-change:hover{background:rgba(0,0,0,0.08);color:#1a2340;}
+#confirm-banner{
+  background:rgba(255,215,0,0.13);border:1px solid rgba(255,215,0,0.4);
+  border-radius:12px;padding:10px 18px;font-size:13px;
+  color:#FFD700;text-align:center;width:100%;font-weight:700;
+  text-shadow:0 0 10px rgba(255,215,0,0.4);
+}
+#confirm-acts{display:flex;gap:9px;}
+#btn-final{
+  background:linear-gradient(135deg,#FFD700,#FF8C00);
+  border:none;color:#120830;
+  font-family:'Cinzel',serif;font-size:13px;font-weight:900;
+  padding:11px 28px;border-radius:12px;cursor:pointer;
+  letter-spacing:.07em;transition:all .22s;
+  box-shadow:0 5px 24px rgba(255,215,0,0.45);
+}
+#btn-final:hover{background:linear-gradient(135deg,#FFE566,#FFD700);transform:translateY(-3px);box-shadow:0 10px 35px rgba(255,215,0,0.6);}
+#btn-change{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.25);
+  color:rgba(220,200,255,0.88);font-size:12px;padding:11px 16px;
+  border-radius:12px;cursor:pointer;transition:all .2s;
+}
+#btn-change:hover{background:rgba(255,255,255,0.16);color:#fff;}
 #act-bar{display:flex;align-items:center;gap:8px;justify-content:center;z-index:1;}
-#btn-walk{background:transparent;border:1px solid rgba(30,50,120,0.2);color:rgba(30,50,120,0.45);font-size:11px;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .2s;}
-#btn-walk:hover:not(:disabled){border-color:rgba(30,50,120,0.45);color:rgba(30,50,120,0.8);}
-#btn-walk:disabled{opacity:.16;cursor:default;}
-#host-msg{display:none;background:rgba(200,160,0,0.07);border-left:3px solid rgba(180,140,0,0.4);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:rgba(100,80,20,0.85);width:100%;max-width:640px;line-height:1.6;z-index:1;}
+#btn-walk{
+  background:transparent;border:1px solid rgba(200,150,255,0.32);
+  color:rgba(255,255,255,0.75);font-size:11px;padding:7px 16px;
+  border-radius:8px;cursor:pointer;transition:all .2s;
+}
+#btn-walk:hover:not(:disabled){border-color:rgba(200,150,255,0.75);color:rgba(225,210,255,0.98);}
+#btn-walk:disabled{opacity:.14;cursor:default;}
+#host-msg{
+  display:none;
+  background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(255,100,0,0.08));
+  border-left:3px solid rgba(255,215,0,0.55);
+  border-radius:0 12px 12px 0;padding:11px 15px;
+  font-size:12.5px;color:rgba(255,240,160,0.96);
+  width:100%;max-width:640px;line-height:1.7;z-index:1;
+}
+
+/* ══ AUDIENCE POLL ══ */
 .poll-wrap{width:100%;}
-.poll-row{display:flex;align-items:center;gap:6px;margin:3px 0;}
-.poll-lbl{font-size:11px;color:var(--text-dim);width:12px;flex-shrink:0;}
-.poll-track{flex:1;height:13px;background:rgba(0,0,0,0.08);border-radius:4px;overflow:hidden;}
-.poll-fill{height:100%;border-radius:4px;transition:width .8s ease;}
-.poll-pct{font-size:10px;color:var(--text-dim);width:28px;text-align:right;flex-shrink:0;}
+.poll-row{display:flex;align-items:center;gap:6px;margin:4px 0;}
+.poll-lbl{font-size:11px;color:#fff;width:12px;flex-shrink:0;font-weight:700;}
+.poll-track{flex:1;height:14px;background:rgba(255,255,255,0.07);border-radius:6px;overflow:hidden;}
+.poll-fill{height:100%;border-radius:6px;transition:width .85s ease;}
+.poll-pct{font-size:10px;color:#fff;width:28px;text-align:right;flex-shrink:0;font-weight:700;}
+
+/* ══ CHAIR SVG ══ */
 #chair-wrap{position:relative;z-index:1;width:100%;max-width:640px;display:flex;justify-content:center;}
-#chair-svg{width:180px;opacity:.45;}
-#level-picker{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.lv-card{width:150px;border-radius:14px;padding:16px 12px;cursor:pointer;transition:all .25s;text-align:center;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:9px;}
-.lv-card:hover{transform:translateY(-4px);}
-.lv-card.lv1{background:rgba(2,136,209,0.07);border-color:rgba(2,136,209,0.3);}
-.lv-card.lv1:hover,.lv-card.lv1.sel-lv{background:rgba(2,136,209,0.15);border-color:var(--lv1);}
-.lv-card.lv2{background:rgba(123,31,162,0.07);border-color:rgba(123,31,162,0.3);}
-.lv-card.lv2:hover,.lv-card.lv2.sel-lv{background:rgba(123,31,162,0.15);border-color:var(--lv2);}
-.lv-card.lv3{background:rgba(230,74,25,0.07);border-color:rgba(230,74,25,0.3);}
-.lv-card.lv3:hover,.lv-card.lv3.sel-lv{background:rgba(230,74,25,0.15);border-color:var(--lv3);}
-.lv-icon{font-size:30px;}
-.lv-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;}
-.lv-card.lv1 .lv-title{color:var(--lv1);}
-.lv-card.lv2 .lv-title{color:var(--lv2);}
-.lv-card.lv3 .lv-title{color:var(--lv3);}
-.lv-age{font-size:10px;color:var(--text-dim);}
-.lv-prize{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);}
-#overlay{position:fixed;inset:0;z-index:200;background:rgba(230,236,255,0.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px 20px;overflow-y:auto;}
-.ov-eyebrow{font-size:9px;letter-spacing:.24em;color:var(--gold-dim);text-transform:uppercase;}
-.ov-title{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,38px);font-weight:900;color:var(--gold);text-align:center;line-height:1.1;text-shadow:0 0 60px rgba(245,197,24,0.3);}
-.ov-sub{font-size:13px;color:var(--text-dim);text-align:center;line-height:1.85;max-width:440px;}
-.ov-prize{font-family:'Cinzel',serif;font-size:clamp(18px,3vw,26px);font-weight:700;color:var(--gold);}
-.ov-prize-lbl{font-size:9px;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;margin-bottom:-7px;}
-#name-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
-#name-label{font-size:10px;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;}
-#name-inp{background:rgba(8,13,46,0.9);border:1.5px solid rgba(180,130,0,0.4);border-radius:10px;color:var(--white);font-family:'Cinzel',serif;font-size:16px;font-weight:700;text-align:center;padding:10px 20px;width:240px;letter-spacing:.06em;outline:none;transition:border-color .2s;}
-#name-inp:focus{border-color:var(--gold);}
-#name-inp::placeholder{color:rgba(245,197,24,0.3);font-weight:400;font-size:13px;}
-#ov-btn{margin-top:4px;background:linear-gradient(135deg,#f5c518,#e8a000);border:none;border-radius:12px;color:#1a2340;font-family:'Cinzel',serif;font-size:14px;font-weight:900;letter-spacing:.1em;padding:13px 44px;cursor:pointer;transition:all .25s;text-transform:uppercase;box-shadow:0 4px 24px rgba(180,130,0,0.35);}
-#ov-btn:hover{background:linear-gradient(135deg,#ffe066,#f5c518);transform:translateY(-2px) scale(1.04);box-shadow:0 8px 32px rgba(180,130,0,0.45);}
-@keyframes fG{0%,100%{background:var(--navy)}50%{background:#d4f5e2}}
-@keyframes fR{0%,100%{background:var(--navy)}50%{background:#ffe0e0}}
+#chair-svg{width:180px;opacity:.38;}
+
+/* ══ FLASH ANIMATIONS ══ */
+@keyframes fG{0%,100%{background:var(--bg)}50%{background:#003820}}
+@keyframes fR{0%,100%{background:var(--bg)}50%{background:#380010}}
 body.fc{animation:fG .55s ease;}
 body.fr{animation:fR .55s ease;}
 @keyframes pricePop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
 .prize-pop{animation:pricePop .5s ease;}
+
+/* ══ OVERLAY (Start Screen) ══ */
+#overlay{
+  position:fixed;inset:0;z-index:200;
+  background:
+    radial-gradient(ellipse at 20% 10%,rgba(255,0,180,0.22) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(0,200,255,0.22) 0%,transparent 50%),
+    rgba(10,3,30,0.97);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:40px 20px;overflow-y:auto;
+}
+.ov-eyebrow{font-size:9px;letter-spacing:.24em;color:#FFA500;text-transform:uppercase;font-weight:700;}
+.ov-title{
+  font-family:'Cinzel',serif;font-size:clamp(20px,4vw,38px);font-weight:900;
+  text-align:center;line-height:1.1;
+  background:linear-gradient(90deg,#FFD700,#FF69B4,#00E5FF,#FFD700);
+  background-size:250% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:rainbowShift 5s linear infinite;
+}
+.ov-sub{font-size:13px;color:#fff;text-align:center;line-height:1.9;max-width:440px;}
+.ov-prize{
+  font-family:'Cinzel',serif;font-size:clamp(18px,3vw,26px);font-weight:700;
+  background:linear-gradient(90deg,#FFD700,#FF8C00);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ov-prize-lbl{font-size:9px;letter-spacing:.14em;color:#fff;text-transform:uppercase;margin-bottom:-7px;}
+#name-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
+#name-label{font-size:10px;letter-spacing:.14em;color:#fff;text-transform:uppercase;font-weight:700;}
+#name-inp{
+  background:rgba(30,5,75,0.92);
+  border:2px solid rgba(255,215,0,0.42);
+  border-radius:12px;color:#fff;
+  font-family:'Cinzel',serif;font-size:16px;font-weight:700;
+  text-align:center;padding:11px 24px;width:240px;
+  letter-spacing:.06em;outline:none;transition:all .22s;
+}
+#name-inp:focus{border-color:#FFD700;box-shadow:0 0 25px rgba(255,215,0,0.3);}
+#name-inp::placeholder{color:rgba(255,215,0,0.32);font-weight:400;font-size:13px;}
+#ov-btn{
+  margin-top:4px;
+  background:linear-gradient(135deg,#FFD700,#FF8C00);
+  border:none;border-radius:14px;color:#120830;
+  font-family:'Cinzel',serif;font-size:15px;font-weight:900;
+  letter-spacing:.12em;padding:14px 50px;cursor:pointer;
+  text-transform:uppercase;
+  box-shadow:0 5px 32px rgba(255,215,0,0.5);
+  animation:btnPulse 2.2s ease-in-out infinite;
+  transition:transform .2s;
+}
+@keyframes btnPulse{
+  0%,100%{box-shadow:0 5px 32px rgba(255,215,0,0.5);}
+  50%     {box-shadow:0 8px 50px rgba(255,215,0,0.8);transform:scale(1.025);}
+}
+#ov-btn:hover{animation:none;transform:translateY(-4px) scale(1.06);box-shadow:0 12px 45px rgba(255,215,0,0.7);}
+
+/* ══ LEVEL CARDS ══ */
+#level-picker{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.lv-card{
+  width:155px;border-radius:20px;padding:20px 14px;
+  cursor:pointer;transition:all .28s;text-align:center;
+  border:2px solid transparent;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  position:relative;overflow:hidden;
+}
+.lv-card::before{
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent);
+  pointer-events:none;
+}
+.lv-card:hover{transform:translateY(-8px) scale(1.05);}
+.lv-card.lv1{background:linear-gradient(145deg,rgba(0,180,255,0.14),rgba(0,100,200,0.08));border-color:rgba(0,229,255,0.4);}
+.lv-card.lv1:hover,.lv-card.lv1.sel-lv{background:linear-gradient(145deg,rgba(0,229,255,0.24),rgba(0,150,255,0.16));border-color:#00E5FF;box-shadow:0 0 35px rgba(0,229,255,0.45),0 8px 24px rgba(0,0,0,0.4);}
+.lv-card.lv2{background:linear-gradient(145deg,rgba(255,0,200,0.14),rgba(150,0,200,0.08));border-color:rgba(255,77,222,0.4);}
+.lv-card.lv2:hover,.lv-card.lv2.sel-lv{background:linear-gradient(145deg,rgba(255,77,222,0.24),rgba(200,0,200,0.16));border-color:#FF4DDE;box-shadow:0 0 35px rgba(255,77,222,0.45),0 8px 24px rgba(0,0,0,0.4);}
+.lv-card.lv3{background:linear-gradient(145deg,rgba(255,100,0,0.14),rgba(200,50,0,0.08));border-color:rgba(255,107,53,0.4);}
+.lv-card.lv3:hover,.lv-card.lv3.sel-lv{background:linear-gradient(145deg,rgba(255,107,53,0.24),rgba(200,60,0,0.16));border-color:#FF6B35;box-shadow:0 0 35px rgba(255,107,53,0.45),0 8px 24px rgba(0,0,0,0.4);}
+.lv-icon{font-size:38px;filter:drop-shadow(0 0 12px rgba(255,215,0,0.6));}
+.lv-title{font-family:'Cinzel',serif;font-size:14px;font-weight:800;letter-spacing:.06em;}
+.lv-card.lv1 .lv-title{color:#00E5FF;}
+.lv-card.lv2 .lv-title{color:#FF4DDE;}
+.lv-card.lv3 .lv-title{color:#FF6B35;}
+.lv-age{font-size:11px;color:#fff;font-weight:600;}
+.lv-prize{font-family:'Cinzel',serif;font-size:12px;color:#FFD700;font-weight:700;text-shadow:0 0 10px rgba(255,215,0,0.5);}
+
+/* ══ PRIZE FLIP ══ */
 .prize-flip-wrap{perspective:600px;display:inline-block;}
-.prize-flip-card{width:130px;height:52px;position:relative;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.4,0,.2,1);}
+.prize-flip-card{width:130px;height:52px;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);}
 .prize-flip-card.flipped{transform:rotateY(360deg);}
 .prize-flip-front,.prize-flip-back{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px;}
-.prize-flip-front{background:rgba(180,130,0,0.12);border:1.5px solid rgba(245,197,24,0.3);}
-.prize-flip-back{background:linear-gradient(135deg,#f5c518,#e8a000);border:2px solid #f5c518;transform:rotateY(180deg);}
-.prize-flip-label{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.04em;}
-.prize-flip-front .prize-flip-label{color:var(--gold);}
-.big-flip-card{width:300px;height:110px;position:relative;transform-style:preserve-3d;transition:transform 0.85s cubic-bezier(.4,0,.2,1);}
+.prize-flip-front{background:rgba(255,215,0,0.1);border:1.5px solid rgba(255,215,0,0.28);}
+.prize-flip-back{background:linear-gradient(135deg,#FFD700,#FF8C00);border:2px solid #FFD700;transform:rotateY(180deg);}
+.prize-flip-label{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#120830;letter-spacing:.04em;}
+.prize-flip-front .prize-flip-label{color:#FFD700;}
+.big-flip-card{width:300px;height:110px;position:relative;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.4,0,.2,1);}
 .big-flip-card.flipped{transform:rotateY(180deg);}
 .big-flip-front,.big-flip-back{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:18px;}
-.big-flip-front{background:rgba(230,236,255,0.97);border:2px solid rgba(180,130,0,0.35);box-shadow:0 0 40px rgba(245,197,24,0.15);}
-.big-flip-back{background:linear-gradient(135deg,#ffe066,#f5c518 40%,#e8a000);border:3px solid rgba(255,255,255,0.8);transform:rotateY(180deg);box-shadow:0 0 80px rgba(245,197,24,0.8);}
-.big-flip-amt{font-family:'Cinzel',serif;font-size:30px;font-weight:700;color:var(--navy);letter-spacing:.06em;}
-#sparkle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
+.big-flip-front{background:linear-gradient(135deg,rgba(44,6,100,0.98),rgba(22,4,65,0.98));border:2px solid rgba(255,215,0,0.45);box-shadow:0 0 40px rgba(255,215,0,0.18);}
+.big-flip-back{background:linear-gradient(135deg,#FFE566,#FFD700 40%,#FF8C00);border:3px solid rgba(255,255,255,0.85);transform:rotateY(180deg);box-shadow:0 0 90px rgba(255,215,0,0.88);}
+.big-flip-amt{font-family:'Cinzel',serif;font-size:30px;font-weight:700;color:#120830;letter-spacing:.06em;}
 
-/* ══ PRIZE AMOUNT POPUP ANIMATION ══ */
-#prize-popup{
-  position:fixed;
-  top:50%;left:50%;
-  transform:translate(-50%,-60%) scale(0.6);
-  z-index:1000;
-  pointer-events:none;
-  opacity:0;
-  transition:none;
-  text-align:center;
+/* ══ SPARKLE / PRIZE POPUP ══ */
+#sparkle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
+#prize-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-60%) scale(.6);z-index:1000;pointer-events:none;opacity:0;transition:none;text-align:center;}
+#prize-popup.show{animation:prizePopIn 2.8s cubic-bezier(.17,.89,.32,1.28) forwards;}
+@keyframes prizePopIn{0%{opacity:0;transform:translate(-50%,-80%) scale(.4);}18%{opacity:1;transform:translate(-50%,-50%) scale(1.15);}30%{opacity:1;transform:translate(-50%,-50%) scale(1);}70%{opacity:1;transform:translate(-50%,-50%) scale(1);}88%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}100%{opacity:0;transform:translate(-50%,-35%) scale(.85);}}
+.pp-inner{background:linear-gradient(135deg,#FFE566,#FFD700 40%,#FF8C00);border:3px solid rgba(255,255,255,.88);border-radius:22px;padding:18px 44px;box-shadow:0 0 90px rgba(255,215,0,.95),0 14px 52px rgba(0,0,0,.55);display:inline-block;}
+.pp-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(50,10,100,.82);font-weight:700;margin-bottom:4px;font-family:'Inter',sans-serif;}
+.pp-amount{font-family:'Cinzel',serif;font-size:clamp(28px,5vw,52px);font-weight:900;color:#120830;letter-spacing:.04em;line-height:1.1;}
+.pp-tick{font-size:clamp(18px,3vw,28px);margin-bottom:4px;display:block;}
+.pp-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:220px;height:220px;border-radius:50%;border:3px solid rgba(255,215,0,.65);animation:ppRing 2.8s ease forwards;pointer-events:none;}
+@keyframes ppRing{0%{transform:translate(-50%,-50%) scale(0);opacity:.85;}50%{transform:translate(-50%,-50%) scale(2.6);opacity:.3;}100%{transform:translate(-50%,-50%) scale(4.2);opacity:0;}}
+
+/* ══ MOBILE LIFELINES ══ */
+#mob-ll{display:none;gap:7px;justify-content:center;flex-wrap:wrap;padding:9px 12px;border-top:1px solid rgba(255,215,0,0.2);}
+.mob-ll-btn{
+  background:linear-gradient(135deg,rgba(90,0,200,0.88),rgba(50,0,140,0.95));
+  border:1.5px solid rgba(180,100,255,0.48);
+  border-radius:9px;padding:7px 13px;
+  color:#fff;font-size:11px;cursor:pointer;transition:all .2s;font-weight:600;
 }
-#prize-popup.show{
-  animation:prizePopIn 2.8s cubic-bezier(.17,.89,.32,1.28) forwards;
-}
-@keyframes prizePopIn{
-  0%  {opacity:0;transform:translate(-50%,-80%) scale(0.4);}
-  18% {opacity:1;transform:translate(-50%,-50%) scale(1.15);}
-  30% {opacity:1;transform:translate(-50%,-50%) scale(1);}
-  70% {opacity:1;transform:translate(-50%,-50%) scale(1);}
-  88% {opacity:1;transform:translate(-50%,-50%) scale(1.05);}
-  100%{opacity:0;transform:translate(-50%,-35%) scale(0.85);}
-}
-.pp-inner{
-  background:linear-gradient(135deg,#ffe066,#f5c518 40%,#e8a000);
-  border:3px solid rgba(255,255,255,0.85);
-  border-radius:22px;
-  padding:18px 44px;
-  box-shadow:0 0 80px rgba(245,197,24,0.9), 0 12px 48px rgba(0,0,0,0.5);
-  display:inline-block;
-}
-.pp-label{
-  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(40,50,100,0.75);font-weight:700;margin-bottom:4px;
-  font-family:'Inter',sans-serif;
-}
-.pp-amount{
-  font-family:'Cinzel',serif;
-  font-size:clamp(28px,5vw,52px);
-  font-weight:900;
-  color:#1a2340;
-  letter-spacing:.04em;
-  line-height:1.1;
-  text-shadow:0 2px 8px rgba(0,0,0,0.18);
-}
-.pp-tick{
-  font-size:clamp(18px,3vw,28px);
-  margin-bottom:4px;
-  display:block;
-}
-/* Ripple ring behind popup */
-.pp-ring{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  width:220px;height:220px;
-  border-radius:50%;
-  border:3px solid rgba(245,197,24,0.6);
-  animation:ppRing 2.8s ease forwards;
-  pointer-events:none;
-}
-@keyframes ppRing{
-  0%  {transform:translate(-50%,-50%) scale(0);opacity:0.8;}
-  50% {transform:translate(-50%,-50%) scale(2.5);opacity:0.3;}
-  100%{transform:translate(-50%,-50%) scale(4);opacity:0;}
-}
-#mob-ll{display:none;gap:7px;justify-content:center;flex-wrap:wrap;padding:8px 12px;border-top:1px solid rgba(180,140,0,0.18);}
-.mob-ll-btn{background:rgba(210,220,255,0.7);border:1.5px solid rgba(40,60,200,0.3);border-radius:7px;padding:6px 10px;color:var(--text);font-size:11px;cursor:pointer;transition:all .2s;}
-.mob-ll-btn:hover:not(.used){border-color:var(--gold);color:var(--gold);}
-.mob-ll-btn.used{opacity:.18;cursor:not-allowed;filter:grayscale(1);}
+.mob-ll-btn:hover:not(.used){border-color:#FFD700;color:#FFD700;}
+.mob-ll-btn.used{opacity:.16;cursor:not-allowed;filter:grayscale(1);}
+
+/* ══ RESPONSIVE ══ */
+/* ══ MOBILE FRIENDLY ══ */
+
 @media(max-width:860px){
   #player-left,#player-right,#ll-panel{display:none;}
   #main{flex-direction:column;}
-  #center{padding:12px 10px;gap:10px;}
+  #center{padding:10px 12px;gap:10px;}
   #mob-ll{display:flex;}
-  #q-box{padding:16px 14px;}
-  #opts-grid{gap:7px;}
+  #q-box{padding:16px 16px;border-radius:16px;}
+  #opts-grid{gap:8px;}
+  #hdr{padding:12px 50px 10px;}
+  #hot-seat-floor{width:320px;height:160px;}
+  .lv-card{width:140px;padding:16px 10px;}
 }
-@media(max-width:560px){
-  #opts-grid{grid-template-columns:1fr;}
-  #q-text{font-size:14px;}
-  .ov-title{font-size:20px;}
-  .lv-card{width:120px;padding:12px 8px;}
+
+@media(max-width:600px){
+  #show-logo{font-size:clamp(11px,3.5vw,15px);letter-spacing:.08em;}
+  #show-sub{font-size:8px;letter-spacing:.12em;}
+  #mute-btn{width:30px;height:28px;font-size:14px;right:8px;}
+  #hdr{padding:10px 44px 8px;}
+  #center{padding:8px 10px;gap:8px;}
+  #lv-badge{font-size:9px;padding:4px 14px;}
+  #q-num{font-size:9px;}
+  #q-box{padding:14px 14px;border-radius:14px;}
+  #q-text{font-size:14px;line-height:1.65;}
+  #opts-grid{grid-template-columns:1fr;gap:7px;}
+  .opt{padding:11px 13px;font-size:13px;border-radius:12px;gap:9px;}
+  .opt-ltr{width:26px;height:26px;font-size:10px;}
+  #confirm-banner{font-size:12px;padding:8px 12px;}
+  #btn-final{font-size:12px;padding:9px 20px;}
+  #btn-change{font-size:11px;padding:9px 12px;}
+  #btn-walk{font-size:10px;padding:6px 12px;}
+  #host-msg{font-size:11.5px;padding:9px 12px;}
+  #mob-ll{padding:8px 10px;gap:6px;}
+  .mob-ll-btn{font-size:10px;padding:6px 10px;border-radius:7px;}
+  #overlay{padding:28px 16px;gap:12px;}
+  .ov-title{font-size:clamp(18px,6vw,28px);}
+  .ov-sub{font-size:12px;line-height:1.75;}
+  .ov-eyebrow{font-size:8px;}
+  #name-inp{width:200px;font-size:14px;padding:9px 16px;}
+  #ov-btn{font-size:13px;padding:12px 36px;border-radius:12px;}
+  #level-picker{gap:10px;}
+  .lv-card{width:clamp(100px,30vw,130px);padding:13px 8px;border-radius:16px;gap:7px;}
+  .lv-icon{font-size:28px;}
+  .lv-title{font-size:12px;}
+  .lv-age,.lv-prize{font-size:10px;}
+  .pp-amount{font-size:clamp(22px,6vw,36px);}
+  .pp-inner{padding:14px 28px;}
+  .big-flip-card{width:230px;height:80px;}
+  .big-flip-amt{font-size:22px;}
 }
-@media(max-width:380px){
+
+@media(max-width:400px){
+  #show-logo{font-size:10px;}
   #q-text{font-size:13px;}
-  .opt{font-size:12px;padding:9px 10px;}
-  #show-logo{font-size:11px;}
+  .opt{font-size:12px;padding:10px 10px;}
+  .lv-card{width:clamp(90px,28vw,115px);padding:10px 6px;}
+  .lv-icon{font-size:24px;}
+  .lv-title{font-size:11px;}
+  #ov-btn{font-size:12px;padding:10px 28px;}
+  #name-inp{width:180px;font-size:13px;}
+  .mob-ll-btn{font-size:9px;padding:5px 8px;}
+  #opts-grid{gap:6px;}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .opt:hover:not(.locked):not(.grayed):not(.hidden){transform:none;box-shadow:0 3px 15px rgba(0,0,0,0.4);}
+  .ll-btn:hover:not(.used){transform:none;}
+  .lv-card:hover{transform:none;box-shadow:none;}
+  #ov-btn:hover{animation:btnPulse 2.2s ease-in-out infinite;transform:none;}
+  .opt::after{animation:none;}
 }
 </style>
 </head>
@@ -481,51 +818,291 @@ var QB={
     {q:"What is the perimeter of a square with side 9?",opts:["36","27","45","18"]},
     {q:"What is 8 x 9 + 6?",opts:["78","72","84","80"]},
     {q:"How many centimetres are in 2.5 metres?",opts:["250","200","300","25"]},
-    {q:"What is the smallest 3-digit prime number?",opts:["101","103","107","111"]}
+    {q:"What is the smallest 3-digit prime number?",opts:["101","103","107","111"]},
+    {q:"What is 6 x 7?",opts:["42","36","48","54"]},
+    {q:"What is 100 / 4?",opts:["25","20","30","40"]},
+    {q:"How many degrees are in a right angle?",opts:["90","45","180","60"]},
+    {q:"What is 15% of 100?",opts:["15","10","20","25"]},
+    {q:"What is 5 squared?",opts:["25","10","15","20"]},
+    {q:"How many faces does a cube have?",opts:["6","4","8","12"]},
+    {q:"What is 450 + 375?",opts:["825","815","835","845"]},
+    {q:"What is the LCM of 4 and 6?",opts:["12","8","24","6"]},
+    {q:"What is 3/4 as a decimal?",opts:["0.75","0.50","0.70","0.80"]},
+    {q:"A clock shows 3:00. What angle do the hands make?",opts:["90","60","120","180"]},
+    {q:"What is 9 x 9?",opts:["81","72","63","90"]},
+    {q:"How many sides does an octagon have?",opts:["8","6","7","10"]},
+    {q:"What is 200 divided by 8?",opts:["25","20","30","40"]},
+    {q:"What is the sum of angles in a triangle?",opts:["180","90","270","360"]},
+    {q:"What is 40% of 250?",opts:["100","80","90","120"]},
+    {q:"What is 11 x 11?",opts:["121","111","131","110"]},
+    {q:"How many seconds are in one minute?",opts:["60","30","100","120"]},
+    {q:"What is 4 x 4 x 4?",opts:["64","48","32","16"]},
+    {q:"What is half of 374?",opts:["187","184","190","176"]},
+    {q:"How many days are in a leap year?",opts:["366","365","367","364"]},
+    {q:"What is 7 + 8 + 9 + 10?",opts:["34","33","35","32"]},
+    {q:"What is 20% of 60?",opts:["12","10","14","16"]},
+    {q:"How many edges does a cube have?",opts:["12","6","8","10"]},
+    {q:"What is 13 x 7?",opts:["91","84","98","77"]},
+    {q:"What is the value of 2 to the power 6?",opts:["64","32","48","128"]},
+    {q:"How many sides does a hexagon have?",opts:["6","5","7","8"]},
+    {q:"What is 999 + 1?",opts:["1000","998","1001","999"]},
+    {q:"What is 60% of 150?",opts:["90","80","100","70"]},
+    {q:"What is 5 x 12?",opts:["60","50","70","55"]},
+    {q:"How many vertices does a cone have?",opts:["1","2","0","3"]},
+    {q:"What is 36 / 9 x 3?",opts:["12","9","15","4"]},
+    {q:"A square has side 7. What is its area?",opts:["49","28","14","42"]},
+    {q:"What is the predecessor of 1000?",opts:["999","1001","998","100"]},
+    {q:"How many months have 31 days?",opts:["7","6","8","5"]},
+    {q:"What is 0.5 x 0.5?",opts:["0.25","0.5","1","0.05"]},
+    {q:"What is 8 + 8 + 8 + 8?",opts:["32","28","36","24"]},
+    {q:"How many zeroes are in one million?",opts:["6","5","7","4"]},
+    {q:"What is 45 / 5 + 3?",opts:["12","11","13","8"]},
+    {q:"What is 1/2 + 1/4?",opts:["3/4","1/4","1/2","2/4"]},
+    {q:"What is the product of 0 and 9999?",opts:["0","9999","1","999"]},
+    {q:"What is 10% of 500?",opts:["50","100","5","25"]},
+    {q:"How many sides does a triangle have?",opts:["3","4","2","5"]},
+    {q:"What is 7 x 6 - 2?",opts:["40","42","38","36"]},
+    {q:"What is the place value of 5 in 357?",opts:["50","5","500","0.5"]},
+    {q:"What is 18 / 3 x 4?",opts:["24","6","12","48"]},
+    {q:"How many hours are in 3 days?",opts:["72","36","48","60"]},
+    {q:"What is 125 / 5?",opts:["25","20","30","15"]},
+    {q:"What is 3 + 5 x 2?",opts:["13","16","10","6"]},
+    {q:"What is the perimeter of a rectangle with length 10 and width 4?",opts:["28","40","20","14"]},
+    {q:"What is 2/5 as a percentage?",opts:["40%","20%","25%","50%"]},
+    {q:"What is 99 x 2?",opts:["198","196","200","188"]},
+    {q:"How many kg are in 1 tonne?",opts:["1000","100","500","10000"]},
+    {q:"What is the next even number after 48?",opts:["50","49","51","52"]},
+    {q:"What is the sum of first 5 natural numbers?",opts:["15","10","20","12"]},
+    {q:"What is 10 x 10 x 10?",opts:["1000","100","10000","300"]},
+    {q:"What is 250 - 175?",opts:["75","65","85","70"]},
+    {q:"What is 1/3 of 90?",opts:["30","20","45","15"]},
+    {q:"A dozen eggs costs Rs 60. How much do 3 eggs cost?",opts:["15","20","12","18"]},
+    {q:"What is the GCF of 12 and 18?",opts:["6","3","9","12"]},
+    {q:"What is 3.5 x 2?",opts:["7","6","8","5"]},
+    {q:"What is 500 / 25?",opts:["20","25","15","10"]},
+    {q:"A pentagon has how many diagonals?",opts:["5","3","4","6"]},
+    {q:"What is 14 + 28 + 7?",opts:["49","48","50","47"]},
+    {q:"What is 1000 / 8?",opts:["125","120","130","115"]},
+    {q:"What is 33% rounded to nearest 10%?",opts:["30%","40%","20%","35%"]},
+    {q:"What is the value of pi rounded to 2 decimal places?",opts:["3.14","3.41","3.12","3.16"]},
+    {q:"What is 19 x 5?",opts:["95","85","90","100"]},
+    {q:"If a = 4, what is 3a + 2?",opts:["14","10","12","16"]},
+    {q:"What is 1/4 of 200?",opts:["50","40","60","25"]},
+    {q:"How many ml are in 1 litre?",opts:["1000","100","500","10"]},
+    {q:"What is 48 / 8 + 10?",opts:["16","14","18","12"]},
+    {q:"What is 2.5 + 3.5?",opts:["6","5","7","8"]},
+    {q:"What is 3/5 of 25?",opts:["15","10","20","12"]},
+    {q:"What is the next prime after 13?",opts:["17","15","16","19"]},
+    {q:"What is 100 - 37 - 13?",opts:["50","40","60","48"]},
+    {q:"What is 4 squared + 3 squared?",opts:["25","20","30","7"]},
+    {q:"How many faces does a sphere have?",opts:["0","1","2","3"]},
+    {q:"What is the LCM of 5 and 7?",opts:["35","25","70","12"]},
+    {q:"What is 7 x 7 + 7?",opts:["56","49","63","42"]},
+    {q:"How many faces does a cylinder have?",opts:["3","2","4","1"]}
   ],
   lv2:[
     {q:"If 4x - 3 = 17, what is x?",opts:["5","4","6","7"]},
     {q:"What is 2 to the power 10?",opts:["1024","512","1000","2048"]},
     {q:"A train at 90 km/h travels 2 hours 20 min. Distance?",opts:["210 km","180 km","195 km","225 km"]},
-    {q:"Sum of interior angles of a hexagon?",opts:["720 degrees","540 degrees","640 degrees","800 degrees"]},
-    {q:"If log base 10 of 1000 equals x, find x.",opts:["3","2","4","10"]},
+    {q:"Sum of interior angles of a hexagon?",opts:["720°","540°","640°","800°"]},
+    {q:"If log₁₀ 1000 = x, find x.",opts:["3","2","4","10"]},
     {q:"What is 17% of 2500?",opts:["425","400","450","475"]},
-    {q:"Area of a circle with radius 7 cm, using pi equals 22 over 7?",opts:["154 sq cm","144 sq cm","164 sq cm","176 sq cm"]},
-    {q:"Rs 5000 at 8% simple interest per year. Interest after 3 years?",opts:["Rs 1200","Rs 1000","Rs 1500","Rs 1800"]},
-    {q:"Solve: 3x + 5 = 2x - 1. What is x?",opts:["-6","6","-4","4"]},
-    {q:"How many prime numbers are there between 50 and 100?",opts:["10","8","12","14"]},
-    {q:"If sin theta = 3 over 5, what is cos theta in the first quadrant?",opts:["4 over 5","3 over 4","4 over 3","5 over 3"]},
-    {q:"What is the median of: 3, 7, 9, 1, 5?",opts:["5","3","7","6"]},
-    {q:"A bag has 5 red and 3 blue balls. What is the probability of picking red?",opts:["5 over 8","3 over 8","5 over 3","1 over 2"]},
-    {q:"What is 18 squared minus 17 squared?",opts:["35","36","34","37"]},
-    {q:"The ratio 3:4 equals what to 24?",opts:["18","16","20","12"]},
-    {q:"What is the HCF of 48 and 72?",opts:["24","12","36","48"]},
-    {q:"What is the LCM of 12 and 18?",opts:["36","24","72","48"]},
-    {q:"What is the slope of the line 2y = 6x + 4?",opts:["3","2","4","6"]},
-    {q:"What is the square root of 196?",opts:["14","13","15","12"]},
-    {q:"Circumference of a circle with diameter 14 cm, using pi = 22 over 7?",opts:["44 cm","42 cm","46 cm","48 cm"]}
+    {q:"Area of circle radius 7 cm (π=22/7)?",opts:["154 cm²","144 cm²","164 cm²","176 cm²"]},
+    {q:"Rs 5000 at 8% SI per year. Interest after 3 years?",opts:["Rs 1200","Rs 1000","Rs 1500","Rs 1800"]},
+    {q:"Solve: 3x + 5 = 2x - 1. x = ?",opts:["-6","6","-4","4"]},
+    {q:"How many primes between 50 and 100?",opts:["10","8","12","14"]},
+    {q:"If sin θ = 3/5, cos θ in first quadrant?",opts:["4/5","3/4","4/3","5/3"]},
+    {q:"Median of: 3, 7, 9, 1, 5?",opts:["5","3","7","6"]},
+    {q:"Bag: 5 red, 3 blue. P(red)?",opts:["5/8","3/8","5/3","1/2"]},
+    {q:"What is 18² - 17²?",opts:["35","36","34","37"]},
+    {q:"Ratio 3:4 = ? : 24",opts:["18","16","20","12"]},
+    {q:"HCF of 48 and 72?",opts:["24","12","36","48"]},
+    {q:"LCM of 12 and 18?",opts:["36","24","72","48"]},
+    {q:"Slope of 2y = 6x + 4?",opts:["3","2","4","6"]},
+    {q:"Square root of 196?",opts:["14","13","15","12"]},
+    {q:"Circumference of circle diameter 14 cm (π=22/7)?",opts:["44 cm","42 cm","46 cm","48 cm"]},
+    {q:"5x = 85. x = ?",opts:["17","15","16","18"]},
+    {q:"2 to the power 8?",opts:["256","128","512","64"]},
+    {q:"Car travels 240 km in 4 hours. Speed?",opts:["60 km/h","50 km/h","70 km/h","80 km/h"]},
+    {q:"Sum of interior angles of octagon?",opts:["1080°","720°","900°","1260°"]},
+    {q:"35% of 400?",opts:["140","120","150","160"]},
+    {q:"Rs 8000 earns Rs 1920 SI in 3 years. Rate?",opts:["8%","6%","10%","12%"]},
+    {q:"Mode of: 2,3,3,5,5,5,6?",opts:["5","3","6","2"]},
+    {q:"2x + 3y = 12, x = 3. y = ?",opts:["2","3","4","1"]},
+    {q:"15 squared?",opts:["225","215","235","200"]},
+    {q:"P(A)=0.3, P(B)=0.5, mutually exclusive. P(A∪B)?",opts:["0.8","0.15","0.2","0.6"]},
+    {q:"Volume of cube side 5 cm?",opts:["125 cm³","75 cm³","100 cm³","150 cm³"]},
+    {q:"Angle in a semicircle?",opts:["90°","45°","180°","60°"]},
+    {q:"Factorise: x² - 9",opts:["(x+3)(x-3)","(x+9)(x-1)","(x-3)²","(x+3)²"]},
+    {q:"AM of 10,20,30,40,50?",opts:["30","25","35","28"]},
+    {q:"20% discount on Rs 500. Selling price?",opts:["Rs 400","Rs 380","Rs 420","Rs 450"]},
+    {q:"If 3x + 7 = 22, x = ?",opts:["5","4","6","7"]},
+    {q:"What is the value of (-3)²?",opts:["9","-9","6","-6"]},
+    {q:"If a:b = 2:3 and b:c = 4:5, what is a:c?",opts:["8:15","2:5","4:9","6:10"]},
+    {q:"What is 7% of 1400?",opts:["98","84","112","70"]},
+    {q:"x/3 + 5 = 11. x = ?",opts:["18","12","21","9"]},
+    {q:"Volume of cuboid 4×5×6?",opts:["120 cm³","110 cm³","100 cm³","130 cm³"]},
+    {q:"tan 45° = ?",opts:["1","0","√3","1/√3"]},
+    {q:"Simple interest formula?",opts:["PRT/100","P+RT","PR/100T","PRT"]},
+    {q:"What is the 10th term of AP: 3,7,11,15...?",opts:["39","35","43","41"]},
+    {q:"√(144 + 25)?",opts:["13","12","14","11"]},
+    {q:"If 2x - 5 = 11, x = ?",opts:["8","7","9","6"]},
+    {q:"Area of parallelogram base 8 height 5?",opts:["40","20","45","35"]},
+    {q:"What is the value of 0! (0 factorial)?",opts:["1","0","undefined","∞"]},
+    {q:"CSA of cylinder r=7, h=10 (π=22/7)?",opts:["440 cm²","420 cm²","460 cm²","400 cm²"]},
+    {q:"Median of 2,4,6,8,10?",opts:["6","5","7","4"]},
+    {q:"If x + y = 10 and x - y = 4, x = ?",opts:["7","6","8","5"]},
+    {q:"How many terms in AP: 5,10,15...50?",opts:["10","9","11","8"]},
+    {q:"What is 3³ - 2³?",opts:["19","24","10","5"]},
+    {q:"P(A) = 0.6. P(A') = ?",opts:["0.4","0.6","1","0"]},
+    {q:"Area of rhombus diagonals 10 and 6?",opts:["30 cm²","60 cm²","16 cm²","20 cm²"]},
+    {q:"5! = ?",opts:["120","60","24","720"]},
+    {q:"Distance formula between (0,0) and (3,4)?",opts:["5","7","4","3"]},
+    {q:"What is the HCF of 36 and 48?",opts:["12","6","18","24"]},
+    {q:"If cost price = Rs 400 and profit = 25%, SP = ?",opts:["Rs 500","Rs 450","Rs 480","Rs 520"]},
+    {q:"What is 2.5² ?",opts:["6.25","5.0","5.5","7.5"]},
+    {q:"Number of diagonals in a pentagon?",opts:["5","3","4","6"]},
+    {q:"cos 0° = ?",opts:["1","0","-1","√3/2"]},
+    {q:"Which is NOT a prime: 2,3,5,9?",opts:["9","2","3","5"]},
+    {q:"Perimeter of equilateral triangle side 8?",opts:["24","16","32","48"]},
+    {q:"AM of first 10 natural numbers?",opts:["5.5","5","6","4.5"]},
+    {q:"∛27 = ?",opts:["3","9","6","27"]},
+    {q:"What is the value of 4C2 (4 choose 2)?",opts:["6","4","8","12"]},
+    {q:"A shopkeeper marks price 40% above cost. After 25% discount, profit %?",opts:["5%","10%","15%","0%"]},
+    {q:"If radius doubles, area of circle becomes?",opts:["4 times","2 times","8 times","3 times"]},
+    {q:"Sum of first 10 natural numbers?",opts:["55","45","50","60"]},
+    {q:"What is the value of sin²θ + cos²θ?",opts:["1","0","2","sin2θ"]},
+    {q:"LCM of 8, 12 and 16?",opts:["48","24","96","32"]},
+    {q:"Two numbers in ratio 3:5. Sum 96. Larger number?",opts:["60","36","50","56"]},
+    {q:"Area of sector angle 90°, radius 14 (π=22/7)?",opts:["154 cm²","44 cm²","308 cm²","77 cm²"]},
+    {q:"What is the median of: 4,8,2,6,10,12?",opts:["7","6","8","9"]},
+    {q:"If list price Rs 800 with 10% discount, CP = ?",opts:["Rs 720","Rs 700","Rs 740","Rs 780"]},
+    {q:"8 workers finish in 12 days. 6 workers finish in?",opts:["16 days","12 days","14 days","18 days"]},
+    {q:"Slope of line joining (2,3) and (4,7)?",opts:["2","1","3","4"]},
+    {q:"What is 0.04 as a fraction in lowest terms?",opts:["1/25","4/100","2/50","1/20"]},
+    {q:"Quadratic formula for ax²+bx+c=0?",opts:["(-b±√(b²-4ac))/2a","-b/2a","(b±√(b²-4ac))/2a","(-b±√(b²+4ac))/2a"]},
+    {q:"Find mode of: 1,2,2,3,3,3,4?",opts:["3","2","4","1"]},
+    {q:"What is tan 30°?",opts:["1/√3","1","√3","0"]},
+    {q:"Surface area of cube with side 4?",opts:["96 cm²","64 cm²","48 cm²","112 cm²"]},
+    {q:"Remainder when 100 is divided by 7?",opts:["2","1","3","0"]},
+    {q:"What is 15C1?",opts:["15","1","14","150"]},
+    {q:"A number increased by 20% becomes 240. Number?",opts:["200","220","180","210"]},
+    {q:"What is the value of i² (i = √-1)?",opts:["-1","1","i","-i"]},
+    {q:"Mean of 5 numbers is 10. Sum of numbers?",opts:["50","45","55","40"]},
+    {q:"If P(A∩B) = 0.2, P(A) = 0.5, P(B|A) = ?",opts:["0.4","0.2","0.3","0.6"]},
+    {q:"Area of equilateral triangle side 6?",opts:["9√3 cm²","12 cm²","18 cm²","6√3 cm²"]},
+    {q:"What is 7 mod 3?",opts:["1","2","0","3"]},
+    {q:"If A = {1,2,3} and B = {2,3,4}, A∪B = ?",opts:["{1,2,3,4}","{2,3}","{1,4}","{1,2,3,4,4}"]},
+    {q:"Value of log₂ 64?",opts:["6","8","4","32"]},
+    {q:"GP: 2,6,18... 5th term?",opts:["162","54","108","81"]},
+    {q:"What is cos 60°?",opts:["1/2","√3/2","1","0"]},
+    {q:"Circumference of circle area 154 cm² (π=22/7)?",opts:["44 cm","22 cm","88 cm","33 cm"]},
+    {q:"If tan θ = 1, θ = ?",opts:["45°","30°","60°","90°"]},
+    {q:"What is the AM-GM inequality?",opts:["AM ≥ GM","AM ≤ GM","AM = GM","AM > 2GM"]},
+    {q:"Sum of GP: 1+2+4+...+128?",opts:["255","256","254","127"]},
+    {q:"What is the value of 3C3?",opts:["1","3","6","0"]}
   ],
   lv3:[
-    {q:"What is the derivative of x cubed minus 4x?",opts:["3x squared minus 4","x cubed minus 4","3x squared","x squared minus 4"]},
-    {q:"Compound interest on Rs 10000 at 10% per annum for 2 years?",opts:["Rs 2100","Rs 1900","Rs 2000","Rs 2200"]},
-    {q:"A sum triples in 12 years at simple interest. What is the annual rate?",opts:["16.67 percent","14 percent","18 percent","20 percent"]},
-    {q:"What is 75 C 2, that is 75 choose 2?",opts:["2775","2700","5550","3600"]},
-    {q:"Geometric series: first term 2, ratio 3. Sum of first 6 terms?",opts:["728","726","730","732"]},
-    {q:"If 2 to the power x equals 128, find x.",opts:["7","6","8","9"]},
-    {q:"How many trailing zeros does 100 factorial have?",opts:["24","20","22","25"]},
-    {q:"What is the integral of 2x plus 3 with respect to x?",opts:["x squared plus 3x plus C","2x squared plus 3x plus C","x squared plus C","2x plus 3 plus C"]},
-    {q:"What are the roots of x squared minus 5x plus 6 equals 0?",opts:["2 and 3","1 and 6","-2 and -3","3 and 4"]},
-    {q:"What is the determinant of the matrix with rows 2,3 and 1,4?",opts:["5","8","-5","11"]},
-    {q:"P of A union B, if P of A = 0.4, P of B = 0.5, P of A intersection B = 0.2?",opts:["0.7","0.9","0.6","0.8"]},
-    {q:"Sum of an infinite GP with first term 1 and ratio one half?",opts:["2","1","3","4"]},
-    {q:"If f of x equals x squared minus 4, what is f of negative 3?",opts:["5","-13","13","-5"]},
-    {q:"How many 3-digit numbers are divisible by 7?",opts:["128","127","129","130"]},
-    {q:"What is sin 30 degrees times cos 60 degrees plus cos 30 degrees times sin 60 degrees?",opts:["1","0.5","root 3 over 2","0"]},
-    {q:"What is i to the power 4, where i equals square root of negative 1?",opts:["1","-1","i","-i"]},
-    {q:"How many permutations of 5 items taken 3 at a time?",opts:["60","30","20","120"]},
-    {q:"If log base 2 of 32 equals x, find x.",opts:["5","4","6","3"]},
-    {q:"Area of a right triangle with sides 3, 4, and 5?",opts:["6","7.5","5","8"]},
-    {q:"Arithmetic mean of the first 20 natural numbers?",opts:["10.5","10","11","9.5"]}
+    {q:"Derivative of x³ - 4x?",opts:["3x²-4","x³-4","3x²","x²-4"]},
+    {q:"CI on Rs 10000 at 10% pa for 2 years?",opts:["Rs 2100","Rs 1900","Rs 2000","Rs 2200"]},
+    {q:"Sum triples in 12 years SI. Rate?",opts:["16.67%","14%","18%","20%"]},
+    {q:"75C2 = ?",opts:["2775","2700","5550","3600"]},
+    {q:"GP first term 2, ratio 3. Sum of first 6 terms?",opts:["728","726","730","732"]},
+    {q:"2^x = 128. x = ?",opts:["7","6","8","9"]},
+    {q:"Trailing zeros in 100!?",opts:["24","20","22","25"]},
+    {q:"∫(2x+3)dx = ?",opts:["x²+3x+C","2x²+3x+C","x²+C","2x+3+C"]},
+    {q:"Roots of x²-5x+6=0?",opts:["2 and 3","1 and 6","-2 and -3","3 and 4"]},
+    {q:"Det of matrix [(2,3),(1,4)]?",opts:["5","8","-5","11"]},
+    {q:"P(A)=0.4,P(B)=0.5,P(A∩B)=0.2. P(A∪B)?",opts:["0.7","0.9","0.6","0.8"]},
+    {q:"Sum of infinite GP: first term 1, ratio 1/2?",opts:["2","1","3","4"]},
+    {q:"f(x) = x²-4. f(-3) = ?",opts:["5","-13","13","-5"]},
+    {q:"3-digit numbers divisible by 7?",opts:["128","127","129","130"]},
+    {q:"sin30°cos60° + cos30°sin60° = ?",opts:["1","0.5","√3/2","0"]},
+    {q:"i⁴ = ? (i = √-1)",opts:["1","-1","i","-i"]},
+    {q:"5P3 (permutations) = ?",opts:["60","30","20","120"]},
+    {q:"log₂ 32 = ?",opts:["5","4","6","3"]},
+    {q:"Area of right triangle sides 3,4,5?",opts:["6","7.5","5","8"]},
+    {q:"AM of first 20 natural numbers?",opts:["10.5","10","11","9.5"]},
+    {q:"d/dx (sin x) = ?",opts:["cos x","-cos x","sin x","-sin x"]},
+    {q:"4 people sit in a row. Ways = ?",opts:["24","12","16","48"]},
+    {q:"Sum of roots of x²-7x+12=0?",opts:["7","-7","12","3"]},
+    {q:"e⁰ = ?",opts:["1","0","e","∞"]},
+    {q:"∫(1/x)dx = ?",opts:["ln|x|+C","1/x²+C","x+C","-1/x+C"]},
+    {q:"Rank of 3×3 identity matrix?",opts:["3","1","2","0"]},
+    {q:"f(x)=3x+2, g(x)=x². f(g(2)) = ?",opts:["14","10","16","12"]},
+    {q:"Diagonals in 10-sided polygon?",opts:["35","30","40","45"]},
+    {q:"|3+4i| = ?",opts:["5","7","1","12"]},
+    {q:"P(at least one head in 3 flips)?",opts:["7/8","1/2","3/4","5/8"]},
+    {q:"Derivative of e^(2x)?",opts:["2e^(2x)","e^(2x)","2e^x","e^(2x)/2"]},
+    {q:"nth term of AP 3,7,11,15...?",opts:["4n-1","4n+1","3n+1","4n-3"]},
+    {q:"Cross product of (1,0,0) and (0,1,0)?",opts:["(0,0,1)","(1,1,0)","(0,0,-1)","(1,0,1)"]},
+    {q:"Variance = 16. Standard deviation?",opts:["4","8","2","16"]},
+    {q:"lim(x→0) sin(x)/x = ?",opts:["1","0","∞","undefined"]},
+    {q:"∫₀¹ x² dx = ?",opts:["1/3","1/2","1/4","1"]},
+    {q:"If A is 3×3 matrix, det(2A) = ?",opts:["8 det(A)","2 det(A)","det(A)","4 det(A)"]},
+    {q:"Maclaurin series of eˣ?",opts:["1+x+x²/2!+x³/3!+...","1+x+x²+x³+...","x+x²/2+x³/6+...","1-x+x²/2-..."]},
+    {q:"∫sin(x)dx = ?",opts:["-cos(x)+C","cos(x)+C","sin(x)+C","-sin(x)+C"]},
+    {q:"If f(x)=x² and g(x)=x+1, f(g(x)) = ?",opts:["(x+1)²","x²+1","x²+x+1","x²+2x"]},
+    {q:"For a 2×2 matrix inverse exists when?",opts:["Determinant ≠ 0","Determinant = 0","Matrix is symmetric","Matrix is diagonal"]},
+    {q:"Value of lim(x→∞) 1/x?",opts:["0","1","∞","-1"]},
+    {q:"Product of roots of 2x²-5x+3=0?",opts:["3/2","5/2","2/3","5/3"]},
+    {q:"d/dx(ln x) = ?",opts:["1/x","ln x","x","1"]},
+    {q:"∫eˣdx = ?",opts:["eˣ+C","eˣ/x+C","xeˣ+C","e^(x+1)+C"]},
+    {q:"P(10,3) = ?",opts:["720","120","360","504"]},
+    {q:"If |x-3| < 2, then?",opts:["1<x<5","x<1 or x>5","-5<x<-1","x>5"]},
+    {q:"f(x) = x³. f''(x) = ?",opts:["6x","3x²","6","3x"]},
+    {q:"Taylor series of sin(x) first 3 terms?",opts:["x-x³/6+x⁵/120","x+x³/6+x⁵/120","x-x²/2+x³/6","1-x²/2+x⁴/24"]},
+    {q:"det of [(a,b),(c,d)] = ?",opts:["ad-bc","ab-cd","ac-bd","ad+bc"]},
+    {q:"How many 3-digit numbers with digits 1,2,3 (no repeat)?",opts:["6","3","9","12"]},
+    {q:"∫₀^π sin(x)dx = ?",opts:["2","0","1","π"]},
+    {q:"Eigenvalue equation is?",opts:["Av = λv","Av = v","A = λ","λv = 0"]},
+    {q:"If z = 1+i, z² = ?",opts:["2i","2","1+2i","-1+2i"]},
+    {q:"Fourier series represents?",opts:["Periodic functions","Only polynomials","Only exponentials","Linear functions"]},
+    {q:"d/dx(tan x) = ?",opts:["sec²x","cos²x","1/cos x","-cosec²x"]},
+    {q:"∫x eˣ dx = ?",opts:["eˣ(x-1)+C","xeˣ+C","eˣ(x+1)+C","x²eˣ/2+C"]},
+    {q:"For convergent geometric series |r| must be?",opts:["< 1","= 1","> 1","= 0"]},
+    {q:"Rank of matrix [(1,2,3),(2,4,6),(1,2,3)]?",opts:["1","2","3","0"]},
+    {q:"If A and B are independent, P(A∩B) = ?",opts:["P(A)P(B)","P(A)+P(B)","P(A)/P(B)","0"]},
+    {q:"d²y/dx² of y=sin(x) is?",opts:["-sin(x)","cos(x)","-cos(x)","sin(x)"]},
+    {q:"∫₀^1 eˣ dx = ?",opts:["e-1","e","1","e+1"]},
+    {q:"Bayes theorem relates?",opts:["Conditional probabilities","Independent events","Mutually exclusive events","Sample spaces"]},
+    {q:"Transpose of matrix [(1,2),(3,4)] = ?",opts:["[(1,3),(2,4)]","[(4,3),(2,1)]","[(1,2),(3,4)]","[(2,1),(4,3)]"]},
+    {q:"Value of Γ(1/2) (Gamma function)?",opts:["√π","1","π","1/2"]},
+    {q:"L{f(t)} = 1/(s+a) corresponds to?",opts:["e^(-at)","e^(at)","cos(at)","sin(at)"]},
+    {q:"d/dx(x^x) = ?",opts:["x^x(1+ln x)","x^x ln x","x^(x-1)","x^x/x"]},
+    {q:"What is the curl of a gradient?",opts:["Zero vector","Non-zero","Scalar","Divergence"]},
+    {q:"Normal distribution is symmetric about?",opts:["Mean","Median only","Mode only","Origin"]},
+    {q:"∫cos(x)dx = ?",opts:["sin(x)+C","-sin(x)+C","cos(x)+C","-cos(x)+C"]},
+    {q:"Stokes' theorem relates?",opts:["Line integral to surface integral","Volume to surface","Divergence to curl","Two line integrals"]},
+    {q:"If matrix A has eigenvalue 3, A² has eigenvalue?",opts:["9","6","3","27"]},
+    {q:"Series 1+1/2+1/4+... sum to infinity?",opts:["2","1","3","4"]},
+    {q:"P(B|A) = P(A∩B)/P(A) is called?",opts:["Conditional probability","Joint probability","Marginal","Bayes"]},
+    {q:"d/dx(cos⁻¹x) = ?",opts:["-1/√(1-x²)","1/√(1-x²)","-1/√(1+x²)","1/(1+x²)"]},
+    {q:"A matrix with all diagonal entries and rest zero is called?",opts:["Diagonal matrix","Identity matrix","Scalar matrix","Null matrix"]},
+    {q:"The Fibonacci sequence ratio converges to?",opts:["Golden ratio (φ≈1.618)","π","e","√2"]},
+    {q:"∫₋∞^∞ e^(-x²) dx = ?",opts:["√π","π","1","2√π"]},
+    {q:"Lagrange multiplier method is used for?",opts:["Constrained optimization","Integration","Series expansion","Matrix operations"]},
+    {q:"Order of differential equation y'' + 3y' + 2y = 0?",opts:["2","1","3","0"]},
+    {q:"Which test checks if a series converges?",opts:["Ratio test","Rank test","Bayes test","Chi test"]},
+    {q:"∮F·dr over a closed curve = 0 means?",opts:["F is conservative","F is divergent","F is zero","F is constant"]},
+    {q:"P(X=k) = e^(-λ)λ^k/k! is?",opts:["Poisson distribution","Binomial","Normal","Uniform"]},
+    {q:"Cross product of a vector with itself?",opts:["Zero vector","Same vector","Scalar","Perpendicular vector"]},
+    {q:"For square matrix A, det(Aᵀ) = ?",opts:["det(A)","0","1","-det(A)"]},
+    {q:"What is the period of sin(2x)?",opts:["π","2π","π/2","4π"]},
+    {q:"Rolle's theorem requires f(a) = f(b) and f is?",opts:["Continuous and differentiable","Only continuous","Only differentiable","Increasing"]},
+    {q:"∫sec²(x)dx = ?",opts:["tan(x)+C","sec(x)+C","-cot(x)+C","cosec²(x)+C"]},
+    {q:"Cauchy-Schwarz: |u·v| ≤ ?",opts:["|u||v|","|u|+|v|","|u|-|v|","|u|²|v|²"]},
+    {q:"The divergence theorem relates?",opts:["Volume integral to surface integral","Two surface integrals","Line to volume","Two line integrals"]},
+    {q:"d/dx(sinh x) = ?",opts:["cosh x","sinh x","-cosh x","tanh x"]},
+    {q:"Central limit theorem states sample mean is approximately?",opts:["Normally distributed","Uniformly distributed","Poisson distributed","Exponentially distributed"]},
+    {q:"∫₀^∞ e^(-st)dt = ?",opts:["1/s","1","s","e^s"]},
+    {q:"nth derivative of eˣ is?",opts:["eˣ","neˣ","xeˣ","e^(nx)"]},
+    {q:"Row echelon form is used to find?",opts:["Matrix rank","Determinant","Eigenvalue","Trace"]},
+    {q:"Chebyshev's inequality gives bounds on?",opts:["Probability of deviation from mean","Mean","Variance","Standard deviation"]},
+    {q:"The Jacobian matrix contains?",opts:["Partial derivatives","Total derivatives","Integrals","Eigenvalues"]},
+    {q:"lim(x→0)(eˣ-1)/x = ?",opts:["1","0","e","∞"]},
+    {q:"∫x²dx = ?",opts:["x³/3+C","x³+C","2x+C","x²/2+C"]},
+    {q:"Which distribution has mean = variance?",opts:["Poisson","Normal","Binomial","Uniform"]}
   ]
 };
 
@@ -666,7 +1243,7 @@ function lockAndReveal(picked){
 function markLL(id){document.getElementById('ll-'+id).classList.add('used');var m=document.getElementById('mll-'+id);if(m)m.classList.add('used');}
 function use5050(){if(lifelines.f5050||!gameActive||pendingConfirm)return;lifelines.f5050=true;markLL('5050');sndLifeline();var correct=questions[currentQ].correctIdx;var wrong=shuffleArr([0,1,2,3].filter(function(i){return i!==correct;}));wrong.slice(0,2).forEach(function(i){hiddenOpts.push(i);var el=document.getElementById('opt-'+i);if(el)el.classList.add('hidden');});showHostMsg('50:50 used — two wrong answers removed. Choose wisely!');}
 function usePhone(){if(lifelines.phone||!gameActive)return;lifelines.phone=true;markLL('phone');sndLifeline();var correct=questions[currentQ].correctIdx;var knows=Math.random()<0.80;var pick=knows?correct:shuffleArr([0,1,2,3].filter(function(i){return i!==correct;}))[0];var L=['A','B','C','D'];var c=knows?["I'm quite sure it's","I'm confident the answer is","I believe it's"][Math.floor(Math.random()*3)]:["I'm not 100% sure, maybe","I'd guess","Could be"][Math.floor(Math.random()*3)];showHostMsg('Phone: "'+c+' option '+L[pick]+'. Good luck '+playerName+'!"');}
-function useAudiencePoll(){if(lifelines.poll||!gameActive)return;lifelines.poll=true;markLL('poll');sndLifeline();var correct=questions[currentQ].correctIdx;var visible=[0,1,2,3].filter(function(i){return hiddenOpts.indexOf(i)===-1;});var pcts=[0,0,0,0];var cP=50+Math.floor(Math.random()*28);pcts[correct]=cP;var rem=100-cP;var others=visible.filter(function(i){return i!==correct;});others.forEach(function(idx,ii){if(ii===others.length-1){pcts[idx]=Math.max(0,rem);}else{var v=Math.max(0,Math.floor(Math.random()*rem*0.55));pcts[idx]=v;rem-=v;}});var cols=['#a89cff','#7dd3fc','#86efac','#fda4af'];var html='<div class="poll-wrap"><div style="font-size:10px;color:var(--text-dim);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase;">Audience Poll</div>';['A','B','C','D'].forEach(function(lbl,i){html+='<div class="poll-row"><span class="poll-lbl">'+lbl+'</span><div class="poll-track"><div class="poll-fill" style="width:'+pcts[i]+'%;background:'+cols[i]+'"></div></div><span class="poll-pct">'+pcts[i]+'%</span></div>';});html+='</div>';var msg=document.getElementById('host-msg');msg.style.display='block';msg.style.fontStyle='normal';msg.innerHTML=html;}
+function useAudiencePoll(){if(lifelines.poll||!gameActive)return;lifelines.poll=true;markLL('poll');sndLifeline();var correct=questions[currentQ].correctIdx;var visible=[0,1,2,3].filter(function(i){return hiddenOpts.indexOf(i)===-1;});var pcts=[0,0,0,0];var cP=50+Math.floor(Math.random()*28);pcts[correct]=cP;var rem=100-cP;var others=visible.filter(function(i){return i!==correct;});others.forEach(function(idx,ii){if(ii===others.length-1){pcts[idx]=Math.max(0,rem);}else{var v=Math.max(0,Math.floor(Math.random()*rem*0.55));pcts[idx]=v;rem-=v;}});var cols=['#a89cff','#7dd3fc','#86efac','#fda4af'];var html='<div class="poll-wrap"><div style="font-size:10px;color:rgba(180,200,255,0.75);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase;">Audience Poll</div>';['A','B','C','D'].forEach(function(lbl,i){html+='<div class="poll-row"><span class="poll-lbl">'+lbl+'</span><div class="poll-track"><div class="poll-fill" style="width:'+pcts[i]+'%;background:'+cols[i]+'"></div></div><span class="poll-pct">'+pcts[i]+'%</span></div>';});html+='</div>';var msg=document.getElementById('host-msg');msg.style.display='block';msg.style.fontStyle='normal';msg.innerHTML=html;}
 function useExpert(){if(lifelines.expert||!gameActive)return;lifelines.expert=true;markLL('expert');sndLifeline();var correct=questions[currentQ].correctIdx;var L=['A','B','C','D'];var phrases=['Based on my analysis, the answer is option '+L[correct]+'. I am quite certain.','I have worked through it carefully. It is option '+L[correct]+'.','My expert opinion: go with '+L[correct]+'. That is the right answer.'];showHostMsg('Expert: "'+phrases[Math.floor(Math.random()*phrases.length)]+'"');}
 
 // ══ HOST MSG ══

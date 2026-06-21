@@ -38,6 +38,9 @@ body {
   color: var(--text);
   font-size: 15px;
   line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -276,27 +279,16 @@ a { text-decoration: none; color: inherit; }
   gap: 24px;
 }
 .hero-main-card {
-  background: var(--navy);
+  background: #000;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  min-height: 380px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #0D1B2A 0%, #1a3a55 50%, #0D1B2A 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 96px;
-  opacity: 0.15;
-}
-.hero-gradient {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(13,27,42,0.97) 0%, rgba(13,27,42,0.5) 50%, transparent 100%);
-}
-.hero-content { position: relative; z-index: 2; padding: 28px 32px; }
+.hero-bg { display: none; }
+.hero-gradient { display: none; }
+.hero-content { position: relative; z-index: 2; padding: 0; width: 100%; }
 .hero-title {
   font-family: var(--font-serif);
   font-size: 26px;
@@ -308,25 +300,27 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Hero Sidebar Cards */
-.hero-sidebar { display: flex; flex-direction: column; gap: 14px; }
-.card-link { display: block; }
+.hero-sidebar { display: flex; flex-direction: column; gap: 14px; height: 100%; }
+.card-link { display: flex; flex: 1; }
 .hs-card {
   background: var(--white);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
-  gap: 14px;
-  padding: 14px;
+  gap: 18px;
+  padding: 16px;
   border: 1px solid var(--border);
-  align-items: flex-start;
+  align-items: center;
   transition: box-shadow 0.2s, transform 0.2s;
+  flex: 1;
+  width: 100%;
 }
 .hs-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.10); transform: translateY(-2px); }
 .hs-icon {
-  width: 58px; height: 58px;
-  border-radius: 8px;
+  width: 70px; height: 70px;
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
+  font-size: 36px;
   flex-shrink: 0;
 }
 .hs-icon.ic1 { background: linear-gradient(135deg, #FFF3E6, #FFD9B3); }
@@ -334,18 +328,18 @@ a { text-decoration: none; color: inherit; }
 .hs-icon.ic3 { background: linear-gradient(135deg, #E8F5E9, #A5D6A7); }
 .hs-body { flex: 1; min-width: 0; }
 .hs-cat {
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--saffron);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 .hs-title {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.7;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -522,8 +516,8 @@ a.news-card-link .news-card { height: 100%; }
 .nc-read:hover { background: var(--saffron); color: var(--white); }
 
 /* ===== SIDEBAR ===== */
-.sidebar-col { display: flex; flex-direction: column; gap: 20px; }
-.sidebar-widget { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.sidebar-col { display: flex; flex-direction: column; gap: 20px; align-self: start; }
+.sidebar-widget { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; height: fit-content; }
 .sw-head {
   background: var(--navy);
   color: var(--white);
@@ -537,7 +531,7 @@ a.news-card-link .news-card { height: 100%; }
   gap: 8px;
 }
 .sw-head::before { content: ''; width: 3px; height: 14px; background: var(--saffron); border-radius: 2px; flex-shrink: 0; }
-.sw-body { padding: 14px 16px; }
+.sw-body { padding: 8px 16px 4px; }
 a.trending-item {
   display: flex;
   gap: 12px;
@@ -547,7 +541,7 @@ a.trending-item {
   color: inherit;
   transition: color 0.15s;
 }
-a.trending-item:last-child { border-bottom: none; }
+a.trending-item:last-child { border-bottom: none; padding-bottom: 4px; }
 a.trending-item:hover .trending-text { color: var(--saffron); }
 .trending-num { font-size: 20px; font-weight: 900; color: var(--border); line-height: 1; min-width: 24px; }
 .trending-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; transition: color 0.15s; }
@@ -559,7 +553,7 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
   --f-spark:  #FF6B00;
   --f-sparkt: #FF8C33;
   --f-white:  #FFFFFF;
-  --f-muted:  rgba(255,255,255,0.42);
+  --f-muted:  #FFFFFF;
   --f-dimmed: rgba(255,255,255,0.10);
   --f-rule:   rgba(255,255,255,0.08);
   font-family: var(--font-sans);
@@ -568,12 +562,16 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
   font-size: 0.875rem;
   line-height: 1.6;
   margin-top: 48px;
+  display: block;
+  box-sizing: border-box;
 }
 .ds-footer__nl {
   background: linear-gradient(135deg, #FF6B00 0%, #c84a00 100%);
-  padding: 2.6rem 2rem;
+  padding: 2.6rem 5%;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 .ds-footer__nl::before {
   content: '⚡';
@@ -616,10 +614,13 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 .ds-footer__nl-feedback.ok  { background: rgba(37,211,102,0.2); color: #a7f3d0; }
 .ds-footer__nl-feedback.err { background: rgba(220,38,38,0.2);  color: #fca5a5; }
 .ds-footer__body {
-  max-width: 1280px; margin: 0 auto;
-  padding: 3.2rem 2rem 2.2rem;
-  display: grid; grid-template-columns: 260px 1fr; gap: 3rem;
+  width: 100%; margin: 0;
+  padding: 2.4rem 5% 2rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1.8rem; text-align: left;
+  box-sizing: border-box;
 }
+.ds-footer__logo { justify-content: flex-start; }
+.ds-footer__badges { justify-content: flex-start; }
 .ds-footer__logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 1rem; }
 .ds-footer__logo-icon {
   width: 42px; height: 42px; background: var(--f-spark); border-radius: 9px;
@@ -629,12 +630,12 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 .ds-footer__logo-name { font-family: var(--font-serif); font-size: 1.18rem; font-weight: 700; color: var(--f-white); line-height: 1.1; display: block; }
 .ds-footer__logo-tag { font-size: 0.58rem; color: var(--f-muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .ds-footer__tagline { font-size: 0.82rem; color: var(--f-muted); line-height: 1.75; margin-bottom: 1.2rem; max-width: 230px; }
-.ds-footer__hindi { font-family: var(--font-hindi); font-size: 0.78rem; color: rgba(255,255,255,0.26); border-left: 2px solid var(--f-spark); padding-left: 0.75rem; line-height: 1.9; margin-bottom: 1.3rem; }
+.ds-footer__hindi { font-family: var(--font-hindi); font-size: 0.78rem; color: #FFFFFF; border-left: 2px solid var(--f-spark); padding-left: 0.75rem; line-height: 1.9; margin-bottom: 1.3rem; }
 .ds-footer__badges { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-.ds-footer__badge { display: inline-flex; align-items: center; gap: 0.28rem; background: var(--f-dimmed); border: 1px solid var(--f-rule); border-radius: 20px; padding: 0.2rem 0.65rem; font-size: 0.66rem; color: rgba(255,255,255,0.45); }
+.ds-footer__badge { display: inline-flex; align-items: center; gap: 0.28rem; background: var(--f-dimmed); border: 1px solid var(--f-rule); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.82rem; color: #FFFFFF; }
 .ds-footer__badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: ds-pulse 2.2s ease-in-out infinite; }
 @keyframes ds-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
-.ds-footer__nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.ds-footer__nav { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
 .ds-footer__col-head {
   font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
   color: var(--f-white); margin-bottom: 0.9rem; padding-bottom: 0.55rem;
@@ -648,13 +649,13 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 .ds-footer__badge-new { font-size: 0.56rem; font-weight: 700; background: var(--f-spark); color: white; border-radius: 3px; padding: 0.07rem 0.28rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .ds-footer__social-head { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--f-white); margin: 1.4rem 0 0.9rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--f-rule); display: flex; align-items: center; gap: 0.35rem; }
 .ds-footer__social-head::before { content: ''; display: inline-block; width: 9px; height: 2px; background: var(--f-spark); border-radius: 2px; flex-shrink: 0; }
-.ds-footer__divider { max-width: 1280px; margin: 0 auto; border: none; border-top: 1px solid var(--f-rule); }
-.ds-footer__bottom { max-width: 1280px; margin: 0 auto; padding: 1.3rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
-.ds-footer__copyright { font-size: 0.73rem; color: rgba(255,255,255,0.26); display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+.ds-footer__divider { width: 100%; margin: 0; border: none; border-top: 1px solid var(--f-rule); }
+.ds-footer__bottom { width: 100%; padding: 1.3rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; box-sizing: border-box; }
+.ds-footer__copyright { font-size: 0.73rem; color: #FFFFFF; display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
 .ds-footer__copyright .heart { color: var(--f-spark); }
 .ds-footer__copyright .sep  { color: rgba(255,255,255,0.12); }
 .ds-footer__legal-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
-.ds-footer__legal-links a { font-size: 0.72rem; color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.15s; }
+.ds-footer__legal-links a { font-size: 0.72rem; color: #FFFFFF; text-decoration: none; transition: color 0.15s; }
 .ds-footer__legal-links a:hover { color: var(--f-sparkt); }
 
 
@@ -685,15 +686,36 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.parenting-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.parenting-btn {
+  background: #fff;
+  border: 1px solid #DDE4ED;
+  padding: 50px 65px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FF6B00;
+  transition: 0.3s;
+  border-left: 4px solid #FF6B00;
+}
+.parenting-btn:hover {
+  background: #FF6B00;
+  color: #fff;
+  transform: translateY(-3px);
+}
 </style>
 </head>
 <body>
 
 <!-- Notification Bar -->
 <div class="notif-bar" id="notif">
-  <a href="ns.html" target="_blank" rel="noopener">
-    <span>🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</span>
-  </a>
   <button class="notif-close" onclick="document.getElementById('notif').remove()" aria-label="Close notification">✕</button>
 </div>
 
@@ -718,7 +740,6 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
       <a href="index.html" class="active">Home</a>
       <a href="parent.html">Parenting</a>
       <a href="math.html">Math Playground</a>
-      <a href="gjobs.html">Govt. Jobs</a>
       <a href="ait.html">Best Ai Tools</a>
       <a href="weather.html">Weather</a>
       <a href="contact.html">Contact Us</a>
@@ -733,7 +754,12 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
     <div class="hero-bg" aria-hidden="true">🏛️</div>
     <div class="hero-gradient" aria-hidden="true"></div>
     <div class="hero-content">
-      <div class="hero-title">Focus is the Key to Success — Build habits that spark daily achievement</div>
+      <a href="https://youtu.be/6aVxcTUuphs" target="_blank" style="display:block;position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:8px;overflow:hidden;">
+        <img src="https://img.youtube.com/vi/6aVxcTUuphs/maxresdefault.jpg" style="width:100%;height:100%;position:absolute;top:0;left:0;object-fit:cover;">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,0,0,0.9);border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 19,12 8,19"/></svg>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -754,23 +780,24 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
         <div class="hs-body">
           <div class="hs-cat">Cooking</div>
           <div class="hs-title">Tiffin recipe of the week</div>
-		<p>😋 Open the Tiffin, Open the Smile!</p>
+		<p>Open the Tiffin, Open the Smile!</p>
         </div>
       </div>
     </a>
-    <a href="gjobs.html" class="card-link">
+    <a href="b_tech.html" class="card-link">
       <div class="hs-card">
         <div class="hs-icon ic3">🎯</div>
         <div class="hs-body">
-          <div class="hs-cat">Govt. Jobs</div>
-          <div class="hs-title">Latest all over India Govt. Jobs</div>
-	<p>Latest Government Jobs at Your Fingertips<p>
+          <div class="hs-cat">Best Career Path</div>
+          <div class="hs-title">B.Tech के बाद Best Career in 2026</div>
+	<p>Excellent Paths to Build a Successful Career in 2026</p>
         </div>
       </div>
     </a>
     
   </div>
 </div>
+
 
   
 <!-- Category Strip -->
@@ -810,9 +837,44 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
     </a>
   </div>
 </div>
-
-
-
+  
+<!-- Category Strip -->
+<div class="cat-strip-wrap">
+  <div class="cat-strip-head">
+    <h3>Parenting Explore Topics</h3>
+    <div class="cat-strip-head-line"></div>
+  </div>
+  <div class="cat-grid">
+     <a href="c2.html">
+      <div class="cat-item">
+        <div class="cat-emoji">👪</div>
+        <div class="cat-label">Parenting</div>
+        <div class="cat-sub">जिद्दी बच्चों को प्यार से कैसे संभालें?</div>
+      </div>
+    </a>
+    <a href="c3.html">
+      <div class="cat-item">
+        <div class="cat-emoji">🏛️</div>
+        <div class="cat-label">घर और परिवेश</div>
+        <div class="cat-sub">पढ़ाई में एकाग्रता और बेहतर मानसिक विकास </div>
+      </div>
+    </a>
+    <a href="c5.html">
+      <div class="cat-item">
+        <div class="cat-emoji">👶</div>
+        <div class="cat-label">आदतें</div>
+        <div class="cat-sub">अंगूठा चूसने की आदत छुड़ाने के उपाय</div>
+      </div>
+    </a>
+ <a href="health.html">
+      <div class="cat-item">
+        <div class="cat-emoji">🩺</div>
+        <div class="cat-label">हेल्थ &amp; वैलनेस</div>
+        <div class="cat-sub">आवाज में बदलाव को न करें नजरअंदाज</div>
+      </div>
+    </a>
+  </div>
+</div>
 
 <!-- Main Content + Sidebar -->
 <div class="main-wrap">
@@ -880,46 +942,59 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 
   <!-- Sidebar -->
   <div class="sidebar-col">
+    <!-- Weather Widget -->
+    <div class="sidebar-widget" id="weather-widget">
+      <div class="sw-head">🌤️ Weather</div>
+      <div class="sw-body" style="padding:14px 16px;">
+        <div id="weather-loading" style="text-align:center;color:var(--slate);font-size:13px;padding:10px 0;">
+          Fetching weather...
+        </div>
+        <div id="weather-data" style="display:none;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div id="weather-icon" style="font-size:48px;line-height:1;"></div>
+            <div>
+              <div id="weather-temp" style="font-size:32px;font-weight:700;color:var(--navy);line-height:1;"></div>
+              <div id="weather-desc" style="font-size:13px;color:var(--text-light);margin-top:4px;text-transform:capitalize;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="sidebar-widget">
       <div class="sw-head">Play with Maths</div>
       <div class="sw-body">
         <a href="magic.html" class="trending-item">
-          <div class="trending-num">01</div>
+          <div class="trending-num">1</div>
           <div>
             <div class="trending-text">Mind Reader</div>
             <div class="trending-cat">Magic Cards</div>
           </div>
         </a>
         <a href="snakes.html" class="trending-item">
-          <div class="trending-num">02</div>
+          <div class="trending-num">2</div>
           <div>
             <div class="trending-text">Math Adventure Game</div>
             <div class="trending-cat">Snakes &amp; Ladders</div>
           </div>
         </a>
         <a href="ludo.html" class="trending-item">
-          <div class="trending-num">03</div>
+          <div class="trending-num">3</div>
           <div>
-            <div class="trending-text">Math Example Board</div>
-            <div class="trending-cat">Ludo</div>
+            <div class="trending-text">Kaun Banega Crorepati?</div>
+            <div class="trending-cat">Maths Operator Game</div>
           </div>
         </a>
-        <a href="fraction.html" class="trending-item">
-          <div class="trending-num">04</div>
-          <div>
-            <div class="trending-text">Pizza Fraction</div>
-            <div class="trending-cat">Fraction</div>
-          </div>
-        </a>
+        
 	<a href="pattern.html" class="trending-item">
-          <div class="trending-num">05</div>
+          <div class="trending-num">4</div>
           <div>
             <div class="trending-text">Number Series Puzzles</div>
             <div class="trending-cat">Pattern Quest</div>
           </div>
         </a>
 	<a href="money.html" class="trending-item">
-          <div class="trending-num">06</div>
+          <div class="trending-num">5</div>
           <div>
             <div class="trending-text">Money & Shopping</div>
             <div class="trending-cat">Money World</div>
@@ -945,15 +1020,7 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
       </div>
       <form class="ds-footer__nl-form" onsubmit="dsFnlSubmit(event)" novalidate>
         <div class="ds-footer__nl-input-row">
-          <input
-            type="tel"
-            id="ds-nl-phone"
-            placeholder="10 digit whatsapp number"
-            autocomplete="tel"
-            inputmode="numeric"
-            maxlength="15"
-            aria-label="WhatsApp number"
-          />
+          <input type="tel" id="ds-nl-phone" placeholder="10 digit whatsapp number" autocomplete="tel" inputmode="numeric" maxlength="15" aria-label="WhatsApp number"/>
           <button type="submit">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
             Join WhatsApp
@@ -964,60 +1031,40 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
     </div>
   </div>
 
-  <!-- Main body -->
-  <div class="ds-footer__body">
-    <div>
-      <a class="ds-footer__logo" href="index.html" aria-label="Daily Spark Home">
-        <div class="ds-footer__logo-icon">⚡</div>
-        <div>
-          <span class="ds-footer__logo-name">Daily Spark</span>
-          <span class="ds-footer__logo-tag">Where Knowledge Sparks Success</span>
-        </div>
-      </a>
-      <p class="ds-footer__tagline">India's trusted knowledge platform — Education, Jobs, Health, and daily inspiration. Free for every reader, forever.</p>
-      <p class="ds-footer__hindi">ज्ञान की रोशनी हर घर तक — रोज़, मुफ़्त, आपकी भाषा में।</p>
+  <!-- Main body — centered -->
+  <div class="ds-footer__body" style="display:flex;flex-direction:row;align-items:center;gap:2.5rem;flex-wrap:wrap;width:100%;padding:2.4rem 2rem 2rem;">
+
+    <!-- Left: Logo image -->
+    <a href="index.html" aria-label="Daily Spark Home" style="flex-shrink:0;">
+      <img src="logo.png" alt="Daily Spark Logo" style="width:220px;height:auto;object-fit:contain;display:block;">
+    </a>
+
+    <!-- Right: Name + Social + Badges -->
+    <div style="display:flex;flex-direction:column;gap:1.2rem;flex:1;">
+
+      <!-- Name & tagline -->
+      <div>
+        <span class="ds-footer__logo-name" style="font-size:1.6rem;">Daily Spark</span><br>
+        <span class="ds-footer__logo-tag" style="font-size:0.85rem;color:#fff;">Where Knowledge Sparks Success</span>
+      </div>
+
+      <!-- Social buttons -->
+      <nav style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+        <a href="https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG?s=cl&p=a&ilr=4" class="ds-social-btn ds-social-wa"><span class="si">💬</span> WhatsApp</a>
+        <a href="#" class="ds-social-btn ds-social-ig"><span class="si">📸</span> Instagram</a>
+        <a href="#" class="ds-social-btn ds-social-yt"><span class="si">▶️</span> YouTube</a>
+        <a href="#" class="ds-social-btn ds-social-tg"><span class="si">✈️</span> Telegram</a>
+      </nav>
+
+      <!-- Badges -->
       <div class="ds-footer__badges">
         <span class="ds-footer__badge"><span class="ds-footer__badge-dot"></span> Updated Daily</span>
         <span class="ds-footer__badge">🇮🇳 Made in India</span>
         <span class="ds-footer__badge">🆓 Always Free</span>
       </div>
+
     </div>
 
-    <nav class="ds-footer__nav" aria-label="Footer navigation">
-      <div>
-        <div class="ds-footer__col-head">Explore</div>
-        <ul class="ds-footer__links">
-          <li><a href="index.html"><span class="lk-icon">🏠</span> Home</a></li>
-          <li><a href="gjobs.html"><span class="lk-icon">💼</span> Govt. Jobs <span class="ds-footer__badge-new">New</span></a></li>
-          <li><a href="health.html"><span class="lk-icon">🏥</span> Health</a></li>
-          <li><a href="cook.html"><span class="lk-icon">👨‍🍳</span> Cooking</a></li>
-          <li><a href="plant.html"><span class="lk-icon">🌿</span> Plants</a></li>
-          <li><a href="weather.html"><span class="lk-icon">🌦️</span> Weather</a></li>
-          <li><a href="ait.html"><span class="lk-icon">💹</span>Best Ai Tools</a></li>
-           </ul>
-      </div>
-      <div>
-        <div class="ds-footer__col-head">Education</div>
-        <ul class="ds-footer__links">
-          <li><a href="jac_cutoff.html"><span class="lk-icon">🎓</span> JAC Cutoffs</a></li>
-          <li><a href="jac26.html"><span class="lk-icon">📊</span> JAC 2026</a></li>
-          <li><a href="jac_josaa.html"><span class="lk-icon">📄</span> JoSAA Schedule</a></li>
-          <li><a href="math.html"><span class="lk-icon">🧮</span> Math Playground</a></li>
-          <li><a href="parent.html"><span class="lk-icon">👨‍👩‍👧</span> Parenting</a></li>
-          <li><a href="ns.html"><span class="lk-icon">🔔</span> News Alerts</a></li>
-        </ul>
-      </div>
-      <div>
-       
-        <div class="ds-footer__col-head">Follow Us</div>
-        <ul class="ds-footer__links">
-          <li><a href="https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG?s=cl&p=a&ilr=4"><span class="lk-icon">💬</span> WhatsApp</a></li>
-          <li><a href="#"><span class="lk-icon">📸</span> Instagram</a></li>
-          <li><a href="#"><span class="lk-icon">▶️</span> YouTube</a></li>
-          <li><a href="#"><span class="lk-icon">✈️</span> Telegram</a></li>
-        </ul>
-        
-    </nav>
   </div>
 
   <hr class="ds-footer__divider"/>
@@ -1100,6 +1147,57 @@ function dsFnlSubmit(e) {
     feedback.className   = 'ds-footer__nl-feedback';
   }, 5000);
 }
+
+/* ===== WEATHER WIDGET ===== */
+(function() {
+  function getWeatherIcon(code) {
+    if (code >= 200 && code < 300) return '⛈️';
+    if (code >= 300 && code < 400) return '🌦️';
+    if (code >= 500 && code < 600) return '🌧️';
+    if (code >= 600 && code < 700) return '❄️';
+    if (code >= 700 && code < 800) return '🌫️';
+    if (code === 800) return '☀️';
+    if (code === 801) return '🌤️';
+    if (code === 802) return '⛅';
+    if (code >= 803) return '☁️';
+    return '🌡️';
+  }
+
+  function showWeather(lat, lon) {
+    var API_KEY = 'bd5e378503939ddaee76f12ad7a97608';
+    var url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + API_KEY + '&units=metric';
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        document.getElementById('weather-loading').style.display = 'none';
+        document.getElementById('weather-data').style.display = 'block';
+        document.getElementById('weather-icon').textContent = getWeatherIcon(d.weather[0].id);
+        document.getElementById('weather-temp').textContent = Math.round(d.main.temp) + '°C';
+        document.getElementById('weather-desc').textContent = d.weather[0].description;
+        document.getElementById('weather-city').querySelector('span').textContent = d.name + ', ' + d.sys.country;
+        document.getElementById('weather-humidity').textContent = d.main.humidity + '%';
+        document.getElementById('weather-wind').textContent = Math.round(d.wind.speed * 3.6) + ' km/h';
+        document.getElementById('weather-feels').textContent = Math.round(d.main.feels_like) + '°C';
+        document.getElementById('weather-vis').textContent = (d.visibility / 1000).toFixed(1) + ' km';
+      })
+      .catch(function() {
+        document.getElementById('weather-loading').style.display = 'none';
+        document.getElementById('weather-error').style.display = 'block';
+      });
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(pos) { showWeather(pos.coords.latitude, pos.coords.longitude); },
+      function() {
+        // Default: Delhi
+        showWeather(28.6139, 77.2090);
+      }
+    );
+  } else {
+    showWeather(28.6139, 77.2090);
+  }
+})();
 </script>
 
 </body>

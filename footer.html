@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer Preview — Daily Spark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Demo page reset only */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #FAFAF8; }
+    .demo-spacer {
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; color: #999; letter-spacing: 0.05em;
+      border-bottom: 1px dashed #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo placeholder representing your page content -->
+  <div class="demo-spacer">↑ YOUR PAGE CONTENT GOES HERE ↑</div>
+
+  <!-- ============================================================
+       DAILY SPARK FOOTER
+       Copy everything between the two "COPY START" / "COPY END"
+       comment lines and paste before </body> on every page.
+       ============================================================ -->
+
+  <!-- COPY START ↓↓↓ -->
+
+  <!--
+    FONT DEPENDENCY — add this in <head> if not already present:
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+  -->
+
+  <style>
+  /* ── DAILY SPARK FOOTER STYLES ── */
+  .ds-footer {
+    --f-ink:      #0D1B2A;
+    --f-ink2:     #132538;
+    --f-spark:    #E8500A;
+    --f-sparkt:   #FF6B35;
+    --f-gold:     #F0A500;
+    --f-white:    #FFFFFF;
+    --f-muted:    rgba(255,255,255,0.42);
+    --f-dimmed:   rgba(255,255,255,0.14);
+    --f-rule:     rgba(255,255,255,0.08);
+    --ff-disp:    'Playfair Display', Georgia, serif;
+    --ff-body:    'Inter', system-ui, sans-serif;
+    --ff-hindi:   'Noto Sans Devanagari', sans-serif;
+
+    font-family: var(--ff-body);
+    background: var(--f-ink);
+    color: var(--f-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  /* ── NEWSLETTER BAND ── */
+  .ds-footer__nl {
+    background: linear-gradient(135deg, var(--f-spark) 0%, #b83a00 100%);
+    padding: 2.8rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-footer__nl::before {
+    content: '⚡';
+    position: absolute; right: 3%; top: 50%;
+    transform: translateY(-50%);
+    font-size: 10rem; opacity: 0.07;
+    pointer-events: none; user-select: none;
+    line-height: 1;
+  }
+  .ds-footer__nl-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .ds-footer__nl-copy {}
+  .ds-footer__nl-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+    font-weight: 700; margin-bottom: 0.3rem;
+  }
+  .ds-footer__nl-title {
+    font-family: var(--ff-disp);
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-weight: 900; color: var(--f-white);
+    line-height: 1.2; margin-bottom: 0.3rem;
+  }
+  .ds-footer__nl-sub {
+    font-size: 0.83rem; color: rgba(255,255,255,0.65);
+  }
+  .ds-footer__nl-form {
+    display: flex; gap: 0; flex-wrap: nowrap;
+    flex-shrink: 0;
+  }
+  .ds-footer__nl-form input {
+    font-family: var(--ff-body);
+    font-size: 0.88rem;
+    padding: 0.7rem 1.1rem;
+    border: none; outline: none;
+    border-radius: 6px 0 0 6px;
+    width: 240px; max-width: 100%;
+    background: rgba(255,255,255,0.15);
+    color: var(--f-white);
+    backdrop-filter: blur(4px);
+    transition: background 0.18s;
+  }
+  .ds-footer__nl-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .ds-footer__nl-form input:focus { background: rgba(255,255,255,0.22); }
+  .ds-footer__nl-form button {
+    font-family: var(--ff-body);
+    font-size: 0.85rem; font-weight: 700;
+    padding: 0.7rem 1.3rem;
+    background: var(--f-ink);
+    color: var(--f-white);
+    border: none; border-radius: 0 6px 6px 0;
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.18s;
+  }
+  .ds-footer__nl-form button:hover { background: #1a2f44; }
+
+  /* ── MAIN BODY ── */
+  .ds-footer__body {
+    max-width: 1140px; margin: 0 auto;
+    padding: 3.5rem 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3.5rem;
+  }
+
+  /* Brand column */
+  .ds-footer__brand {}
+  .ds-footer__logo {
+    display: flex; align-items: center;
+    gap: 0.65rem; text-decoration: none;
+    margin-bottom: 1.1rem;
+  }
+  .ds-footer__logo-icon {
+    width: 44px; height: 44px;
+    background: var(--f-spark); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(232,80,10,0.35);
+  }
+  .ds-footer__logo-text strong {
+    display: block;
+    font-family: var(--ff-disp);
+    font-size: 1.22rem; font-weight: 900;
+    color: var(--f-white); line-height: 1.1;
+  }
+  .ds-footer__logo-text span {
+    font-size: 0.6rem; color: var(--f-muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .ds-footer__tagline {
+    font-size: 0.84rem; color: var(--f-muted);
+    line-height: 1.75; margin-bottom: 1.3rem;
+    max-width: 240px;
+  }
+  .ds-footer__hindi {
+    font-family: var(--ff-hindi);
+    font-size: 0.8rem; color: rgba(255,255,255,0.28);
+    line-height: 1.9;
+    border-left: 2px solid var(--f-spark);
+    padding-left: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Badges */
+  .ds-footer__badges {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .ds-footer__badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: var(--f-dimmed);
+    border: 1px solid var(--f-rule);
+    border-radius: 20px;
+    padding: 0.22rem 0.7rem;
+    font-size: 0.68rem; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+  }
+  .ds-footer__badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #22C55E;
+    animation: ds-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes ds-pulse {
+    0%,100% { opacity: 1; } 50% { opacity: 0.4; }
+  }
+
+  /* Nav columns */
+  .ds-footer__nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .ds-footer__col-head {
+    font-size: 0.66rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 700;
+    color: var(--f-white); margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--f-rule);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .ds-footer__col-head::before {
+    content: ''; display: inline-block;
+    width: 10px; height: 2px;
+    background: var(--f-spark); border-radius: 2px; flex-shrink: 0;
+  }
+  .ds-footer__links {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .ds-footer__links li {}
+  .ds-footer__links a {
+    color: var(--f-muted); text-decoration: none;
+    font-size: 0.84rem; transition: color 0.15s;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .ds-footer__links a:hover { color: var(--f-sparkt); }
+  .ds-footer__links a .lk-icon {
+    font-size: 0.9rem; flex-shrink: 0; opacity: 0.7;
+  }
+  .ds-footer__badge-new {
+    font-size: 0.58rem; font-weight: 700;
+    background: var(--f-spark); color: white;
+    border-radius: 3px; padding: 0.08rem 0.3rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    vertical-align: middle; flex-shrink: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .ds-footer__divider {
+    max-width: 1140px; margin: 0 auto;
+    border: none; border-top: 1px solid var(--f-rule);
+  }
+
+  /* ── BOTTOM BAR ── */
+  .ds-footer__bottom {
+    max-width: 1140px; margin: 0 auto;
+    padding: 1.4rem 2rem;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .ds-footer__copyright {
+    font-size: 0.76rem; color: rgba(255,255,255,0.28);
+    display: flex; align-items: center; gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .ds-footer__copyright .heart { color: var(--f-spark); }
+  .ds-footer__copyright .sep {
+    color: rgba(255,255,255,0.15);
+  }
+  .ds-footer__legal-links {
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+  }
+  .ds-footer__legal-links a {
+    font-size: 0.74rem; color: rgba(255,255,255,0.3);
+    text-decoration: none; transition: color 0.15s;
+  }
+  .ds-footer__legal-links a:hover { color: var(--f-sparkt); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .ds-footer__body {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .ds-footer__nav { grid-template-columns: 1fr 1fr; }
+    .ds-footer__tagline { max-width: 100%; }
+  }
+  @media (max-width: 600px) {
+    .ds-footer__nl { padding: 2rem 1.2rem; }
+    .ds-footer__nl-inner { flex-direction: column; align-items: flex-start; }
+    .ds-footer__nl-form { width: 100%; }
+    .ds-footer__nl-form input { flex: 1; width: auto; }
+    .ds-footer__body { padding: 2.5rem 1.2rem 2rem; }
+    .ds-footer__nav { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .ds-footer__bottom {
+      flex-direction: column; align-items: flex-start;
+      padding: 1.2rem 1.2rem;
+    }
+  }
+  @media (max-width: 380px) {
+    .ds-footer__nav { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ds-footer__badge-dot { animation: none; }
+    * { transition: none !important; }
+  }
+  </style>
+
+  <footer class="ds-footer" role="contentinfo">
+
+    <!-- Newsletter band -->
+    <div class="ds-footer__nl">
+      <div class="ds-footer__nl-inner">
+        <div class="ds-footer__nl-copy">
+          <div class="ds-footer__nl-eyebrow">📬 Free Newsletter</div>
+          <div class="ds-footer__nl-title">Daily Spark in your inbox</div>
+          <div class="ds-footer__nl-sub">News, jobs & tips — every morning. No spam, unsubscribe any time.</div>
+        </div>
+        <form class="ds-footer__nl-form" onsubmit="dsFnlSubmit(event)">
+          <input type="email" id="ds-nl-email" placeholder="yourname@email.com" autocomplete="email" required aria-label="Email address for newsletter" />
+          <button type="submit">Subscribe →</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main footer body -->
+    <div class="ds-footer__body">
+
+      <!-- Brand column -->
+      <div class="ds-footer__brand">
+        <a class="ds-footer__logo" href="index.html" aria-label="Daily Spark Home">
+          <div class="ds-footer__logo-icon">⚡</div>
+          <div class="ds-footer__logo-text">
+            <strong>Daily Spark</strong>
+            <span>Where Knowledge Sparks Success</span>
+          </div>
+        </a>
+        <p class="ds-footer__tagline">India's trusted knowledge platform — Education, Jobs, Health, and daily inspiration. Free for every reader, forever.</p>
+        <p class="ds-footer__hindi">ज्ञान की रोशनी हर घर तक — रोज़, मुफ़्त, आपकी भाषा में।</p>
+        <div class="ds-footer__badges">
+          <span class="ds-footer__badge"><span class="ds-footer__badge-dot"></span> Updated Daily</span>
+          <span class="ds-footer__badge">🇮🇳 Made in India</span>
+          <span class="ds-footer__badge">🆓 Always Free</span>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="ds-footer__nav" aria-label="Footer navigation">
+
+        <!-- Explore -->
+        <div>
+          <div class="ds-footer__col-head">Explore</div>
+          <ul class="ds-footer__links">
+            <li><a href="index.html"><span class="lk-icon">🏠</span> Home</a></li>
+            <li><a href="gjobs.html"><span class="lk-icon">💼</span> Govt. Jobs <span class="ds-footer__badge-new">New</span></a></li>
+            <li><a href="health.html"><span class="lk-icon">🏥</span> Health</a></li>
+            <li><a href="cook.html"><span class="lk-icon">👨‍🍳</span> Cooking</a></li>
+            <li><a href="plant.html"><span class="lk-icon">🌿</span> Plants</a></li>
+            <li><a href="weather.html"><span class="lk-icon">🌦️</span> Weather</a></li>
+            <li><a href="gold.html"><span class="lk-icon">💹</span> Gold Rate</a></li>
+          </ul>
+        </div>
+
+        <!-- Education -->
+        <div>
+          <div class="ds-footer__col-head">Education</div>
+          <ul class="ds-footer__links">
+            <li><a href="jac_cutoff.html"><span class="lk-icon">🎓</span> JAC Cutoffs</a></li>
+            <li><a href="jac26.html"><span class="lk-icon">📊</span> JAC 2026</a></li>
+            <li><a href="jac_josaa.pdf"><span class="lk-icon">📄</span> JoSAA Schedule</a></li>
+            <li><a href="math.html"><span class="lk-icon">🧮</span> Math Playground</a></li>
+            <li><a href="parent.html"><span class="lk-icon">👨‍👩‍👧</span> Parenting</a></li>
+            <li><a href="jokes.html"><span class="lk-icon">🎬</span> Entertainment</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <div class="ds-footer__col-head">Company</div>
+          <ul class="ds-footer__links">
+            <li><a href="about.html"><span class="lk-icon">ℹ️</span> About Us</a></li>
+            <li><a href="contact.html"><span class="lk-icon">✉️</span> Contact Us</a></li>
+            <li><a href="ns.html"><span class="lk-icon">🔔</span> News Alerts</a></li>
+            <li><a href="#advertise"><span class="lk-icon">📢</span> Advertise</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal + Social -->
+        <div>
+          <div class="ds-footer__col-head">Legal</div>
+          <ul class="ds-footer__links">
+            <li><a href="privacy-policy.html"><span class="lk-icon">🔒</span> Privacy Policy</a></li>
+            <li><a href="terms.html"><span class="lk-icon">📋</span> Terms of Use</a></li>
+          </ul>
+
+          <div class="ds-footer__col-head" style="margin-top:1.6rem;">Follow Us</div>
+          <ul class="ds-footer__links">
+            <li>
+              <a href="#" aria-label="Daily Spark on WhatsApp">
+                <span class="lk-icon">💬</span> WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Daily Spark on Instagram">
+                <span class="lk-icon">📸</span> Instagram
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Daily Spark on YouTube">
+                <span class="lk-icon">▶️</span> YouTube
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Daily Spark on Telegram">
+                <span class="lk-icon">✈️</span> Telegram
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+
+    <hr class="ds-footer__divider" />
+
+    <!-- Bottom bar -->
+    <div class="ds-footer__bottom">
+      <div class="ds-footer__copyright">
+        <span>© 2026 Daily Spark.</span>
+        <span class="sep">|</span>
+        <span>All rights reserved.</span>
+        <span class="sep">|</span>
+        <span>Made with <span class="heart">❤️</span> for India</span>
+      </div>
+      <nav class="ds-footer__legal-links" aria-label="Legal links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+
+  </footer>
+
+  <!-- COPY END ↑↑↑ -->
+
+  <script>
+  /* Newsletter submit handler — replace with your Formspree/EmailJS endpoint */
+  function dsFnlSubmit(e) {
+    e.preventDefault();
+    const input = document.getElementById('ds-nl-email');
+    const btn   = e.target.querySelector('button');
+    const email = input.value.trim();
+    if (!email) return;
+
+    /* ── Replace this section with your real API call ──
+    fetch('https://formspree.io/f/YOUR_ID', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    }).then(() => showSuccess()).catch(() => showError());
+    ─────────────────────────────────────────────────── */
+
+    // Demo feedback
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = '#16A34A';
+    input.value = '';
+    input.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Subscribe →';
+      btn.style.background = '';
+      input.disabled = false;
+    }, 4000);
+  }
+  </script>
+
+</body>
+</html>

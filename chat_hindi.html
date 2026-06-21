@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT सम्पूर्ण मार्गदर्शिका — हिंदी</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+     --good: #16A34A;
+      --bad: #DC2626;
+  --navy:    #0D1B2A;
+  --saffron: #FF6B00;
+  --saff2:   #FF8C33;
+  --white:   #FFFFFF;
+  --off:     #F7F9FC;
+  --slate:   #8899AA;
+  --text:    #1A2B3C;
+  --textl:   #4A5C6E;
+  --border:  #DDE4ED;
+  --c1: #7C3AED; --c1l: #EDE9FE;
+  --c2: #0891B2; --c2l: #CFFAFE;
+  --c3: #16A34A; --c3l: #DCFCE7;
+  --c4: #DC2626; --c4l: #FEE2E2;
+  --c5: #D97706; --c5l: #FEF3C7;
+  --c6: #DB2777; --c6l: #FCE7F3;
+  --c7: #059669; --c7l: #D1FAE5;
+  --c8: #7C3AED; --c8l: #EDE9FE;
+  --sans: 'Inter', sans-serif;
+  --play: 'Nunito', 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans Devanagari', var(--sans); background: var(--off); color: var(--text); line-height: 1.8; overflow-x: hidden; font-weight: 600; min-height: 100vh; }
+
+
+
+
+a { text-decoration: none; color: inherit; }
+
+/* TOPBAR */
+.topbar {
+  background: #0D1B2A; border-bottom: 5px solid #FF6B00;
+  padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 200;
+}
+.brand { font-family: var(--play); font-size: 22px; color: var(--white); font-weight: 900; }
+.brand span { color: var(--saffron); }
+.topbar-back { font-size: 13px; color: var(--slate); font-weight: 800; transition: color .2s; }
+.topbar-back:hover { color: var(--saffron); }
+
+/* HERO */
+.hero {
+  background: var(--navy); padding: 48px 24px 40px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.orb { position: absolute; opacity: .1; font-size: 80px; animation: fl 9s ease-in-out infinite; }
+.orb:nth-child(1) { top: 8%;  left: 4%;  animation-delay: 0s; }
+.orb:nth-child(2) { top: 55%; left: 2%;  animation-delay: 2s; font-size: 65px; }
+.orb:nth-child(3) { top: 10%; right: 3%; animation-delay: 3.5s; font-size: 90px; }
+.orb:nth-child(4) { top: 60%; right: 4%; animation-delay: 1.5s; font-size: 68px; }
+@keyframes fl { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,107,0,.18); border: 2px solid rgba(255,107,0,.5);
+  color: var(--saff2); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--play); font-size: clamp(26px, 6vw, 48px); font-weight: 900;
+  color: var(--white); line-height: 1.15; letter-spacing: -1px; margin-bottom: 12px;
+}
+.hero h1 em { color: var(--saffron); font-style: normal; }
+.hero-sub { color: #8899AA; font-size: 14.5px; max-width: 480px; margin: 0 auto 24px; }
+.hero-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.hero-pill {
+  background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.18);
+  color: #E2E8F0; font-size: 13px; font-weight: 800; padding: 7px 18px; border-radius: 20px;
+}
+
+/* WRAP */
+.wrap { max-width: 1000px; margin: 0 auto; padding: 44px 20px 64px; }
+
+/* SECTION HEADER */
+.sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; margin-top: 48px; }
+.sec-head:first-of-type { margin-top: 0; }
+.sec-accent { width: 5px; height: 28px; background: var(--saffron); border-radius: 3px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--play); font-size: 22px; font-weight: 900; color: var(--navy); }
+.sec-line { flex: 1; height: 2px; background: var(--border); }
+.sec-badge {
+  background: var(--off); border: 2px solid var(--border); color: var(--slate);
+  font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 12px; border-radius: 20px; white-space: nowrap;
+}
+
+/* IMP CARD */
+.imp-card {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 18px; padding: 24px 22px; margin-bottom: 16px;
+}
+.imp-card-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.imp-icon-wrap {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.imp-title { font-family: var(--play); font-size: 18px; font-weight: 900; color: var(--navy); }
+
+/* colour per card */
+.card-edu  { border-top: 5px solid var(--c1); } .card-edu  .imp-icon-wrap { background: var(--c1l); }
+.card-career{ border-top: 5px solid var(--c2); } .card-career .imp-icon-wrap { background: var(--c2l); }
+.card-creative{ border-top: 5px solid var(--c6); } .card-creative .imp-icon-wrap { background: var(--c6l); }
+.card-daily { border-top: 5px solid var(--c3); } .card-daily .imp-icon-wrap { background: var(--c3l); }
+.card-prod  { border-top: 5px solid var(--c5); } .card-prod  .imp-icon-wrap { background: var(--c5l); }
+.card-biz   { border-top: 5px solid var(--c4); } .card-biz   .imp-icon-wrap { background: var(--c4l); }
+.card-health{ border-top: 5px solid var(--c7); } .card-health .imp-icon-wrap { background: var(--c7l); }
+.card-legal { border-top: 5px solid var(--c2); } .card-legal  .imp-icon-wrap { background: var(--c2l); }
+.card-india { border-top: 5px solid var(--saffron); } .card-india .imp-icon-wrap { background: #FFF0E0; }
+.card-time  { border-top: 5px solid var(--c3); } .card-time  .imp-icon-wrap { background: var(--c3l); }
+
+/* BULLET LIST */
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.bullet-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--textl); line-height: 1.6;
+}
+.bullet-list li::before {
+  content: '▸'; color: var(--saffron); font-size: 12px;
+  margin-top: 3px; flex-shrink: 0; font-weight: 900;
+}
+.bullet-list li strong { color: var(--text); }
+
+/* SUB-SECTION inside card */
+.sub-title {
+  font-family: var(--play); font-size: 13px; font-weight: 900;
+  color: var(--slate); text-transform: uppercase; letter-spacing: .08em;
+  margin: 16px 0 8px; display: flex; align-items: center; gap: 6px;
+}
+.sub-title::before { content: ''; flex: none; width: 3px; height: 14px; background: var(--saffron); border-radius: 2px; }
+
+/* PROMPT EXAMPLE CHIPS */
+.prompt-chips { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.prompt-chip {
+  background: var(--off); border: 2px solid var(--border); border-radius: 10px;
+  padding: 10px 14px; font-size: 13px; color: var(--text); line-height: 1.5;
+}
+.prompt-chip .qlabel {
+  font-size: 11px; font-weight: 800; color: var(--saffron);
+  text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 3px;
+}
+
+/* PRODUCTIVITY CHECKS */
+.prod-list { display: flex; flex-direction: column; gap: 9px; }
+.prod-item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--off); border: 2px solid var(--border);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 14px; color: var(--text);
+}
+.prod-check {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--c3);
+  color: #fff; font-size: 13px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.prod-time {
+  margin-left: auto; font-size: 12px; font-weight: 800;
+  color: var(--c3); background: var(--c3l);
+  padding: 2px 10px; border-radius: 20px; white-space: nowrap;
+}
+
+/* GRID for 2-col cards */
+.cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+   
+
+    /* नेविगेशन */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--navy);
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--textl); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--saffron); }
+
+    /* हीरो */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16,185,129,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,107,0,.18);
+      border: 2px solid rgba(255,107,0,.45);
+      color: var(--saff2);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+      padding: 0.3rem 1rem; border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700; line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      color: var(--navy);
+    }
+    .hero p {
+      font-size: 1.1rem; color: #8899AA;
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 700; color: var(--saffron); }
+    .stat-label { font-size: 0.8rem; color: var(--slate); }
+
+    /* अनुभाग */
+    section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--saffron); margin-bottom: 0.75rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .section-header p { color: var(--textl); max-width: 550px; margin: 0 auto; }
+
+    /* विभाजक */
+    .divider { border: none; border-top: 2px solid var(--border); margin: 0; }
+
+    /* परिभाषा कार्ड */
+    .definition-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 16px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .definition-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--c1));
+    }
+    .definition-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .definition-card p { color: var(--textl); margin-bottom: 1rem; }
+    .full-name {
+      display: inline-block;
+      background: var(--c1l); border: 2px solid #C4B5FD;
+      color: var(--c1); padding: 0.4rem 1rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .def-highlights {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .def-highlight {
+      background: var(--off);
+      border-radius: 10px; padding: 1rem;
+      border: 2px solid var(--border);
+    }
+    .def-highlight .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .def-highlight h4 { font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .def-highlight p { font-size: 0.82rem; color: var(--textl); margin: 0; }
+
+    /* फ़ीचर ग्रिड */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .feature-card:hover {
+      border-color: var(--saffron);
+      transform: translateY(-3px);
+    }
+    .feature-num {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--slate); margin-bottom: 0.75rem;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.85rem; color: var(--textl); }
+    .feature-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.75rem; }
+    .tag {
+      font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 999px;
+      background: var(--c3l); color: var(--c3);
+      border: 1.5px solid #86EFAC;
+    }
+    .tag.nila {
+      background: var(--c2l); color: var(--c2);
+      border-color: #67E8F9;
+    }
+    .tag.peela {
+      background: var(--c5l); color: var(--c5);
+      border-color: #FCD34D;
+    }
+
+    /* कैसे काम करता है */
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .step {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 2rem 0; position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute; left: 1.5rem; top: 4.5rem; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--saffron), transparent);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 3rem; height: 3rem;
+      background: var(--saffron);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: #fff;
+      position: relative; z-index: 1;
+    }
+    .step-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .step-content p { color: var(--textl); font-size: 0.9rem; }
+    .step-code {
+      background: var(--off);
+      border: 2px solid var(--border);
+      border-radius: 8px; padding: 0.75rem 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.88rem; color: var(--c1);
+    }
+
+    /* महत्व ग्रिड */
+    .importance-grid {
+      display: block;
+    }
+    .imp-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 18px; padding: 24px 22px; margin-bottom: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .imp-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+    .imp-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .imp-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .imp-card ul { list-style: none; padding: 0; }
+    .imp-card li {
+      font-size: 0.83rem; color: var(--textl);
+      padding: 0.3rem 0; border-bottom: 2px solid var(--border);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .imp-card li:last-child { border-bottom: none; }
+    .imp-card li::before { content: '→'; color: var(--saffron); flex-shrink: 0; }
+
+    /* प्रॉम्प्ट */
+    .prompt-section { display: flex; flex-direction: column; gap: 2.5rem; }
+    .prompt-pair {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .prompt-box {
+      border-radius: 12px; padding: 1.5rem;
+      border: 1px solid transparent;
+    }
+    .prompt-bad {
+      background: #FFF5F5;
+      border-color: #FECACA;
+    }
+    .prompt-good {
+      background: #F0FFF4;
+      border-color: #86EFAC;
+    }
+    .prompt-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .prompt-bad .prompt-label { color: var(--bad); }
+    .prompt-good .prompt-label { color: var(--good); }
+    .prompt-box .topic {
+      font-size: 0.75rem; color: var(--slate); margin-bottom: 0.5rem;
+    }
+    .prompt-text {
+      font-size: 0.88rem;
+      color: var(--text); line-height: 1.7;
+      background: var(--white); border: 2px solid var(--border); border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .prompt-note {
+      font-size: 0.78rem; color: var(--textl);
+      margin-top: 0.75rem; font-style: italic;
+    }
+
+    /* सूत्र */
+    .formula-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 16px; padding: 2rem; text-align: center;
+      margin-bottom: 2rem;
+    }
+    .formula-card h3 { margin-bottom: 1.5rem; }
+    .formula-parts {
+      display: flex; justify-content: center; align-items: center;
+      gap: 0.75rem; flex-wrap: wrap;
+    }
+    .formula-part {
+      background: var(--off); border: 2px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.25rem; text-align: center;
+    }
+    .formula-part .ficon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .formula-part .flabel { font-size: 0.7rem; color: var(--slate); }
+    .formula-part .fname { font-size: 0.9rem; font-weight: 600; }
+    .formula-plus { font-size: 1.5rem; color: var(--slate); }
+    .formula-eq { font-size: 1.5rem; color: var(--saffron); font-weight: 700; }
+
+    /* सर्वश्रेष्ठ उपयोग तालिका */
+    .best-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; }
+    .best-table th {
+      background: var(--navy); padding: 0.9rem 1.2rem; color: #E2E8F0;
+      text-align: left; font-size: 0.82rem; font-weight: 600;
+      color: var(--textl); border-bottom: 2px solid var(--border);
+    }
+    .best-table td {
+      padding: 0.9rem 1.2rem; font-size: 0.85rem;
+      border-bottom: 2px solid var(--border); vertical-align: top;
+    }
+    .best-table tr:last-child td { border-bottom: none; }
+    .best-table tr:hover td { background: var(--off); }
+    .rank { font-weight: 700; }
+
+    /* सीमाएं */
+    .limits-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;
+    }
+    .limit-card {
+      background: #FFF5F5; border: 2px solid #FECACA;
+      border-radius: 12px; padding: 1.25rem;
+    }
+    .limit-card h4 { color: var(--bad); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .limit-card p { font-size: 0.82rem; color: var(--textl); }
+
+    /* चेतावनी बॉक्स */
+    .warning-box {
+      background: #FFFBEB; border: 2px solid #FCD34D;
+      border-radius: 12px; padding: 1.5rem; margin-top: 2rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .warning-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .warning-box p { color: var(--textl); font-size: 0.9rem; }
+    .warning-box strong { color: var(--text); }
+
+    /* सुनहरा नियम */
+    .golden {
+      background: linear-gradient(135deg, #FFFBEB, #F0FFF4);
+      border: 2px solid #FCD34D;
+      border-radius: 16px; padding: 2.5rem; text-align: center;
+      margin-top: 3rem;
+    }
+    .golden h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+    .golden p { color: var(--textl); max-width: 600px; margin: 0 auto; }
+
+    /* पाद लेख */
+    footer {
+      text-align: center; padding: 3rem 2rem;
+      background: var(--navy); border-top: 5px solid var(--saffron);
+      color: var(--slate); font-size: 13px; font-weight: 700;
+    }
+    footer span { color: var(--saffron);
+    }
+    footer a { color: var(--saffron); }
+
+    /* मोबाइल */
+    @media (max-width: 640px) {
+      .prompt-pair { grid-template-columns: 1fr; }
+      .step { gap: 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+    }
+
+    /* स्क्रॉल प्रकट */
+    [data-reveal] {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    [data-reveal].visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ── TRAINING FLOW ── */
+    .training-flow {
+      background: var(--navy); border-radius: 18px;
+      padding: 28px 22px; margin-bottom: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .flow-box {
+      background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 14px 18px; text-align: center; min-width: 130px;
+    }
+    .flow-box .icon { font-size: 28px; margin-bottom: 6px; }
+    .flow-box .label { font-family: var(--play); font-size: 13px; font-weight: 800; color: #E2E8F0; line-height: 1.4; }
+    .flow-box .sublabel { font-size: 11px; color: #8899AA; margin-top: 4px; }
+    .flow-box.highlight { background: var(--saffron); border-color: var(--saffron); }
+    .flow-box.highlight .label { color: #fff; }
+    .flow-box.highlight .sublabel { color: rgba(255,255,255,.75); }
+    .flow-arrow { font-size: 22px; color: var(--saffron); font-weight: 900; }
+
+    /* ── STEP CARDS (Training steps) ── */
+    .steps-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .step-card {
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 16px; overflow: hidden; display: flex;
+    }
+    .step-num-col {
+      width: 68px; flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 5px; padding: 18px 0;
+    }
+    .step-card:nth-child(1) .step-num-col { background: var(--c1l); }
+    .step-card:nth-child(2) .step-num-col { background: var(--c2l); }
+    .step-card:nth-child(3) .step-num-col { background: var(--c3l); }
+    .step-num-col .n { font-family: var(--play); font-size: 26px; font-weight: 900; }
+    .step-card:nth-child(1) .step-num-col .n { color: var(--c1); }
+    .step-card:nth-child(2) .step-num-col .n { color: var(--c2); }
+    .step-card:nth-child(3) .step-num-col .n { color: var(--c3); }
+    .step-num-col .emoji { font-size: 20px; }
+    .step-body { padding: 18px 20px; flex: 1; }
+    .step-title { font-family: var(--play); font-size: 16px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .step-points { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .step-points li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--textl); line-height: 1.55; }
+    .step-points li::before { content: '▸'; color: var(--saffron); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+    /* ── TECH TABLE ── */
+    .tech-table-wrap { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+    .tech-table { width: 100%; border-collapse: collapse; }
+    .tech-table th { background: var(--navy); color: #E2E8F0; padding: 13px 20px; text-align: left; font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .tech-table td { padding: 13px 20px; border-bottom: 2px solid var(--border); font-size: 14px; vertical-align: middle; }
+    .tech-table tr:last-child td { border-bottom: none; }
+    .tech-table tr:hover td { background: var(--off); }
+    .tt-key { font-family: var(--play); font-weight: 900; color: var(--navy); }
+    .tt-val { color: var(--textl); }
+
+    /* ── TRANSFORMER CARD ── */
+    .transformer-card {
+      background: linear-gradient(135deg, #0D1B2A 0%, #1E3A5F 100%);
+      border-radius: 18px; padding: 26px; margin-bottom: 36px; position: relative; overflow: hidden;
+    }
+    .transformer-card::before { content: '🤖'; position: absolute; right: 20px; bottom: -10px; font-size: 100px; opacity: .07; }
+    .transformer-title { font-family: var(--play); font-size: 19px; font-weight: 900; color: var(--white); margin-bottom: 14px; }
+    .transformer-title span { color: var(--saffron); }
+    .transformer-points { display: flex; flex-direction: column; gap: 10px; }
+    .t-point { display: flex; align-items: flex-start; gap: 12px; }
+    .t-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--saffron); margin-top: 6px; flex-shrink: 0; }
+    .t-text { font-size: 14px; color: #C8D8E8; line-height: 1.6; }
+    .t-text strong { color: var(--saff2); }
+    .example-box {
+      background: rgba(255,107,0,.12); border: 2px solid rgba(255,107,0,.3);
+      border-radius: 12px; padding: 14px 16px; margin-top: 16px;
+      font-size: 13.5px; color: #C8D8E8; line-height: 1.7;
+    }
+    .example-box strong { color: var(--saff2); }
+
+    /* ── EXAMPLE FLOW ── */
+    .example-flow { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+    .ef-header { background: var(--off); border-bottom: 2px solid var(--border); padding: 13px 22px; font-family: var(--play); font-size: 14px; font-weight: 900; color: var(--navy); }
+    .ef-question { background: #FEF9EC; border-bottom: 2px solid var(--border); padding: 15px 22px; font-family: var(--play); font-size: 16px; font-weight: 900; color: #92400E; display: flex; align-items: center; gap: 10px; }
+    .ef-steps { padding: 6px 0; }
+    .ef-step { display: flex; align-items: flex-start; gap: 14px; padding: 11px 22px; border-bottom: 1px solid var(--border); }
+    .ef-step:last-child { border-bottom: none; }
+    .ef-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--saffron); color: #fff; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .ef-step-text { font-size: 14px; color: var(--textl); line-height: 1.6; }
+    .ef-step-text strong { color: var(--navy); }
+    .ef-answer { background: #DCFCE7; padding: 14px 22px; font-family: var(--play); font-size: 16px; font-weight: 900; color: #14532D; display: flex; align-items: center; gap: 10px; }
+
+    /* ── PROMPT TYPES GRID ── */
+    .prompt-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .prompt-card { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; }
+    .prompt-num-col {
+      width: 60px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--play); font-size: 26px; font-weight: 900;
+    }
+    .prompt-card:nth-child(1) .prompt-num-col { background: var(--c1l); color: var(--c1); }
+    .prompt-card:nth-child(2) .prompt-num-col { background: var(--c2l); color: var(--c2); }
+    .prompt-card:nth-child(3) .prompt-num-col { background: var(--c3l); color: var(--c3); }
+    .prompt-card:nth-child(4) .prompt-num-col { background: var(--c4l); color: var(--c4); }
+    .prompt-card:nth-child(5) .prompt-num-col { background: var(--c5l); color: var(--c5); }
+    .prompt-body { padding: 16px 18px; flex: 1; }
+    .prompt-type { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 3px; }
+    .prompt-card:nth-child(1) .prompt-type { color: var(--c1); }
+    .prompt-card:nth-child(2) .prompt-type { color: var(--c2); }
+    .prompt-card:nth-child(3) .prompt-type { color: var(--c3); }
+    .prompt-card:nth-child(4) .prompt-type { color: var(--c4); }
+    .prompt-card:nth-child(5) .prompt-type { color: var(--c5); }
+    .prompt-title { font-family: var(--play); font-size: 16px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+    .prompt-example { background: var(--off); border: 2px solid var(--border); border-radius: 9px; padding: 9px 13px; font-size: 13.5px; color: var(--text); line-height: 1.55; }
+    .prompt-example .q { color: var(--saffron); font-weight: 800; }
+
+    /* ── CHAIN PROMPT ── */
+    .chain-wrap { background: var(--white); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 36px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .chain-header { background: var(--navy); padding: 13px 22px; font-family: var(--play); font-size: 15px; font-weight: 900; color: var(--white); display: flex; align-items: center; gap: 10px; }
+    .chain-steps { padding: 6px 0; }
+    .chain-step { display: flex; align-items: center; gap: 14px; padding: 11px 22px; border-bottom: 1px solid var(--border); }
+    .chain-step:last-child { border-bottom: none; }
+    .chain-step-num { width: 32px; height: 32px; border-radius: 50%; font-family: var(--play); font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .chain-step:nth-child(1) .chain-step-num { background: var(--c1l); color: var(--c1); }
+    .chain-step:nth-child(2) .chain-step-num { background: var(--c2l); color: var(--c2); }
+    .chain-step:nth-child(3) .chain-step-num { background: var(--c3l); color: var(--c3); }
+    .chain-step-label { font-size: 11px; font-weight: 800; color: var(--slate); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .chain-step-text { font-size: 14px; color: var(--navy); font-weight: 700; }
+
+    /* ── MOBILE EXTRA ── */
+    @media (max-width: 680px) {
+      .training-flow { flex-direction: column; align-items: stretch; }
+      .flow-arrow { transform: rotate(90deg); text-align: center; }
+      .flow-box { min-width: unset; }
+      .tech-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .tech-table { min-width: 380px; }
+      .step-num-col { width: 54px; }
+      .step-num-col .n { font-size: 20px; }
+      .prompt-num-col { width: 50px; font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- नेविगेशन -->
+<nav>
+  <div class="nav-logo">ChatGPT मार्गदर्शिका 🇮🇳</div>
+  <ul class="nav-links">
+    <li><a href="#paribhasha">परिभाषा</a></li>
+    <li><a href="#visheshata">विशेषताएं</a></li>
+    <li><a href="#kaise">कैसे काम करता है</a></li>
+    <li><a href="#mahatva">महत्व</a></li>
+    <li><a href="#prompt">प्रॉम्प्ट</a></li>
+    <li><a href="#upyog">सर्वश्रेष्ठ उपयोग</a></li>
+  </ul>
+</nav>
+
+<!-- हीरो -->
+<div class="hero">
+  <div class="hero-badge">सम्पूर्ण हिंदी मार्गदर्शिका · २०२६</div>
+  <h1>ChatGPT को समझो<br /><span>हिंदी में, पूरी तरह</span></h1>
+  <p>विशेषताओं से लेकर प्रॉम्प्ट तक — हर वो बात जो आपको ChatGPT के बारे में जाननी चाहिए, सरल हिंदी भाषा में।</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">५०+</div><div class="stat-label">भाषाएं उपलब्ध</div></div>
+    <div class="stat"><div class="stat-num">२४/७</div><div class="stat-label">हमेशा उपलब्ध</div></div>
+    <div class="stat"><div class="stat-num">₹०</div><div class="stat-label">मुफ़्त योजना उपलब्ध</div></div>
+    <div class="stat"><div class="stat-num">६</div><div class="stat-label">विषय शामिल</div></div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- परिभाषा -->
+<section id="paribhasha">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">०१ — परिभाषा</div>
+    <h2>ChatGPT क्या है?</h2>
+    <p>OpenAI द्वारा बनाया गया सबसे ज़्यादा इस्तेमाल होने वाला कृत्रिम बुद्धिमत्ता चैटबॉट</p>
+  </div>
+  <div class="definition-card" data-reveal>
+    <div class="full-name">जेनरेटिव पूर्व-प्रशिक्षित ट्रांसफॉर्मर (Generative Pre-trained Transformer)</div>
+    <p>ChatGPT एक <strong>कृत्रिम बुद्धिमत्ता (Artificial Intelligence)</strong> आधारित चैटबॉट है जिसे <strong>OpenAI</strong> कंपनी ने बनाया है। यह करोड़ों किताबों, वेबसाइट्स और शोध पत्रों से सीखकर इंसानों की तरह बातचीत करने और सवालों के जवाब देने में सक्षम है।</p>
+    <p style="margin-bottom:0">सरल शब्दों में — यह एक <strong>स्मार्ट आभासी सहायक (Smart Virtual Assistant)</strong> है जो आपकी भाषा समझता है और आपकी ज़रूरत के अनुसार जानकारी या सामग्री (Content) तैयार करता है। मोबाइल ऐप के माध्यम से ChatGPT से बोलकर बातचीत कर सकते हैं, जो इसे एक हैंड्स-फ्री वर्चुअल असिस्टेंट जैसा अनुभव प्रदान करता है।</p>
+    <div class="def-highlights">
+      <div class="def-highlight">
+        <div class="icon">🧠</div>
+        <h4>विशाल भाषा मॉडल</h4>
+        <p>अरबों मापदंडों (Parameters) पर प्रशिक्षित कृत्रिम बुद्धिमत्ता</p>
+      </div>
+      <div class="def-highlight">
+        <div class="icon">🌐</div>
+        <h4>५०+ भाषाएं</h4>
+        <p>हिंदी, अंग्रेज़ी सहित ५०+ भाषाओं में समर्थन</p>
+      </div>
+      <div class="def-highlight">
+        <div class="icon">⚡</div>
+        <h4>ट्रांसफॉर्मर संरचना</h4>
+        <p>शब्द-दर-शब्द उत्तर तैयार करने की क्षमता</p>
+      </div>
+      <div class="def-highlight">
+        <div class="icon">🔄</div>
+        <h4>मानव प्रतिक्रिया से सीखा</h4>
+        <p>इंसानी फीडबैक से प्रशिक्षित (RLHF)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- विशेषताएं -->
+<section id="visheshata">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">०२ — विशेषताएं</div>
+    <h2>ChatGPT की मुख्य विशेषताएं</h2>
+    <p>वो सब कुछ जो ChatGPT कर सकता है</p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">मुख्य / ०१</div>
+      <div class="feature-icon">💬</div>
+      <h3>प्राकृतिक भाषा समझ</h3>
+      <p>इंसानों की तरह बातचीत करता है। हिंदी, अंग्रेज़ी और ५०+ भाषाओं में समझता और जवाब देता है। आप मोबाइल ऐप के माध्यम से ChatGPT से बोलकर बातचीत कर सकते हैं, जो इसे एक हैंड्स-फ्री वर्चुअल असिस्टेंट जैसा अनुभव प्रदान करता है। </p>
+      <div class="feature-tags"><span class="tag">हिंदी</span><span class="tag">अंग्रेज़ी</span><span class="tag">५०+ भाषाएं</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">मुख्य / ०२</div>
+      <div class="feature-icon">✍️</div>
+      <h3>लेख निर्माण</h3>
+      <p>निबंध, कहानियां, ईमेल, रिपोर्ट लिख सकता है। किसी भी विषय पर सामग्री तैयार करता है।</p>
+      <div class="feature-tags"><span class="tag">निबंध</span><span class="tag">ईमेल</span><span class="tag">रिपोर्ट</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">मुख्य / ०३</div>
+      <div class="feature-icon">❓</div>
+      <h3>प्रश्न और उत्तर</h3>
+      <p>किसी भी सवाल का विस्तृत जवाब देता है। कठिन विषयों को सरल भाषा में समझाता है। सिर्फ उत्तर नहीं देता — सोचना सिखाता है। कदम-दर-कदम मार्गदर्शन देता है।</p>
+      <div class="feature-tags"><span class="tag nila">सवाल-जवाब</span><span class="tag nila">समझाना</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">पढ़ाई / ०४</div>
+      <div class="feature-icon">📐</div>
+      <h3>चरणबद्ध समस्या समाधान</h3>
+      <p>गणित, भौतिकी, रसायन के सवाल कदम-दर-कदम हल करता है। JEE, NEET स्तर के प्रश्न भी ये आसनी से हल कर लेता है।</p>
+      <div class="feature-tags"><span class="tag">गणित</span><span class="tag">भौतिकी</span><span class="tag">रसायन</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">पढ़ाई / ०५</div>
+      <div class="feature-icon">📄</div>
+      <h3>सारांश बनाना</h3>
+      <p>लंबे दस्तावेज़ों और लेखों को संक्षिप्त सारांश में बदलता है। घंटों का काम मिनटों में कर लेता है।</p>
+      <div class="feature-tags"><span class="tag">सारांश</span><span class="tag">नोट्स</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">पढ़ाई / ०६</div>
+      <div class="feature-icon">🌍</div>
+      <h3>शेड्यूल्ड टास्क (Scheduled Tasks)</h3>
+      <p>इसे भविष्य में बार-बार होने वाले काम (जैसे रिपोर्ट बनाना या रिमाइंडर भेजना) को स्वचालित (Automate) करने के लिए निर्देश दे सकते हैं। </p>
+      <div class="feature-tags"><span class="tag nila">हिंदी↔अंग्रेज़ी</span><span class="tag nila">५०+ भाषाएं</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">तकनीकी / ०७</div>
+      <div class="feature-icon">💻</div>
+      <h3>कोड लिखना और सुधारना</h3>
+      <p>Python, Java, C++, HTML जैसी भाषाओं में कोड लिखता है। कोड की गलतियां ढूंढता और ठीक करता है।</p>
+      <div class="feature-tags"><span class="tag peela">Python</span><span class="tag peela">Java</span><span class="tag peela">C++</span><span class="tag peela">HTML</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">तकनीकी / ०८</div>
+      <div class="feature-icon">📊</div>
+      <h3>डेटा विश्लेषण</h3>
+      <p>तालिकाओं और डेटा का विश्लेषण करके अंतर्दृष्टि (Insights) देता है। CSV, स्प्रेडशीट, रिपोर्ट, ग्राफ के माध्यम से समझते है।</p>
+      <div class="feature-tags"><span class="tag peela">CSV</span><span class="tag peela">विश्लेषण</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">२०२६ नया / ०९</div>
+      <div class="feature-icon">🎓</div>
+      <h3>अनुवाद</h3>
+      <p>एक भाषा से दूसरी भाषा में पेशेवर गुणवत्ता का अनुवाद करता है। इसे  ५०+भाषाएं आती है ।</p>
+      <div class="feature-tags"><span class="tag nila">हिंदी↔अंग्रेज़ी</span><span class="tag nila">५०+ भाषाएं</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">२०२६ नया / १०</div>
+      <div class="feature-icon">🖼️</div>
+      <h3>दृश्य स्पष्टीकरण</h3>
+      <p>गणित और विज्ञान के विषयों के दृश्य आरेख (Visual Diagrams) बनाता है। जिसे देखकर समझना आसान होता है।</p>
+      <div class="feature-tags"><span class="tag">आरेख</span><span class="tag">दृश्य सामग्री</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">२०२६ नया / ११</div>
+      <div class="feature-icon">🧠</div>
+      <h3>स्मृति (प्रो योजना)</h3>
+      <p>पुरानी बातचीत याद रखता है। हर बार व्यक्तिगत अनुभव (Personalized Experience) देता है।</p>
+      <div class="feature-tags"><span class="tag nila">प्रो</span><span class="tag nila">व्यक्तिगत</span></div>
+    </div>
+
+    <div class="feature-card" data-reveal>
+      <div class="feature-num">२०२६ नया / १२</div>
+      <div class="feature-icon">🌐</div>
+      <h3>वेब खोज</h3>
+      <p>इंटरनेट से वास्तविक समय की जानकारी खोज सकता है। ताज़ा घटनाओं के बारे में उत्तर दे सकता है।</p>
+      <div class="feature-tags"><span class="tag">वास्तविक समय</span><span class="tag">खोज</span></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- कैसे काम करता है -->
+<section id="kaise">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">०३ — कार्यप्रणाली</div>
+    <h2>ChatGPT कैसे काम करता है?</h2>
+    <p>सरल भाषा में, कदम-दर-कदम</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;" data-reveal>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">१</div>
+        <div class="step-content">
+          <h3>आप सवाल टाइप करते हैं</h3>
+          <p>आपका सवाल लिखित रूप में ChatGPT को भेजा जाता है।</p>
+          <div class="step-code">→ इसे <strong>"प्रॉम्प्ट (Prompt)"</strong> कहते हैं</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">२</div>
+        <div class="step-content">
+          <h3>ChatGPT सवाल समझता है</h3>
+          <p>शब्दों को छोटे-छोटे टुकड़ों में तोड़ता है और प्रत्येक टुकड़े का अर्थ समझता है।</p>
+          <div class="step-code">→ इन्हें <strong>"टोकन (Tokens)"</strong> कहते हैं</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">३</div>
+        <div class="step-content">
+          <h3>कृत्रिम बुद्धिमत्ता सोचती है</h3>
+          <p>अरबों मापदंडों में से सही जानकारी ढूंढती है। सांख्यिकीय संभावना के आधार पर सबसे उपयुक्त जवाब तैयार करती है।</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">४</div>
+        <div class="step-content">
+          <h3>उत्तर सामने आता है</h3>
+          <p>जवाब शब्द-दर-शब्द तैयार होता है — इसीलिए धीरे-धीरे टाइप होता दिखता है।</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="definition-card" style="margin-bottom:1.25rem;">
+        <h3 style="margin-bottom:1rem;">प्रशिक्षण कैसे हुआ?</h3>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="def-highlight">
+            <h4>१. पूर्व-प्रशिक्षण (Pre-training)</h4>
+            <p>इंटरनेट से करोड़ों लेख पढ़े। भाषा के नमूने (Patterns) सीखे। अगला शब्द अनुमानित करना सीखा।</p>
+          </div>
+          <div class="def-highlight">
+            <h4>२. बारीक प्रशिक्षण (Fine-tuning)</h4>
+            <p>इंसानों ने सही-गलत जवाब बताए। अच्छे जवाबों को पुरस्कार मिला, बुरे को दंड।</p>
+          </div>
+          <div class="def-highlight">
+            <h4>३. मानव फीडबैक से सुदृढ़ीकरण (RLHF)</h4>
+            <p>इंसानों ने जवाबों को क्रम दिया। इससे AI और बेहतर बनती गई।</p>
+          </div>
+        </div>
+      </div>
+      <div class="definition-card">
+        <h3 style="margin-bottom:1rem;">तकनीकी संरचना</h3>
+        <table style="width:100%; font-size:0.83rem; border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:0.5rem 0; color:var(--textl);">संरचना</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">ट्रांसफॉर्मर तंत्रिका नेटवर्क</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:0.5rem 0; color:var(--textl);">मापदंड</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">अरबों (Billions)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:0.5rem 0; color:var(--textl);">प्रशिक्षण डेटा</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">इंटरनेट का विशाल भाग</td>
+          </tr>
+          <tr>
+            <td style="padding:0.5rem 0; color:var(--textl);">आउटपुट</td>
+            <td style="padding:0.5rem 0; text-align:right; font-weight:600;">एक-एक शब्द तैयार करता है</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- महत्व -->
+<section id="mahatva">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">०४ — महत्व</div>
+    <h2>ChatGPT क्यों ज़रूरी है?</h2>
+    <p>आज के समय में ChatGPT ने दुनिया के काम करने का तरीका बदल दिया है</p>
+  </div>
+  <div class="wrap" style="padding-top:0; padding-bottom:0;">
+
+  <!-- ── 1. शिक्षा ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🎓 शिक्षा में</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Students & Teachers</div>
+  </div>
+
+  <div class="imp-card card-edu">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🎓</div>
+      <div class="imp-title">Students के लिए</div>
+    </div>
+    <ul class="bullet-list">
+      <li>कठिन विषयों को आसान भाषा में समझाता है</li>
+      <li>होमवर्क और असाइनमेंट में सहायता करता है</li>
+      <li>परीक्षा की तैयारी में सहायता करता है</li>
+	<li>नोट्स और सारांश बनाना</li>
+
+      <li>२४/७ उपलब्ध — रात को भी पढ़ाई में मदद करता है</li>
+      <li>व्यक्तिगत शिक्षक की तरह काम करता है — <strong>₹० में</strong></li>
+      <li>JEE, NEET, UPSC की तैयारी में सहायक है</li>
+      <li>किसी भी subject का doubt clear करता है</li>
+      <li>NCERT chapters को summarize करता है</li>
+      <li>Formulas और definitions याद करने में मदद करता है</li>
+      <li>Essay, paragraph, application लिखने में मदद करता है</li>
+      <li>Project report बनाने में सहायता करता है</li>
+    </ul>
+
+    <div class="sub-title">🧮 Maths &amp; Science में</div>
+    <ul class="bullet-list">
+      <li>Step-by-step solution पाना</li>
+      <li>Concept की visual explanation</li>
+      <li>Practice questions बनवाना</li>
+      <li>Exam pattern समझना</li>
+    </ul>
+
+    <div class="sub-title">🌐 अनुवाद और भाषा सीखना</div>
+    <ul class="bullet-list">
+      <li>हिंदी से अंग्रेज़ी और अन्य भाषाओं में अनुवाद</li>
+      <li>व्याकरण सुधारना</li>
+      <li>नई भाषा सीखने में सहायता</li>
+      <li>Grammar mistakes check करता है</li>
+    </ul>
+  </div>
+
+
+
+  <div class="imp-card card-edu">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">👩‍🏫</div>
+      <div class="imp-title">Teachers के लिए</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Lesson Plans और study material जल्दी बनाता है</li>
+      <li>Students के लिए quiz और assignments तैयार करता है</li>
+      <li>कठिन topics को आसान भाषा में explain करता है</li>
+    </ul>
+  </div>
+
+  <!-- ── 2. करियर ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>💼 करियर में</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Job & Growth</div>
+  </div>
+
+  <div class="imp-card card-career">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">💼</div>
+      <div class="imp-title">Career Growth के लिए</div>
+    </div>
+    <ul class="bullet-list">
+      <li>बायोडेटा और आवेदन पत्र लिखने में मदद करता है</li>
+      <li>Interview की तैयारी करवाता है</li>
+      <li>नई Skills जल्दी सीखने में तेजी लाता है</li>
+      <li>AI जानने वालों को <strong>२५–४०% अधिक वेतन</strong> मिलता है</li>
+    </ul>
+  </div>
+
+!-- ── 3. प्रोग्रामिंग और वेब डेवलपमेंट ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>💻 प्रोग्रामिंग और वेब डेवलपमेंट</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Job & Growth</div>
+  </div>
+
+  <div class="imp-card card-career">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">💼</div>
+      <div class="imp-title">Career Growth के लिए</div>
+    </div>
+ </div>
+  <div class="imp-card card-career">
+    <ul class="bullet-list">
+      <li>HTML, CSS, JavaScript कोड लिखना में मदद करता है</li>
+      <li>कोड में त्रुटियाँ (Errors) ठीक करता है</li>
+      <li>वेबसाइट डिज़ाइन के सुझाव देता है</li>
+      <li>नए प्रोजेक्ट्स के लिए कोड जनरेट करता है</li>
+    </ul>
+  </div>
+
+
+  <!-- ── 3. Creative ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🎨 Creative कामों में</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Writing & Content</div>
+  </div>
+
+  <div class="imp-card card-creative">
+    <div class="imp-card-header">
+
+
+      <div class="imp-icon-wrap">🎨 </div>
+      <div class="imp-title">इस तरह के Prompts</div>
+    </div>
+    <div class="prompt-chips">
+      <div class="prompt-chip">
+<li>	ब्लॉग, लेख, कहानियाँ, कविताएँ  और निबंध लिखना</li>
+<li>	सोशल मीडिया पोस्ट बनाना</li>
+<li>	भाषण और स्क्रिप्ट तैयार करना</li>
+<li>	विज्ञापन कॉपी लिखना</li>
+<li>	वीडियो और इमेज के लिए प्रॉम्प्ट बनाना</li>
+<li>	लोगो और डिज़ाइन आइडिया देना</li>
+
+
+        <span class="qlabel">✍️ कहानी लिखना</span>
+        "Ek motivational kahani likho ek garib student ki jo IAS bana"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">📝 कविता बनाना</span>
+        "Maa par ek emotional kavita likho Hindi mein"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">🎬 Script लिखना</span>
+        "YouTube video ke liye 5 minute ki script banao AI topic par"
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. Daily Life ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🌟 Daily Life में</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Everyday Use</div>
+  </div>
+
+  <div class="imp-card card-daily">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🌟</div>
+      <div class="imp-title">रोज़ काम आने वाले Prompts</div>
+    </div>
+    <div class="prompt-chips">
+      <div class="prompt-chip">
+        <span class="qlabel">🍳 Recipes</span>
+        "Ghar mein sirf aloo aur pyaz hai, kya bana sakte hain?"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">✈️ Travel Planning</span>
+        "Delhi se Manali 5 din ka trip plan karo ₹15,000 budget mein"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">💪 Fitness</span>
+        "Ghar par bina equipment ke 30 din ka workout plan banao"
+      </div>
+      <div class="prompt-chip">
+        <span class="qlabel">📅 Time Management</span>
+        "JEE / NEET aur Board dono ke liye daily timetable banao"
+      </div>
+<div class="prompt-chip">
+        <span class="qlabel">📅 डाइट चार्ट</span>
+        "1 घंटा पैदल चलने से कितनी कैलोरी बर्न होती है?"
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- ── 5. Productivity ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>⚡ Productivity Hacks</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Time Saver</div>
+  </div>
+
+  <div class="imp-card card-prod">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">⚡</div>
+      <div class="imp-title">ChatGPT से समय बचाओ</div>
+    </div>
+    <div class="prod-list">
+      <div class="prod-item"><div class="prod-check">✓</div> कोई भी document summarize करो <div class="prod-time">2 मिनट में</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> किसी भी topic पर research <div class="prod-time">10 मिनट में</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Professional email लिखो <div class="prod-time">30 सेकंड में</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Study notes बनाओ <div class="prod-time">5 मिनट में</div></div>
+      <div class="prod-item"><div class="prod-check">✓</div> Presentation outline तैयार करो <div class="prod-time">2 मिनट में</div></div>
+    </div>
+  </div>
+
+  <!-- ── 6. Business ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🏢 व्यापार में</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Business</div>
+  </div>
+
+  <div class="imp-card card-biz">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🏢</div>
+      <div class="imp-title">Business के लिए</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Marketing Content, emails, ads जल्दी लिखता है</li>
+      <li>ग्राहक सेवा में सहायता करता है</li>
+      <li>व्यापारिक विचार और रणनीतियां बनाने में मदद करता है</li>
+      <li>छोटे व्यापारियों को बड़ी कंपनियों जैसा काम करने में मदद करता है</li>
+<li>	रिपोर्ट और प्रेजेंटेशन तैयार करना</li>
+    </ul>
+    <div class="sub-title">📋 Quick Business Tasks</div>
+    <ul class="bullet-list">
+      <li><strong>📧 Emails</strong> — Professional emails seconds में</li>
+      <li><strong>📱 Social Media</strong> — Posts और captions लिखना</li>
+      <li><strong>📊 Reports</strong> — Business reports तैयार करना</li>
+      <li><strong>💡 Ideas</strong> — New business ideas generate करना</li>
+      <li><strong>🛍️ Marketing</strong> — Product descriptions लिखना</li>
+    </ul>
+  </div>
+
+  <!-- ── 7 & 8. Health & Legal — 2 col ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>🏥 अन्य सेवाओं में</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Health & Legal</div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="imp-card card-health" style="margin-bottom:0">
+      <div class="imp-card-header">
+        <div class="imp-icon-wrap">🏥</div>
+        <div class="imp-title">स्वास्थ्य सेवा में</div>
+      </div>
+      <ul class="bullet-list">
+        <li>चिकित्सा शब्दों का अर्थ समझाता है</li>
+        <li>Symptoms की जानकारी देता है</li>
+        <li>शोध साहित्य समीक्षा में मदद करता है</li>
+      </ul>
+    </div>
+    <div class="imp-card card-legal" style="margin-bottom:0">
+      <div class="imp-card-header">
+        <div class="imp-icon-wrap">⚖️</div>
+        <div class="imp-title">Legal सेवा में</div>
+      </div>
+      <ul class="bullet-list">
+        <li>कानूनी भाषा को सरल बनाता है</li>
+        <li>Documents समझने में मदद करता है</li>
+        <li>अधिकारों की बेसिक जानकारी देता है</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 9. India ── -->
+  <div class="sec-head" style="margin-top:32px">
+    <div class="sec-accent"></div>
+    <h2>🇮🇳 भारत के लिए विशेष</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">India Special</div>
+  </div>
+
+  <div class="imp-card card-india">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">🇮🇳</div>
+      <div class="imp-title">भारतीय Students &amp; Users के लिए</div>
+    </div>
+    <ul class="bullet-list">
+      <li>Tier-2, Tier-3 शहरों के छात्रों को बड़े शहरों जैसी पढ़ाई की सुविधा देता है</li>
+      <li>Hindi और regional languages में support करता है</li>
+      <li>4G इंटरनेट पर आसानी से उपयोग होता है</li>
+      <li>महंगे coaching centre का <strong>सस्ता और बेहतर विकल्प</strong> है</li>
+    </ul>
+  </div>
+
+  <!-- ── 10. Time & Money ── -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>⏱️ समय और धन की बचत</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Save Both</div>
+  </div>
+
+  <div class="imp-card card-time">
+    <div class="imp-card-header">
+      <div class="imp-icon-wrap">⏱️</div>
+      <div class="imp-title">इसलिए AI सीखना ज़रूरी है</div>
+    </div>
+    <ul class="bullet-list">
+      <li>घंटों का काम मिनटों में पूरा होता है</li>
+      <li>महंगे विशेषज्ञों की जगह बुनियादी काम खुद करें</li>
+      <li>शोध जो दिनों में होता — अब घंटों में होता है</li>
+      <li>पेशेवर सामग्री तुरंत तैयार करें</li>
+    </ul>
+  </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- प्रॉम्प्ट -->
+<section id="prompt">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">०५ — प्रॉम्प्ट</div>
+    <h2>अच्छा प्रॉम्प्ट बनाम बुरा प्रॉम्प्ट</h2>
+    <p>ChatGPT उतना ही अच्छा जवाब देगा जितना अच्छा प्रॉम्प्ट आप देंगे</p>
+  </div>
+
+  <!-- सूत्र -->
+  <div class="formula-card" data-reveal>
+    <h3>🔑 अच्छे प्रॉम्प्ट का सूत्र</h3>
+    <div class="formula-parts">
+      <div class="formula-part">
+        <div class="ficon">👤</div>
+        <div class="fname">भूमिका</div>
+        <div class="flabel">AI को बताओ वो कौन है</div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-part">
+        <div class="ficon">📋</div>
+        <div class="fname">कार्य</div>
+        <div class="flabel">क्या करना है</div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-part">
+        <div class="ficon">📌</div>
+        <div class="fname">संदर्भ</div>
+        <div class="flabel">पृष्ठभूमि की जानकारी</div>
+      </div>
+      <div class="formula-plus">+</div>
+      <div class="formula-part">
+        <div class="ficon">📐</div>
+        <div class="fname">प्रारूप</div>
+        <div class="flabel">जवाब कैसा चाहिए</div>
+      </div>
+      <div class="formula-eq">=</div>
+      <div class="formula-part" style="border-color: var(--saffron); background: rgba(16,185,129,0.08)">
+        <div class="ficon">✅</div>
+        <div class="fname" style="color: var(--saffron)">सटीक जवाब</div>
+        <div class="flabel">हर बार सही उत्तर</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- उदाहरण -->
+  <div class="prompt-section" data-reveal>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ बुरा प्रॉम्प्ट</div>
+          <div class="topic">📚 पढ़ाई — भौतिकी</div>
+          <div class="prompt-text">Newton ka law batao</div>
+          <div class="prompt-note">किस स्तर पर? हिंदी या अंग्रेज़ी? JEE या कक्षा ९?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ अच्छा प्रॉम्प्ट</div>
+          <div class="topic">📚 पढ़ाई — भौतिकी</div>
+          <div class="prompt-text">Newton ke teeno laws of motion ko Hindi mein samjhao, har law ka ek real life example do, aur JEE level ke 2 questions bhi banao</div>
+          <div class="prompt-note">स्तर, भाषा, प्रारूप और सामग्री — सब स्पष्ट!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ बुरा प्रॉम्प्ट</div>
+          <div class="topic">✍️ लेखन — निबंध</div>
+          <div class="prompt-text">Essay likho</div>
+          <div class="prompt-note">किस विषय पर? कितना लंबा? किसके लिए?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ अच्छा प्रॉम्प्ट</div>
+          <div class="topic">✍️ लेखन — निबंध</div>
+          <div class="prompt-text">'Mere Sapno ka Bharat' par 500 words ka Hindi essay likho, Class 12 ke liye, Introduction, 3 paragraphs aur Conclusion ke saath</div>
+          <div class="prompt-note">विषय, लंबाई, कक्षा, संरचना — सब निर्दिष्ट!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ बुरा प्रॉम्प्ट</div>
+          <div class="topic">💻 कोडिंग — Python</div>
+          <div class="prompt-text">Code banao</div>
+          <div class="prompt-note">कौन-सी भाषा? क्या बनाना है? स्तर कौन-सा?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ अच्छा प्रॉम्प्ट</div>
+          <div class="topic">💻 कोडिंग — Python</div>
+          <div class="prompt-text">Python mein ek simple calculator banao jo add, subtract, multiply aur divide kar sake, beginner friendly code likho, har line par comment bhi lagao Hindi mein</div>
+          <div class="prompt-note">भाषा, विशेषताएं, स्तर, प्रारूप — एकदम सही!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ बुरा प्रॉम्प्ट</div>
+          <div class="topic">💼 करियर — बायोडेटा</div>
+          <div class="prompt-text">Resume banao</div>
+          <div class="prompt-note">किसका? किस क्षेत्र का? कौन-सी कौशलताएं?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ अच्छा प्रॉम्प्ट</div>
+          <div class="topic">💼 करियर — बायोडेटा</div>
+          <div class="prompt-text">Mera professional resume banao — Naam: Rahul Sharma, B.Tech Computer Science 2024, Skills: Python, Java, SQL, Experience: 2 internships TCS aur Wipro, ATS-friendly format mein</div>
+          <div class="prompt-note">सारी जानकारी → एकदम सही बायोडेटा!</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="prompt-pair">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-label">❌ बुरा प्रॉम्प्ट</div>
+          <div class="topic">🌍 यात्रा</div>
+          <div class="prompt-text">Trip plan karo</div>
+          <div class="prompt-note">कहाँ से? कहाँ? कितने दिन? बजट क्या है?</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-label">✅ अच्छा प्रॉम्प्ट</div>
+          <div class="topic">🌍 यात्रा</div>
+          <div class="prompt-text">Delhi se Manali 5 din ka trip plan karo ₹15,000 budget mein — transport, hotel, must-visit places, daily itinerary aur money saving tips ke saath Hindi mein</div>
+          <div class="prompt-note">गंतव्य, अवधि, बजट, अपेक्षाएं — बिल्कुल स्पष्ट!</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- Section 1: Training -->
+  <div id="training">
+    <div class="sec-head">
+      <div class="sec-accent"></div>
+      <h2>📚 Training कैसे हुई?</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">Step 1–3</div>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="training-flow">
+      <div class="flow-box">
+        <div class="icon">🌐</div>
+        <div class="label">Internet Data</div>
+        <div class="sublabel">Wikipedia · Books · Websites · Research Papers</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box highlight">
+        <div class="icon">🤖</div>
+        <div class="label">GPT Model</div>
+        <div class="sublabel">Training होती है</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">
+        <div class="icon">💬</div>
+        <div class="label">ChatGPT</div>
+        <div class="sublabel">आपका Assistant</div>
+      </div>
+    </div>
+
+    <!-- 3 Steps -->
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">
+          <span class="n">1</span>
+          <span class="emoji">📖</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Pre-training — पढ़ाई का Phase</div>
+          <ul class="step-points">
+            <li>Internet से करोड़ों texts पढ़े</li>
+            <li>भाषा का pattern सीखा</li>
+            <li>अगला word predict करना सीखा</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">
+          <span class="n">2</span>
+          <span class="emoji">✏️</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Fine-tuning — सुधार का Phase</div>
+          <ul class="step-points">
+            <li>Humans ने सही-गलत जवाब बताए</li>
+            <li>अच्छे जवाबों को reward मिला</li>
+            <li>बुरे जवाबों को penalty मिली</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">
+          <span class="n">3</span>
+          <span class="emoji">🏆</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">RLHF — इंसानी Feedback से सीखना</div>
+          <ul class="step-points">
+            <li>इंसानों ने जवाबों को rank किया</li>
+            <li>AI ने इससे और बेहतर बनना सीखा</li>
+            <li>Reinforcement Learning से improve हुआ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Structure -->
+  <div id="structure">
+    <div class="sec-head">
+      <div class="sec-accent"></div>
+      <h2>🏗️ GPT की Technical Structure</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">Architecture</div>
+    </div>
+
+    <div class="tech-table-wrap">
+      <table class="tech-table">
+        <thead>
+          <tr>
+            <th>चीज़</th>
+            <th>विवरण</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tt-key">Architecture</td>
+            <td class="tt-val">🧱 Transformer Neural Network</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Parameters</td>
+            <td class="tt-val">🔢 अरबों (Billions में)</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Training Data</td>
+            <td class="tt-val">🌐 Internet का बड़ा हिस्सा</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Context Window</td>
+            <td class="tt-val">🧠 एक बार में हजारों words याद रखता है</td>
+          </tr>
+          <tr>
+            <td class="tt-key">Output</td>
+            <td class="tt-val">✍️ एक-एक word generate करता है</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Transformer Card -->
+    <div class="transformer-card">
+      <div class="transformer-title">🎯 <span>Transformer</span> क्या है?</div>
+      <div class="transformer-points">
+        <div class="t-point">
+          <div class="t-dot"></div>
+          <div class="t-text">ChatGPT का <strong>दिल Transformer है</strong> — यह एक special AI architecture है</div>
+        </div>
+        <div class="t-point">
+          <div class="t-dot"></div>
+          <div class="t-text">पूरे sentence को <strong>एक साथ देखता है</strong>, एक-एक word नहीं</div>
+        </div>
+        <div class="t-point">
+          <div class="t-dot"></div>
+          <div class="t-text">हर word का दूसरे words से <strong>relation समझता है</strong></div>
+        </div>
+      </div>
+      <div class="example-box">
+        💡 <strong>Example:</strong> "मैंने आम खाया, वो बहुत मीठा था" — यहाँ <strong>"मीठा"</strong> का संबंध <strong>"आम"</strong> से है। Transformer यह automatically समझ लेता है।
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Example -->
+  <div id="example">
+    <div class="sec-head">
+      <div class="sec-accent"></div>
+      <h2>💡 आसान Example</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">Step by Step</div>
+    </div>
+
+    <div class="example-flow">
+      <div class="ef-header">👤 आप पूछते हैं:</div>
+      <div class="ef-question">❓ "भारत की राजधानी क्या है?"</div>
+      <div class="ef-steps">
+        <div class="ef-step">
+          <div class="ef-step-num">1</div>
+          <div class="ef-step-text"><strong>"भारत"</strong> + <strong>"राजधानी"</strong> — ये tokens identify हुए</div>
+        </div>
+        <div class="ef-step">
+          <div class="ef-step-num">2</div>
+          <div class="ef-step-text">Training data में करोड़ों बार <strong>"भारत की राजधानी = नई दिल्ली"</strong> पढ़ा था</div>
+        </div>
+        <div class="ef-step">
+          <div class="ef-step-num">3</div>
+          <div class="ef-step-text">सबसे likely answer calculate हुआ → <strong>"नई दिल्ली"</strong></div>
+        </div>
+        <div class="ef-step">
+          <div class="ef-step-num">4</div>
+          <div class="ef-step-text">जवाब word-by-word generate होकर आपको मिला ✅</div>
+        </div>
+      </div>
+      <div class="ef-answer">✅ जवाब: नई दिल्ली</div>
+    </div>
+  </div>
+
+  <div class="golden" data-reveal>
+    <h3>💡 सुनहरा नियम याद रखो</h3>
+    <p>ChatGPT आपका मन नहीं पढ़ सकता। जो आप चाहते हो वो <strong>स्पष्ट रूप से लिखो</strong> — तभी सटीक जवाब मिलेगा! जितना अधिक विवरण देंगे, उतना बेहतर उत्तर पाएंगे।</p>
+  </div>
+</section>
+
+ <!-- Section 5: Prompts -->
+  <div id="prompt">
+    <div class="sec-head" style="max-width:680px; margin-left:auto; margin-right:auto;">
+      <div class="sec-accent"></div>
+      <h2>🚀 Prompt कितने प्रकार के होते हैं?</h2>
+      <div class="sec-line"></div>
+      <div class="sec-badge">5 Types</div>
+    </div>
+
+    <div class="prompt-grid">
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">1</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Simple Prompt</div>
+          <div class="prompt-title">सीधा सवाल पूछना</div>
+          <div class="prompt-example"><span class="q">👤 आप:</span> "Water cycle kya hai?"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">2</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Instructional Prompt</div>
+          <div class="prompt-title">कुछ करने को कहना</div>
+          <div class="prompt-example"><span class="q">👤 आप:</span> "Ye paragraph summarize karo"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">3</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Role-based Prompt</div>
+          <div class="prompt-title">AI को Role देना</div>
+          <div class="prompt-example"><span class="q">👤 आप:</span> "Tum ek doctor ho, mujhe fever ke baare mein batao"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">4</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Creative Prompt</div>
+          <div class="prompt-title">Creative काम करवाना</div>
+          <div class="prompt-example"><span class="q">👤 आप:</span> "Diwali par ek kavita likho"</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-num-col">5</div>
+        <div class="prompt-body">
+          <div class="prompt-type">Chain Prompt</div>
+          <div class="prompt-title">एक के बाद एक सवाल करना</div>
+          <div class="prompt-example">👇 नीचे देखें →</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Chain Prompt Detail -->
+    <div class="chain-wrap">
+      <div class="chain-header">🔗 Chain Prompt — कैसे काम करता है?</div>
+      <div class="chain-steps">
+        <div class="chain-step">
+          <div class="chain-step-num">1</div>
+          <div>
+            <div class="chain-step-label">पहले पूछो</div>
+            <div class="chain-step-text">"JEE kya hai?"</div>
+          </div>
+        </div>
+        <div class="chain-step">
+          <div class="chain-step-num">2</div>
+          <div>
+            <div class="chain-step-label">फिर पूछो</div>
+            <div class="chain-step-text">"Iske liye best books batao"</div>
+          </div>
+        </div>
+        <div class="chain-step">
+          <div class="chain-step-num">3</div>
+          <div>
+            <div class="chain-step-label">अंत में पूछो</div>
+            <div class="chain-step-text">"Ab iske liye daily timetable banao"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+<hr class="divider" />
+
+<!-- सर्वश्रेष्ठ उपयोग -->
+<section id="upyog">
+  <div class="section-header" data-reveal>
+    <div class="section-tag">०६ — सर्वश्रेष्ठ उपयोग</div>
+    <h2>ChatGPT का सर्वश्रेष्ठ उपयोग क्या है?</h2>
+    <p>सीखने में मदद, काम तेज़ करना, और खुद को और अधिक कुशल बनाना</p>
+  </div>
+
+  <div data-reveal style="overflow-x:auto;">
+    <table class="best-table">
+      <thead>
+        <tr>
+          <th>क्रम</th>
+          <th>उपयोग का क्षेत्र</th>
+          <th>उदाहरण</th>
+          <th>फायदा</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">🥇 १</td>
+          <td><strong>पढ़ाई में व्यक्तिगत शिक्षक</strong></td>
+          <td>JEE भौतिकी अवधारणाएं, NCERT सारांश</td>
+          <td>२४/७ मुफ़्त मार्गदर्शन</td>
+        </tr>
+        <tr>
+          <td class="rank">🥈 २</td>
+          <td><strong>कोडिंग सहायक</strong></td>
+          <td>Python कैलकुलेटर, HTML वेबसाइट, गलती सुधार</td>
+          <td>घंटों का काम मिनटों में</td>
+        </tr>
+        <tr>
+          <td class="rank">🥉 ३</td>
+          <td><strong>लेखन सहायक</strong></td>
+          <td>निबंध, ईमेल, बायोडेटा, भाषण, कविता</td>
+          <td>पेशेवर सामग्री तुरंत</td>
+        </tr>
+        <tr>
+          <td class="rank">४</td>
+          <td><strong>करियर की तैयारी</strong></td>
+          <td>बायोडेटा, साक्षात्कार तैयारी, आवेदन पत्र</td>
+          <td>नौकरी के लिए तैयार</td>
+        </tr>
+        <tr>
+          <td class="rank">५</td>
+          <td><strong>व्यापार वृद्धि</strong></td>
+          <td>विपणन ईमेल, सोशल मीडिया पोस्ट, विचार</td>
+          <td>पेशेवर स्तर की सामग्री</td>
+        </tr>
+        <tr>
+          <td class="rank">६</td>
+          <td><strong>दैनिक जीवन</strong></td>
+          <td>व्यंजन विधि, यात्रा योजना, व्यायाम कार्यक्रम</td>
+          <td>हर रोज़ स्मार्ट निर्णय</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- सीमाएं -->
+  <div style="margin-top: 3rem;">
+    <div class="section-header" style="margin-bottom: 1.5rem;" data-reveal>
+      <div class="section-tag">⚠️ सीमाएं</div>
+      <h2 style="font-size: 1.5rem;">ध्यान रखें — यह भी जानना ज़रूरी है</h2>
+    </div>
+    <div class="limits-grid" data-reveal>
+      <div class="limit-card">
+        <h4>सीमित इंटरनेट पहुँच</h4>
+        <p>वास्तविक समय की खबरें हमेशा नहीं जानता — वेब खोज मोड में ही ताज़ा जानकारी मिलती है। </p>
+      </div>
+      <div class="limit-card">
+        <h4>गलत जानकारी हो सकती है</h4>
+        <p>कभी-कभी training data में गलत जानकारी होने के कारण, गलत जानकारी दे सकता है (मतिभ्रम / Hallucinations)। हमेशा जाँच करें।</p>
+      </div>
+      <div class="limit-card">
+        <h4>ज्ञान की समय-सीमा</h4>
+        <p>प्रशिक्षण एक निश्चित तारीख के बाद रुका है — बहुत हाल की घटनाओं की जानकारी अधूरी हो सकती है।</p>
+      </div>
+      <div class="limit-card">
+        <h4>असली समझ नहीं</h4>
+        <p>पैटर्न का मिलान करता है — वास्तव में सोचता नहीं। किसी विशेषज्ञ की जगह नहीं ले सकता।</p>
+      </div>
+    </div>
+    <div class="warning-box" data-reveal>
+      <div class="warning-icon">⚡</div>
+      <p><strong>सही तरीका:</strong> ChatGPT को <strong>शिक्षक</strong> की तरह उपयोग करो, <strong>नकल की मशीन</strong> की तरह नहीं! इससे समझो, फिर खुद लिखो। कृत्रिम बुद्धिमत्ता पर निर्भर रहने की बजाय इससे <strong>सीखो</strong> और आगे बढ़ो।</p>
+    </div>
+  </div>
+</section>
+
+<!-- पाद लेख -->
+<footer>
+  <p>ChatGPT सम्पूर्ण हिंदी मार्गदर्शिका · २०२६ · <span>सीखो, समझो, आगे बढ़ो 🚀</span></p>
+  <p style="margin-top:0.5rem; color: var(--slate)">यह मार्गदर्शिका शैक्षिक उद्देश्य के लिए बनाई गई है।</p>
+</footer>
+
+<script>
+  // स्क्रॉल प्रकट प्रभाव
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

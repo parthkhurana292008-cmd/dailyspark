@@ -10,28 +10,28 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gb:rgba(255,255,255,0.07);
-  --gbord:rgba(255,255,255,0.12);
-  --gh:rgba(255,255,255,0.11);
-  --tp:#fff;
-  --ts:rgba(255,255,255,0.6);
-  --tm:rgba(255,255,255,0.38);
+  --gb:rgba(255,255,255,0.85);
+  --gbord:rgba(100,120,180,0.2);
+  --gh:rgba(255,255,255,0.95);
+  --tp:#1a2340;
+  --ts:#4a5a7a;
+  --tm:#7a8aaa;
   --acc:#60A5FA;
   --r:14px;
 }
-html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;color:var(--tp);overflow-x:hidden}
+html,body{min-height:100%;font-family:'Inter',sans-serif;background:#F0F4FF;color:#1a2340;overflow-x:hidden}
 
 /* BG */
 .bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4;animation:drift 22s ease-in-out infinite}
-.orb.a{width:700px;height:700px;top:-150px;left:-150px;background:radial-gradient(circle,#1e3a8a,transparent);animation-delay:0s}
-.orb.b{width:500px;height:500px;top:40%;right:-100px;background:radial-gradient(circle,#0c4a6e,transparent);animation-delay:-8s}
-.orb.c{width:450px;height:450px;bottom:-100px;left:20%;background:radial-gradient(circle,#3b0764,transparent);animation-delay:-16s}
+.orb.a{width:700px;height:700px;top:-150px;left:-150px;background:radial-gradient(circle,#bfcfef,transparent);animation-delay:0s}
+.orb.b{width:500px;height:500px;top:40%;right:-100px;background:radial-gradient(circle,#c7dff5,transparent);animation-delay:-8s}
+.orb.c{width:450px;height:450px;bottom:-100px;left:20%;background:radial-gradient(circle,#e0d4f5,transparent);animation-delay:-16s}
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
 .app{position:relative;z-index:1}
 
 /* HEADER */
-.hdr{padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,0.25);backdrop-filter:blur(24px);border-bottom:1px solid var(--gbord);position:sticky;top:0;z-index:200}
+.hdr{padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:rgba(255,255,255,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(100,120,180,0.2);position:sticky;top:0;z-index:300}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#f97316,#ef4444);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .logo-text{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700}
@@ -39,7 +39,7 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
 .hdr-center{flex:1;max-width:360px;margin:0 auto}
 .search-box{display:flex;align-items:center;gap:8px;background:var(--gb);border:1px solid var(--gbord);border-radius:24px;padding:8px 16px;transition:border-color .2s}
 .search-box:focus-within{border-color:rgba(96,165,250,.5)}
-.search-box input{background:transparent;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;flex:1}
+.search-box input{background:transparent;border:none;outline:none;color:#1a2340;font-size:13px;font-family:inherit;flex:1}
 .search-box input::placeholder{color:var(--tm)}
 .hdr-right{display:flex;align-items:center;gap:8px}
 .unit-toggle{display:flex;background:var(--gb);border:1px solid var(--gbord);border-radius:20px;overflow:hidden}
@@ -100,17 +100,17 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
 .cc-chip i{font-size:11px;color:var(--acc)}
 
 /* SKELETON */
-.skeleton{background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:4px;height:14px;margin-bottom:6px}
+.skeleton{background:linear-gradient(90deg,rgba(100,120,180,0.07) 25%,rgba(100,120,180,0.14) 50%,rgba(100,120,180,0.07) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:4px;height:14px;margin-bottom:6px}
 .skeleton.sm{height:10px;width:70%}
 .skeleton.lg{height:28px;width:50%}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
 /* DETAIL MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay{position:fixed;inset:0;background:rgba(30,50,100,0.4);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
 .modal-overlay.show{opacity:1;pointer-events:all}
-.modal{background:#0f172a;border:1px solid var(--gbord);border-radius:20px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .25s}
+.modal{background:#ffffff;border:1px solid rgba(100,120,180,0.2);border-radius:20px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .25s}
 .modal-overlay.show .modal{transform:translateY(0)}
-.modal-hdr{padding:18px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:sticky;top:0;background:#0f172a;z-index:10;padding-bottom:14px;border-bottom:1px solid var(--gbord)}
+.modal-hdr{padding:18px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:sticky;top:0;background:#ffffff;z-index:10;padding-bottom:14px;border-bottom:1px solid rgba(100,120,180,0.15)}
 .modal-close{width:32px;height:32px;border-radius:50%;background:var(--gb);border:1px solid var(--gbord);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ts);transition:all .2s;flex-shrink:0}
 .modal-close:hover{background:var(--gh);color:#fff}
 .modal-body{padding:16px 20px 20px}
@@ -123,7 +123,7 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
 .mod-hl{font-size:13px;color:var(--ts)}
 .mod-feels{font-size:12px;color:var(--tm);margin-top:3px}
 .mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.mg-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px}
+.mg-item{background:rgba(240,244,255,0.9);border:1px solid rgba(100,120,180,0.15);border-radius:10px;padding:12px}
 .mg-lbl{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;display:flex;align-items:center;gap:4px}
 .mg-lbl i{font-size:13px;color:var(--acc)}
 .mg-val{font-size:18px;font-weight:600;font-family:'Space Grotesk',sans-serif}
@@ -132,16 +132,16 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
 .mod-hourly{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
 .mod-hourly::-webkit-scrollbar{height:2px}
 .mod-hourly::-webkit-scrollbar-thumb{background:rgba(96,165,250,.3);border-radius:1px}
-.mhc{text-align:center;min-width:54px;padding:8px 6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px}
+.mhc{text-align:center;min-width:54px;padding:8px 6px;background:rgba(240,244,255,0.9);border:1px solid rgba(100,120,180,0.15);border-radius:10px}
 .mhc.now{border-color:rgba(96,165,250,.4);background:rgba(96,165,250,.1)}
 .mhc-time{font-size:9px;color:var(--tm);font-weight:600}
-.mhc-icon{font-size:18px;margin:5px 0;display:block;color:rgba(255,255,255,.6)}
+.mhc-icon{font-size:18px;margin:5px 0;display:block;color:rgba(30,50,100,0.5)}
 .mhc.now .mhc-icon{color:var(--acc)}
 .mhc-temp{font-size:12px;font-weight:600}
 .mhc-rain{font-size:9px;color:var(--acc);margin-top:2px}
 
-.mod-7day{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden;margin-bottom:14px}
-.mfr{display:flex;align-items:center;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05);gap:8px;font-size:12px}
+.mod-7day{background:rgba(240,244,255,0.7);border:1px solid rgba(100,120,180,0.15);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.mfr{display:flex;align-items:center;padding:9px 12px;border-bottom:1px solid rgba(100,120,180,0.1);gap:8px;font-size:12px}
 .mfr:last-child{border-bottom:none}
 .mfr-day{font-weight:600;width:44px}
 .mfr-icon{width:20px;text-align:center;color:var(--acc)}
@@ -180,9 +180,64 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
 .load-overlay{text-align:center;padding:48px 20px}
 .spin{width:48px;height:48px;border:3px solid rgba(249,115,22,.15);border-top-color:#f97316;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== DAILY SPARK HEADER ===== */
+.ds-notif-bar{background:#FF6B00;color:#fff;padding:9px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;position:relative;z-index:400;font-family:'Inter',sans-serif;}
+.ds-notif-bar a{color:#fff;text-decoration:none;}
+.ds-notif-close{background:none;border:none;color:#fff;cursor:pointer;font-size:18px;opacity:0.8;padding:0 4px;}
+.ds-notif-close:hover{opacity:1;}
+.ds-topbar{background:#0D1B2A;color:#fff;padding:10px 20px;font-size:12.5px;position:relative;z-index:400;font-family:'Inter',sans-serif;}
+.ds-topbar-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.ds-topbar-date{color:#8899AA;white-space:nowrap;font-weight:500;}
+.ds-ticker-wrap{flex:1;overflow:hidden;white-space:nowrap;background:rgba(255,255,255,0.06);padding:5px 0;border-radius:4px;border-left:3px solid #FF6B00;}
+.ds-ticker{color:#CBD6E2;display:inline-block;padding-left:100%;animation:ds-tick 28s linear infinite;white-space:nowrap;}
+.ds-ticker:hover{animation-play-state:paused;}
+@keyframes ds-tick{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.ds-masthead{background:#fff;border-bottom:3px solid #FF6B00;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:400;font-family:'Inter',sans-serif;}
+.ds-masthead-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.ds-logo-block{padding:14px 0;flex-shrink:0;text-decoration:none;display:block;}
+.ds-logo-name{font-size:24px;font-weight:800;color:#0D1B2A;line-height:1;}
+.ds-logo-name span{color:#FF6B00;}
+.ds-logo-tag{font-size:10px;color:#8899AA;letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.ds-nav-links{display:flex;gap:2px;align-items:center;}
+.ds-nav-links a{padding:8px 14px;font-size:13px;font-weight:600;color:#1A2B3C;border-radius:4px;transition:background 0.15s,color 0.15s;white-space:nowrap;text-decoration:none;}
+.ds-nav-links a:hover{background:#F7F9FC;color:#FF6B00;}
+.ds-nav-links a.active{color:#FF6B00;}
+@media(max-width:900px){.ds-nav-links{display:none;}}
+/* ===== END HEADER CSS ===== */
 </style>
 </head>
 <body>
+
+<!-- ===== DAILY SPARK SHARED HEADER ===== -->
+<div class="ds-notif-bar" id="ds-notif">
+  <a href="ns.html" target="_blank" rel="noopener">🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</a>
+  <button class="ds-notif-close" onclick="document.getElementById('ds-notif').remove()">✕</button>
+</div>
+<div class="ds-topbar">
+  <div class="ds-topbar-inner">
+    <div class="ds-topbar-date" id="ds-topbar-date">Breaking News:</div>
+    <div class="ds-ticker-wrap"><span class="ds-ticker">Jossa Round 2 result on Tuesday, 30 June, 2026 17:00 &nbsp;|&nbsp; Jac Delhi Round 2 result on Wednesday 1st July 2026 (After 05:00 PM) &nbsp;|&nbsp;</span></div>
+  </div>
+</div>
+<div class="ds-masthead">
+  <div class="ds-masthead-inner">
+    <a href="index.html" class="ds-logo-block">
+      <div class="ds-logo-name">Daily <span>Spark</span></div>
+      <div class="ds-logo-tag">Where Knowledge Sparks Success</div>
+    </a>
+    <nav class="ds-nav-links">
+      <a href="index.html">Home</a>
+      <a href="parent.html">Parenting</a>
+      <a href="math.html">Math Playground</a>
+      <a href="gjobs.html">Govt. Jobs</a>
+      <a href="ait.html">Best AI Tools</a>
+      <a href="weather.html" class="active">Weather</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</div>
+<!-- ===== END SHARED HEADER ===== -->
 <div class="bg">
   <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
 </div>
@@ -197,7 +252,7 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
   <div class="hdr-center">
     <div class="search-box">
       <i class="ti ti-search" style="font-size:14px;color:var(--tm)"></i>
-      <input type="text" id="globalSearch" placeholder="City dhundhein... (e.g. Mumbai, Pune)" oninput="filterCities(this.value)"/>
+      <input type="text" id="globalSearch" placeholder="Search city... (e.g. Mumbai, Pune)" oninput="filterCities(this.value)"/>
       <i class="ti ti-x" style="font-size:13px;color:var(--tm);cursor:pointer" onclick="clearGlobalSearch()"></i>
     </div>
   </div>
@@ -262,8 +317,8 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
   <div id="dashboard">
     <div class="load-overlay">
       <div class="spin"></div>
-      <div style="font-size:14px;color:var(--ts);margin-bottom:6px">India ke saare cities ka weather load ho raha hai...</div>
-      <div style="font-size:12px;color:var(--tm)">Open-Meteo API se real-time data fetch ho raha hai</div>
+      <div style="font-size:14px;color:var(--ts);margin-bottom:6px">Loading weather for all cities across India...</div>
+      <div style="font-size:12px;color:var(--tm)">Fetching real-time data from Open-Meteo API</div>
     </div>
   </div>
 </div>
@@ -284,6 +339,9 @@ html,body{min-height:100%;font-family:'Inter',sans-serif;background:#080d1a;colo
 </div>
 
 <script>
+// ── Header Live Date ──
+(function(){var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];var months=['January','February','March','April','May','June','July','August','September','October','November','December'];var d=new Date();var el=document.getElementById('ds-topbar-date');if(el)el.textContent=days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+
 // ===== CITY DATABASE (40 cities across all regions) =====
 const CITIES = [
   // NORTH

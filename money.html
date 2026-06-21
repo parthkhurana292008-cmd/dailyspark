@@ -2,8 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💰 Money World — Learn & Earn!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+<title>💰 Money World Game | Learn Money & Shopping for Kids | Daily Spark</title>
+
+<!-- ── SEO Primary ── -->
+<meta name="description" content="Money World — fun interactive money game for kids! Learn to count coins, make change, and shop smartly. 4 modes: Count Money, Make Change, Shopping, Drag & Drop. Free math game 2026.">
+<meta name="keywords" content="money game for kids, learn money online, count coins game, make change game, shopping math game, rupee coins for kids, money math class 2 3 4 5, interactive money learning, daily spark math games, free kids money game 2026">
+<meta name="author" content="Daily Spark">
+<meta name="publisher" content="Daily Spark">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="language" content="English">
+<meta name="rating" content="safe for kids">
+<meta name="category" content="Math Games, Money, Kids Education">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://www.dailyspark.in/money.html">
+
+<!-- ── PWA / Mobile ── -->
+<meta name="theme-color" content="#1B8A4C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Money World">
+<meta name="format-detection" content="telephone=no">
+
+<!-- ── Open Graph (Facebook / WhatsApp) ── -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dailyspark.in/money.html">
+<meta property="og:title" content="💰 Money World — Learn Money & Shopping for Kids">
+<meta property="og:description" content="Count coins, make change, go shopping! Fun interactive money game for kids. Free online math game by Daily Spark.">
+<meta property="og:image" content="https://www.dailyspark.in/og-money.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Daily Spark">
+<meta property="og:locale" content="en_IN">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DailySpark">
+<meta name="twitter:title" content="💰 Money World — Learn Money & Shopping for Kids">
+<meta name="twitter:description" content="Count coins, make change, go shopping! Fun money math game for kids by Daily Spark.">
+<meta name="twitter:image" content="https://www.dailyspark.in/og-money.png">
+
+<!-- ── Structured Data (JSON-LD) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Money World — Learn Money & Shopping for Kids",
+  "url": "https://www.dailyspark.in/money.html",
+  "description": "Interactive money game for kids. Learn to count coins, make change, and shop with rupees. 4 fun modes, 3 levels.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Primary School",
+  "typicalAgeRange": "6-12",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Daily Spark",
+    "url": "https://www.dailyspark.in"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  }
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -304,7 +377,116 @@ canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-
 .pop-in{animation:popIn 0.3s ease both;}
 
 /* Scroll */
-@media(max-width:480px){.game-title{font-size:34px;}.opts-4{grid-template-columns:repeat(2,1fr);}}
+/* ── TABLET 600px ── */
+@media(max-width:600px){
+  body{padding:12px 10px;}
+  .game-title{font-size:34px;}
+  .game-sub{font-size:13px;}
+  .coin-spin{font-size:52px;}
+  .mode-card{padding:16px 14px;}
+  .mode-icon{font-size:28px;}
+  .mode-name{font-size:16px;}
+  .game-card{padding:16px;}
+  .top-bar{gap:6px;}
+  .stats-row{grid-template-columns:repeat(4,1fr);gap:5px;}
+  .stat-pill .sv{font-size:15px;}
+  .stat-pill .sl{font-size:8px;}
+  .question-text{font-size:14px;}
+  .opts-4{grid-template-columns:repeat(2,1fr);}
+  .opt-btn{font-size:18px;padding:12px 6px;min-height:52px;}
+  .opt-btn.opt-money{font-size:13px;}
+  .coin-1{width:42px;height:42px;font-size:11px;}
+  .coin-2{width:46px;height:46px;font-size:11px;}
+  .coin-5{width:50px;height:50px;font-size:12px;}
+  .coin-10{width:54px;height:54px;font-size:12px;}
+  .note-10,.note-20,.note-50{width:68px;height:42px;font-size:11px;}
+  .note-100,.note-200{width:76px;height:46px;font-size:12px;}
+  .note-500{width:82px;height:48px;font-size:13px;}
+  .wallet-display .wamt{font-size:22px;}
+  .end-title{font-size:26px;}
+  .end-score{font-size:48px;}
+  .end-trophy{font-size:60px;}
+  .stars-row{font-size:30px;}
+  .end-btn{font-size:14px;padding:11px 20px;}
+  .piggy-strip{padding:10px 14px;}
+  .piggy-strip .val{font-size:18px;}
+  .amount-input{width:100px;font-size:22px;}
+  .go-btn{padding:12px 16px;font-size:14px;}
+}
+
+/* ── MOBILE 400px ── */
+@media(max-width:400px){
+  body{padding:8px 8px;}
+  .game-title{font-size:26px;}
+  .coin-spin{font-size:42px;}
+  .modes-grid{grid-template-columns:1fr;}
+  .mode-card{padding:14px 12px;}
+  .game-card{padding:12px;}
+  .top-bar{flex-wrap:wrap;gap:6px;}
+  .back-btn{padding:7px 10px;font-size:12px;}
+  .stats-row{grid-template-columns:repeat(4,1fr);gap:4px;}
+  .stat-pill{padding:5px 2px;}
+  .stat-pill .sv{font-size:13px;}
+  .stat-pill .sl{font-size:7px;}
+  .question-text{font-size:13px;margin-bottom:12px;}
+  .opts-2{grid-template-columns:1fr 1fr;}
+  .opts-4{grid-template-columns:1fr 1fr;}
+  .opt-btn{font-size:16px;padding:10px 4px;min-height:50px;border-radius:10px;}
+  .opt-btn.opt-money{font-size:12px;padding:10px 4px;}
+  .coin-1{width:36px;height:36px;font-size:10px;}
+  .coin-2{width:40px;height:40px;font-size:10px;}
+  .coin-5{width:44px;height:44px;font-size:11px;}
+  .coin-10{width:48px;height:48px;font-size:11px;}
+  .note-10,.note-20,.note-50{width:60px;height:38px;font-size:10px;border-radius:6px;}
+  .note-100,.note-200{width:68px;height:40px;font-size:11px;border-radius:6px;}
+  .note-500{width:72px;height:44px;font-size:12px;border-radius:6px;}
+  .shop-item{min-width:70px;padding:10px 8px;}
+  .shop-item .item-icon{font-size:24px;}
+  .shop-item .item-price{font-size:13px;}
+  .wallet-display{padding:10px 14px;}
+  .wallet-display .wamt{font-size:20px;}
+  .drag-bank{padding:10px;gap:6px;}
+  .drop-zone{padding:10px;gap:6px;}
+  .amount-input{width:90px;height:48px;font-size:20px;}
+  .rupee-sym{font-size:22px;}
+  .go-btn{padding:10px 12px;font-size:13px;}
+  .end-title{font-size:22px;}
+  .end-score{font-size:40px;}
+  .end-trophy{font-size:52px;}
+  .stars-row{font-size:26px;letter-spacing:3px;}
+  .end-btn{font-size:13px;padding:10px 16px;min-height:44px;}
+  .end-grid{grid-template-columns:1fr 1fr;gap:8px;}
+  .end-stat .ev{font-size:18px;}
+}
+
+/* ── SMALL MOBILE 360px ── */
+@media(max-width:360px){
+  .game-title{font-size:22px;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .stat-pill .sv{font-size:14px;}
+  .coin-1{width:32px;height:32px;font-size:9px;}
+  .coin-2{width:36px;height:36px;font-size:9px;}
+  .coin-5{width:40px;height:40px;font-size:10px;}
+  .coin-10{width:44px;height:44px;font-size:10px;}
+  .opt-btn{font-size:14px;padding:9px 3px;}
+  .end-score{font-size:34px;}
+  .end-btn{padding:9px 12px;}
+}
+
+/* ── TOUCH: bigger targets, no hover ── */
+@media(hover:none) and (pointer:coarse){
+  .opt-btn:hover:not(:disabled){transform:none;box-shadow:none;}
+  .mode-card:hover{transform:none;box-shadow:none;}
+  .go-btn:hover{transform:none;}
+  .end-btn-primary:hover{transform:none;}
+  .end-btn-secondary:hover{transform:none;}
+  .coin.clickable:hover{transform:none;box-shadow:none;}
+  .back-btn:hover{color:var(--muted);border-color:var(--border);}
+  .opt-btn{min-height:52px;}
+  .go-btn{min-height:48px;}
+  .end-btn{min-height:46px;}
+  .mode-card{min-height:auto;}
+}
 </style>
 </head>
 <body>
@@ -328,13 +510,13 @@ canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-
 
     <div class="modes-grid">
       <div class="mode-card mc-green" onclick="startMode('coins')">
-        <span class="mode-icon">🪙</span>
+        <span class="mode-icon"><img src="coin.png" alt="Coin Emoji" style="width: 72px; height:72px; vertical-align: middle;"></span>
         <div class="mode-name">Coin Counter</div>
         <div class="mode-desc">Learn the value of Indian coins. Count and identify ₹1, ₹2, ₹5, ₹10</div>
         <span class="mode-tag tag-g">AGE 5–7</span>
       </div>
       <div class="mode-card mc-gold" onclick="startMode('notes')">
-        <span class="mode-icon">💵</span>
+        <span class="mode-icon"><img src="note.png" alt="Coin Emoji" style="width: 152px; height: 52px; vertical-align: middle;"></span>
         <div class="mode-name">Note Master</div>
         <div class="mode-desc">Recognise ₹10 to ₹500 notes and count the total correctly</div>
         <span class="mode-tag tag-gold">AGE 7–9</span>

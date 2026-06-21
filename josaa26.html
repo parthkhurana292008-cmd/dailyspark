@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JoSAA 2026 Round 1 Analysis — Daily Spark</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:      #0D1B2A;
+  --navy-mid:  #16283C;
+  --saffron:   #FF6B00;
+  --saffron-lt:#FF8C33;
+  --white:     #FFFFFF;
+  --offwhite:  #F7F9FC;
+  --slate:     #8899AA;
+  --text:      #1A2B3C;
+  --text-lt:   #4A5C6E;
+  --border:    #DDE4ED;
+  --green:     #16A34A;
+  --green-lt:  #DCFCE7;
+  --red:       #DC2626;
+  --red-lt:    #FEE2E2;
+  --amber:     #D97706;
+  --amber-lt:  #FEF3C7;
+  --blue:      #2563EB;
+  --blue-lt:   #DBEAFE;
+  --purple:    #7C3AED;
+  --purple-lt: #EDE9FE;
+  --sans:      'Inter', sans-serif;
+  --serif:     'Playfair Display', Georgia, serif;
+  --r:         6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--offwhite); color: var(--text); font-size: 15px; line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+
+/* ── TOP BAR ── */
+.topbar {
+  background: var(--navy);
+  padding: 10px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; color: var(--slate);
+  border-bottom: 3px solid var(--saffron);
+}
+.topbar .brand { font-family: var(--serif); font-size: 20px; color: var(--white); }
+.topbar .brand span { color: var(--saffron); }
+.topbar nav { display: flex; gap: 18px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.topbar nav a { color: var(--slate); transition: color 0.2s; }
+.topbar nav a:hover { color: var(--saffron); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  background-image: linear-gradient(135deg, #0D1B2A 0%, #0e2a45 60%, #0D1B2A 100%);
+  padding: 48px 20px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '🎓';
+  position: absolute; top: 50%; left: 4%; transform: translateY(-50%);
+  font-size: 140px; opacity: 0.04; pointer-events: none;
+}
+.hero::after {
+  content: '📊';
+  position: absolute; top: 50%; right: 4%; transform: translateY(-50%);
+  font-size: 140px; opacity: 0.04; pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,107,0,0.15);
+  border: 1px solid rgba(255,107,0,0.35);
+  color: var(--saffron-lt);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 40px);
+  color: var(--white); line-height: 1.25; margin-bottom: 14px;
+}
+.hero h1 span { color: var(--saffron); }
+.hero-sub { color: #8899AA; font-size: 14px; max-width: 640px; margin: 0 auto 28px; }
+.hero-stats {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
+  max-width: 780px; margin: 0 auto;
+}
+.hstat {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 14px 22px; min-width: 130px; text-align: center;
+}
+.hstat-num { font-size: 26px; font-weight: 700; color: var(--saffron); line-height: 1; }
+.hstat-label { font-size: 11px; color: #8899AA; margin-top: 4px; letter-spacing: 0.04em; }
+
+/* ── LAYOUT ── */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 36px 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+
+/* ── SECTION HEADERS ── */
+.sec-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+}
+.sec-head h2 { font-family: var(--serif); font-size: 20px; color: var(--navy); font-weight: 700; }
+.sec-accent { width: 4px; height: 26px; background: var(--saffron); border-radius: 2px; flex-shrink: 0; }
+.sec-line { flex: 1; height: 1px; background: var(--border); }
+.sec-badge {
+  background: var(--offwhite); border: 1px solid var(--border);
+  color: var(--slate); font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.card-head {
+  background: var(--navy); color: var(--white);
+  padding: 13px 18px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 9px;
+}
+.card-head::before { content: ''; width: 3px; height: 14px; background: var(--saffron); border-radius: 2px; }
+.card-body { padding: 18px; }
+
+/* ── KEY-STAT CHIPS ── */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--offwhite); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px;
+}
+.chip-icon { font-size: 22px; flex-shrink: 0; }
+.chip-val { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1; }
+.chip-lbl { font-size: 11px; color: var(--slate); margin-top: 1px; }
+
+/* ── TABLES ── */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: var(--navy); color: var(--white); padding: 10px 14px;
+  text-align: left; font-weight: 600; font-size: 11.5px; letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+thead th:first-child { border-radius: 0; }
+tbody tr:nth-child(even) { background: #F7F9FC; }
+tbody tr:hover { background: #EEF3F9; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.rank-chip {
+  display: inline-block; padding: 2px 9px; border-radius: 4px;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.02em;
+}
+.rank-tight { background: var(--red-lt); color: var(--red); }
+.rank-mid   { background: var(--amber-lt); color: var(--amber); }
+.rank-open  { background: var(--green-lt); color: var(--green); }
+.inst-name { font-weight: 600; color: var(--navy); }
+.branch-name { color: var(--text-lt); font-size: 12px; }
+.badge-iit  { background:#EDE9FE; color:#5B21B6; font-size:10px; font-weight:700; padding:1px 7px; border-radius:4px; }
+.badge-nit  { background:#DBEAFE; color:#1D4ED8; font-size:10px; font-weight:700; padding:1px 7px; border-radius:4px; }
+.badge-iiit { background:#FEF3C7; color:#92400E; font-size:10px; font-weight:700; padding:1px 7px; border-radius:4px; }
+
+/* ── INSIGHT BOXES ── */
+.insight {
+  border-left: 4px solid var(--saffron);
+  background: #FFF8F2; padding: 14px 18px; border-radius: 0 8px 8px 0;
+  font-size: 13.5px; margin-bottom: 14px; color: var(--text);
+}
+.insight strong { color: var(--saffron); }
+.insight-grid { display: flex; flex-direction: column; gap: 10px; }
+
+/* ── TIMELINE ── */
+.timeline { list-style: none; position: relative; padding-left: 26px; }
+.timeline::before { content:''; position:absolute; left:7px; top:0; bottom:0; width:2px; background:var(--border); }
+.timeline li { position: relative; padding-bottom: 18px; font-size: 13.5px; color: var(--text-lt); }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content:''; position:absolute; left:-22px; top:5px;
+  width:10px; height:10px; border-radius:50%;
+  background: var(--saffron); border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--saffron);
+}
+.timeline li strong { color: var(--navy); font-weight: 600; }
+.tl-done::before { background: var(--green) !important; box-shadow: 0 0 0 2px var(--green) !important; }
+.tl-upcoming::before { background: var(--amber) !important; box-shadow: 0 0 0 2px var(--amber) !important; }
+
+/* ── BAR CHART ── */
+.bar-list { display: flex; flex-direction: column; gap: 12px; }
+.bar-item { }
+.bar-label { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; }
+.bar-label .bl-name { font-weight: 600; color: var(--navy); }
+.bar-label .bl-rank { font-size: 12px; color: var(--saffron); font-weight: 700; }
+.bar-track { background: var(--offwhite); border-radius: 4px; height: 10px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; background: var(--saffron); transition: width 1s ease; }
+
+/* ── TAG PILLS ── */
+.tag { display:inline-block; padding:2px 9px; border-radius:12px; font-size:11px; font-weight:600; margin:2px; }
+.tag-cse    { background:#EDE9FE; color:#5B21B6; }
+.tag-ece    { background:#DBEAFE; color:#1D4ED8; }
+.tag-mech   { background:#D1FAE5; color:#065F46; }
+.tag-civil  { background:#FEF3C7; color:#92400E; }
+.tag-chem   { background:#FCE7F3; color:#9D174D; }
+.tag-ai     { background:#E0F2FE; color:#0369A1; }
+
+/* ── NOTE BOX ── */
+.note {
+  background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px;
+  padding: 12px 16px; font-size: 12.5px; color: #1E40AF;
+  display: flex; align-items: flex-start; gap: 10px; margin-top: 14px;
+}
+.note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy); color: #8899AA;
+  padding: 24px 20px; text-align: center; font-size: 12.5px; margin-top: 40px;
+  border-top: 3px solid var(--saffron);
+}
+footer a { color: var(--saffron); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+@media(max-width:600px) {
+  .hero h1 { font-size: 22px; }
+  .hero-stats { gap: 8px; }
+  .hstat { min-width: 100px; padding: 12px 14px; }
+  .topbar nav { display: none; }
+}
+@media(prefers-reduced-motion:reduce) { *, *::before, *::after { animation:none!important; transition:none!important; } }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <a href="index.html" class="brand">Daily <span>Spark</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="jac_josaa.html">JoSAA Schedule</a>
+    <a href="jac26.html">JAC 2026</a>
+    <a href="jac_cutoff.html">JAC Cutoff</a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-eyebrow">🔴 Live Data · Round 1 Released June 13, 2026</div>
+  <h1>JoSAA 2026 <span>Round 1</span> Cutoff Analysis</h1>
+  <p class="hero-sub">Opening &amp; Closing Ranks for IITs, NITs, IIITs &amp; GFTIs — Academic Year 2026–27. Based on official josaa.nic.in data.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">138</div><div class="hstat-label">Institutes</div></div>
+    <div class="hstat"><div class="hstat-num">23</div><div class="hstat-label">IITs + IISc</div></div>
+    <div class="hstat"><div class="hstat-num">31</div><div class="hstat-label">NITs</div></div>
+    <div class="hstat"><div class="hstat-num">26</div><div class="hstat-label">IIITs</div></div>
+    <div class="hstat"><div class="hstat-num">56</div><div class="hstat-label">GFTIs</div></div>
+    <div class="hstat"><div class="hstat-num">67,323</div><div class="hstat-label">Total Seats</div></div>
+    <div class="hstat"><div class="hstat-num">56,880</div><div class="hstat-label">JEE Adv. Qualifiers</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Counselling Timeline -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>JoSAA 2026 Counselling Schedule</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Dates</div>
+  </div>
+  <div class="card" style="margin-bottom:32px;">
+    <div class="card-head">Round-wise Important Dates</div>
+    <div class="card-body">
+      <ul class="timeline">
+        <li class="tl-done"><strong>June 13, 2026</strong> — Round 1 Seat Allotment Result &amp; OR-CR Released</li>
+        <li class="tl-done"><strong>June 13–26, 2026</strong> — Online Reporting: SAF Payment, Document Upload, Freeze/Float/Slide</li>
+        <li class="tl-upcoming"><strong>June 30, 2026</strong> — Round 2 Seat Allotment Result Expected</li>
+        <li class="tl-upcoming"><strong>July 2026</strong> — Rounds 3, 4, 5 (IITs close after Round 5)</li>
+        <li class="tl-upcoming"><strong>July 16, 2026</strong> — Final Round 5 Closing Ranks (IITs)</li>
+        <li class="tl-upcoming"><strong>August 2026</strong> — CSAB Special Rounds for vacant NIT/IIIT/GFTI seats</li>
+      </ul>
+      <div class="note">
+        <div class="note-icon">ℹ️</div>
+        <div>Candidates allotted a seat in Round 1 must pay the Seat Acceptance Fee (SAF): <strong>₹30,000</strong> for General category and <strong>₹15,000</strong> for reserved categories before June 26. Failure to pay will result in seat cancellation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IIT Cutoffs -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Top IIT Cutoffs — Round 1, 2026</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">JEE Advanced AIR</div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:28px;">
+
+    <!-- IIT Bombay -->
+    <div class="card">
+      <div class="card-head">IIT Bombay</div>
+      <div class="card-body">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Branch</th><th>Opening</th><th>Closing</th><th>Level</th></tr></thead>
+            <tbody>
+              <tr><td><div class="inst-name">CSE</div></td><td>1</td><td><span class="rank-chip rank-tight">65</span></td><td><span class="tag tag-cse">CSE</span></td></tr>
+              <tr><td><div class="inst-name">Electrical Engg.</div></td><td>175</td><td><span class="rank-chip rank-tight">400</span></td><td><span class="tag tag-ece">ECE</span></td></tr>
+              <tr><td><div class="inst-name">Aerospace Engg.</div></td><td>1,195</td><td><span class="rank-chip rank-mid">2,305</span></td><td><span class="tag tag-mech">Aero</span></td></tr>
+              <tr><td><div class="inst-name">Mechanical Engg.</div></td><td>490</td><td><span class="rank-chip rank-mid">1,766</span></td><td><span class="tag tag-mech">Mech</span></td></tr>
+              <tr><td><div class="inst-name">Chemical Engg.</div></td><td>601</td><td><span class="rank-chip rank-mid">2,405</span></td><td><span class="tag tag-chem">Chem</span></td></tr>
+              <tr><td><div class="inst-name">Civil Engg.</div></td><td>2,666</td><td><span class="rank-chip rank-open">4,095</span></td><td><span class="tag tag-civil">Civil</span></td></tr>
+              <tr><td><div class="inst-name">Engineering Physics</div></td><td>122</td><td><span class="rank-chip rank-mid">1,483</span></td><td><span class="tag tag-ai">Phy</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- IIT Delhi -->
+    <div class="card">
+      <div class="card-head">IIT Delhi</div>
+      <div class="card-body">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Branch</th><th>Opening</th><th>Closing</th><th>Level</th></tr></thead>
+            <tbody>
+              <tr><td><div class="inst-name">CSE</div></td><td>24</td><td><span class="rank-chip rank-tight">123</span></td><td><span class="tag tag-cse">CSE</span></td></tr>
+              <tr><td><div class="inst-name">Mathematics &amp; Computing</div></td><td>154</td><td><span class="rank-chip rank-tight">316</span></td><td><span class="tag tag-ai">M&amp;C</span></td></tr>
+              <tr><td><div class="inst-name">Electrical Engg.</div></td><td>403</td><td><span class="rank-chip rank-tight">593</span></td><td><span class="tag tag-ece">ECE</span></td></tr>
+              <tr><td><div class="inst-name">Engineering Physics</div></td><td>1,393</td><td><span class="rank-chip rank-mid">2,358</span></td><td><span class="tag tag-ai">Phy</span></td></tr>
+              <tr><td><div class="inst-name">Mechanical Engg.</div></td><td>1,156</td><td><span class="rank-chip rank-mid">1,862</span></td><td><span class="tag tag-mech">Mech</span></td></tr>
+              <tr><td><div class="inst-name">Chemical Engg.</div></td><td>1,904</td><td><span class="rank-chip rank-mid">2,425</span></td><td><span class="tag tag-chem">Chem</span></td></tr>
+              <tr><td><div class="inst-name">Civil Engg.</div></td><td>3,030</td><td><span class="rank-chip rank-open">4,228</span></td><td><span class="tag tag-civil">Civil</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IIT Madras, Kanpur, Kharagpur, etc. -->
+  <div class="card" style="margin-bottom:28px;">
+    <div class="card-head">IIT Madras, Kanpur, Kharagpur, Roorkee — CSE &amp; Key Branches (Open GN)</div>
+    <div class="card-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Institute</th>
+              <th>Branch</th>
+              <th>Opening Rank</th>
+              <th>Closing Rank</th>
+              <th>vs 2025</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Madras</span></td>
+              <td>CSE</td><td>66</td><td><span class="rank-chip rank-tight">149</span></td>
+              <td style="color:var(--red);font-weight:600;">▲ Tighter (was 171)</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Madras</span></td>
+              <td>Electrical Engg.</td><td>381</td><td><span class="rank-chip rank-tight">750</span></td>
+              <td style="color:var(--slate);">— Stable</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Kanpur</span></td>
+              <td>CSE</td><td>90</td><td><span class="rank-chip rank-tight">200</span></td>
+              <td style="color:var(--slate);">— Stable</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Kanpur</span></td>
+              <td>Mathematics &amp; Scientific Computing</td><td>215</td><td><span class="rank-chip rank-tight">450</span></td>
+              <td style="color:var(--slate);">— Stable</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Kharagpur</span></td>
+              <td>CSE</td><td>125</td><td><span class="rank-chip rank-mid">509</span></td>
+              <td style="color:var(--amber);font-weight:600;">▼ Slightly relaxed (was 450)</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Roorkee</span></td>
+              <td>CSE</td><td>380</td><td><span class="rank-chip rank-mid">650</span></td>
+              <td style="color:var(--slate);">— Stable</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Guwahati</span></td>
+              <td>CSE</td><td>700</td><td><span class="rank-chip rank-mid">1,200</span></td>
+              <td style="color:var(--slate);">— Stable</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Hyderabad</span></td>
+              <td>CSE</td><td>890</td><td><span class="rank-chip rank-mid">1,650</span></td>
+              <td style="color:var(--slate);">— Stable</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Gandhinagar</span></td>
+              <td>CSE</td><td>1,248</td><td><span class="rank-chip rank-mid">2,144</span></td>
+              <td style="color:var(--amber);font-weight:600;">▼ Relaxed (was 1,872)</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Mandi</span></td>
+              <td>CSE</td><td>2,532</td><td><span class="rank-chip rank-mid">3,609</span></td>
+              <td style="color:var(--amber);font-weight:600;">▼ Relaxed (was 3,087)</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Bhubaneswar</span></td>
+              <td>CSE</td><td>3,022</td><td><span class="rank-chip rank-open">4,582</span></td>
+              <td style="color:var(--amber);font-weight:600;">▼ Relaxed (was 2,344)</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IISc</span> <span class="inst-name">Bangalore</span></td>
+              <td>Mathematics &amp; Computing <em>(new 2026)</em></td><td>156</td><td><span class="rank-chip rank-mid">712</span></td>
+              <td style="color:var(--green);font-weight:600;">🆕 New in 2026</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iit">IIT</span> <span class="inst-name">Tirupati / Palakkad</span></td>
+              <td>CSE</td><td>4,000</td><td><span class="rank-chip rank-open">6,000</span></td>
+              <td style="color:var(--slate);">New IITs range</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <div class="note-icon">💡</div>
+        <div>All data: Open category, Gender-Neutral seats, Round 1. IIT ranks are JEE Advanced 2026 AIR. Source: Official JoSAA 2026 OR-CR released June 13, 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NIT Cutoffs -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Top NIT Cutoffs — Round 1, 2026</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">JEE Main CRL</div>
+  </div>
+
+  <div class="card" style="margin-bottom:28px;">
+    <div class="card-head">CSE — Other State (OS) Quota, Open Category, Gender-Neutral</div>
+    <div class="card-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Institute</th>
+              <th>Opening Rank</th>
+              <th>Closing Rank (R1)</th>
+              <th>Expected Final R6</th>
+              <th>Demand</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-nit">NIT</span> <span class="inst-name">Trichy</span></td>
+              <td>103</td>
+              <td><span class="rank-chip rank-tight">1,317</span></td>
+              <td>~1,400–1,600</td>
+              <td><span style="color:var(--red);font-weight:700;">🔥 Highest</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge-nit">NIT</span> <span class="inst-name">Surathkal</span></td>
+              <td>678</td>
+              <td><span class="rank-chip rank-tight">1,605</span></td>
+              <td>~1,700–1,900</td>
+              <td><span style="color:var(--red);font-weight:700;">🔥 Very High</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge-nit">NIT</span> <span class="inst-name">Warangal</span></td>
+              <td>1,611</td>
+              <td><span class="rank-chip rank-mid">2,238</span></td>
+              <td>~2,500–2,800</td>
+              <td><span style="color:var(--amber);font-weight:700;">📈 High</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge-nit">NIT</span> <span class="inst-name">Rourkela</span></td>
+              <td>2,286</td>
+              <td><span class="rank-chip rank-mid">3,606</span></td>
+              <td>~3,900–4,200</td>
+              <td><span style="color:var(--amber);font-weight:700;">📈 High</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge-nit">NIT</span> <span class="inst-name">Calicut</span></td>
+              <td>2,405</td>
+              <td><span class="rank-chip rank-mid">5,100</span></td>
+              <td>~5,500–6,000</td>
+              <td><span style="color:var(--green);font-weight:700;">✅ Moderate</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge-nit">MNIT</span> <span class="inst-name">Jaipur</span></td>
+              <td>2,955</td>
+              <td><span class="rank-chip rank-mid">5,255</span></td>
+              <td>~5,600–6,200</td>
+              <td><span style="color:var(--green);font-weight:700;">✅ Moderate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <div class="note-icon">⚠️</div>
+        <div>Home State (HS) quota closing ranks are typically <strong>10,000–30,000 ranks more relaxed</strong> than OS for the same branch. Always verify your quota on josaa.nic.in.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IIIT Cutoffs -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Top IIIT Cutoffs — Round 1, 2026</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">JEE Main CRL</div>
+  </div>
+
+  <div class="card" style="margin-bottom:32px;">
+    <div class="card-head">CSE / IT — Open Category, Gender-Neutral, All India Quota</div>
+    <div class="card-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Institute</th><th>Branch</th><th>Opening</th><th>Closing</th><th>Note</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge-iiit">IIIT</span> <span class="inst-name">Allahabad</span></td>
+              <td>Information Technology</td><td>2,800</td>
+              <td><span class="rank-chip rank-tight">5,177</span></td>
+              <td>Most competitive IIIT</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iiit">IIIT</span> <span class="inst-name">Delhi</span></td>
+              <td>CSE</td><td>1,800</td>
+              <td><span class="rank-chip rank-mid">6,500</span></td>
+              <td>Top-tier IIIT</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iiit">IIIT</span> <span class="inst-name">Bangalore</span></td>
+              <td>CSE (Integrated)</td><td>3,000</td>
+              <td><span class="rank-chip rank-mid">8,000</span></td>
+              <td>5-year programme</td>
+            </tr>
+            <tr>
+              <td><span class="badge-iiit">IIIT</span> <span class="inst-name">Gwalior</span></td>
+              <td>IT</td><td>4,500</td>
+              <td><span class="rank-chip rank-open">10,000</span></td>
+              <td>Indicative</td>
+            </tr>
+            <tr>
+              <td colspan="5" style="color:var(--slate);font-size:12px;padding-top:10px;">
+                ⚠️ IIIT Hyderabad does <strong>not</strong> admit through JoSAA — admissions via their own UGEE portal (ugadmissions.iiit.ac.in).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Branch-wise demand bar chart -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Branch Competitiveness — IIT CSE Closing Ranks</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Round 1 · Open GN</div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:32px;">
+    <div class="card">
+      <div class="card-head">IIT CSE Closing Rank Comparison</div>
+      <div class="card-body">
+        <div class="bar-list">
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Bombay</span><span class="bl-rank">AIR 65</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:1%;background:#DC2626;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Delhi</span><span class="bl-rank">AIR 123</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:2%;background:#DC2626;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Madras</span><span class="bl-rank">AIR 149</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:3%;background:#EF4444;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Kanpur</span><span class="bl-rank">AIR 200</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:4%;background:#F97316;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Roorkee</span><span class="bl-rank">AIR 650</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:13%;background:#F59E0B;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Guwahati</span><span class="bl-rank">AIR 1,200</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:24%;background:#84CC16;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Hyderabad</span><span class="bl-rank">AIR 1,650</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:33%;background:#22C55E;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Gandhinagar</span><span class="bl-rank">AIR 2,144</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:43%;background:#16A34A;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">IIT Mandi</span><span class="bl-rank">AIR 3,609</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:72%;background:#0EA5E9;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span class="bl-name">New IITs</span><span class="bl-rank">AIR 4,000–6,000</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%;background:#8B5CF6;"></div></div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:16px;">
+          <div class="note-icon">📌</div>
+          <div>Bar width is relative. Shorter bar = more competitive (lower rank needed). Red = hardest, violet = most accessible.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="card">
+      <div class="card-head">Key Analysis &amp; Insights</div>
+      <div class="card-body">
+        <div class="insight-grid">
+          <div class="insight">🏆 <strong>IIT Bombay CSE</strong> remains India's most competitive seat — closes at AIR 65, virtually unchanged from 2025 (AIR 66). Demand at the very top is rock-solid.</div>
+          <div class="insight">📉 <strong>IIT Madras CSE</strong> tightened from AIR 171 (2025) → AIR 149 (2026), overtaking Kanpur. More candidates now prefer Madras over Kharagpur.</div>
+          <div class="insight">🆕 <strong>IISc Bangalore</strong> joins JoSAA 2026 with a new BTech in Mathematics &amp; Computing — debuted at OR 156 / CR 712, instantly competitive.</div>
+          <div class="insight">📈 <strong>AI &amp; Data Science branches</strong> at most IITs now rival or exceed ECE closing ranks — demand surge driven by industry trends.</div>
+          <div class="insight">⚡ <strong>NIT Trichy CSE</strong> (OS) closes at CRL 1,317 in Round 1 — tighter than last year's 1,400. Still the most competitive NIT branch in India.</div>
+          <div class="insight">🔄 <strong>Closing ranks relax 8–15%</strong> from Round 1 to final round for top NITs. Round 1 is not the final cutoff — use Float for upgrade chances.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category-wise section -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Category-wise Admission Guide</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">All Categories</div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="card">
+      <div class="card-head">OPEN (General)</div>
+      <div class="card-body" style="font-size:13.5px;">
+        <p style="margin-bottom:10px;">Ranks based on <strong>CRL (Common Rank List)</strong> for NITs/IIITs and <strong>AIR (JEE Advanced)</strong> for IITs.</p>
+        <ul style="padding-left:18px;color:var(--text-lt);line-height:2;">
+          <li>IIT Bombay CSE: AIR ≤ 65</li>
+          <li>NIT Trichy CSE (OS): CRL ≤ 1,317</li>
+          <li>Need 99.5+ percentile for top NIT CSE</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">OBC-NCL / EWS</div>
+      <div class="card-body" style="font-size:13.5px;">
+        <p style="margin-bottom:10px;">Ranks based on <strong>OBC/EWS Category Rank</strong>, not CRL. Category rank is always lower (better) than CRL.</p>
+        <ul style="padding-left:18px;color:var(--text-lt);line-height:2;">
+          <li>EWS qualifying percentile: 80.38</li>
+          <li>OBC-NCL qualifying percentile: 79.43</li>
+          <li>~30–40% relaxation vs OPEN CRL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">SC / ST / PwD</div>
+      <div class="card-body" style="font-size:13.5px;">
+        <p style="margin-bottom:10px;">Significantly relaxed cutoffs. SC/ST closing ranks are based on <strong>SC/ST category rank</strong>, not CRL.</p>
+        <ul style="padding-left:18px;color:var(--text-lt);line-height:2;">
+          <li>SC qualifying percentile: ~61</li>
+          <li>ST qualifying percentile: ~48</li>
+          <li>PwD: PwD rank within category</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Freeze Float Slide Guide -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Freeze · Float · Slide — What to Choose?</h2>
+    <div class="sec-line"></div>
+    <div class="sec-badge">Decision Guide</div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="card" style="border-top:3px solid var(--green);">
+      <div class="card-head" style="background:var(--green);">🔒 FREEZE</div>
+      <div class="card-body" style="font-size:13.5px;">
+        <p style="margin-bottom:10px;font-weight:600;color:var(--navy);">Accept seat, exit future rounds.</p>
+        <p style="color:var(--text-lt);">Choose if you are happy with your allotted institute and branch. You will <strong>not</strong> be considered for upgrades in Rounds 2–5.</p>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue);">
+      <div class="card-head" style="background:var(--blue);">🌊 FLOAT</div>
+      <div class="card-body" style="font-size:13.5px;">
+        <p style="margin-bottom:10px;font-weight:600;color:var(--navy);">Accept seat + stay eligible for upgrades.</p>
+        <p style="color:var(--text-lt);">Best option if you want to try for a better institute or branch in upcoming rounds. Your current seat is secured while you wait.</p>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--purple);">
+      <div class="card-head" style="background:var(--purple);">↔️ SLIDE</div>
+      <div class="card-body" style="font-size:13.5px;">
+        <p style="margin-bottom:10px;font-weight:600;color:var(--navy);">Accept institute, try for better branch.</p>
+        <p style="color:var(--text-lt);">Choose if you're satisfied with the institute but want a different branch within the same institute in future rounds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Factors affecting cutoffs -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Factors Affecting JoSAA 2026 Cutoffs</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="card" style="margin-bottom:32px;">
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <div class="insight">📊 <strong>More qualifiers in 2026:</strong> 56,880 candidates qualified JEE Advanced vs 54,378 in 2025 — slightly higher competition at top IITs, particularly for CSE.</div>
+          <div class="insight">🎯 <strong>AI/DS demand surge:</strong> Artificial Intelligence and Data Science branches saw the sharpest rise in demand in 2026, with closing ranks climbing steeply vs 2024 at most IITs and top NITs.</div>
+          <div class="insight">🏛️ <strong>Total seats: 67,323</strong> across all 138 institutes in 2026, including new seats added at several newer IITs and IIITs. More seats = slight relaxation for less popular branches.</div>
+        </div>
+        <div>
+          <div class="insight">📝 <strong>JEE Advanced 2026 paper difficulty:</strong> Moderate-to-difficult. A slightly easier paper than 2025 means more candidates scoring higher — which can tighten cutoffs for top IITs marginally.</div>
+          <div class="insight">🏠 <strong>HS vs OS quota (NITs):</strong> Home State quota closing ranks are 10,000–30,000 more relaxed than Other State. If you're a home-state candidate, your chances at your state NIT are significantly better.</div>
+          <div class="insight">🔄 <strong>Round-wise relaxation:</strong> Closing ranks at NITs typically relax 8–15% from Round 1 to Round 6 as IIT-allotted candidates free up NIT seats through upgrades.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official links -->
+  <div class="sec-head">
+    <div class="sec-accent"></div>
+    <h2>Official Resources</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="chip-grid" style="margin-bottom:36px;">
+    <a href="https://josaa.nic.in" target="_blank" rel="noopener" class="chip" style="border-color:var(--saffron);">
+      <span class="chip-icon">🌐</span>
+      <div><div class="chip-val" style="font-size:14px;">josaa.nic.in</div><div class="chip-lbl">Official JoSAA Portal</div></div>
+    </a>
+    <a href="https://josaa.admissions.nic.in/Applicant/SeatAllotmentResult/currentorcr.aspx" target="_blank" rel="noopener" class="chip">
+      <span class="chip-icon">📊</span>
+      <div><div class="chip-val" style="font-size:13px;">OR-CR 2026</div><div class="chip-lbl">Opening &amp; Closing Ranks</div></div>
+    </a>
+    <a href="jac_josaa.html" class="chip">
+      <span class="chip-icon">📅</span>
+      <div><div class="chip-val" style="font-size:13px;">JAC Schedule</div><div class="chip-lbl">Delhi Counselling Dates</div></div>
+    </a>
+    <a href="jac26.html" class="chip">
+      <span class="chip-icon">🎓</span>
+      <div><div class="chip-val" style="font-size:13px;">JAC Delhi 2026</div><div class="chip-lbl">Delhi IIT/NIT Cutoffs</div></div>
+    </a>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div>Data sourced from official JoSAA 2026 OR-CR portal (josaa.nic.in), released June 13, 2026.</div>
+  <div style="margin-top:6px;">© 2026 <a href="index.html">Daily Spark</a> · Made with ❤️ for India · <a href="https://josaa.nic.in" target="_blank" rel="noopener">josaa.nic.in</a></div>
+</footer>
+
+</body>
+</html>

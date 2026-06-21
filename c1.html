@@ -68,6 +68,9 @@
        Schema — Article (Google Rich Results)
   ═══════════════════════════════════════ -->
   <script type="application/ld+json">
+// ── DS Header Live Date ──
+(function(){var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];var months=['January','February','March','April','May','June','July','August','September','October','November','December'];var d=new Date();var el=document.getElementById('ds-topbar-date');if(el)el.textContent=days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+
   {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -202,14 +205,65 @@
             }
         }
     </script>
+
+<style>
+/* ===== DAILY SPARK HEADER ===== */
+.ds-notif-bar{background:#FF6B00;color:#fff;padding:9px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;position:relative;z-index:9999;font-family:'Inter',sans-serif;}
+.ds-notif-bar a{color:#fff;text-decoration:none;}
+.ds-notif-close{background:none;border:none;color:#fff;cursor:pointer;font-size:18px;opacity:0.8;padding:0 4px;}
+.ds-notif-close:hover{opacity:1;}
+.ds-topbar{background:#0D1B2A;color:#fff;padding:10px 20px;font-size:12.5px;position:relative;z-index:9999;font-family:'Inter',sans-serif;}
+.ds-topbar-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.ds-topbar-date{color:#8899AA;white-space:nowrap;font-weight:500;}
+.ds-ticker-wrap{flex:1;overflow:hidden;white-space:nowrap;background:rgba(255,255,255,0.06);padding:5px 0;border-radius:4px;border-left:3px solid #FF6B00;}
+.ds-ticker{color:#CBD6E2;display:inline-block;padding-left:100%;animation:ds-tick 28s linear infinite;white-space:nowrap;}
+.ds-ticker:hover{animation-play-state:paused;}
+@keyframes ds-tick{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.ds-masthead{background:#fff;border-bottom:3px solid #FF6B00;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:9999;font-family:'Inter',sans-serif;}
+.ds-masthead-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.ds-logo-block{padding:14px 0;flex-shrink:0;text-decoration:none;display:block;}
+.ds-logo-name{font-size:24px;font-weight:800;color:#0D1B2A;line-height:1;}
+.ds-logo-name span{color:#FF6B00;}
+.ds-logo-tag{font-size:10px;color:#8899AA;letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.ds-nav-links{display:flex;gap:2px;align-items:center;}
+.ds-nav-links a{padding:8px 14px;font-size:13px;font-weight:600;color:#1A2B3C;border-radius:4px;transition:background 0.15s,color 0.15s;white-space:nowrap;text-decoration:none;}
+.ds-nav-links a:hover{background:#F7F9FC;color:#FF6B00;}
+.ds-nav-links a.active{color:#FF6B00;}
+@media(max-width:900px){.ds-nav-links{display:none;}}
+</style>
 </head>
 <body class="bg-brand-light text-brand-dark antialiased font-sans">
+<!-- ===== DAILY SPARK SHARED HEADER ===== -->
+<div class="ds-notif-bar" id="ds-notif">
+  <a href="ns.html" target="_blank" rel="noopener">🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</a>
+  <button class="ds-notif-close" onclick="document.getElementById('ds-notif').remove()">✕</button>
+</div>
+<div class="ds-topbar">
+  <div class="ds-topbar-inner">
+    <div class="ds-topbar-date" id="ds-topbar-date">Breaking News:</div>
+    <div class="ds-ticker-wrap"><span class="ds-ticker">Jossa Round 2 result on Tuesday, 30 June, 2026 17:00 &nbsp;|&nbsp; Jac Delhi Round 2 result on Wednesday 1st July 2026 (After 05:00 PM) &nbsp;|&nbsp;</span></div>
+  </div>
+</div>
+<div class="ds-masthead">
+  <div class="ds-masthead-inner">
+    <a href="index.html" class="ds-logo-block">
+      <div class="ds-logo-name">Daily <span>Spark</span></div>
+      <div class="ds-logo-tag">Where Knowledge Sparks Success</div>
+    </a>
+    <nav class="ds-nav-links">
+      <a href="index.html">Home</a>
+      <a href="parent.html">Parenting</a>
+      <a href="math.html">Math Playground</a>
+      <a href="gjobs.html">Govt. Jobs</a>
+      <a href="ait.html">Best AI Tools</a>
+      <a href="weather.html">Weather</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</div>
+<!-- ===== END SHARED HEADER ===== -->
 
-<!-- ✅ FIX: Daily Spark shared header attached -->
-<div id="ds-header-root"></div>
-<script src="ds-header.js"></script>
-
-    <!-- Article Hero -->
+<!-- Article Hero -->
     <header class="relative bg-blue-950 text-blue-200 overflow-hidden py-16 px-6 md:px-12 text-center md:text-left border-b border-slate-800">
         <div class="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-overlay" style="background-image: url('c1.png');"></div>
         <div class="relative max-w-7xl mx-auto z-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -246,7 +300,6 @@
                     <p class="text-brand-slate text-base md:text-lg leading-relaxed">सुबह आँख खुलते ही सबसे पहले आँखें सूरज की रोशनी को या मोबाइल को देखती है ? ज्यादातर लोगों का जवाब दूसरा ही होगा। ऑफिस में 8 से 9 घंटे लगातार कंप्यूटर स्क्रीन पर काम करने के बाद भी घर लौटते हुए मेट्रो या बस में अंगूठा लगातार रील्स को ऊपर की तरफ स्क्रॉल करता रहता है । इतना ही नहीं दोस्तों  ! बात यहीं खत्म नहीं होती जब सब सो जाते हैं, तो अंधेरे कमरे में नेटफ्लिक्स का कोई 'लास्ट एपिसोड' हमारी नींद चुरा लेता है... क्या यह आपकी भी रोजमर्रा की कहानी है?</p>
 
 <p class="text-brand-slate text-base md:text-lg leading-relaxed">अगर आपका जवाब 'हाँ' है, तो चौंकिए मत। यकीन मानिए आप अकेले नहीं हैं — अगर यह आपकी रोजमर्रा की आदत बन चुकी है, तो आपका स्क्रीन टाइम शायद आपकी सोच से कहीं ज्यादा है। आज हम एक ऐसी दुनिया में जी रहे हैं जहाँ हमारी सुबह और रात दोनों स्क्रीन के साथ ही होती हैं। आज हम सब इसी डिजिटल चक्रव्यूह के कैदी हैं। 'स्क्रीन टाइम' अब सिर्फ एक टेक्निकल शब्द नहीं रहा, बल्कि यह हमारी लाइफस्टाइल का रिमोट कंट्रोल बन चुका है। इस डिजिटल लाइफस्टाइल ने हमें एक नए शब्द से रूबरू कराया है—स्क्रीन टाइम (Screen Time)। लेकिन क्या आपने कभी रुककर ठंडे दिमाग से सोचा है कि कि स्क्रीन पर बिताया गया यह समय आपकी सेहत, आपके दिमाग और आपकी जिंदगी को किस तरह प्रभावित कर रहा है? स्क्रीन की यह नीली रोशनी हमारी मानसिक शांति, सेहत और फोकस करने की क्षमता को किस तरह अंदर ही अंदर खोखला कर रही है? आइए आज इस पर खुलकर बात करते हैं। आज के डिजिटल युग में मोबाइल, टैबलेट और अन्य स्क्रीन डिवाइस बच्चों के जीवन का हिस्सा बन चुके हैं। ऑनलाइन पढ़ाई, मनोरंजन और नई चीजें सीखने के लिए स्क्रीन उपयोगी हो सकती है, लेकिन इसका अत्यधिक उपयोग बच्चों के शारीरिक और मानसिक स्वास्थ्य पर नकारात्मक प्रभाव भी डाल सकता है। इसलिए यह जानना जरूरी है कि बच्चों के लिए कितना स्क्रीन टाइम सही माना जाता है। जागने से लेकर सोने तक आज हम सब स्क्रीन के गुलाम बन चुके हैं ।  </p>
-
 
 <div class="pt-4 border-t border-slate-100">
                         <h2 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 border-l-4 border-brand-primary pl-3">
@@ -336,7 +389,7 @@
                             </div>
                         </li>
                         <li class="flex gap-3 items-start bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-                            <span class="text-xl mt-0.5">🧠</span>
+                            <span class="text-xl mt-0.5">👀</span>
                             <div>
                                 <strong class="text-slate-900 block mb-0.5">व्यवहार और ध्यान (Focus) में बदलाव</strong>
                                 <span class="text-brand-slate text-sm">ज्यादा स्क्रीन टाइम से बच्चों का ध्यान किसी भी एक रचनात्मक चीज़ में नहीं लगता और वे बहुत जल्दी चिड़चिड़े हो जाते हैं।</span>
@@ -351,7 +404,6 @@
                         </li>
                     </ul>
                 </article>
-
 
 <!-- care Card -->
                 <article class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-100">
@@ -518,14 +570,10 @@
             </div>
 </section>
 
-</div><!-- ✅ FIX: closing tag for max-w-7xl main content div (was unclosed) -->
-
-<!-- ✅ FIX: proper footer element added -->
-<footer>
+</div><footer>
   <div id="footer"></div>
   <script src="./footer.js"></script>
 </footer>
-
 
     <!-- Smooth Intersection Observer Script for Bottom Callouts -->
     <script>

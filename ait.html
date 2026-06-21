@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Free AI Tools in 2026</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.container{
+    background:#fff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    text-align:center;
+    width:90%;
+    max-width:500px;
+}
+
+h1{
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+select{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border:2px solid #2563eb;
+    border-radius:8px;
+}
+
+button{
+    margin-top:20px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:12px 25px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Best Free AI Tools in 2026</h1>
+
+    <p>Select Your Language</p>
+
+    <select id="language">
+        <option value="">Choose Language</option>
+        <option value="english">English</option>
+        <option value="hindi">हिन्दी</option>
+    </select>
+
+    <button onclick="openPage()">Continue</button>
+</div>
+
+<script>
+function openPage() {
+    const lang = document.getElementById("language").value;
+
+    localStorage.setItem("selectedLanguage", lang);
+
+    if(lang === "hindi") {
+        window.location.href = "ait-hindi.html";
+    } else if(lang === "english") {
+        window.location.href = "ati-eng.html";
+    } else {
+        alert("Please select a language");
+    }
+}
+</script>
+
+</body>
+</html>
