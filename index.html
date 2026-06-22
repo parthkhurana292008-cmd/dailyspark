@@ -3,9 +3,99 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Daily Spark — Where Knowledge Sparks Success</title>
-<meta name="description" content="Daily Spark — India's trusted knowledge platform for Education, Government Jobs, Health, Cooking and Daily News."/>
-<meta name="robots" content="index, follow"/>
+
+<!-- ===== PRIMARY SEO ===== -->
+<title>Daily Spark — Where Knowledge Sparks Success | India's #1 Knowledge Hub</title>
+<meta name="description" content="Daily Spark is India's trusted knowledge platform for Education, B.Tech Counselling (JoSAA & JAC Delhi 2026), Government Jobs, Health, Cooking and Daily News. Stay updated, stay ahead."/>
+<meta name="keywords" content="daily spark, india education news, JoSAA 2026, JAC Delhi 2026, B.Tech counselling, government jobs, health tips, cooking recipes, daily news india, knowledge platform"/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<meta name="author" content="Daily Spark"/>
+<meta name="publisher" content="Daily Spark"/>
+<meta name="language" content="English"/>
+<meta name="revisit-after" content="1 days"/>
+<meta name="rating" content="general"/>
+<link rel="canonical" href="https://parthkhurana292008-cmd.github.io/dailyspark/index.html"/>
+
+<!-- ===== OPEN GRAPH (Facebook / WhatsApp / LinkedIn) ===== -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Daily Spark"/>
+<meta property="og:title" content="Daily Spark — Where Knowledge Sparks Success"/>
+<meta property="og:description" content="India's trusted platform for Education, JoSAA & JAC Delhi 2026 counselling, Government Jobs, Health, Cooking and Daily News. Free. Always."/>
+<meta property="og:url" content="https://parthkhurana292008-cmd.github.io/dailyspark/index.html"/>
+<meta property="og:image" content="https://parthkhurana292008-cmd.github.io/dailyspark/logo.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Daily Spark — Where Knowledge Sparks Success"/>
+<meta property="og:locale" content="en_IN"/>
+
+<!-- ===== TWITTER CARD ===== -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@DailySpark"/>
+<meta name="twitter:title" content="Daily Spark — Where Knowledge Sparks Success"/>
+<meta name="twitter:description" content="India's #1 free knowledge platform — Education, Jobs, Health, Cooking & News. Updated daily."/>
+<meta name="twitter:image" content="https://parthkhurana292008-cmd.github.io/dailyspark/logo.png"/>
+<meta name="twitter:image:alt" content="Daily Spark Logo"/>
+
+<!-- ===== GEO / INDIA TARGETING ===== -->
+<meta name="geo.region" content="IN"/>
+<meta name="geo.country" content="India"/>
+<meta name="geo.placename" content="India"/>
+<meta name="ICBM" content="20.5937, 78.9629"/>
+
+<!-- ===== STRUCTURED DATA — WebSite + Sitelinks Search ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Daily Spark",
+  "alternateName": "DailySpark India",
+  "url": "https://parthkhurana292008-cmd.github.io/dailyspark/",
+  "description": "India's trusted knowledge platform for Education, Government Jobs, Health, Cooking and Daily News.",
+  "inLanguage": ["en-IN", "hi-IN"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://parthkhurana292008-cmd.github.io/dailyspark/?s={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- ===== STRUCTURED DATA — Organization ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Daily Spark",
+  "url": "https://parthkhurana292008-cmd.github.io/dailyspark/",
+  "logo": "https://parthkhurana292008-cmd.github.io/dailyspark/logo.png",
+  "sameAs": [
+    "https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "availableLanguage": ["English", "Hindi"]
+  }
+}
+</script>
+
+<!-- ===== STRUCTURED DATA — BreadcrumbList ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://parthkhurana292008-cmd.github.io/dailyspark/index.html" }
+  ]
+}
+</script>
+
+<!-- ===== PERFORMANCE ===== -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="//api.openweathermap.org"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet"/>
@@ -275,13 +365,14 @@ a { text-decoration: none; color: inherit; }
   margin: 28px auto 0;
   padding: 0 20px;
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 380px;
   gap: 24px;
+  align-items: start;
 }
 .hero-main-card {
-  background: #000;
-  border-radius: 10px;
-  overflow: hidden;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -300,48 +391,65 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Hero Sidebar Cards */
-.hero-sidebar { display: flex; flex-direction: column; gap: 14px; height: 100%; }
+.hero-sidebar { display: flex; flex-direction: column; gap: 12px; height: 100%; }
 .card-link { display: flex; flex: 1; }
 .hs-card {
   background: var(--white);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   display: flex;
-  gap: 18px;
-  padding: 16px;
-  border: 1px solid var(--border);
+  gap: 16px;
+  padding: 18px 16px;
+  border: 1.5px solid var(--border);
   align-items: center;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
   flex: 1;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-.hs-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.10); transform: translateY(-2px); }
+.hs-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+  transform: translateY(-3px);
+  border-color: var(--saffron);
+}
 .hs-icon {
-  width: 70px; height: 70px;
-  border-radius: 10px;
+  width: 64px; height: 64px;
+  border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 36px;
+  font-size: 32px;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 .hs-icon.ic1 { background: linear-gradient(135deg, #FFF3E6, #FFD9B3); }
 .hs-icon.ic2 { background: linear-gradient(135deg, #E6F0FF, #B3CFFF); }
 .hs-icon.ic3 { background: linear-gradient(135deg, #E8F5E9, #A5D6A7); }
 .hs-body { flex: 1; min-width: 0; }
 .hs-cat {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   color: var(--saffron);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .hs-title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 14.5px;
+  font-weight: 700;
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.hs-card p {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -665,10 +773,12 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
   .ds-footer__tagline { max-width: 100%; }
 }
 @media (max-width: 900px) {
-  .hero-wrap { grid-template-columns: 1fr; }
-   .cat-grid  { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid  { grid-template-columns: repeat(2, 1fr); }
   .main-wrap { grid-template-columns: 1fr; }
   .nav-links { display: none; }
+}
+@media (max-width: 500px) {
+  .hero-wrap { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .topbar-links { display: none; }
@@ -710,6 +820,177 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
   color: #fff;
   transform: translateY(-3px);
 }
+
+@media (max-width: 768px) {
+  #hamburger { display: flex !important; }
+  #main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: #fff;
+    flex-direction: column;
+    padding: 10px 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    z-index: 200;
+    border-top: 2px solid var(--saffron);
+  }
+  #main-nav.open { display: flex; }
+  #main-nav a { padding: 12px 20px; font-size: 15px; border-bottom: 1px solid var(--border); }
+  .masthead { position: relative; }
+
+  /* Top bar */
+  .topbar-inner { flex-wrap: wrap; gap: 6px; }
+  .topbar-date { font-size: 11px; }
+  .topbar-links { display: none; }
+  .lang-switcher { display: none; }
+
+  /* Navbar */
+  .masthead-inner { padding: 0 12px; gap: 10px; }
+  .logo-name { font-size: 20px; }
+  .logo-tag { font-size: 9px; }
+  .nav-links { display: none; }
+  .nav-search input { width: 100px; }
+
+  /* Hero */
+  .hero-wrap {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+    margin-top: 16px;
+    gap: 14px;
+  }
+  .hero-title { font-size: 20px; }
+  .hs-card { gap: 12px; padding: 12px; }
+  .hs-icon { width: 54px; height: 54px; font-size: 28px; }
+
+  /* Category strip */
+  .cat-strip-wrap { padding: 0 12px; margin-top: 20px; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cat-emoji { font-size: 22px; }
+  .cat-label { font-size: 13px; }
+  .cat-sub { font-size: 12px; }
+  .cat-item { padding: 12px 8px; }
+
+  /* Main content */
+  .main-wrap {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+    margin-top: 20px;
+    gap: 20px;
+  }
+
+  /* News cards */
+  .nc-thumb { width: 80px; font-size: 28px; }
+  .nc-body { padding: 12px 14px; }
+  .nc-title { font-size: 14px; }
+  .nc-desc { display: none; }
+
+  /* Footer */
+  .ds-footer__body {
+    flex-direction: column !important;
+    padding: 1.4rem 1rem !important;
+    gap: 1.4rem !important;
+    align-items: flex-start !important;
+  }
+  .ds-footer__body > a img { width: 160px !important; }
+
+  /* WhatsApp card in footer */
+  .ds-footer__body > div:last-child {
+    min-width: unset !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .ds-footer__nl-input-row {
+    flex-direction: column !important;
+    gap: 8px;
+  }
+  .ds-footer__nl-input-row input,
+  .ds-footer__nl-input-row button {
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* Footer bottom */
+  .ds-footer__bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 1rem;
+  }
+  .ds-footer__legal-links { flex-wrap: wrap; justify-content: center; gap: 8px; }
+
+  /* Notification bar */
+  .notif-bar { font-size: 12px; padding: 8px 12px; }
+
+  /* Sidebar */
+  .sidebar-col { display: block; }
+}
+
+@media (max-width: 480px) {
+  .logo-name { font-size: 18px; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: 18px; }
+  .nc-thumb { width: 70px; font-size: 24px; }
+  .nc-title { font-size: 13px; }
+  .ds-footer__logo-name { font-size: 1.3rem !important; }
+}
+
+/* ===== SOCIAL BUTTONS ANIMATION ===== */
+.ds-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease, filter 0.25s ease;
+  animation: socialFadeIn 0.6s ease both;
+}
+.ds-social-btn:nth-child(1) { animation-delay: 0.05s; }
+.ds-social-btn:nth-child(2) { animation-delay: 0.15s; }
+.ds-social-btn:nth-child(3) { animation-delay: 0.25s; }
+.ds-social-btn:nth-child(4) { animation-delay: 0.35s; }
+
+@keyframes socialFadeIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.ds-social-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18);
+  transform: translateX(-110%) skewX(-15deg);
+  transition: transform 0.4s ease;
+}
+.ds-social-btn:hover::before {
+  transform: translateX(110%) skewX(-15deg);
+}
+.ds-social-btn:hover {
+  transform: translateY(-3px) scale(1.06);
+  filter: brightness(1.08);
+}
+.ds-social-wa:hover { box-shadow: 0 8px 20px rgba(37,211,102,0.5); }
+.ds-social-ig:hover { box-shadow: 0 8px 20px rgba(220,39,67,0.5); }
+.ds-social-yt:hover { box-shadow: 0 8px 20px rgba(255,0,0,0.5); }
+.ds-social-tg:hover { box-shadow: 0 8px 20px rgba(0,136,204,0.5); }
+.ds-social-btn:active {
+  transform: scale(0.96);
+  transition: transform 0.1s;
+}
+.ds-social-btn .si {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+.ds-social-btn:hover .si {
+  transform: rotate(-10deg) scale(1.25);
+}
 </style>
 </head>
 <body>
@@ -736,7 +1017,7 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
       <div class="logo-name">Daily <span>Spark</span></div>
       <div class="logo-tag">Where Knowledge Sparks Success</div>
     </div>
-    <nav class="nav-links" aria-label="Main navigation">
+    <nav class="nav-links" aria-label="Main navigation" id="main-nav">
       <a href="index.html" class="active">Home</a>
       <a href="parent.html">Parenting</a>
       <a href="math.html">Math Playground</a>
@@ -744,7 +1025,26 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
       <a href="weather.html">Weather</a>
       <a href="contact.html">Contact Us</a>
     </nav>
-    
+
+    <!-- Social Icons in Navbar -->
+    <div class="nav-social-icons" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+      <a href="https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG?s=cl&p=a&ilr=4" target="_blank" rel="noopener" title="WhatsApp" style="width:34px;height:34px;border-radius:8px;background:#25D366;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(37,211,102,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      </a>
+      <a href="#" title="Instagram" style="width:34px;height:34px;border-radius:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(220,39,67,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+      <a href="#" title="YouTube" style="width:34px;height:34px;border-radius:8px;background:#FF0000;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(255,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="#" title="Telegram" style="width:34px;height:34px;border-radius:8px;background:#0088CC;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,136,204,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+    </div>
+
+    <button id="hamburger" onclick="toggleNav()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;flex-shrink:0;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </div>
 </div>
 
@@ -754,12 +1054,35 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
     <div class="hero-bg" aria-hidden="true">🏛️</div>
     <div class="hero-gradient" aria-hidden="true"></div>
     <div class="hero-content">
-      <a href="https://youtu.be/6aVxcTUuphs" target="_blank" style="display:block;position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:8px;overflow:hidden;">
-        <img src="https://img.youtube.com/vi/6aVxcTUuphs/maxresdefault.jpg" style="width:100%;height:100%;position:absolute;top:0;left:0;object-fit:cover;">
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,0,0,0.9);border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 19,12 8,19"/></svg>
+      <!-- Video opens on YouTube for views, watch time, likes & subscribe -->
+      <div style="position:relative;width:100%;padding-bottom:56.25%;border-radius:0;overflow:hidden;cursor:pointer;line-height:0;font-size:0;" onclick="openYT()" id="yt-thumb">
+        <img src="https://img.youtube.com/vi/6aVxcTUuphs/maxresdefault.jpg" style="width:100%;height:116%;position:absolute;top:-8%;left:0;object-fit:cover;object-position:center center;display:block;">
+        
+        <div id="yt-play-btn" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);background:rgba(255,0,0,0.92);border-radius:50%;width:70px;height:70px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,0,0,0.5);transition:transform 0.2s;">
+         
         </div>
-      </a>
+      </div>
+      <!-- Like & Subscribe nudge -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding:10px 14px;background:linear-gradient(135deg,#fff5f5,#fff);border:1px solid #ffd0d0;border-radius:8px;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:13px;color:#1A2B3C;font-weight:600;">👍 Like करें &nbsp;·&nbsp; 🔔 Subscribe करें &nbsp;·&nbsp; 💬 Comment करें</span>
+        <a href="https://www.youtube.com/watch?v=6aVxcTUuphs&sub_confirmation=1" target="_blank" rel="noopener" style="background:#FF0000;color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;text-decoration:none;white-space:nowrap;">🔔 Subscribe Now</a>
+      </div>
+      <script>
+      document.getElementById('yt-play-btn').addEventListener('mouseover',function(){this.style.transform='translate(-50%,-60%) scale(1.12)';});
+      document.getElementById('yt-play-btn').addEventListener('mouseout',function(){this.style.transform='translate(-50%,-60%) scale(1)';});
+      function openYT() {
+        var videoId = '6aVxcTUuphs';
+        var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+        if (isMobile) {
+          window.location.href = 'youtube://watch?v=' + videoId;
+          setTimeout(function() {
+            window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
+          }, 600);
+        } else {
+          window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
+        }
+      }
+      </script>
     </div>
   </div>
 
@@ -770,7 +1093,7 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
         <div class="hs-body">
           <div class="hs-cat">Plants</div>
           <div class="hs-title">Bring positive energy home</div>
-<p>सिर्फ मनी प्लांट नहीं, ये पौधे भी घर लाते हैं सुख, शांति और धन</p>
+<p>सिर्फ मनी प्लांट नहीं, ये पौधे भी घर लाते हैं, सुख, शांति और धन</p>
         </div>
       </div>
     </a>
@@ -790,7 +1113,7 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
         <div class="hs-body">
           <div class="hs-cat">Best Career Path</div>
           <div class="hs-title">B.Tech के बाद Best Career in 2026</div>
-	<p>Excellent Paths to Build a Successful Career in 2026</p>
+	<p>Excellent Paths to Build a Successful Career</p>
         </div>
       </div>
     </a>
@@ -1010,37 +1333,16 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 <!-- ===== FOOTER ===== -->
 <footer class="ds-footer" role="contentinfo">
 
-  <!-- WhatsApp Join Band -->
-  <div class="ds-footer__nl">
-    <div class="ds-footer__nl-inner">
-      <div>
-        <div class="ds-footer__nl-eyebrow">💬 WhatsApp Updates</div>
-        <div class="ds-footer__nl-title">Join Daily Spark on WhatsApp</div>
-        <div class="ds-footer__nl-sub">Daily news, jobs &amp; tips — straight to your WhatsApp. Free, anytime exit.</div>
-      </div>
-      <form class="ds-footer__nl-form" onsubmit="dsFnlSubmit(event)" novalidate>
-        <div class="ds-footer__nl-input-row">
-          <input type="tel" id="ds-nl-phone" placeholder="10 digit whatsapp number" autocomplete="tel" inputmode="numeric" maxlength="15" aria-label="WhatsApp number"/>
-          <button type="submit">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-            Join WhatsApp
-          </button>
-        </div>
-        <div class="ds-footer__nl-feedback" id="ds-nl-feedback"></div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Main body — centered -->
-  <div class="ds-footer__body" style="display:flex;flex-direction:row;align-items:center;gap:2.5rem;flex-wrap:wrap;width:100%;padding:2.4rem 2rem 2rem;">
+  <!-- Main body — Logo | Info | WhatsApp -->
+  <div class="ds-footer__body" style="display:flex;flex-direction:row;align-items:flex-start;gap:2.5rem;flex-wrap:wrap;width:100%;padding:2.4rem 2rem 2rem;">
 
     <!-- Left: Logo image -->
     <a href="index.html" aria-label="Daily Spark Home" style="flex-shrink:0;">
       <img src="logo.png" alt="Daily Spark Logo" style="width:220px;height:auto;object-fit:contain;display:block;">
     </a>
 
-    <!-- Right: Name + Social + Badges -->
-    <div style="display:flex;flex-direction:column;gap:1.2rem;flex:1;">
+    <!-- Middle: Name + Social + Badges -->
+    <div style="display:flex;flex-direction:column;gap:1.2rem;flex:1;min-width:200px;">
 
       <!-- Name & tagline -->
       <div>
@@ -1049,11 +1351,19 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
       </div>
 
       <!-- Social buttons -->
-      <nav style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-        <a href="https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG?s=cl&p=a&ilr=4" class="ds-social-btn ds-social-wa"><span class="si">💬</span> WhatsApp</a>
-        <a href="#" class="ds-social-btn ds-social-ig"><span class="si">📸</span> Instagram</a>
-        <a href="#" class="ds-social-btn ds-social-yt"><span class="si">▶️</span> YouTube</a>
-        <a href="#" class="ds-social-btn ds-social-tg"><span class="si">✈️</span> Telegram</a>
+      <nav style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <a href="https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG?s=cl&p=a&ilr=4" target="_blank" rel="noopener" title="WhatsApp" style="width:38px;height:38px;border-radius:8px;background:#25D366;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(37,211,102,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        </a>
+        <a href="#" title="Instagram" style="width:38px;height:38px;border-radius:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(220,39,67,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="#" title="YouTube" style="width:38px;height:38px;border-radius:8px;background:#FF0000;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(255,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="#" title="Telegram" style="width:38px;height:38px;border-radius:8px;background:#0088CC;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,136,204,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
       </nav>
 
       <!-- Badges -->
@@ -1063,6 +1373,20 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
         <span class="ds-footer__badge">🆓 Always Free</span>
       </div>
 
+    </div>
+
+    <!-- Right: WhatsApp Join Form -->
+    <div style="flex-shrink:0;min-width:380px;max-width:500px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:1.4rem;">
+      <div style="font-size:11px;font-weight:700;color:#FF8C33;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">💬 WhatsApp Updates</div>
+      <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:4px;">Join Daily Spark on WhatsApp</div>
+      <div style="font-size:12.5px;color:#8899AA;margin-bottom:14px;">Daily news, jobs &amp; tips — straight to your WhatsApp. Free, anytime exit.</div>
+      <div class="ds-footer__nl-input-row">
+        <input type="tel" id="ds-nl-phone" placeholder="10 digit whatsapp number" autocomplete="tel" inputmode="numeric" maxlength="15" aria-label="WhatsApp number" style="font-size:16px;"/>
+        <button type="button" id="ds-wa-btn" onclick="dsFnlSubmit(event)" style="background:#25D366;color:#fff;border:none;font-size:16px;font-weight:700;cursor:pointer;border-radius:6px;padding:10px 18px;white-space:nowrap;">
+          💬 Join WhatsApp
+        </button>
+      </div>
+      <div class="ds-footer__nl-feedback" id="ds-nl-feedback"></div>
     </div>
 
   </div>
@@ -1088,6 +1412,12 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 </footer>
 
 <script>
+/* ===== HAMBURGER MENU ===== */
+function toggleNav() {
+  var nav = document.getElementById('main-nav');
+  nav.classList.toggle('open');
+}
+
 /* ===== LIVE DATE ===== */
 (function() {
   var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -1100,16 +1430,18 @@ a.trending-item:hover .trending-text { color: var(--saffron); }
 
 /* ===== WHATSAPP JOIN ===== */
 function dsFnlSubmit(e) {
-  e.preventDefault();
+  if (e && e.preventDefault) e.preventDefault();
 
-  var OWNER_WA = '917982126049'; // ← Replace with your WhatsApp number (country code + number, no + or spaces)
+  var OWNER_WA = '917982126049';
   var WA_MESSAGE = encodeURIComponent('Welcome to Daily Spark! https://parthkhurana292008-cmd.github.io/dailyspark/index.html Thank You to join our WhatsApp updates group for daily news, jobs and tips. 🙏');
 
   var input    = document.getElementById('ds-nl-phone');
-  var btn      = e.target.querySelector('button');
+  var btn      = document.getElementById('ds-wa-btn');
   var feedback = document.getElementById('ds-nl-feedback');
 
-  var raw = input.value.replace(/\D/g, ''); // strip non-digits
+  if (!input || !btn || !feedback) return;
+
+  var raw = input.value.replace(/\D/g, '');
 
   /* ── Validation ── */
   if (raw.length < 7) {
@@ -1123,8 +1455,8 @@ function dsFnlSubmit(e) {
   var waLink = 'https://wa.me/' + OWNER_WA + '?text=' + WA_MESSAGE;
 
   /* ── UI feedback ── */
-  btn.disabled       = true;
-  btn.textContent    = 'Opening WhatsApp…';
+  btn.disabled         = true;
+  btn.textContent      = 'Opening WhatsApp…';
   feedback.textContent = '';
   feedback.className   = 'ds-footer__nl-feedback';
 
@@ -1140,10 +1472,11 @@ function dsFnlSubmit(e) {
     input.value          = '';
   }, 600);
 
+  /* ── Reset state ── */
   setTimeout(function() {
     btn.disabled         = false;
-    btn.innerHTML        = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> Join WhatsApp';
-    btn.style.background = '';
+    btn.innerHTML        = '💬 Join WhatsApp';
+    btn.style.background = '#25D366';
     feedback.className   = 'ds-footer__nl-feedback';
   }, 5000);
 }
@@ -1186,17 +1519,8 @@ function dsFnlSubmit(e) {
       });
   }
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(pos) { showWeather(pos.coords.latitude, pos.coords.longitude); },
-      function() {
-        // Default: Delhi
-        showWeather(28.6139, 77.2090);
-      }
-    );
-  } else {
-    showWeather(28.6139, 77.2090);
-  }
+  // Directly use Delhi coordinates — no location permission popup
+  showWeather(28.6139, 77.2090);
 })();
 </script>
 
