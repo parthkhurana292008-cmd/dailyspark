@@ -155,18 +155,32 @@
   }
   .sep { width: 100%; height: 1px; background: var(--border); margin: 2rem 0; }
   #no-checker-results { display: none; }
+
+/* ── FAQ Section ── */
+.faq-wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+.faq-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+.faq-title span { font-size: 11px; font-family: 'Inter', sans-serif; font-weight: 600; background: var(--accent-dtu); color: #fff; padding: 3px 10px; border-radius: 20px; }
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item { border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); box-shadow: var(--shadow); }
+.faq-item.open { border-color: var(--accent-dtu); }
+.faq-q { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; }
+.faq-q:hover { background: var(--surface2); }
+.faq-num { width: 26px; height: 26px; border-radius: 50%; background: var(--surface2); color: var(--text3); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+.faq-item.open .faq-num { background: var(--accent-dtu); color: #fff; }
+.faq-qtext { font-size: 13.5px; font-weight: 600; color: var(--text); flex: 1; line-height: 1.4; }
+.faq-chevron { font-size: 10px; color: var(--text3); transition: transform 0.2s; flex-shrink: 0; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-a { display: none; padding: 2px 18px 16px 56px; font-size: 13px; color: var(--text2); line-height: 1.75; }
+.faq-item.open .faq-a { display: block; }
+.faq-a strong { color: var(--text); }
+
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">
-    <div class="logo-dot"></div>
-    JAC Delhi 2026
-  </div>
-  <div class="badge-round">Round 1 · 15 June 2026</div>
-</header>
-
+<!-- ===== DAILY SPARK SHARED HEADER ===== -->
+<div id="ds-header"></div>
+<script src="header.js"></script>
+<!-- ===== END SHARED HEADER ===== -->
 <div class="hero">
   <div class="hero-eyebrow">Joint Admission Counselling</div>
   <h1>Delhi Engineering<br>Cutoff 2026</h1>
@@ -334,9 +348,7 @@
 
 </div>
 
-<footer>
-  Data sourced from official JAC Delhi Round 1 cutoff documents · 15 June 2026 · For reference only; verify at jacdelhi.admissions.nic.in
-</footer>
+
 
 <script>
 const DATA = [
@@ -631,6 +643,36 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+function toggleFaq(id) {
+  document.querySelectorAll('.faq-item').forEach(function(el){
+    if (el.id !== id) el.classList.remove('open');
+  });
+  document.getElementById(id).classList.toggle('open');
+}
+
 </script>
+
+<div class="faq-wrap">
+  <div class="faq-title">Frequently Asked Questions — JAC Delhi 2026 <span>15 FAQs</span></div>
+  <div class="faq-list">
+    <div class="faq-item" id="faq1"><div class="faq-q" onclick="toggleFaq('faq1')"><div class="faq-num">1</div><div class="faq-qtext">What exactly is JAC Delhi and which colleges does it cover?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>JAC Delhi</strong> is the centralized counselling authority for B.Tech admissions in Delhi's top government engineering colleges through JEE Main scores.<br><br>🔵 <strong>DTU</strong> — Delhi Technological University<br>🔴 <strong>NSUT</strong> — Netaji Subhas University of Technology<br>🟢 <strong>IIIT-Delhi</strong> — Indraprastha Institute of Information Technology<br>🟣 <strong>DSEU</strong> — Delhi Skill and Entrepreneurship University<br>🟠 <strong>IGDTUW</strong> — Indira Gandhi Delhi Technical University for Women (female only)<br><br>All offer 4-year B.Tech programs and are among the most sought-after engineering institutions in India.</div></div>
+    <div class="faq-item" id="faq2"><div class="faq-q" onclick="toggleFaq('faq2')"><div class="faq-num">2</div><div class="faq-qtext">What does "cutoff rank" mean and how is it different from a merit rank?</div><span class="faq-chevron">▼</span></div><div class="faq-a">A <strong>cutoff rank</strong> is the JEE Main rank of the <em>last candidate</em> allotted a seat in a particular college, branch, category, and round.<br><br>⚠️ <strong>Critical:</strong> A <em>lower</em> rank number = <em>stronger</em> candidate. Rank 5,000 is better than rank 15,000. If DTU CSE General Round 5 cutoff is 11,352 — anyone with rank 1 to 11,352 was eligible. If your rank is below (better than) the cutoff, you qualify. If above, you don't — for that combination in that round.</div></div>
+    <div class="faq-item" id="faq3"><div class="faq-q" onclick="toggleFaq('faq3')"><div class="faq-num">3</div><div class="faq-qtext">Why do cutoffs relax from Round 1 to Round 5?</div><span class="faq-chevron">▼</span></div><div class="faq-a">In Round 1, top-ranked students secure first-choice seats. In Round 2–3, many <strong>upgrade to better options</strong> — vacating earlier seats. Those seats re-open to candidates with slightly weaker ranks.<br><br>📌 <strong>Don't give up</strong> if your rank just misses Round 1. Thousands of students every year get seats in Round 4 or 5 that were impossible in Round 1. The Spot Round after Round 5 offers the most relaxed cutoffs of the entire process.</div></div>
+    <div class="faq-item" id="faq4"><div class="faq-q" onclick="toggleFaq('faq4')"><div class="faq-num">4</div><div class="faq-qtext">What is the difference between Delhi domicile and Outside Delhi seats?</div><span class="faq-chevron">▼</span></div><div class="faq-a">JAC Delhi reserves ~<strong>85% seats for Delhi domicile candidates</strong> and ~15% for Outside Delhi. Outside Delhi candidates compete nationally, so their cutoffs are much tougher.<br><br>📊 DTU CSE General Round 5 (2025):<br>🟢 <strong>Delhi:</strong> ~11,352 &nbsp;|&nbsp; 🔴 <strong>Outside Delhi:</strong> ~6,200<br><br>✅ Delhi domicile = massive advantage. Outside Delhi candidates should simultaneously explore JoSAA for NITs and IIITs.</div></div>
+    <div class="faq-item" id="faq5"><div class="faq-q" onclick="toggleFaq('faq5')"><div class="faq-num">5</div><div class="faq-qtext">Which branches are the toughest to get into across JAC Delhi colleges?</div><span class="faq-chevron">▼</span></div><div class="faq-a">2025 Round 5 General (Delhi) cutoffs:<br><br>🔴 <strong>NSUT CSAI</strong> — ~7,946 (toughest overall)<br>🔴 <strong>IIIT-Delhi CSE</strong> — ~8,200<br>🔴 <strong>DTU CSE</strong> — ~11,352<br>🔴 <strong>NSUT CSE</strong> — ~12,500<br>🟡 <strong>DTU MAC</strong> — ~14,000 (excellent alternative)<br>🟡 <strong>DTU ECE</strong> — ~22,000 (strong, far more accessible)<br><br>💡 If your rank misses CSE, ECE and MAC have nearly identical first-year curriculum and comparable tech placements.</div></div>
+    <div class="faq-item" id="faq6"><div class="faq-q" onclick="toggleFaq('faq6')"><div class="faq-num">6</div><div class="faq-qtext">How should I strategically use cutoff data to predict my 2026 chances?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>3-step strategy:</strong><br><br><strong>Step 1 — Safety buffer:</strong> If your rank is 10–20% better than the Round 5 cutoff, you have a strong chance.<br><br><strong>Step 2 — Layered choices:</strong> Fill 10–15 choices — 3 aspirational, 5–6 realistic, 3–4 safe backups.<br><br><strong>Step 3 — Track trends:</strong> If a branch tightened 3 years in a row, expect it to tighten again. Use the charts on this page to identify patterns.</div></div>
+    <div class="faq-item" id="faq7"><div class="faq-q" onclick="toggleFaq('faq7')"><div class="faq-num">7</div><div class="faq-qtext">What is CSAI at NSUT and why is it so competitive?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>CSAI = Computer Science & Artificial Intelligence</strong> — the toughest branch in all of JAC Delhi. Why?<br><br>1️⃣ <strong>Extremely limited seats</strong><br>2️⃣ <strong>Massive demand</strong> — AI is the hottest field in 2026<br>3️⃣ <strong>Outstanding placements</strong> — Google, Microsoft, top MNCs at premium packages<br><br>💡 If CSAI is out of reach, NSUT CSE or DTU ECE are equally strong — same top recruiters visit both.</div></div>
+    <div class="faq-item" id="faq8"><div class="faq-q" onclick="toggleFaq('faq8')"><div class="faq-num">8</div><div class="faq-qtext">Is IGDTUW only for female candidates? How does it compare in cutoffs?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>Yes — IGDTUW is exclusively for female candidates</strong>, creating a huge strategic advantage:<br><br>✅ Cutoffs <strong>15,000–25,000 ranks more relaxed</strong> than DTU/NSUT for the same branch<br>✅ Rank ~20,000 who misses DTU CSE can comfortably get <strong>CSE at IGDTUW</strong><br>✅ Excellent placements — Microsoft, Deloitte, Infosys, top startups<br>✅ Women-specific scholarships and mentorship programs<br><br>📌 Every female candidate should add IGDTUW CSE/ECE as a top-priority choice.</div></div>
+    <div class="faq-item" id="faq9"><div class="faq-q" onclick="toggleFaq('faq9')"><div class="faq-num">9</div><div class="faq-qtext">What is the MAC branch at DTU — is it worth choosing?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>MAC = Mathematics and Computing</strong> — DTU's most underrated yet powerful branch.<br><br>📚 <strong>Curriculum:</strong> Advanced maths, statistics, data science, algorithms, ML — heavy on logic and programming.<br><br>💼 <strong>Recruiters:</strong> Google, Microsoft, Goldman Sachs, D.E. Shaw — same as CSE.<br><br>📊 Cutoff only 2,000–5,000 ranks more relaxed than DTU CSE. With Delhi General rank 13,000–17,000, MAC at DTU often outperforms CSE at tier-2 private colleges in placements and alumni network.</div></div>
+    <div class="faq-item" id="faq10"><div class="faq-q" onclick="toggleFaq('faq10')"><div class="faq-num">10</div><div class="faq-qtext">What reservation categories are available and how do they affect cutoffs?</div><span class="faq-chevron">▼</span></div><div class="faq-a">JAC Delhi 2026 categories:<br><br>🔵 <strong>GN</strong> — Unreserved; toughest cutoffs<br>🟠 <strong>OBC</strong> — 27% reservation; ~3,000–10,000 ranks more relaxed than GN<br>🟣 <strong>SC</strong> — 15% reservation; significantly more relaxed<br>🟢 <strong>ST</strong> — 7.5% reservation; most relaxed<br>🟡 <strong>EWS</strong> — 10% for GN with family income below ₹8 lakh/year<br><br>✅ Always apply under your correct category — your competition pool shrinks dramatically. Ensure certificate is valid before registration deadline.</div></div>
+    <div class="faq-item" id="faq11"><div class="faq-q" onclick="toggleFaq('faq11')"><div class="faq-num">11</div><div class="faq-qtext">My rank is higher than the Round 5 cutoff — is there still hope?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>Yes — 5 real options remain:</strong><br><br>1️⃣ <strong>2026 cutoffs may relax</strong> — tougher paper = fewer good ranks = easier cutoffs (5,000–15,000 rank difference possible)<br>2️⃣ <strong>Adjacent branches</strong> — ECE, IT, SE, or MAC may be within range with comparable placements<br>3️⃣ <strong>Spot Round</strong> — most relaxed cutoffs of the entire JAC process<br>4️⃣ <strong>East campuses</strong> — DTU East and NSUT East have notably more relaxed cutoffs<br>5️⃣ <strong>Register anyway</strong> — you can decline but cannot apply after the deadline closes</div></div>
+    <div class="faq-item" id="faq12"><div class="faq-q" onclick="toggleFaq('faq12')"><div class="faq-num">12</div><div class="faq-qtext">Which branches show the most cutoff relaxation from Round 1 to Round 5?</div><span class="faq-chevron">▼</span></div><div class="faq-a">Branches where <strong>later rounds help most</strong> (General, Delhi, 2025):<br><br>🏗️ <strong>Civil Engineering</strong> — 15,000–25,000 rank relaxation<br>⚙️ <strong>Mechanical Engineering</strong> — 10,000–20,000 rank relaxation<br>🌿 <strong>Environmental Engineering</strong> — 20,000+ rank relaxation<br>🧬 <strong>Biotechnology</strong> — 15,000–20,000 rank relaxation<br><br>📌 Rank between 50,000–90,000? These branches at DTU/NSUT are achievable in Round 3–4 and offer strong PSU and core industry career paths.</div></div>
+    <div class="faq-item" id="faq13"><div class="faq-q" onclick="toggleFaq('faq13')"><div class="faq-num">13</div><div class="faq-qtext">DTU vs NSUT — which is better for placements and overall experience?</div><span class="faq-chevron">▼</span></div><div class="faq-a">🏛️ <strong>DTU:</strong> Stronger national brand, slightly higher average CTC in CSE/ECE, larger senior alumni network, more active research culture.<br><br>🏛️ <strong>NSUT:</strong> Rapidly improving placements, NSUT CSAI has Delhi's highest packages, strong software and AI industry connections.<br><br>🎯 <strong>Verdict:</strong> DTU holds a slight overall edge for the same branch. But <strong>branch matters far more than college</strong> — CSE at NSUT consistently outperforms Mechanical at DTU in salaries and job quality.</div></div>
+    <div class="faq-item" id="faq14"><div class="faq-q" onclick="toggleFaq('faq14')"><div class="faq-num">14</div><div class="faq-qtext">What documents do I need for JAC Delhi 2026 counselling and reporting?</div><span class="faq-chevron">▼</span></div><div class="faq-a">Keep originals + 1 self-attested photocopy of each:<br><br>📄 JEE Main 2026 Admit Card and Score Card<br>📄 Class X certificate (date of birth proof)<br>📄 Class XII marksheet and admit card<br>📄 Seat Acceptance Fee payment receipt<br>📄 Online registration form (signed by candidate and parent)<br>📄 Seat allotment letter from JAC portal<br>📄 3 recent passport-size photographs<br>📄 Valid category certificate (OBC/SC/ST/EWS — if applicable)<br>📄 Medical fitness certificate in prescribed format<br>📄 Delhi domicile certificate (Delhi region candidates)<br><br>✅ Prepare a dedicated folder before reporting day — one missing document can delay your admission.</div></div>
+    <div class="faq-item" id="faq15"><div class="faq-q" onclick="toggleFaq('faq15')"><div class="faq-num">15</div><div class="faq-qtext">What is the single most important advice for JAC Delhi 2026 aspirants?</div><span class="faq-chevron">▼</span></div><div class="faq-a"><strong>Fill as many choices as possible — and fill them wisely.</strong><br><br>Most students make two mistakes: too few choices and ranking emotionally instead of strategically.<br><br>✅ Fill <strong>15–20 choices minimum</strong> across colleges and branches<br>✅ Rank by <strong>genuine preference</strong>, not by cutoff — the system allots your best qualifying option automatically<br>✅ Include <strong>3–4 safe choices</strong> where your rank is comfortably within Round 3 cutoff<br>✅ <strong>Participate in every round</strong> — upgrading is free<br>✅ <strong>Never freeze prematurely</strong> unless 100% satisfied<br><br>The JAC process rewards candidates who are thorough, patient, and strategic. One good decision in choice-filling can change your entire career trajectory.</div></div>
+  </div>
+</div>
+
 </body>
 </html>

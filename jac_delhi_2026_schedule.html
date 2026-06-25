@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAC Delhi 2026 — Counselling Schedule | Daily Spark</title>
+<meta name="description" content="Complete JAC Delhi 2026 B.Tech counselling schedule — all rounds, important dates, document verification, seat acceptance fee deadlines."/>
+<meta name="keywords" content="JAC Delhi 2026, counselling schedule, B.Tech admission, seat allotment, NSUT, DTU, IIIT Delhi, IGDTUW, DSEU"/>
+<meta name="robots" content="index, follow"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-50:#E6F1FB; --blue-200:#85B7EB; --blue-600:#185FA5; --blue-800:#0C447C;
+  --green-50:#EAF3DE; --green-600:#3B6D11; --green-700:#27500A; --green-800:#1D9E75; --green-900:#0F6E56;
+  --teal-50:#E1F5EE; --teal-600:#0F6E56;
+  --purple-50:#EEEDFE; --purple-800:#3C3489;
+  --amber-50:#FAEEDA; --amber-600:#854F0B;
+  --red-50:#FCEBEB; --red-600:#A32D2D; --red-800:#791F1F;
+  --pink-50:#FBEAF0; --pink-800:#72243E;
+  --radius-md:8px; --radius-lg:12px;
+  --orange:#FF6B00; --navy:#0D1B2A;
+}
+
+body {
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:#f5f5f3; color:#1a1a1a; min-height:100vh; padding:0 0 3rem;
+}
+
+@keyframes blink      { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes slidein    { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse-border { 0%,100%{border-color:#5DCAA5} 50%{border-color:#0F6E56} }
+
+/* ── Page layout ── */
+.page { max-width:860px; margin:0 auto; padding:1.5rem 1rem 3rem; }
+
+/* ── JAC hero header card ── */
+.jac-header { background:#0C447C; border-radius:var(--radius-lg); overflow:hidden; margin-bottom:1.25rem; }
+.jac-header-top { padding:1.4rem 1.75rem 1rem; }
+.header-unis { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:.85rem; }
+.uni-pill { font-size:11px; font-weight:600; padding:3px 10px; border-radius:100px; background:rgba(255,255,255,0.12); color:#B5D4F4; border:.5px solid rgba(255,255,255,0.2); }
+.jac-title { font-size:23px; font-weight:700; color:#fff; margin-bottom:4px; }
+.jac-sub { font-size:13px; color:#85B7EB; }
+.jac-strip { background:#083a6a; padding:.65rem 1.75rem; display:flex; align-items:flex-start; gap:10px; font-size:12.5px; color:#B5D4F4; border-top:.5px solid rgba(255,255,255,0.1); }
+.jac-strip i { font-size:15px; color:#85B7EB; flex-shrink:0; margin-top:2px; }
+
+/* ── Today banner ── */
+.today-bar { background:var(--green-50); border:2px solid #5DCAA5; border-radius:var(--radius-lg); padding:1rem 1.25rem; margin-bottom:1.25rem; animation:slidein .4s ease, pulse-border 2s ease-in-out infinite; }
+.today-bar-head { display:flex; align-items:center; gap:8px; margin-bottom:.65rem; }
+.live-dot { width:9px; height:9px; background:#1D9E75; border-radius:50%; animation:blink 1s step-start infinite; flex-shrink:0; }
+.today-bar-title { font-size:14px; font-weight:700; color:#27500A; }
+.today-bar-date { font-size:12px; color:var(--teal-600); margin-left:auto; display:flex; align-items:center; gap:4px; }
+.today-ev-list { display:flex; flex-direction:column; gap:6px; }
+.today-ev { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--green-600); line-height:1.4; padding:6px 10px; background:rgba(255,255,255,0.55); border-radius:var(--radius-md); }
+.today-ev i { font-size:15px; color:var(--teal-600); flex-shrink:0; margin-top:1px; }
+.today-ev-label { font-size:10px; font-weight:700; background:#1D9E75; color:#fff; padding:2px 7px; border-radius:100px; margin-left:auto; white-space:nowrap; align-self:center; }
+
+/* ── Countdown strip ── */
+.countdown-strip { background:#0D1B2A; border-radius:var(--radius-lg); padding:1.4rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:1.5rem; }
+.cs-label { font-size:10px; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px; }
+.cs-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:2px; }
+.cs-date  { font-size:12px; color:#FF8C33; font-weight:600; }
+.countdown-boxes { display:flex; gap:8px; flex-shrink:0; }
+.cb { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:8px 12px; text-align:center; min-width:52px; }
+.cb-num { font-size:1.4rem; font-weight:700; color:#fff; line-height:1; }
+.cb-unit { font-size:9px; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:.07em; margin-top:2px; }
+
+/* ── Tabs ── */
+.tab-row { display:flex; gap:6px; margin-bottom:1.25rem; flex-wrap:wrap; }
+.tab { padding:7px 15px; border-radius:100px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid #d0cfc8; background:#fff; color:#666; transition:all .15s; display:flex; align-items:center; gap:5px; }
+.tab:hover { background:#f0f0ed; border-color:#b0b0a8; }
+.tab.active { background:var(--blue-50); color:var(--blue-600); border-color:var(--blue-200); }
+.tab i { font-size:14px; }
+
+/* ── Section label ── */
+.sec-label { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#999; margin-bottom:.7rem; }
+
+/* ── Section heading ── */
+.section-heading { display:flex; align-items:center; gap:12px; margin:32px 0 16px; }
+.section-heading h2 { font-size:1.2rem; font-weight:700; color:#0D1B2A; }
+.sh-accent { width:4px; height:26px; border-radius:2px; flex-shrink:0; }
+.sh-orange { background:#FF6B00; }
+.sh-blue   { background:#185FA5; }
+.sh-green  { background:#1D9E75; }
+.sh-gold   { background:#D97706; }
+.sh-badge  { font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-left:auto; }
+.sh-badge.orange { background:#FFF3E6; color:#FF6B00; border:1px solid #FFD0A0; }
+.sh-badge.blue   { background:var(--blue-50); color:var(--blue-600); border:1px solid #93c5fd; }
+.sh-badge.green  { background:#F0FFF4; color:#1D9E75; border:1px solid #86efac; }
+
+/* ── Milestone cards ── */
+.kd-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); gap:10px; margin-bottom:1.75rem; }
+.kd-card { background:#fff; border:1.5px solid #e8e7e2; border-radius:var(--radius-lg); padding:.9rem 1rem 1rem; transition:transform .18s,border-color .18s; position:relative; overflow:hidden; display:flex; flex-direction:column; gap:6px; }
+.kd-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--card-accent,#e8e7e2); border-radius:var(--radius-lg) var(--radius-lg) 0 0; }
+.kd-card:hover { transform:translateY(-3px); border-color:var(--card-accent,#c0bfb8); }
+.kd-card.kd-reg    { --card-accent:#185FA5; }
+.kd-card.kd-verify { --card-accent:#534AB7; }
+.kd-card.kd-r1     { --card-accent:#0F6E56; }
+.kd-card.kd-r2reg  { --card-accent:#1D9E75; border-color:#5DCAA5; }
+.kd-card.kd-r2     { --card-accent:#378ADD; }
+.kd-card.kd-r3     { --card-accent:#BA7517; }
+.kd-card.kd-r4     { --card-accent:#D85A30; }
+.kd-card.kd-withdraw { --card-accent:#E24B4A; border-color:#F09595; }
+.kd-card.kd-upgrade  { --card-accent:#639922; }
+.kd-icon  { width:34px; height:34px; border-radius:9px; background:color-mix(in srgb,var(--card-accent,#888) 12%,#fff); display:flex; align-items:center; justify-content:center; font-size:17px; color:var(--card-accent,#888); flex-shrink:0; }
+.kd-lbl   { font-size:10px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--card-accent,#999); line-height:1.3; }
+.kd-dt    { font-size:15px; font-weight:800; color:#1a1a1a; line-height:1.2; }
+.kd-desc  { font-size:11px; color:#777; line-height:1.45; margin-top:1px; }
+.kd-badge { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:100px; background:color-mix(in srgb,var(--card-accent,#888) 12%,#fff); color:var(--card-accent,#888); align-self:flex-start; margin-top:2px; }
+
+/* ── Round blocks ── */
+.round-block { border:1px solid #e8e7e2; border-radius:var(--radius-lg); margin-bottom:.9rem; overflow:hidden; transition:border-color .15s; }
+.round-block:hover { border-color:#c0bfb8; }
+.round-hdr { display:flex; align-items:center; gap:10px; padding:.9rem 1.1rem; cursor:pointer; background:#fff; user-select:none; }
+.round-hdr:hover { background:#fafaf8; }
+.rbadge { font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; white-space:nowrap; }
+.rb-b { background:var(--blue-50); color:var(--blue-600); }
+.rb-p { background:var(--purple-50); color:var(--purple-800); }
+.rb-t { background:var(--teal-50); color:var(--teal-600); }
+.rb-a { background:var(--amber-50); color:var(--amber-600); }
+.rb-g { background:var(--green-50); color:var(--green-600); }
+.round-ttl { font-weight:600; font-size:13.5px; flex:1; color:#1a1a1a; }
+.round-dt  { font-size:11px; color:#888; }
+.chev { transition:transform .2s; color:#aaa; font-size:16px; }
+.round-body { display:none; border-top:1px solid #e8e7e2; }
+.round-body.open { display:block; }
+
+/* ── Event rows ── */
+.ev { display:grid; grid-template-columns:1fr auto; gap:10px; padding:.6rem 1.1rem; border-bottom:1px solid #f0efe9; align-items:start; }
+.ev:last-child { border-bottom:none; }
+.ev:hover { background:#fafaf8; }
+.ev-n { font-size:13px; color:#1a1a1a; line-height:1.4; }
+.ev-s { font-size:11px; color:#888; margin-top:2px; }
+.ev-d { font-size:12px; font-weight:700; color:#1a1a1a; text-align:right; white-space:nowrap; }
+.ev-t { font-size:10px; color:#aaa; text-align:right; }
+.ev-today { background:#EAF3DE!important; }
+.ev-today .ev-n { color:#27500A; font-weight:700; }
+.ev-today .ev-d { color:#27500A; }
+.blink-sm { display:inline-block; width:7px; height:7px; background:#1D9E75; border-radius:50%; animation:blink 1s step-start infinite; margin-right:5px; vertical-align:middle; }
+
+/* ── Category dot table ── */
+.cat-subhead { font-size:13px; font-weight:700; color:#0D1B2A; margin:14px 0 6px; }
+.cat-table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0 0; border:1px solid #e8e7e2; border-radius:var(--radius-md); overflow:hidden; }
+.cat-table th { background:#0D1B2A; color:rgba(255,255,255,.8); padding:9px 14px; text-align:left; font-size:10px; letter-spacing:.07em; text-transform:uppercase; font-weight:600; }
+.cat-table td { padding:9px 14px; border-bottom:1px solid #f0efe9; vertical-align:middle; font-size:13px; }
+.cat-table tr:last-child td { border-bottom:none; }
+.cat-table tr:nth-child(even) td { background:#fafaf8; }
+.cat-table tr:hover td { background:#EEF2FF; }
+.cat-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:middle; }
+.dot-o { background:#FF6B00; }
+.dot-b { background:#185FA5; }
+.dot-g { background:#1D9E75; }
+.dot-p { background:#3C3489; }
+.cat-date { white-space:nowrap; font-weight:600; color:#1a1a1a; }
+
+/* ── Inner schedule table ── */
+.sched-inner { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0 0; border:1px solid #e8e7e2; border-radius:var(--radius-md); overflow:hidden; }
+.sched-inner th { background:#0D1B2A; color:rgba(255,255,255,.8); padding:9px 14px; text-align:left; font-size:10px; letter-spacing:.07em; text-transform:uppercase; }
+.sched-inner td { padding:10px 14px; border-bottom:1px solid #f0efe9; vertical-align:top; line-height:1.5; }
+.sched-inner tr:last-child td { border-bottom:none; }
+.sched-inner tr:nth-child(even) td { background:#fafaf8; }
+.sched-inner tr:hover td { background:#EEF2FF; }
+.sched-inner .dt { white-space:nowrap; font-weight:700; color:#0D1B2A; min-width:160px; }
+
+/* ── Event tags ── */
+.ev-tag { display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:2px 7px; border-radius:3px; margin-right:6px; vertical-align:middle; }
+.ev-tag.red    { background:#FEF2F2; color:#DC2626; border:1px solid #fca5a5; }
+.ev-tag.blue   { background:#EFF6FF; color:#185FA5; border:1px solid #93c5fd; }
+.ev-tag.orange { background:#FFF3E6; color:#FF6B00; border:1px solid #FFD0A0; }
+.ev-tag.gold   { background:#FFFBEB; color:#92400E; border:1px solid #fcd34d; }
+.ev-tag.green  { background:#F0FFF4; color:#1D9E75; border:1px solid #86efac; }
+
+/* ── Alert box ── */
+.alert-box { display:flex; gap:12px; align-items:flex-start; border-radius:var(--radius-md); padding:12px 16px; margin:12px 0; font-size:13px; line-height:1.6; }
+.alert-box.red    { background:#FEF2F2; border:1px solid #fca5a5; }
+.alert-box.blue   { background:#EFF6FF; border:1px solid #93c5fd; }
+.alert-box.yellow { background:#FFFBEB; border:1px solid #fcd34d; }
+.alert-box.green  { background:#F0FFF4; border:1px solid #86efac; }
+.alert-box-icon   { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
+.alert-box strong { display:block; font-size:11px; text-transform:uppercase; letter-spacing:.06em; opacity:.65; margin-bottom:2px; }
+
+/* ── Venues ── */
+.venue-note { font-size:13px; color:#666; margin-bottom:1rem; line-height:1.6; padding:.75rem 1rem; background:#fff; border:1px solid #e8e7e2; border-radius:var(--radius-md); }
+.venue-row  { display:grid; grid-template-columns:1fr auto; gap:8px; padding:.65rem 1.1rem; border-bottom:1px solid #f0efe9; align-items:start; }
+.venue-row:last-child { border-bottom:none; }
+.venue-row:hover { background:#fafaf8; }
+.venue-n    { font-size:13px; font-weight:700; color:#1a1a1a; }
+.venue-a    { font-size:11px; color:#777; margin-top:2px; line-height:1.4; }
+.venue-area { font-size:11px; color:#aaa; text-align:right; white-space:nowrap; padding-top:2px; }
+.venue-sp   { background:var(--blue-50)!important; }
+.venue-sp .venue-n    { color:var(--blue-800); }
+.venue-sp .venue-a    { color:var(--blue-600); }
+.venue-sp .venue-area { color:var(--blue-600); }
+
+/* ── FAQ ── */
+.faq-item { border:1px solid #e8e7e2; border-radius:var(--radius-md); margin-bottom:.5rem; overflow:hidden; transition:border-color .15s; }
+.faq-item:hover { border-color:#c0bfb8; }
+.faq-q { display:flex; align-items:flex-start; gap:8px; padding:.85rem 1rem; cursor:pointer; background:#fff; user-select:none; }
+.faq-q:hover { background:#fafaf8; }
+.faq-q-text { font-size:13px; font-weight:500; color:#1a1a1a; flex:1; line-height:1.5; }
+.faq-icon   { font-size:15px; color:#aaa; flex-shrink:0; margin-top:1px; }
+.faq-a { display:none; padding:.75rem 1rem; font-size:13px; color:#555; line-height:1.75; border-top:1px solid #f0efe9; background:#fafaf8; }
+.faq-a.open { display:block; }
+.ftag { display:inline-block; font-size:10px; padding:2px 7px; border-radius:100px; margin-right:5px; font-weight:700; vertical-align:middle; white-space:nowrap; }
+.ft-imp  { background:var(--red-50);    color:var(--red-600); }
+.ft-fee  { background:var(--amber-50);  color:var(--amber-600); }
+.ft-doc  { background:var(--blue-50);   color:var(--blue-600); }
+.ft-proc { background:var(--purple-50); color:var(--purple-800); }
+.ft-seat { background:var(--teal-50);   color:var(--teal-600); }
+.ft-reg  { background:var(--pink-50);   color:var(--pink-800); }
+
+/* ── Important notes list ── */
+.notes-list { list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+.notes-list li { display:flex; gap:10px; align-items:flex-start; font-size:13px; color:#1a1a1a; line-height:1.6; background:#fff; border:1px solid #e8e7e2; border-radius:var(--radius-md); padding:11px 14px; }
+.notes-list li::before { content:attr(data-n); min-width:22px; height:22px; background:#FF6B00; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; margin-top:1px; }
+
+/* ── Info cards ── */
+.info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:14px; }
+.info-card { background:#fff; border:1px solid #e8e7e2; border-radius:var(--radius-md); padding:16px 18px; border-top:3px solid #FF6B00; }
+.info-card.blue-top  { border-top-color:#185FA5; }
+.info-card.green-top { border-top-color:#1D9E75; }
+.info-card.gold-top  { border-top-color:#D97706; }
+.info-card-icon  { font-size:1.5rem; margin-bottom:8px; }
+.info-card-title { font-weight:700; font-size:13px; color:#0D1B2A; margin-bottom:5px; }
+.info-card-body  { font-size:12px; color:#5A6E82; line-height:1.65; }
+.info-card-body strong { color:#1a1a1a; }
+
+/* ── Block header ── */
+.block-header { padding:.7rem 1.1rem; font-weight:700; font-size:13px; background:#fafaf8; border-bottom:1px solid #e8e7e2; color:#444; }
+
+/* ── CTA bar ── */
+.cta-bar { background:linear-gradient(135deg,#FF6B00 0%,#c84000 100%); border-radius:var(--radius-lg); padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:36px; }
+.cta-bar h3 { font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:4px; }
+.cta-bar p  { font-size:13px; color:rgba(255,255,255,.75); }
+.cta-btns   { display:flex; gap:10px; flex-wrap:wrap; flex-shrink:0; }
+.btn-white  { background:#fff; color:#FF6B00; font-weight:700; font-size:13px; padding:10px 20px; border-radius:6px; text-decoration:none; transition:all .18s; white-space:nowrap; display:inline-block; }
+.btn-white:hover { background:#0D1B2A; color:#fff; }
+.btn-ghost  { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.45); font-weight:600; font-size:13px; padding:10px 20px; border-radius:6px; text-decoration:none; transition:all .18s; white-space:nowrap; display:inline-block; }
+.btn-ghost:hover { border-color:#fff; background:rgba(255,255,255,.1); }
+
+/* ── Site footer ── */
+.site-footer { background:#0D1B2A; color:rgba(255,255,255,.4); text-align:center; padding:22px 20px; font-size:12px; }
+.site-footer a { color:#FF8C33; }
+.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:4px 18px; margin-top:8px; }
+
+@media(max-width:600px){
+  .page { padding:1rem .75rem 2rem; }
+  .jac-header-top { padding:1.1rem 1.1rem .85rem; }
+  .jac-strip { padding:.6rem 1.1rem; font-size:11.5px; }
+  .jac-title { font-size:19px; }
+  .kd-grid { grid-template-columns:1fr 1fr; }
+  .ev, .venue-row { padding:.55rem .85rem; }
+  .round-hdr { padding:.75rem .85rem; }
+  .countdown-strip { flex-direction:column; align-items:flex-start; }
+  .info-grid { grid-template-columns:1fr 1fr; }
+  .cta-bar { flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ DAILY SPARK SHARED HEADER — header.js controls everything ══ -->
+<div id="ds-header"></div>
+<script src="header.js"></script>
+<!-- ══ END SHARED HEADER ══ -->
+
+<div class="page">
+
+  <!-- ══ JAC HERO CARD ══ -->
+  <div class="jac-header">
+    <div class="jac-header-top">
+      <div class="header-unis">
+        <span class="uni-pill">NSUT</span>
+        <span class="uni-pill">DTU</span>
+        <span class="uni-pill">IIIT-Delhi</span>
+        <span class="uni-pill">IGDTUW</span>
+        <span class="uni-pill">DSEU</span>
+      </div>
+      <div class="jac-title">JAC Delhi 2026 — Counselling Schedule</div>
+      <div class="jac-sub">B.Tech / B.Arch Admissions &nbsp;·&nbsp; Joint Admission Counselling, Delhi</div>
+    </div>
+    <div class="jac-strip">
+      <i class="ti ti-calendar-event" aria-hidden="true"></i>
+      <div id="headerStrip">Loading today's schedule...</div>
+    </div>
+  </div>
+
+  <!-- ══ TODAY BANNER ══ -->
+  <div class="today-bar">
+    <div class="today-bar-head">
+      <span class="live-dot"></span>
+      <span class="today-bar-title">Today's schedule — Thursday, June 25, 2026</span>
+      <span class="today-bar-date"><i class="ti ti-radio" style="font-size:13px"></i>&nbsp;Live</span>
+    </div>
+    <div class="today-ev-list" id="todayList"></div>
+  </div>
+
+  <!-- ══ COUNTDOWN ══ -->
+  <div class="countdown-strip">
+    <div>
+      <div class="cs-label">Next Key Event</div>
+      <div class="cs-title" id="cdTitle">JAC Delhi Round 2 Result</div>
+      <div class="cs-date" id="cdDate">Wednesday, July 1, 2026 — After 5:00 PM</div>
+    </div>
+    <div class="countdown-boxes">
+      <div class="cb"><div class="cb-num" id="cdDays">--</div><div class="cb-unit">Days</div></div>
+      <div class="cb"><div class="cb-num" id="cdHrs">--</div><div class="cb-unit">Hours</div></div>
+      <div class="cb"><div class="cb-num" id="cdMin">--</div><div class="cb-unit">Mins</div></div>
+      <div class="cb"><div class="cb-num" id="cdSec">--</div><div class="cb-unit">Secs</div></div>
+    </div>
+  </div>
+
+  <!-- ══ TABS ══ -->
+  <div class="tab-row">
+    <button class="tab active" onclick="showTab('schedule',this)"><i class="ti ti-calendar"></i> Schedule</button>
+    <button class="tab" onclick="showTab('venues',this)"><i class="ti ti-map-pin"></i> Venues</button>
+    <button class="tab" onclick="showTab('faq',this)"><i class="ti ti-help-circle"></i> FAQs (15)</button>
+    <button class="tab" onclick="showTab('info',this)"><i class="ti ti-info-circle"></i> Key Instructions</button>
+  </div>
+
+  <!-- ══════════ TAB: SCHEDULE ══════════ -->
+  <div id="tab-schedule">
+    <div class="sec-label">Key milestone dates</div>
+    <div class="kd-grid">
+      <div class="kd-card kd-reg">
+        <div class="kd-icon"><i class="ti ti-forms"></i></div>
+        <div class="kd-lbl">Registration window 1</div>
+        <div class="kd-dt">May 28 – Jun 9</div>
+        <div class="kd-desc">Registration, fee payment &amp; choice filling</div>
+        <span class="kd-badge">Closed</span>
+      </div>
+     
+      <div class="kd-card kd-r1">
+        <div class="kd-icon"><i class="ti ti-trophy"></i></div>
+        <div class="kd-lbl">Round 1 result declared</div>
+        <div class="kd-dt">Jun 15, 2026</div>
+        <div class="kd-desc">After 5:00 PM via candidate login</div>
+        <span class="kd-badge">Done</span>
+      </div>
+      <div class="kd-card kd-r2reg">
+        <div class="kd-icon"><i class="ti ti-bell-ringing"></i></div>
+        <div class="kd-lbl">Round 2 registration</div>
+        <div class="kd-dt">Jun 26 – 28</div>
+        <div class="kd-desc">Last window for new reg + choice editing</div>
+        <span class="kd-badge">Opens Tomorrow</span>
+      </div>
+      <div class="kd-card kd-r2">
+        <div class="kd-icon"><i class="ti ti-medal"></i></div>
+        <div class="kd-lbl">Round 2 result declared</div>
+        <div class="kd-dt">Jul 1, 2026</div>
+        <div class="kd-desc">After 5:00 PM via candidate login</div>
+        <span class="kd-badge">Upcoming</span>
+      </div>
+      <div class="kd-card kd-r3">
+        <div class="kd-icon"><i class="ti ti-medal-2"></i></div>
+        <div class="kd-lbl">Round 3 result declared</div>
+        <div class="kd-dt">Jul 7, 2026</div>
+        <div class="kd-desc">After 5:00 PM — seat conversion applies</div>
+        <span class="kd-badge">Upcoming</span>
+      </div>
+      <div class="kd-card kd-r4">
+        <div class="kd-icon"><i class="ti ti-rosette"></i></div>
+        <div class="kd-lbl">Round 4 result declared</div>
+        <div class="kd-dt">Jul 14, 2026</div>
+        <div class="kd-desc">After 5:00 PM — seat conversion applies</div>
+        <span class="kd-badge">Upcoming</span>
+      </div>
+      <div class="kd-card kd-withdraw">
+        <div class="kd-icon"><i class="ti ti-alert-triangle"></i></div>
+        <div class="kd-lbl">Withdrawal + refund deadline</div>
+        <div class="kd-dt">Jul 12, 2026</div>
+        <div class="kd-desc">By 10:30 PM — last date with refund</div>
+        <span class="kd-badge">Critical</span>
+      </div>
+      <div class="kd-card kd-upgrade">
+        <div class="kd-icon"><i class="ti ti-trending-up"></i></div>
+        <div class="kd-lbl">Upgradation round display</div>
+        <div class="kd-dt">Jul 20, 2026</div>
+        <div class="kd-desc">After 5:00 PM via candidate login</div>
+        <span class="kd-badge">Final</span>
+      </div>
+    </div>
+
+    <div class="sec-label" style="margin-top:1.5rem">All counselling rounds</div>
+
+    <!-- Round 1 -->
+    <div class="round-block">
+      <div class="round-hdr" onclick="toggleRound(this)">
+        <span class="rbadge rb-b">Round 1</span>
+        <span class="round-ttl">First round allotment</span>
+        <span class="round-dt">Result: Jun 15</span>
+        <i class="ti ti-chevron-down chev"></i>
+      </div>
+      <div class="round-body open">
+        <div class="ev"><div class="ev-n"><span class="ev-tag orange">Result</span>Seat allotment result declared — Round 1</div><div><div class="ev-d">Jun 15, Mon</div><div class="ev-t">After 5:00 PM</div></div></div>
+        <div style="padding:.5rem 1.1rem 0">
+          <div class="cat-subhead">📋 Physical Reporting for Document Verification (10:00 AM – 3:00 PM)</div>
+          <table class="cat-table">
+            <thead><tr><th>Category / Sub-category</th><th style="text-align:right">Reporting Date</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — ST category</td><td class="cat-date">June 17, 2026 (Wed)</td></tr>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — OBC (CRL Rank up to 80,000)</td><td class="cat-date">June 17, 2026 (Wed)</td></tr>
+              <tr><td><span class="cat-dot dot-b"></span>Delhi Region — OBC (CRL Rank above 80,000)</td><td class="cat-date">June 18, 2026 (Thu)</td></tr>
+              <tr><td><span class="cat-dot dot-b"></span>Delhi Region — SC category</td><td class="cat-date">June 19, 2026 (Fri)</td></tr>
+              <tr><td><span class="cat-dot dot-g"></span>Delhi Region — EWS category</td><td class="cat-date">June 22, 2026 (Mon)</td></tr>
+              <tr><td><span class="cat-dot dot-g"></span>Delhi Region — CW, PD, SG, KM sub-categories</td><td class="cat-date">June 22, 2026 (Mon)</td></tr>
+              <tr><td><span class="cat-dot dot-p"></span>Outside Delhi Region — All Categories</td><td class="cat-date">June 23, 2026 (Tue)</td></tr>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — GEN (CRL Rank up to 25,000)</td><td class="cat-date">June 24, 2026 (Wed)</td></tr>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — GEN (CRL Rank above 25,000)</td><td class="cat-date" style="color:#27500A;font-weight:700">June 25, 2026 (Thu) ← Today</td></tr>
+            </tbody>
+          </table>
+          <table class="sched-inner" style="margin-bottom:12px;">
+            <thead><tr><th>Event</th><th style="text-align:right">Date &amp; Time</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ev-tag blue">Action</span>Seat Freezing — Online via candidate login (optional)</td><td class="dt" style="text-align:right">June 25, 2026 · by 10:30 PM</td></tr>
+              <tr><td><span class="ev-tag red">Deadline</span>Withdrawal of Admission — Online only (last date applies to all rounds)</td><td class="dt" style="text-align:right">July 12, 2026 · by 10:30 PM</td></tr>
+            </tbody>
+          </table>
+
+          <!-- ⚠️ CRITICAL WARNING BOX -->
+          <div style="border:2px solid #DC2626;border-radius:10px;overflow:hidden;margin-bottom:14px;">
+            <div style="background:#DC2626;padding:9px 14px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:17px;">🚨</span>
+              <span style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;">Important Notice — Admission Cancellation</span>
+            </div>
+            <div style="background:#FEF2F2;padding:14px 16px;font-size:13.5px;color:#7F1D1D;line-height:1.8;">
+              Candidates who have been allotted a seat in <strong>Round 1</strong> and —
+              <ul style="margin:8px 0 0 20px;display:flex;flex-direction:column;gap:5px;">
+                <li><strong>do not pay the Seat Acceptance Fee</strong>, <em>or</em></li>
+                <li>have paid the Seat Acceptance Fee but <strong>do not report physically for document verification</strong> at their respective University / Institute</li>
+              </ul>
+              <div style="margin-top:12px;padding:10px 14px;background:#FEE2E2;border-radius:8px;border-left:4px solid #DC2626;font-size:14px;font-weight:700;color:#991B1B;">
+                ❌ Their admission will be CANCELLED.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Round 2 -->
+    <div class="round-block">
+      <div class="round-hdr" onclick="toggleRound(this)">
+        <span class="rbadge rb-p">Round 2</span>
+        <span class="round-ttl">Second round allotment</span>
+        <span class="round-dt">Result: Jul 1</span>
+        <i class="ti ti-chevron-down chev"></i>
+      </div>
+      <div class="round-body">
+        <div class="alert-box blue" style="margin:10px 1.1rem 0">
+          <span class="alert-box-icon">ℹ️</span>
+          <div>A 3-day window is given for new registrations and choice editing before Round 2. <strong>Choice editing will NOT be available in subsequent rounds.</strong></div>
+        </div>
+        <div class="ev" style="margin-top:8px"><div><div class="ev-n"><span class="ev-tag green">Open</span>New Registrations + Choice Editing</div><div class="ev-s">Last opportunity to register or edit preferences — do not miss</div></div><div><div class="ev-d">Jun 26–28</div><div class="ev-t">Fri 11:30 AM – Sun 11:30 PM</div></div></div>
+        <div class="ev"><div><div class="ev-n"><span class="ev-tag blue">Verification</span>Defence / KM / Bonus Verification — new registrants only</div><div class="ev-s">APJ Complex, NSUT, Sector 3, Dwarka | 9:00 AM</div></div><div><div class="ev-d">Jun 29, Mon</div><div class="ev-t">9:00 AM</div></div></div>
+        <div class="ev"><div class="ev-n"><span class="ev-tag orange">Result</span>Seat allotment result declared — Round 2</div><div><div class="ev-d">Jul 1, Wed</div><div class="ev-t">After 5:00 PM</div></div></div>
+        <div style="padding:.5rem 1.1rem 0">
+          <div class="cat-subhead">📋 Physical Reporting for Document Verification (10:00 AM – 3:00 PM)</div>
+          <table class="cat-table">
+            <thead><tr><th>Category / Sub-category</th><th style="text-align:right">Reporting Date</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — GEN, OBC, SC, ST categories</td><td class="cat-date">July 02, 2026 (Thu)</td></tr>
+              <tr><td><span class="cat-dot dot-b"></span>Delhi Region — EWS category</td><td class="cat-date">July 03, 2026 (Fri)</td></tr>
+              <tr><td><span class="cat-dot dot-g"></span>Delhi Region — SG, CW, KM, PD sub-categories</td><td class="cat-date">July 03, 2026 (Fri)</td></tr>
+              <tr><td><span class="cat-dot dot-p"></span>Outside Delhi Region — All categories &amp; sub-categories</td><td class="cat-date">July 03, 2026 (Fri)</td></tr>
+            </tbody>
+          </table>
+          <table class="sched-inner" style="margin-bottom:12px;">
+            <thead><tr><th>Event</th><th style="text-align:right">Date &amp; Time</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ev-tag blue">Action</span>Seat Freezing (Online via candidate login)</td><td class="dt" style="text-align:right">July 03, 2026 (Fri) · by 10:30 PM</td></tr>
+              <tr><td><span class="ev-tag red">Deadline</span>Withdrawal of Admission (Online)</td><td class="dt" style="text-align:right">July 12, 2026 · by 10:30 PM</td></tr>
+            </tbody>
+          </table>
+
+          <!-- ⚠️ CRITICAL WARNING BOX -->
+          <div style="border:2px solid #DC2626;border-radius:10px;overflow:hidden;margin-bottom:14px;">
+            <div style="background:#DC2626;padding:9px 14px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:17px;">🚨</span>
+              <span style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;">Important Notice — Admission Cancellation</span>
+            </div>
+            <div style="background:#FEF2F2;padding:14px 16px;font-size:13.5px;color:#7F1D1D;line-height:1.8;">
+              Candidates who have been allotted a seat in <strong>Round 2</strong> and —
+              <ul style="margin:8px 0 0 20px;display:flex;flex-direction:column;gap:5px;">
+                <li><strong>do not pay the Seat Acceptance Fee</strong>, <em>or</em></li>
+                <li>have paid the Seat Acceptance Fee but <strong>do not report physically for document verification</strong> at their respective University / Institute</li>
+              </ul>
+              <div style="margin-top:12px;padding:10px 14px;background:#FEE2E2;border-radius:8px;border-left:4px solid #DC2626;font-size:14px;font-weight:700;color:#991B1B;">
+                ❌ Their admission will be CANCELLED.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Round 3 -->
+    <div class="round-block">
+      <div class="round-hdr" onclick="toggleRound(this)">
+        <span class="rbadge rb-t">Round 3</span>
+        <span class="round-ttl">Third round allotment</span>
+        <span class="round-dt">Result: Jul 7</span>
+        <i class="ti ti-chevron-down chev"></i>
+      </div>
+      <div class="round-body">
+        <div class="alert-box yellow" style="margin:10px 1.1rem 0">
+          <span class="alert-box-icon">📌</span>
+          <div>Seat Conversion Rules (Section 3.2 of the Admission Brochure) are applicable from this round.</div>
+        </div>
+        <div class="ev" style="margin-top:8px"><div><div class="ev-n"><span class="ev-tag orange">Result</span>Seat allotment result declared — Round 3</div><div class="ev-s">Seat conversion rules apply from this round onwards</div></div><div><div class="ev-d">Jul 7, Tue</div><div class="ev-t">After 5:00 PM</div></div></div>
+        <div style="padding:.5rem 1.1rem 0">
+          <div class="cat-subhead">📋 Physical Reporting for Document Verification (10:00 AM – 3:00 PM)</div>
+          <table class="cat-table">
+            <thead><tr><th>Category / Sub-category</th><th style="text-align:right">Reporting Date</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — GEN, OBC, SC, ST categories</td><td class="cat-date">July 08, 2026 (Wed)</td></tr>
+              <tr><td><span class="cat-dot dot-b"></span>Delhi Region — EWS, SG, CW, KM, PD</td><td class="cat-date">July 09, 2026 (Thu)</td></tr>
+              <tr><td><span class="cat-dot dot-g"></span>Outside Delhi Region — All categories</td><td class="cat-date">July 09, 2026 (Thu)</td></tr>
+            </tbody>
+          </table>
+          <table class="sched-inner" style="margin-bottom:12px;">
+            <thead><tr><th>Event</th><th style="text-align:right">Date &amp; Time</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ev-tag blue">Action</span>Seat Freezing (Online via candidate login)</td><td class="dt" style="text-align:right">July 09, 2026 (Thu) · by 10:30 PM</td></tr>
+              <tr><td><span class="ev-tag red">Deadline</span>Withdrawal + Refund deadline — LAST DATE</td><td class="dt" style="text-align:right">July 12, 2026 (Sun) · by 10:30 PM</td></tr>
+            </tbody>
+          </table>
+          <div class="alert-box red" style="margin-bottom:12px">
+            <span class="alert-box-icon">🚫</span>
+            <div><strong>No refund after July 12, 2026, 10:30 PM.</strong> Withdrawal requests via email or written application will NOT be considered under any circumstances.</div>
+          </div>
+
+          <!-- ⚠️ CRITICAL WARNING BOX -->
+          <div style="border:2px solid #DC2626;border-radius:10px;overflow:hidden;margin-bottom:14px;">
+            <div style="background:#DC2626;padding:9px 14px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:17px;">🚨</span>
+              <span style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;">Important Notice — Admission Cancellation</span>
+            </div>
+            <div style="background:#FEF2F2;padding:14px 16px;font-size:13.5px;color:#7F1D1D;line-height:1.8;">
+              Candidates who have been allotted a seat in <strong>Round 3</strong> and —
+              <ul style="margin:8px 0 0 20px;display:flex;flex-direction:column;gap:5px;">
+                <li><strong>do not pay the Seat Acceptance Fee</strong>, <em>or</em></li>
+                <li>have paid the Seat Acceptance Fee but <strong>do not report physically for document verification</strong> at their respective University / Institute</li>
+              </ul>
+              <div style="margin-top:12px;padding:10px 14px;background:#FEE2E2;border-radius:8px;border-left:4px solid #DC2626;font-size:14px;font-weight:700;color:#991B1B;">
+                ❌ Their admission will be CANCELLED.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Round 4 -->
+    <div class="round-block">
+      <div class="round-hdr" onclick="toggleRound(this)">
+        <span class="rbadge rb-a">Round 4</span>
+        <span class="round-ttl">Fourth round allotment</span>
+        <span class="round-dt">Result: Jul 14</span>
+        <i class="ti ti-chevron-down chev"></i>
+      </div>
+      <div class="round-body">
+        <div class="alert-box yellow" style="margin:10px 1.1rem 0">
+          <span class="alert-box-icon">📌</span>
+          <div>Seat Conversion Rules applicable. <strong>No refund of Seat Acceptance Fee</strong> for withdrawal after July 12, 2026, 10:30 PM.</div>
+        </div>
+        <div class="ev" style="margin-top:8px"><div><div class="ev-n"><span class="ev-tag orange">Result</span>Seat allotment result declared — Round 4</div><div class="ev-s">Seat conversion rules (Section 3.2) apply</div></div><div><div class="ev-d">Jul 14, Tue</div><div class="ev-t">After 5:00 PM</div></div></div>
+        <div style="padding:.5rem 1.1rem 0">
+          <div class="cat-subhead">📋 Physical Reporting for Document Verification (10:00 AM – 3:00 PM)</div>
+          <table class="cat-table">
+            <thead><tr><th>Category / Sub-category</th><th style="text-align:right">Reporting Date</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cat-dot dot-o"></span>Delhi Region — All Categories</td><td class="cat-date">July 15, 2026 (Wed)</td></tr>
+              <tr><td><span class="cat-dot dot-b"></span>Outside Delhi Region — All Categories</td><td class="cat-date">July 16, 2026 (Thu)</td></tr>
+            </tbody>
+          </table>
+          <table class="sched-inner" style="margin-bottom:12px;">
+            <thead><tr><th>Event</th><th style="text-align:right">Date &amp; Time</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ev-tag blue">Action</span>Seat Freezing (Online via candidate login)</td><td class="dt" style="text-align:right">July 16, 2026 (Thu) · by 10:30 PM</td></tr>
+            </tbody>
+          </table>
+
+          <!-- ⚠️ CRITICAL WARNING BOX -->
+          <div style="border:2px solid #DC2626;border-radius:10px;overflow:hidden;margin-bottom:14px;">
+            <div style="background:#DC2626;padding:9px 14px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:17px;">🚨</span>
+              <span style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;">Important Notice — Admission Cancellation</span>
+            </div>
+            <div style="background:#FEF2F2;padding:14px 16px;font-size:13.5px;color:#7F1D1D;line-height:1.8;">
+              Candidates who have been allotted a seat in <strong>Round 4</strong> and —
+              <ul style="margin:8px 0 0 20px;display:flex;flex-direction:column;gap:5px;">
+                <li><strong>do not pay the Seat Acceptance Fee</strong>, <em>or</em></li>
+                <li>have paid the Seat Acceptance Fee but <strong>do not report physically for document verification</strong> at their respective University / Institute</li>
+              </ul>
+              <div style="margin-top:12px;padding:10px 14px;background:#FEE2E2;border-radius:8px;border-left:4px solid #DC2626;font-size:14px;font-weight:700;color:#991B1B;">
+                ❌ Their admission will be CANCELLED.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Upgradation + Spot -->
+    <div class="round-block">
+      <div class="round-hdr" onclick="toggleRound(this)">
+        <span class="rbadge rb-g">Upgradation + Spot</span>
+        <span class="round-ttl">Upgradation round &amp; spot round</span>
+        <span class="round-dt">From Jul 20</span>
+        <i class="ti ti-chevron-down chev"></i>
+      </div>
+      <div class="round-body">
+        <div style="padding:.75rem 1.1rem 0">
+          <table class="sched-inner" style="margin-bottom:12px;">
+            <thead><tr><th>Event</th><th style="text-align:right">Date &amp; Time</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ev-tag gold">Upgrade</span>Display of Upgraded Branch (in candidate login)</td><td class="dt" style="text-align:right">July 20, 2026 (Mon) · After 5:00 PM</td></tr>
+              <tr><td><span class="ev-tag blue">Action</span>Seat Freezing after Upgradation (Online)</td><td class="dt" style="text-align:right">July 21, 2026 (Tue) · by 2:00 PM</td></tr>
+              <tr><td><span class="ev-tag orange">Spot</span>Display of Vacancy for Spot Round (if any)</td><td class="dt" style="text-align:right">July 21, 2026 (Tue) · After 2:00 PM</td></tr>
+            </tbody>
+          </table>
+          <div class="alert-box red" style="margin-bottom:14px">
+            <span class="alert-box-icon">🚫</span>
+            <div><strong>Last date for withdrawal (all rounds):</strong> July 12, 2026 (Sunday), by 10:30 PM. No refund after this deadline. Withdrawal requests via email or application will NOT be considered.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB: VENUES ══════════ -->
+  <div id="tab-venues" style="display:none">
+    <div class="sec-label">Document verification venues</div>
+    <div class="venue-note">
+      <strong>Reporting time:</strong> 10:00 AM – 3:00 PM on the scheduled date at your allotted institute.
+      Once documents are verified and the provisional letter is issued, you do not need to re-report in subsequent rounds.
+    </div>
+    <div class="round-block">
+      <div class="block-header">Participating universities &amp; institutes</div>
+      <div class="venue-row"><div><div class="venue-n">NSUT — Netaji Subhas University of Technology</div><div class="venue-a">Main Campus, Sector-3, Dwarka, New Delhi – 110078</div></div><div class="venue-area">Dwarka</div></div>
+      <div class="venue-row"><div><div class="venue-n">DTU — Delhi Technological University</div><div class="venue-a">Main Campus, Shahbad Daulatpur, Bawana Road, Delhi – 110042</div></div><div class="venue-area">North Delhi</div></div>
+      <div class="venue-row"><div><div class="venue-n">IIIT-Delhi — Indraprastha Institute of Information Technology</div><div class="venue-a">Okhla Industrial Estate, Phase-3, New Delhi – 110020</div></div><div class="venue-area">South Delhi</div></div>
+      <div class="venue-row"><div><div class="venue-n">IGDTUW — Indira Gandhi Delhi Technical University for Women</div><div class="venue-a">Kashmere Gate, Delhi – 110006</div></div><div class="venue-area">Central Delhi</div></div>
+      <div class="venue-row"><div><div class="venue-n">DSEU — Delhi Skill and Entrepreneurship University</div><div class="venue-a">Dwarka Campus, Sector 9, Dwarka, New Delhi – 110077</div></div><div class="venue-area">Dwarka</div></div>
+      <div class="venue-row venue-sp"><div><div class="venue-n"><i class="ti ti-star" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>Special verification — Bonus / CW / KM candidates</div><div class="venue-a">APJ Complex, NSUT, Sector 3, Dwarka, New Delhi – 110078</div></div><div class="venue-area">Dwarka</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB: FAQ ══════════ -->
+  <div id="tab-faq" style="display:none">
+    <div class="sec-label">Frequently asked questions</div>
+    <div id="faqList"></div>
+  </div>
+
+  <!-- ══════════ TAB: KEY INSTRUCTIONS ══════════ -->
+  <div id="tab-info" style="display:none">
+    <div class="section-heading">
+      <div class="sh-accent sh-orange"></div>
+      <h2>JAC Delhi 2026 — Important Guidelines</h2>
+      <span class="sh-badge orange">Must Read</span>
+    </div>
+    <ul class="notes-list">
+      <li data-n="1">Fill the <strong>maximum number of choices/preferences</strong> during the registration window to maximize your chance of admission and upgradation through JAC Delhi.</li>
+      <li data-n="2">Registration Fee of <strong>Rs. 1,500 is non-refundable</strong> under any circumstance — even if you do not get a seat or withdraw from counselling.</li>
+      <li data-n="3"><strong>Choice Editing is available only during the registration windows</strong> — Window 1: May 28–June 9 and Window 2: June 26–28. No further choice editing will be allowed after this.</li>
+      <li data-n="4">All <strong>category/sub-category certificates</strong> must be in the correct prescribed format when you report for document verification. No extra time will be given to produce missing certificates.</li>
+      <li data-n="5"><strong>Seat Acceptance Fee</strong> payment starts immediately after result publication and closes at <strong>2:00 PM on the last day of physical reporting</strong> of that round. Do not miss this deadline.</li>
+      <li data-n="6">Candidates who have verified documents and received provisional admission letter are <strong>not required to report again</strong> to any university for subsequent rounds or upgradation.</li>
+      <li data-n="7">A candidate already admitted who gets <strong>upgraded in the next round is NOT required to report</strong> at the upgraded university/institute — upgradation is automatic.</li>
+      <li data-n="8">Candidates who wish to participate in the <strong>Spot Round must register during the regular registration window</strong> — there may be no fresh registrations before the Spot Round.</li>
+    </ul>
+
+    <div class="section-heading" style="margin-top:28px;">
+      <div class="sh-accent sh-gold"></div>
+      <h2>Withdrawal &amp; Refund Policy</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">🚪</div>
+        <div class="info-card-title">Withdrawal Deadline</div>
+        <div class="info-card-body">Last date for withdrawal from all rounds is <strong>July 12, 2026 (Sunday) by 10:30 PM</strong> — only through candidate's JAC Delhi Portal login.</div>
+      </div>
+      <div class="info-card blue-top">
+        <div class="info-card-icon">💰</div>
+        <div class="info-card-title">Refund Policy</div>
+        <div class="info-card-body">Refund of Seat Acceptance Fee is applicable <strong>only if withdrawal is done on or before July 12, 2026, 10:30 PM</strong>. No refund is admissible after this.</div>
+      </div>
+      <div class="info-card green-top">
+        <div class="info-card-icon">📧</div>
+        <div class="info-card-title">Withdrawal Mode</div>
+        <div class="info-card-body">Withdrawal <strong>only through online portal login</strong>. Requests via written application or email will <strong>NOT be considered under any circumstance</strong>.</div>
+      </div>
+      <div class="info-card gold-top">
+        <div class="info-card-icon">⚠️</div>
+        <div class="info-card-title">After Withdrawal</div>
+        <div class="info-card-body">Withdrawn candidates exit <strong>all remaining rounds</strong>. They may participate <strong>only in the Spot Round</strong> if conducted. The decision is permanent.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CTA BAR ══ -->
+  <div class="cta-bar">
+    <div>
+      <h3>Stay Updated with Daily Spark</h3>
+      <p>Get JAC Delhi alerts, cutoff updates, and admission guidance — free, every day.</p>
+    </div>
+    <div class="cta-btns">
+      <a class="btn-white" href="jac_cutoff.html">View JAC Cutoffs →</a>
+      <a class="btn-ghost" href="josaa_2026_schedule.html">JoSAA 2026 Schedule</a>
+      <a class="btn-ghost" href="index.html">Back to Home</a>
+    </div>
+  </div>
+
+</div><!-- end .page -->
+
+
+<script>
+/* ── JAC schedule strip ── */
+document.getElementById('headerStrip').textContent =
+  'Today — Thu, Jun 25: GEN (CRL > 25,000) doc verification, 10 AM–3 PM at allotted institute  ·  Round 1 seat freeze deadline by 10:30 PM  ·  Round 2 registration opens tomorrow (Jun 26, 11:30 AM)';
+
+/* ── Today events ── */
+var TODAY = [
+  { icon:'ti-id-badge', text:'Document verification — Delhi GEN category, CRL rank above 25,000 · Report at allotted institute · 10:00 AM – 3:00 PM', label:'Reporting' },
+  { icon:'ti-snowflake', text:'Round 1 seat freeze deadline — log in to candidate portal and freeze your seat if you do not want upgradation · by 10:30 PM tonight', label:'Deadline' }
+];
+var tl = document.getElementById('todayList');
+TODAY.forEach(function(e) {
+  var d = document.createElement('div');
+  d.className = 'today-ev';
+  d.innerHTML = '<i class="ti ' + e.icon + '" aria-hidden="true"></i><span>' + e.text + '</span><span class="today-ev-label">' + e.label + '</span>';
+  tl.appendChild(d);
+});
+
+/* ── Countdown Timer ── */
+(function() {
+  var target = new Date('2026-07-01T17:00:00+05:30').getTime();
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById('cdTitle').textContent = 'JAC Delhi Round 2 Result — Live Now!';
+      ['cdDays','cdHrs','cdMin','cdSec'].forEach(function(id){ document.getElementById(id).textContent='0'; });
+      return;
+    }
+    document.getElementById('cdDays').textContent = Math.floor(diff / 86400000);
+    document.getElementById('cdHrs').textContent  = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdMin').textContent = m < 10 ? '0'+m : m;
+    document.getElementById('cdSec').textContent = s < 10 ? '0'+s : s;
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ── FAQs ── */
+var faqs = [
+  {tag:'ft-imp',lbl:'Today',q:'What is scheduled for today, June 25, 2026?',a:'Two important events are happening today: (1) Candidates in the Delhi GEN category with a JEE Main 2026 CRL rank above 25,000 must physically report to their allotted institute between 10:00 AM and 3:00 PM for document verification — only after paying the Seat Acceptance Fee. (2) The Round 1 seat freeze deadline is tonight by 10:30 PM. Log into your candidate portal and freeze your seat if you do not want upgradation in future rounds.'},
+  {tag:'ft-imp',lbl:'Tomorrow',q:'What happens from June 26 — is there anything urgent I must not miss?',a:'Yes. The Round 2 registration window opens on June 26 (Friday, 11:30 AM) and closes June 28 (Sunday, 11:30 PM). This is the absolute final window for new candidates to register for JAC Delhi 2026. Already-registered candidates can also edit their choice preferences during this window. After June 28, no choice editing will be allowed in any subsequent round under any circumstances.'},
+  {tag:'ft-reg',lbl:'Registration',q:'I missed the first registration window (May 28 – June 9). Can I still register?',a:'Yes, but only during the Round 2 window: June 26, 11:30 AM to June 28, 11:30 PM. This is the last opportunity. There will be no fresh registrations before any subsequent regular round. If a Spot Round is conducted, it may have a window, but that is not guaranteed — so register now.'},
+  {tag:'ft-fee',lbl:'Fee',q:'What is the registration fee and is it refundable?',a:'The registration fee is Rs. 1,500. It is completely non-refundable under all circumstances — whether or not you are allotted a seat, and even if you withdraw from counselling. Applications submitted without the prescribed fee are not considered.'},
+  {tag:'ft-seat',lbl:'Seat',q:'What does "freezing" a seat mean and should I freeze mine?',a:'Freezing your seat means opting out of further upgradation. If you are satisfied with your current allotted institute and branch and do not want the system to move you to a higher preference in upcoming rounds, freeze your seat via candidate login. If you do not freeze, you remain active in the upgradation pool and may receive a better option automatically. Round 1 freeze deadline is tonight by 10:30 PM.'},
+  {tag:'ft-fee',lbl:'Fee',q:'When is the Seat Acceptance Fee payment deadline and what happens if I miss it?',a:'The Seat Acceptance Fee payment window opens immediately after each round\'s result is published and closes at 2:00 PM on the last day of physical reporting for that round. If you fail to pay within this window, or pay but do not report physically for document verification, your seat allotment is automatically cancelled for that round.'},
+  {tag:'ft-fee',lbl:'Refund',q:'Can I get a refund of the Seat Acceptance Fee if I withdraw?',a:'Yes, but only if you withdraw online via your JAC Delhi portal login by July 12, 2026 at 10:30 PM as per the JAC Delhi 2026 Refund Policy. After this deadline, no refund is admissible regardless of the reason. Withdrawal requests by email or written application are not accepted.'},
+  {tag:'ft-proc',lbl:'Process',q:'If I withdraw from counselling, can I still participate in later rounds?',a:'No. Once you withdraw, you are treated as withdrawn from all remaining regular rounds (Rounds 2, 3, 4, and Upgradation). The only exception is the Spot Round — if conducted, withdrawn candidates may participate in it. Think carefully before withdrawing.'},
+  {tag:'ft-doc',lbl:'Documents',q:'I belong to the CW (Defence) sub-category. Do I need to go to NSUT on June 10?',a:'Only CW candidates with Priority I through V must report to APJ Complex, NSUT on June 10 at 9:00 AM for verification. Priority VI, VII, VIII, and IX candidates do not need to report on June 10 — they must carry all requisite documents and report directly to their allotted institute at the time of admission.'},
+  {tag:'ft-doc',lbl:'Documents',q:'What documents must I carry for physical reporting and document verification?',a:'Bring **original + 1 self-attested photocopy** of: Seat Acceptance Fee receipt, registration form, filled choices printout, 3 passport photos, JEE Main admit card & scorecard, Class XII marksheet + admit card, seat allotment letter, Class X birth/DOB certificate, category/sub-category certificate (if applicable), medical fitness certificate, and disability/defence certificates if applicable..'},
+  {tag:'ft-doc',lbl:'Documents',q:'I got my documents verified in Round 1. Do I need to report again if upgraded in Round 2 or 3?',a:'No. Once your documents are verified and you receive the provisional admission letter, you do not need to report to any institute in subsequent rounds — even if upgraded to a different university or branch. Upgradation is fully automatic.'},
+  {tag:'ft-proc',lbl:'Process',q:'My seat was cancelled due to a document problem. What do I do next?',a:'If your seat is cancelled due to document deficiency in any round and you are allotted a fresh seat in a subsequent round, you must report physically to the newly allotted institute for fresh document verification. Failure to report will cancel that new seat as well.'},
+  {tag:'ft-seat',lbl:'Seat',q:'What is seat conversion and from which round does it apply?',a:'Seat conversion (Section 3.2 of Information Brochure) allows seats reserved for a category to open to other categories once that category\'s merit list is exhausted. This applies from Round 3 and Round 4, as well as the Upgradation Round — not in Rounds 1 or 2.'},
+  {tag:'ft-proc',lbl:'Process',q:'Is there a Spot Round and do I need to register separately for it?',a:'A Spot Round may be conducted if seats remain vacant after all regular rounds and the Upgradation Round. Vacancy details will be announced on the JAC Delhi 2026 website on July 21, 2026 after 2:00 PM. There may be no fresh registrations before the Spot Round, so interested candidates should register during the June 26–28 window.'},
+  {tag:'ft-reg',lbl:'Choices',q:'How many choices should I fill and can I change them after submitting?',a:'Fill the maximum choices possible during the open windows to maximise your chances. Choice editing is only available during May 28–June 9 and June 26–28. After June 28, no further editing is possible in any subsequent round. Finalise your preferences completely and carefully before the window closes.'}
+];
+var fl = document.getElementById('faqList');
+faqs.forEach(function(f, i) {
+  var item = document.createElement('div');
+  item.className = 'faq-item';
+  item.innerHTML = '<div class="faq-q" onclick="toggleFaq(this,' + i + ')"><div class="faq-q-text"><span class="ftag ' + f.tag + '">' + f.lbl + '</span>' + f.q + '</div><i class="ti ti-plus faq-icon"></i></div><div class="faq-a" id="fa' + i + '">' + f.a + '</div>';
+  fl.appendChild(item);
+});
+
+function toggleFaq(el, i) {
+  var a = document.getElementById('fa' + i);
+  var icon = el.querySelector('.faq-icon');
+  var open = a.classList.toggle('open');
+  icon.className = 'faq-icon ti ' + (open ? 'ti-minus' : 'ti-plus');
+}
+function toggleRound(h) {
+  var b = h.nextElementSibling;
+  var c = h.querySelector('.chev');
+  var open = b.classList.toggle('open');
+  c.style.transform = open ? 'rotate(180deg)' : 'rotate(0)';
+}
+function showTab(name, btn) {
+  ['schedule','venues','faq','info'].forEach(function(t) {
+    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,65 +1,17 @@
-/* =====================================================
-   Daily Spark — header.js  (v3 — CSS Embedded)
-   
-   Header ka HTML aur CSS dono seedha is file mein hain.
-   Koi alag style.css ki zaroorat nahi.
-   
-   Har page mein sirf yeh 2 lines add karo (body ke andar, sabse pehle):
-     <div id="ds-header"></div>
-     <script src="header.js"></script>
-   ===================================================== */
+<!-- =====================================================
+     Daily Spark — SHARED HEADER
+     Ise sirf ek baar edit karo, saari pages update ho jayengi.
+     Kaise use karein: har page mein yeh 2 lines add karo:
+       <div id="ds-header"></div>
+       <script src="header.js"></script>
+     ===================================================== -->
 
-(function () {
-  var placeholder = document.getElementById('ds-header');
-  if (!placeholder) return;
-
-  /* ── CSS inject karo <head> mein ── */
-  if (!document.getElementById('ds-header-style')) {
-    var style = document.createElement('style');
-    style.id = 'ds-header-style';
-    style.textContent = `
-/* ===== DAILY SPARK HEADER CSS ===== */
-.notif-bar{background:#FF6B00;color:#fff;padding:9px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;position:relative;z-index:9999;font-family:'Inter',sans-serif;}
-.notif-bar a{color:#fff;text-decoration:none;}
-.notif-close{background:none;border:none;color:#fff;cursor:pointer;font-size:18px;opacity:0.8;padding:0 4px;line-height:1;}
-.notif-close:hover{opacity:1;}
-.topbar{background:#0D1B2A;color:#fff;padding:10px 20px;font-size:12.5px;position:relative;z-index:9999;font-family:'Inter',sans-serif;}
-.topbar-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
-.topbar-date{color:#8899AA;white-space:nowrap;font-weight:500;}
-.ticker-wrap{flex:1;overflow:hidden;white-space:nowrap;background:rgba(255,255,255,0.06);padding:5px 0;border-radius:4px;border-left:3px solid #FF6B00;}
-.ticker{color:#CBD6E2;display:inline-block;padding-left:100%;animation:ds-tick 30s linear infinite;white-space:nowrap;}
-.ticker:hover{animation-play-state:paused;}
-@keyframes ds-tick{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
-.masthead{background:#fff;border-bottom:3px solid #FF6B00;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:9998;font-family:'Inter',sans-serif;}
-.masthead-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.logo-block{padding:14px 0;flex-shrink:0;text-decoration:none;display:block;}
-.logo-name{font-size:24px;font-weight:800;color:#0D1B2A;line-height:1;}
-.logo-name span{color:#FF6B00;}
-.logo-tag{font-size:10px;color:#8899AA;letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
-.nav-links{display:flex;gap:2px;align-items:center;}
-.nav-links a{padding:8px 13px;font-size:13px;font-weight:600;color:#1A2B3C;border-radius:4px;transition:background 0.15s,color 0.15s;white-space:nowrap;text-decoration:none;}
-.nav-links a:hover,.nav-links a.active{background:#FFF3E8;color:#FF6B00;}
-#hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-shrink:0;}
-@media(max-width:900px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;border-top:2px solid #FF6B00;box-shadow:0 8px 24px rgba(0,0,0,0.1);padding:8px 0;z-index:9997;}
-  .nav-links.open{display:flex;}
-  .nav-links a{padding:12px 20px;border-radius:0;font-size:14px;}
-  .masthead{position:relative;}
-  .masthead-inner{position:relative;}
-  #hamburger{display:block;}
-  .nav-social-icons{display:none!important;}
-}
-`;
-    document.head.appendChild(style);
-  }
-
-  /* ── Header HTML ── */
-  var headerHTML = `
+<!-- Notification Bar -->
 <div class="notif-bar" id="notif">
-  <a href="ns.html" target="_blank" rel="noopener">🔔 <strong>Trending News at Your Fingertips</strong> — Stay updated with daily alerts</a>
-  <button class="notif-close" onclick="document.getElementById('notif').remove()" aria-label="Close">✕</button>
+  <button class="notif-close" onclick="document.getElementById('notif').remove()" aria-label="Close notification">✕</button>
 </div>
 
+<!-- Top Bar -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-date" id="topbar-date">Breaking News:</div>
@@ -69,20 +21,23 @@
   </div>
 </div>
 
+<!-- Masthead + Navbar -->
 <div class="masthead">
   <div class="masthead-inner">
-    <a href="index.html" class="logo-block">
+    <div class="logo-block">
       <div class="logo-name">Daily <span>Spark</span></div>
       <div class="logo-tag">Where Knowledge Sparks Success</div>
-    </a>
+    </div>
     <nav class="nav-links" aria-label="Main navigation" id="main-nav">
       <a href="index.html">Home</a>
       <a href="parent.html">Parenting</a>
       <a href="math.html">Math Playground</a>
-      <a href="ait.html">Best AI Tools</a>
+      <a href="ait.html">Best Ai Tools</a>
       <a href="weather.html">Weather</a>
       <a href="contact.html">Contact Us</a>
     </nav>
+
+    <!-- Social Icons in Navbar -->
     <div class="nav-social-icons" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
       <a href="https://chat.whatsapp.com/I7BPAqJysA93wE1ljpKPlG?s=cl&p=a&ilr=4" target="_blank" rel="noopener" title="WhatsApp" style="width:34px;height:34px;border-radius:8px;background:#25D366;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(37,211,102,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.091.534 4.09 1.562 5.858L.057 23.25a.75.75 0 0 0 .918.934l5.524-1.445A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.953-1.354l-.355-.212-3.678.964.982-3.594-.232-.369A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
@@ -90,39 +45,16 @@
       <a href="https://www.instagram.com/dailyspark298" title="Instagram" style="width:34px;height:34px;border-radius:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(220,39,67,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
       </a>
-      <a href="https://www.youtube.com/watch?v=6aVxcTUuphs" title="YouTube" style="width:34px;height:34px;border-radius:8px;background:#FF0000;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(255,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <a href="#" title="YouTube" style="width:34px;height:34px;border-radius:8px;background:#FF0000;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(255,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
       <a href="#" title="Telegram" style="width:34px;height:34px;border-radius:8px;background:#0088CC;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,136,204,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </a>
     </div>
-    <button id="hamburger" onclick="toggleNav()" aria-label="Menu">
+
+    <button id="hamburger" onclick="toggleNav()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;flex-shrink:0;">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-</div>`;
-
-  /* ── Inject karo ── */
-  placeholder.outerHTML = headerHTML;
-
-  /* ── Active nav link ── */
-  var currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  if (currentPage === '') currentPage = 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(function (link) {
-    link.classList.toggle('active', link.getAttribute('href') === currentPage);
-  });
-
-  /* ── Live date ── */
-  var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var d = new Date();
-  var el = document.getElementById('topbar-date');
-  if (el) el.textContent = days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-
-  /* ── Hamburger menu ── */
-  window.toggleNav = function () {
-    var nav = document.getElementById('main-nav');
-    if (nav) nav.classList.toggle('open');
-  };
-})();
+</div>

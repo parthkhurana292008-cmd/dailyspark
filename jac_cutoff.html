@@ -6,8 +6,6 @@
 <title>Daily Spark— JAC Delhi 2025 Cutoff Analysis</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;900&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css">
-
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -196,17 +194,33 @@
     .tab-panel { display: block !important; }
     .section { break-inside: avoid; }
   }
+
+/* ── FAQ Section ── */
+.faq-section { margin: 32px 0 8px; }
+.faq-section-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.faq-section-title span { font-size: 11px; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item { border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); transition: box-shadow 0.2s; }
+.faq-item:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+.faq-item.open { border-color: var(--accent); }
+.faq-q { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; user-select: none; }
+.faq-q:hover { background: var(--surface2); }
+.faq-num { width: 24px; height: 24px; border-radius: 50%; background: var(--border); color: var(--text2); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.faq-item.open .faq-num { background: var(--text); color: #fff; }
+.faq-qtext { font-size: 13.5px; font-weight: 600; color: var(--text); flex: 1; line-height: 1.4; }
+.faq-chevron { font-size: 10px; color: var(--text3); transition: transform 0.2s; flex-shrink: 0; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-a { display: none; padding: 0 16px 14px 52px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
+.faq-a strong { color: var(--text); }
 </style>
 </head>
 <body>
-
+<!-- ===== DAILY SPARK SHARED HEADER ===== -->
+<div id="ds-header"></div>
+<script src="header.js"></script>
+<!-- ===== END SHARED HEADER ===== -->
 <!-- Navigation Bar -->
-<div class="navbar-wrap">
-  <div id="navbar"></div>
-  <script src="navbar.js"></script>
-</div>
-
-
 <div class="page-header">
   <h1>JAC Delhi 2025 — B.Tech Cutoff Analysis</h1>
   <p>DTU &nbsp;·&nbsp; NSUT &nbsp;·&nbsp; IGDTUW &nbsp;·&nbsp; IIIT-Delhi &nbsp;|&nbsp; All 5 Counselling Rounds &nbsp;|&nbsp; JEE Main CRL Ranks</p>
@@ -363,6 +377,91 @@
     </div>
   </div>
 
+</div>
+
+
+<div class="main">
+  <div class="faq-section">
+    <div class="faq-section-title">Frequently Asked Questions — JAC Delhi 2025 Cutoffs <span>15 FAQs</span></div>
+    <div class="faq-list">
+
+      <div class="faq-item" id="faq1">
+        <div class="faq-q" onclick="toggleFaq('faq1')"><div class="faq-num">1</div><div class="faq-qtext">What does "cutoff rank" mean in JAC Delhi counselling?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">A cutoff rank is the <strong>last rank at which a seat was allotted</strong> in a specific college, branch, category, and round. If your JEE Main rank is <strong>equal to or lower (better) than the cutoff</strong>, you were eligible for that seat.<br><br>⚠️ <strong>Important:</strong> Cutoffs are NOT minimum marks — they are the rank of the <em>last candidate</em> who got that seat. A lower rank number = stronger candidate. So rank 5,000 is better than rank 15,000.</div>
+      </div>
+
+      <div class="faq-item" id="faq2">
+        <div class="faq-q" onclick="toggleFaq('faq2')"><div class="faq-num">2</div><div class="faq-qtext">Why do cutoffs relax (increase) from Round 1 to Round 5?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">In Round 1, only the strongest rankers get seats. Many <strong>upgrade to better seats in Round 2 or 3</strong>, freeing up earlier seats for candidates with slightly weaker ranks — which is why cutoffs relax.<br><br>📌 <strong>Practical tip:</strong> If your rank is slightly above the Round 1 cutoff, <strong>do NOT give up</strong>. Participate in every round. Many students secure a seat in Round 4 or 5 that was impossible in Round 1. The Spot Round after Round 5 relaxes cutoffs even further.</div>
+      </div>
+
+      <div class="faq-item" id="faq3">
+        <div class="faq-q" onclick="toggleFaq('faq3')"><div class="faq-num">3</div><div class="faq-qtext">Which is the toughest branch to get into across DTU, NSUT, and IIIT-Delhi?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>CSE and AI-specialised branches</strong> are the toughest. 2025 Round 5 General (Delhi) cutoffs:<br><br>🔴 <strong>NSUT CSAI</strong> — ~7,946 (toughest overall)<br>🔴 <strong>IIIT-Delhi CSE</strong> — ~8,200<br>🔴 <strong>DTU CSE</strong> — ~11,352<br>🔴 <strong>NSUT CSE</strong> — ~12,500<br>🟡 <strong>DTU MAC</strong> — ~14,000 (great alternative)<br><br>If your rank doesn't fit CSE, consider <strong>ECE, MAC, or IT</strong> — similar first-2-year curriculum and nearly equal tech placements.</div>
+      </div>
+
+      <div class="faq-item" id="faq4">
+        <div class="faq-q" onclick="toggleFaq('faq4')"><div class="faq-num">4</div><div class="faq-qtext">What is the difference between Delhi region and Outside Delhi cutoffs?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">JAC Delhi reserves <strong>~85% seats for Delhi domicile candidates</strong> and ~15% for Outside Delhi. Outside Delhi pool competes nationally, so their cutoffs are much tougher.<br><br>📊 DTU CSE General Round 5 example:<br>🟢 <strong>Delhi region:</strong> ~11,352 &nbsp;|&nbsp; 🔴 <strong>Outside Delhi:</strong> ~6,200<br><br>✅ Delhi domicile students have a <strong>massive advantage</strong>. Outside Delhi candidates should also explore JoSAA for NIT/IIIT options alongside JAC.</div>
+      </div>
+
+      <div class="faq-item" id="faq5">
+        <div class="faq-q" onclick="toggleFaq('faq5')"><div class="faq-num">5</div><div class="faq-qtext">How should I use the 2025 cutoff data to predict my chances in 2026?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>3-step strategy:</strong><br><br><strong>Step 1 — Safety buffer:</strong> If your rank is <strong>10–20% better</strong> than the 2025 Round 5 cutoff, you have a strong chance.<br><br><strong>Step 2 — Dream + Realistic + Safe:</strong> Fill at least 8–12 choices — 3 dream branches, 4–5 realistic, 3 safe options.<br><br><strong>Step 3 — Watch the trend:</strong> If a branch's cutoff tightened every year, assume it will again. Use the Round-wise Trend tab above to see patterns.</div>
+      </div>
+
+      <div class="faq-item" id="faq6">
+        <div class="faq-q" onclick="toggleFaq('faq6')"><div class="faq-num">6</div><div class="faq-qtext">What is CSAI at NSUT and why is its cutoff so tough?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>CSAI = Computer Science & Artificial Intelligence</strong> — a dedicated AI+ML branch at NSUT. Why so tough?<br><br>1️⃣ <strong>Very limited seats</strong> compared to regular CSE<br>2️⃣ <strong>AI is the hottest field</strong> — everyone wants it<br>3️⃣ <strong>Excellent placements</strong> — top MNCs hire at premium packages<br><br>💡 If your rank doesn't make CSAI, <strong>NSUT CSE or DTU ECE</strong> are equally strong career paths.</div>
+      </div>
+
+      <div class="faq-item" id="faq7">
+        <div class="faq-q" onclick="toggleFaq('faq7')"><div class="faq-num">7</div><div class="faq-qtext">Is IGDTUW only for female candidates? What are its cutoffs like?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>Yes — IGDTUW admits only female candidates.</strong> This is a huge advantage:<br><br>✅ Cutoffs <strong>15,000–25,000 ranks more relaxed</strong> than DTU/NSUT for the same branch<br>✅ Female candidate with rank ~20,000 who misses DTU CSE can <strong>easily get CSE at IGDTUW</strong><br>✅ Excellent placements — Microsoft, Deloitte, Infosys and top startups<br>✅ Women-specific scholarships and a safe academic environment<br><br>📌 <strong>Female candidates must add IGDTUW CSE/ECE as a top choice</strong> — best value-for-rank in Delhi.</div>
+      </div>
+
+      <div class="faq-item" id="faq8">
+        <div class="faq-q" onclick="toggleFaq('faq8')"><div class="faq-num">8</div><div class="faq-qtext">What does the "R1→R5" change column mean in the cutoff table?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">The <strong>R1→R5 column shows how much the cutoff rank changed</strong> from Round 1 to Round 5.<br><br>🟢 <strong>Positive (green):</strong> Cutoff relaxed — branch had unfilled seats and opened to weaker ranks. Example: +8,000 means someone 8,000 ranks weaker than Round 1 still got in by Round 5.<br><br>🔴 <strong>Negative (red):</strong> Cutoff tightened — rare but possible.<br><br>💡 Large positive R1→R5 = <strong>participating in later rounds significantly helps</strong>. Civil, Mechanical, Biotech show +5,000 to +20,000 relaxation consistently.</div>
+      </div>
+
+      <div class="faq-item" id="faq9">
+        <div class="faq-q" onclick="toggleFaq('faq9')"><div class="faq-num">9</div><div class="faq-qtext">Which branches have the most relaxation between Round 1 and Round 5?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">Branches with <strong>highest relaxation</strong> in 2025 (General, Delhi):<br><br>🏗️ <strong>Civil Engineering (CE)</strong> — 15,000–25,000 rank relaxation<br>⚙️ <strong>Mechanical Engineering (ME)</strong> — 10,000–20,000 rank relaxation<br>🌿 <strong>Environmental Engineering (ENV)</strong> — 20,000+ rank relaxation<br>🧬 <strong>Biotechnology (BT)</strong> — 15,000–20,000 rank relaxation<br><br>📌 If your rank is 60,000–80,000, these branches are very achievable in Round 3 or 4. Mechanical and Civil from DTU/NSUT offer good PSU and core industry prospects.</div>
+      </div>
+
+      <div class="faq-item" id="faq10">
+        <div class="faq-q" onclick="toggleFaq('faq10')"><div class="faq-num">10</div><div class="faq-qtext">What reservation categories are available in JAC Delhi?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">JAC Delhi 2026 categories:<br><br>🔵 <strong>GN (General)</strong> — Open to all; toughest cutoffs<br>🟠 <strong>OBC</strong> — 27% reservation; ~3,000–8,000 ranks more relaxed than GN<br>🟣 <strong>SC</strong> — 15% reservation; significantly more relaxed<br>🟢 <strong>ST</strong> — 7.5% reservation; most relaxed cutoffs<br>🟡 <strong>EWS</strong> — 10% for GN candidates with family income below ₹8 lakh/year<br><br>✅ Always apply under your correct category — your competition pool is much smaller. Ensure your certificate is valid before the JAC registration deadline.</div>
+      </div>
+
+      <div class="faq-item" id="faq11">
+        <div class="faq-q" onclick="toggleFaq('faq11')"><div class="faq-num">11</div><div class="faq-qtext">My rank is higher than the Round 5 cutoff — does that mean I can't get in?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>Not necessarily — here's what you can still do:</strong><br><br>1️⃣ <strong>2026 cutoffs may differ</strong> — could relax by 5,000–15,000 ranks vs 2025<br>2️⃣ <strong>Try different branches</strong> — ECE, IT, or MAC have similar tech placements<br>3️⃣ <strong>Spot Round</strong> — after Round 5, most relaxed cutoffs of all rounds<br>4️⃣ <strong>Other campuses</strong> — DTU East and NSUT East have more relaxed cutoffs<br>5️⃣ <strong>Register anyway</strong> — complete registration before deadline; you can withdraw but can't apply after</div>
+      </div>
+
+      <div class="faq-item" id="faq12">
+        <div class="faq-q" onclick="toggleFaq('faq12')"><div class="faq-num">12</div><div class="faq-qtext">What is MAC branch at DTU and why is it a smart choice?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>MAC = Mathematics and Computing</strong> — one of Delhi's most underrated yet powerful branches.<br><br>📚 <strong>What you study:</strong> Advanced maths, statistics, data science, algorithms, ML — more logic and programming, less hardware.<br><br>💼 <strong>Career outcomes:</strong> Software Engineer, Data Scientist, Quant Analyst, AI Researcher. Top recruiters: Google, Microsoft, Goldman Sachs, D.E. Shaw.<br><br>📊 <strong>Cutoff:</strong> Only 2,000–5,000 ranks more relaxed than CSE. With rank 13,000–16,000 (Delhi General), MAC at DTU is a <strong>very smart choice</strong> — often better long-term than CSE at a tier-2 private college.</div>
+      </div>
+
+      <div class="faq-item" id="faq13">
+        <div class="faq-q" onclick="toggleFaq('faq13')"><div class="faq-num">13</div><div class="faq-qtext">How reliable is the Rank Checker tool on this page?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">The Rank Checker uses <strong>actual JAC Delhi 2025 official cutoff data</strong> — highly accurate for 2025.<br><br>✅ <strong>What it tells you:</strong> Which college-branch combinations your rank would have qualified for in 2025, across all 5 rounds.<br><br>⚠️ <strong>What it cannot predict:</strong> 2026 cutoffs — these depend on JEE Main 2026 difficulty, total applicants, and seat availability.<br><br>💡 <strong>Best use:</strong> Enter rank → note all qualifying combinations → add ALL as choices during JAC registration → rank from most to least preferred. More choices = safer you are.</div>
+      </div>
+
+      <div class="faq-item" id="faq14">
+        <div class="faq-q" onclick="toggleFaq('faq14')"><div class="faq-num">14</div><div class="faq-qtext">Which college — DTU or NSUT — has better placements?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a">🏛️ <strong>DTU:</strong> Stronger brand nationally, better research output, slightly higher average packages in CSE/ECE, larger senior alumni network.<br><br>🏛️ <strong>NSUT:</strong> Rapidly improving placements year-on-year, NSUT CSAI has some of Delhi's highest packages, strong software and electronics industry connections.<br><br>🎯 <strong>Verdict:</strong> For the same branch, DTU has a slight edge. But <strong>branch matters far more than college</strong> — CSE at NSUT will almost always outperform Mechanical at DTU in placements and salary.</div>
+      </div>
+
+      <div class="faq-item" id="faq15">
+        <div class="faq-q" onclick="toggleFaq('faq15')"><div class="faq-num">15</div><div class="faq-qtext">Can I download this cutoff data for offline reference?</div><span class="faq-chevron">▼</span></div>
+        <div class="faq-a"><strong>Yes! Here's how:</strong><br><br>1️⃣ Go to the <strong>"Complete Data" tab</strong> above<br>2️⃣ Select your <strong>category</strong> (GN/OBC/SC/ST/EWS) and <strong>region</strong> (Delhi/Outside Delhi)<br>3️⃣ Click <strong>"⬇ Download as CSV"</strong><br><br>The file opens in Excel or Google Sheets with all Round 1–5 cutoffs for every college-branch combination.<br><br>💡 <strong>Pro tip:</strong> Use Excel's filter to sort by Round 5 cutoff — quickly see which branches are within your rank range, making choice-filling much faster during JAC registration.</div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <div class="footer">Data sourced from JAC Delhi official cutoff documents 2025 &nbsp;·&nbsp; All ranks are JEE Main CRL &nbsp;·&nbsp; Lower rank = tougher cutoff</div>
@@ -1145,7 +1244,13 @@ function switchTab(name, el){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('tab-'+name).classList.add('active');
-  if(name==='allbranch'||name==='compare'||name==='trend') render();
+  if(name==='allbranch'||name==='compare'||name==='trend') 
+function toggleFaq(id) {
+  document.querySelectorAll('.faq-item').forEach(function(el){ if(el.id!==id) el.classList.remove('open'); });
+  document.getElementById(id).classList.toggle('open');
+}
+
+render();
 }
 
 /* ── CSV Export ── */
@@ -1164,6 +1269,12 @@ function exportCSV(){
   a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
   a.download=`JAC_Delhi_2025_${cat}_${reg}.csv`;
   a.click();
+}
+
+
+function toggleFaq(id) {
+  document.querySelectorAll('.faq-item').forEach(function(el){ if(el.id!==id) el.classList.remove('open'); });
+  document.getElementById(id).classList.toggle('open');
 }
 
 render();
