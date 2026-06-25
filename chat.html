@@ -115,7 +115,7 @@
       color: var(--white);
       min-height: 100vh;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      align-items: center;
       padding: 16px 16px 28px;
       overflow-x: hidden; position: relative;
     }
@@ -242,11 +242,11 @@
   </style>
 </head>
 <body>
-
-  <!-- Header loaded from header.js -->
-  <script src="header.js"></script>
-
-  <!-- Background orbs -->
+<!-- ===== DAILY SPARK SHARED HEADER ===== -->
+<div id="ds-header"></div>
+<script src="header.js"></script>
+<!-- ===== END SHARED HEADER ===== -->
+<!-- Background orbs -->
   <div class="orb" style="top:-100px;left:-80px;width:380px;height:380px;background:#FF6B00;animation-delay:0s;"></div>
   <div class="orb" style="bottom:-80px;right:-60px;width:320px;height:320px;background:#7C3AED;animation-delay:4s;"></div>
   <div class="orb" style="top:40%;left:55%;width:220px;height:220px;background:#0891B2;animation-delay:8s;"></div>
